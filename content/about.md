@@ -14,21 +14,33 @@ tags:
   - "digital-sovereignty"
 ---
 
-## Why We Do This
+## Where It Started
+
+In March 2022, 5,000 refugees arrived daily at the Tesco Centre transit camp near the Polish-Ukrainian border.
+
+No IT systems. No volunteer screening. No logistics tracking. No donation management. No big NGOs. No government funding. Just people who showed up. Ordinary people like me and you. Some of us were nerds. And we decided this must never happen again — the people who show up must get the tools they need to help the helpers.
+
+Everything was improvised. We built tools on the ground — a [QR-based wristband identification system](https://github.com/helpers-no/qr-armband) for aid workers, chauffeurs, and refugees, in collaboration with [SINTEF](https://sintef.no). This work was featured in [Dagens Næringsliv](https://www.dn.no/innlegg/ukraina/flyktninger/it/innlegg-databransjen-kan-hjelpe-polske-flyktningmottak/2-1-1196672).
+
+That experience taught us: **digital infrastructure must work anywhere, anytime, under any conditions.** That lesson applies far beyond crisis response.
+
+---
+
+## From Crisis Response to Digital Sovereignty
 
 Norway is investing billions in military defence — F-35 fighter jets, new submarines, expanded conscription. But while we prepare for physical threats, our digital infrastructure remains dangerously dependent on foreign powers.
 
 We can't buy a bus ticket without American cloud services. Our hospitals, government agencies, and critical infrastructure all run on systems subject to the US CLOUD Act. A single political decision in Washington could disrupt Norwegian society more effectively than any military attack.
 
-**SovereignSky exists to change this.**
-
-We believe that digital sovereignty is not optional — it's a prerequisite for national resilience. And we believe that awareness must come before action. You can't solve a problem you don't see.
+Born from the chaos of running Europe's largest refugee transit camp with no tools, **SovereignSky** is a sovereign cloud platform that ensures organizations can operate — with or without the cloud.
 
 ---
 
 ## What We Provide
 
-SovereignSky is a **practical resource** for understanding and addressing digital sovereignty:
+SovereignSky is both a **knowledge platform** and a **set of open-source tools**:
+
+### Knowledge & Data
 
 | Resource | Purpose |
 |----------|---------|
@@ -36,35 +48,27 @@ SovereignSky is a **practical resource** for understanding and addressing digita
 | **[Datacenter Map](/datacenters/)** | 87 cloud locations — see where your data actually lives |
 | **[Jurisdiction Profiles](/countries/)** | 66 legal frameworks — know the rules that apply |
 | **[Software Database](/software/)** | Sovereignty risk assessments for common tools |
-| **[NDSI Framework](/ndsi/)** | Self-assessment tool for organizations |
+| **[NDSI Framework](/sovereignsky/ndsi/)** | Self-assessment tool for organizations |
 | **[Blog](/blog/)** | Analysis and news on digital sovereignty |
 
-We also document **practical solutions** — open source infrastructure, Norwegian providers, and exit strategies that give organizations real alternatives.
+### Tools & Infrastructure
+
+| Tool | Purpose |
+|------|---------|
+| **[DevContainer Toolbox](https://dct.sovereignsky.no/)** | Consistent development environment across all platforms |
+| **[Urbalurba Infrastructure](https://uis.sovereignsky.no/)** | Complete datacenter on your laptop — Kubernetes, databases, AI |
+| **[Dev Templates](https://github.com/helpers-no/dev-templates)** | Production-ready project starters |
+| **[Client Provisioning](https://github.com/helpers-no/client-provisioning)** | Automated developer machine setup |
+
+All tools are open source and available on [GitHub](https://github.com/helpers-no).
 
 ---
 
 ## A helpers.no Initiative
 
-SovereignSky is published by **[helpers.no](https://helpers.no)**, a Norwegian initiative focused on practical action during crisis.
+SovereignSky is built by **[helpers.no](https://helpers.no)** — an organization that exists because ordinary people showed up at a refugee camp and decided to build the tools that were missing.
 
-### What helpers.no Has Done
-
-**Ukraine Refugee Crisis (2022)**
-
-When Russia invaded Ukraine and refugees began arriving in Norway, helpers.no coordinated volunteer efforts at an unprecedented scale:
-
-- Operated **Europe's largest refugee transit center** at the Norway-Ukraine border reception
-- Coordinated thousands of volunteers providing immediate assistance
-- Built systems for matching refugees with housing, transport, and support
-- Demonstrated that civil society can mobilize rapidly when needed
-
-The experience reinforced a key insight: **preparedness requires infrastructure before the crisis hits**. You can't build coordination systems while the crisis is unfolding.
-
-### Why Digital Sovereignty Now
-
-The same principle applies to digital infrastructure. When a geopolitical crisis makes American cloud services unavailable or untrustworthy, it will be too late to build alternatives.
-
-SovereignSky is that preparedness work — building awareness, documenting alternatives, and creating frameworks *before* they're urgently needed.
+We apply that same approach to digital sovereignty: see a problem, build a solution, share it openly.
 
 ---
 
