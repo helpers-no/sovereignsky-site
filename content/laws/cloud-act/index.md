@@ -49,18 +49,15 @@ isRelatedTo:
     - identifier: "eu-us-dpf"
       name: "EU-US DPF"
       legislationDate: "2023"
-      flag: "🇪🇺"
   conflicts_with:
     - identifier: "gdpr"
       name: "GDPR"
       legislationDate: "2018"
-      flag: "🇪🇺"
     - identifier: "schrems-ii"
       name: "Schrems II"
       legislationDate: "2020"
-      flag: "🇪🇺"
 layout: "single"
 type: "laws"
 ---
 
-*No additional commentary yet. [Contribute on GitHub](https://github.com/terchris/sovereignsky-site).*
+*No additional commentary yet. [Contribute on GitHub](https://github.com/helpers-no/sovereignsky-site).*

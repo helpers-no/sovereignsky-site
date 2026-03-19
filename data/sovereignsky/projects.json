@@ -83,7 +83,7 @@
       "project": {
         "dateStarted": "2024-12-01",
         "status": "active",
-        "repository": "https://github.com/terchris/software-scrape",
+        "repository": "https://github.com/helpers-no/software-scrape",
         "documentation": ""
       }
     },
@@ -97,7 +97,7 @@
       "summary": "Stop writing separate code for logs, metrics, and traces. Write one log entry and automatically get structured logs, metrics dashboards, distributed traces, and service dependency maps.",
       "body": "## The Problem\n\nTraditional observability requires 20+ lines per operation - separate logger calls, metric counters, trace spans, manual correlation.\n\n## The Solution\n\n```typescript\nsovdev_log(INFO, FUNCTIONNAME, 'Payment processed', PEER_SERVICES.PAYMENT_GATEWAY, input, output);\n// ↑ Automatic logs + metrics + traces + correlation\n```\n\n**Result**: 95% less instrumentation code, complete observability out of the box.\n\n## What You Get Automatically\n\n| Output | Backends |\n|--------|----------|\n| Structured Logs | Azure Log Analytics, Loki, JSON files |\n| Metrics | Azure Monitor, Prometheus, Grafana |\n| Distributed Traces | Application Insights, Tempo |\n| Service Maps | Automatic dependency graphs |\n\n## Supported Languages\n\n| Language | Status |\n|----------|--------|\n| TypeScript | ✅ Available |\n| Go, Python, C#, Rust, PHP | 📅 Planned |\n\nWorks with any OpenTelemetry-compatible backend: Azure Monitor, Grafana Cloud, Datadog, New Relic, or self-hosted.",
       "image": "sovdev-logger.png",
-      "url": "https://github.com/terchris/sovdev-logger",
+      "url": "https://github.com/helpers-no/sovdev-logger",
       "topics": [
         "cybersecurity",
         "critical-infrastructure"
@@ -117,7 +117,7 @@
       "project": {
         "dateStarted": "2025-01-01",
         "status": "active",
-        "repository": "https://github.com/terchris/sovdev-logger",
+        "repository": "https://github.com/helpers-no/sovdev-logger",
         "documentation": ""
       }
     },
@@ -131,7 +131,7 @@
       "summary": "Generate professional documentation from Markdown files and Azure DevOps Wikis. Containerized toolbox combining Pandoc, Mermaid, and Marp for cross-platform document generation.",
       "body": "## The Problem It Solves\n\nOutdated documentation that stakeholders can't access. DocuWrite creates snapshot PDFs from your Wiki that everyone can share - same version, same meeting, delete after.\n\n## Output Features\n\n- Professional table of contents\n- Numbered pages with generation timestamp\n- Fully searchable PDF\n- Auto-generated TODO list appendix\n- Figures appendix\n- Mermaid diagram support\n\n## Included Tools\n\n| Tool | Purpose |\n|------|--------|\n| Pandoc | Markdown to PDF, DOCX, and other formats |\n| Mermaid CLI | Diagrams from text descriptions |\n| Marp CLI | Slide decks (PDF, PowerPoint) from Markdown |\n| Puppeteer | PDF from HTML |\n| Firefox | PDF from HTML |\n\n## Repositories\n\n- **docuwrite-base** - Container with all tools (AMD64 + ARM64)\n- **bifrost-docuwrite** - Wiki-to-PDF workflow automation",
       "image": "docuwrite.png",
-      "url": "https://github.com/terchris/docuwrite-base",
+      "url": "https://github.com/helpers-no/docuwrite-base",
       "topics": [
         "critical-infrastructure"
       ],
@@ -153,7 +153,7 @@
       "project": {
         "dateStarted": "2024-01-01",
         "status": "active",
-        "repository": "https://github.com/terchris/docuwrite-base",
+        "repository": "https://github.com/helpers-no/docuwrite-base",
         "documentation": ""
       }
     },
@@ -167,7 +167,7 @@
       "summary": "A Configuration Management Database (CMDB) designed to map, document, and govern how applications, APIs, data flows, and stakeholders connect across an organization.",
       "body": "## What Is Bifrost?\n\nBifrost provides a structured, authoritative view of the IT landscape—combining technical dependencies with clear accountability and ownership.\n\n> **What sets this CMDB apart:** Unlike traditional CMDBs that focus primarily on infrastructure, Bifrost treats applications, APIs, integrations, and stakeholders as equal first-class entities—each with unique identities, ownership, and lifecycle management.\n\n## Application Registry\n\nAt its core, Bifrost maintains a comprehensive application registry where each application is assigned a unique, persistent identifier and enriched with business, technical, and operational metadata. Applications are linked to business owners, technical owners, and other stakeholders, ensuring that responsibility is explicit rather than implicit.\n\nStakeholders are mapped to real identities through integration with Microsoft Entra ID, enabling accurate ownership, role-based access, and traceability over time—even as personnel change.\n\n## Integrations & APIs as First-Class Items\n\nBeyond applications, Bifrost models integrations and APIs as first-class configuration items. Every integration and API is assigned a unique integration identifier (INT number) and documented with:\n\n- Purpose and direction\n- Data classification\n- Lifecycle status\n- Independent stakeholders and owners\n\nAPIs can have their own stakeholders and owners, independent of the applications they connect, reflecting real-world responsibility for interface contracts, security, and availability.\n\n## Dependency Visualization\n\nUsing interactive dependency and integration visualizations, Bifrost shows:\n\n- How applications and APIs are interconnected\n- Which systems depend on which interfaces\n- Where critical business processes are exposed to risk\n\nThis enables accurate impact analysis, supports change management, and reduces uncertainty during incidents or modernization efforts.\n\n## Automation & Integration\n\nTo reduce manual effort and ensure adoption, Bifrost supports:\n\n- **Bulk Import** - Synchronization with Excel and ServiceNow\n- **Documentation Generation** - Auto-generate wikis and PDF catalogs\n- **Living Source of Truth** - Continuously updated model rather than static inventory\n\n## Technical Stack\n\n| Component | Technology |\n|-----------|------------|\n| Frontend | Next.js 14 (App Router) |\n| Backend | Strapi CMS |\n| API | TypeScript |\n| Database | SQLite (dev) / PostgreSQL (prod) |\n| Deployment | Kubernetes, Docker |",
       "image": "bifrost.png",
-      "url": "https://github.com/terchris/bifrost",
+      "url": "https://github.com/helpers-no/bifrost",
       "topics": [
         "critical-infrastructure"
       ],
@@ -185,7 +185,7 @@
       "project": {
         "dateStarted": "2024-01-01",
         "status": "active",
-        "repository": "https://github.com/terchris/bifrost",
+        "repository": "https://github.com/helpers-no/bifrost",
         "documentation": ""
       }
     },
@@ -199,7 +199,7 @@
       "summary": "Zero-friction developer platform for building, testing, and deploying modern apps without needing to know Kubernetes, GitOps, or the cloud. Same infrastructure locally, in cloud, and on-premises.",
       "body": "## The Problem It Solves\n\n- **'It works on my machine' syndrome** - Applications behave differently in development vs production\n- **Complex cloud setup** - Developers waste time configuring cloud services\n- **Permission bottlenecks** - Waiting for cloud access slows development\n- **Expensive development** - Cloud costs accumulate during development\n- **Data privacy concerns** - Sensitive data must leave your environment for cloud AI\n\n## What's Included\n\n| Category | Services |\n|----------|----------|\n| Core Infrastructure | Kubernetes cluster, Docker runtime, Provision Host |\n| Data Services | PostgreSQL, Redis, message queues, object storage |\n| AI & Machine Learning | Local ChatGPT-like system, private AI models, local LLM execution |\n| Development Tools | GitOps workflows, dev containers, Infrastructure as Code |\n\n## Key Benefits\n\n- **Rapid Development** - Everything ready out of the box\n- **True Portability** - Same environment everywhere\n- **Data Privacy** - Nothing leaves your machine\n- **Cost Effective** - No cloud charges during development\n- **Production Confidence** - Test with real infrastructure locally",
       "image": "urbalurba-infrastructure.png",
-      "url": "https://github.com/terchris/urbalurba-infrastructure",
+      "url": "https://github.com/helpers-no/urbalurba-infrastructure",
       "topics": [
         "critical-infrastructure",
         "cybersecurity"
@@ -218,7 +218,7 @@
       "project": {
         "dateStarted": "2024-01-01",
         "status": "active",
-        "repository": "https://github.com/terchris/urbalurba-infrastructure",
+        "repository": "https://github.com/helpers-no/urbalurba-infrastructure",
         "documentation": ""
       }
     },
@@ -232,7 +232,7 @@
       "summary": "A pre-configured development container providing all tools, libraries, and runtime dependencies required to build software—works identically on Windows, macOS, and Linux.",
       "body": "## What Is DevContainer Toolbox?\n\nDevContainer Toolbox establishes a single, reproducible development environment that works identically on Windows, macOS, and Linux—eliminating environment drift and the classic \"it works on my machine\" problem.\n\nBy using the Dev Container standard, the entire development environment is defined as code and version-controlled alongside the application source. When a developer checks out a repository, they get not only the code, but also the exact tools, runtimes, CLI utilities, and configurations required to build, run, debug, and test it—ready to use in minutes.\n\n## Fast and Predictable Onboarding\n\nOnboarding new developers becomes trivial. There is no need for lengthy setup guides, local tool installation, or troubleshooting OS-specific issues. Opening the project in a supported IDE automatically builds and launches the devcontainer with everything installed and configured.\n\nThis enables:\n\n- New developers to be productive on day one\n- External consultants to work in a controlled, compliant environment\n- Teams to scale without increasing setup and support overhead\n\n## A Toolbox, Not a Single-Purpose Container\n\nDevContainer Toolbox is designed as a shared foundation for many types of development work. It includes a rich base environment and a modular architecture for extending functionality as needed.\n\nThe `.devcontainer` directory is structured to support this:\n\n| Directory | Purpose |\n|-----------|----------|\n| `manage/` | Commands and orchestration logic for setup, extension, and maintenance |\n| `additions/` | Scripts that install and configure tools for specific languages and use cases |\n\nThis approach allows teams to enable support for multiple programming languages and technology stacks from a single, standardized container image.\n\n## Multi-Language Support\n\nThe toolbox includes commands and templates for:\n\n| Languages | Frameworks |\n|-----------|------------|\n| C# / .NET | Next.js, React |\n| Python | Express, Spring Boot |\n| Node.js / TypeScript | Web APIs |\n| Go, Java, PHP | Backend services |\n\n## IDE and Platform Support\n\nWorks consistently across Windows, macOS, and Linux with:\n\n- Visual Studio Code\n- JetBrains Rider\n- Visual Studio\n\nThe container abstracts away host OS differences, ensuring that builds, scripts, and tooling behave the same for every developer.\n\n## Security and Stability\n\nBecause all tooling runs inside the container:\n\n- The local machine remains clean and unaffected\n- Developers can safely experiment without breaking their host system\n- Tool versions and dependencies are pinned and auditable\n- Security teams gain better control and predictability\n\nThe base image is built on **Debian 12 (Bookworm)** and includes essential CLI tools such as Azure CLI, Python, Node.js, and common utilities required for modern cloud-native development.\n\n## Key Benefits\n\n- **Consistent environments** across all developers and platforms\n- **Ultra-fast onboarding** with no manual setup\n- **Environment-as-code** checked in alongside application source\n- **Modular architecture** for diverse development needs\n- **Reduced support overhead** and troubleshooting\n- **Improved collaboration** through identical tooling and workflows",
       "image": "devcontainer-toolbox.png",
-      "url": "https://github.com/terchris/devcontainer-toolbox",
+      "url": "https://github.com/helpers-no/devcontainer-toolbox",
       "topics": [
         "cybersecurity"
       ],
@@ -250,7 +250,7 @@
       "project": {
         "dateStarted": "2024-01-01",
         "status": "active",
-        "repository": "https://github.com/terchris/devcontainer-toolbox",
+        "repository": "https://github.com/helpers-no/devcontainer-toolbox",
         "documentation": ""
       }
     },

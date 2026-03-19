@@ -6,8 +6,8 @@ date: 2024-01-01
 description: "You cannot secure what you cannot see. Bifrost maps your entire application landscape and data flows, revealing hidden dependencies on foreign services - the essential first step in any sovereignty assessment or migration planning."
 summary: "Gain full visibility into your organization's application landscape, integrations, and ownership"
 status: "active"
-repository: "https://github.com/terchris/bifrost"
-externalUrl: "https://github.com/terchris/bifrost"
+repository: "https://github.com/helpers-no/bifrost"
+externalUrl: "https://github.com/helpers-no/bifrost"
 topics:
   - "critical-infrastructure"
 tags:

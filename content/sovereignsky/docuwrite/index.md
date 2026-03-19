@@ -6,8 +6,8 @@ date: 2024-01-01
 description: "Cloud document services scan your content and may share data with foreign authorities. DocuWrite runs entirely locally, ensuring sensitive documentation never leaves your infrastructure - critical for classified, legal, or confidential materials."
 summary: "Swiss army knife for converting Markdown to professional PDFs, Word documents, and presentations"
 status: "active"
-repository: "https://github.com/terchris/docuwrite-base"
-externalUrl: "https://github.com/terchris/docuwrite-base"
+repository: "https://github.com/helpers-no/docuwrite-base"
+externalUrl: "https://github.com/helpers-no/docuwrite-base"
 topics:
   - "critical-infrastructure"
 tags:

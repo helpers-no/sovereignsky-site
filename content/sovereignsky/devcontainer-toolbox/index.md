@@ -6,8 +6,8 @@ date: 2024-01-01
 description: "Cloud-based IDEs like GitHub Codespaces send your code through foreign infrastructure. DevContainer Toolbox provides the same convenience locally, keeping your source code and development activity within your own security perimeter."
 summary: "A standardized, cross-platform development environment for fast, reliable onboarding and consistent delivery"
 status: "active"
-repository: "https://github.com/terchris/devcontainer-toolbox"
-externalUrl: "https://github.com/terchris/devcontainer-toolbox"
+repository: "https://github.com/helpers-no/devcontainer-toolbox"
+externalUrl: "https://github.com/helpers-no/devcontainer-toolbox"
 topics:
   - "cybersecurity"
 tags:

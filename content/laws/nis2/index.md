@@ -34,17 +34,14 @@ isRelatedTo:
     - identifier: "dora"
       name: "DORA"
       legislationDate: "2025"
-      flag: "🇪🇺"
     - identifier: "cra"
       name: "CRA"
       legislationDate: "2024"
-      flag: "🇪🇺"
     - identifier: "gdpr"
       name: "GDPR"
       legislationDate: "2018"
-      flag: "🇪🇺"
 layout: "single"
 type: "laws"
 ---
 
-*No additional commentary yet. [Contribute on GitHub](https://github.com/terchris/sovereignsky-site).*
+*No additional commentary yet. [Contribute on GitHub](https://github.com/helpers-no/sovereignsky-site).*

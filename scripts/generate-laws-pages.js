@@ -370,7 +370,7 @@ function getBodyContent(law) {
   if (law.body && law.body.trim()) {
     return law.body;
   }
-  return `*No additional commentary yet. [Contribute on GitHub](https://github.com/terchris/sovereignsky-site).*`;
+  return `*No additional commentary yet. [Contribute on GitHub](https://github.com/helpers-no/sovereignsky-site).*`;
 }
 
 async function main() {

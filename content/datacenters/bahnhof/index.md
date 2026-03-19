@@ -52,4 +52,4 @@ regions:
       - 13.0038
 ---
 
-*No additional commentary yet. [Contribute on GitHub](https://github.com/terchris/sovereignsky-site).*
+*No additional commentary yet. [Contribute on GitHub](https://github.com/helpers-no/sovereignsky-site).*

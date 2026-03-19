@@ -34,17 +34,14 @@ isRelatedTo:
     - identifier: "data-act"
       name: "Data Act"
       legislationDate: "2024"
-      flag: "🇪🇺"
     - identifier: "gdpr"
       name: "GDPR"
       legislationDate: "2018"
-      flag: "🇪🇺"
     - identifier: "dsa"
       name: "DSA"
       legislationDate: "2022"
-      flag: "🇪🇺"
 layout: "single"
 type: "laws"
 ---
 
-*No additional commentary yet. [Contribute on GitHub](https://github.com/terchris/sovereignsky-site).*
+*No additional commentary yet. [Contribute on GitHub](https://github.com/helpers-no/sovereignsky-site).*

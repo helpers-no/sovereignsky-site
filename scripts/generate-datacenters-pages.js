@@ -139,7 +139,7 @@ function main() {
     const md = `---
 ${yamlContent}---
 
-*No additional commentary yet. [Contribute on GitHub](https://github.com/terchris/sovereignsky-site).*
+*No additional commentary yet. [Contribute on GitHub](https://github.com/helpers-no/sovereignsky-site).*
 `;
 
     fs.writeFileSync(path.join(providerDir, 'index.md'), md);

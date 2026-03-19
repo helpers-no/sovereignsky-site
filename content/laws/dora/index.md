@@ -36,13 +36,11 @@ isRelatedTo:
     - identifier: "nis2"
       name: "NIS2 Directive"
       legislationDate: "2024"
-      flag: "🇪🇺"
     - identifier: "cra"
       name: "CRA"
       legislationDate: "2024"
-      flag: "🇪🇺"
 layout: "single"
 type: "laws"
 ---
 
-*No additional commentary yet. [Contribute on GitHub](https://github.com/terchris/sovereignsky-site).*
+*No additional commentary yet. [Contribute on GitHub](https://github.com/helpers-no/sovereignsky-site).*

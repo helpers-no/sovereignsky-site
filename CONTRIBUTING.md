@@ -6,7 +6,7 @@ Thank you for your interest in helping make Norway more digitally sovereign! ðŸ‡
 
 ### 1. Report Issues or Suggest Improvements
 
-The easiest way to contribute is by [creating an issue](https://github.com/terchris/sovereignsky-site/issues/new/choose):
+The easiest way to contribute is by [creating an issue](https://github.com/helpers-no/sovereignsky-site/issues/new/choose):
 
 - **Bug Report** - Something isn't working correctly
 - **Feature Request** - Suggest new functionality  
@@ -28,7 +28,7 @@ You can track progress by watching the `docs/plans/` folder.
 
 We also welcome pull requests! Before starting significant work:
 
-1. Check existing [issues](https://github.com/terchris/sovereignsky-site/issues) and [plans](./docs/plans/)
+1. Check existing [issues](https://github.com/helpers-no/sovereignsky-site/issues) and [plans](./docs/plans/)
 2. Open an issue to discuss your idea
 3. Wait for feedback before investing time in implementation
 
@@ -36,7 +36,7 @@ We also welcome pull requests! Before starting significant work:
 
 ```bash
 # Clone the repo
-git clone https://github.com/terchris/sovereignsky-site.git
+git clone https://github.com/helpers-no/sovereignsky-site.git
 cd sovereignsky-site
 
 # Open in VS Code with Dev Containers extension
@@ -54,7 +54,7 @@ See [CLAUDE.md](./CLAUDE.md) for detailed development instructions.
 
 We're building a database of sovereign software alternatives. Help us by:
 
-1. Creating a [Content Suggestion](https://github.com/terchris/sovereignsky-site/issues/new?template=content_suggestion.md) issue
+1. Creating a [Content Suggestion](https://github.com/helpers-no/sovereignsky-site/issues/new?template=content_suggestion.md) issue
 2. Including: name, website, what it replaces, license, headquarters country
 
 ### Suggesting Publications
@@ -97,7 +97,7 @@ Conferences, workshops, or gatherings related to:
 
 ## Questions?
 
-- Open a [Discussion](https://github.com/terchris/sovereignsky-site/discussions)
+- Open a [Discussion](https://github.com/helpers-no/sovereignsky-site/discussions)
 - Check the [About page](https://sovereignsky.no/about/)
 - Contact [Helpers.no](https://helpers.no)
 

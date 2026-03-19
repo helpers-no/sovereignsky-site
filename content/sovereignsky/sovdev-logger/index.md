@@ -6,8 +6,8 @@ date: 2025-01-01
 description: "Application telemetry often flows to foreign cloud providers, exposing operational patterns and sensitive metadata. sovdev-logger works with self-hosted backends like Grafana and Loki, keeping your observability data under your control and jurisdiction."
 summary: "Multi-language structured logging with zero-effort observability - one log call, complete observability"
 status: "active"
-repository: "https://github.com/terchris/sovdev-logger"
-externalUrl: "https://github.com/terchris/sovdev-logger"
+repository: "https://github.com/helpers-no/sovdev-logger"
+externalUrl: "https://github.com/helpers-no/sovdev-logger"
 topics:
   - "cybersecurity"
   - "critical-infrastructure"

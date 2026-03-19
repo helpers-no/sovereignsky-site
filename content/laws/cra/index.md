@@ -35,13 +35,11 @@ isRelatedTo:
     - identifier: "nis2"
       name: "NIS2 Directive"
       legislationDate: "2024"
-      flag: "🇪🇺"
     - identifier: "dora"
       name: "DORA"
       legislationDate: "2025"
-      flag: "🇪🇺"
 layout: "single"
 type: "laws"
 ---
 
-*No additional commentary yet. [Contribute on GitHub](https://github.com/terchris/sovereignsky-site).*
+*No additional commentary yet. [Contribute on GitHub](https://github.com/helpers-no/sovereignsky-site).*

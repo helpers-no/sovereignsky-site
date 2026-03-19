@@ -6,8 +6,8 @@ date: 2024-12-01
 description: "Every foreign SaaS tool is a potential backdoor for extraterritorial data access. This database helps organizations identify European and open-source alternatives to reduce dependency on US Cloud Act-subject vendors and maintain data sovereignty."
 summary: "4,400+ software products categorized, validated, and mapped with sovereign alternatives"
 status: "active"
-repository: "https://github.com/terchris/software-scrape"
-externalUrl: "https://sovereignsky.no/software/"
+repository: "https://github.com/helpers-no/software-scrape"
+externalUrl: "/sovereignsky/software-database/"
 topics:
   - "digital-sovereignty"
   - "data-protection"

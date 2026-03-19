@@ -6,7 +6,7 @@ date: 2024-01-01
 description: "What gets measured gets managed. NDSI provides a structured framework to assess your organization's sovereignty posture, identify vulnerabilities to foreign control, and track improvement over time - aligned with EU standards and Norwegian regulations."
 summary: "A community-driven framework for measuring and improving digital sovereignty readiness in Norwegian organizations"
 status: "planned"
-externalUrl: "https://sovereignsky.no/sovereignsky/ndsi/"
+externalUrl: "/sovereignsky/ndsi/"
 topics:
   - "digital-sovereignty"
   - "data-protection"
