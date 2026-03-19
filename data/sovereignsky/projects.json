@@ -199,7 +199,7 @@
       "summary": "Zero-friction developer platform for building, testing, and deploying modern apps without needing to know Kubernetes, GitOps, or the cloud. Same infrastructure locally, in cloud, and on-premises.",
       "body": "## The Problem It Solves\n\n- **'It works on my machine' syndrome** - Applications behave differently in development vs production\n- **Complex cloud setup** - Developers waste time configuring cloud services\n- **Permission bottlenecks** - Waiting for cloud access slows development\n- **Expensive development** - Cloud costs accumulate during development\n- **Data privacy concerns** - Sensitive data must leave your environment for cloud AI\n\n## What's Included\n\n| Category | Services |\n|----------|----------|\n| Core Infrastructure | Kubernetes cluster, Docker runtime, Provision Host |\n| Data Services | PostgreSQL, Redis, message queues, object storage |\n| AI & Machine Learning | Local ChatGPT-like system, private AI models, local LLM execution |\n| Development Tools | GitOps workflows, dev containers, Infrastructure as Code |\n\n## Key Benefits\n\n- **Rapid Development** - Everything ready out of the box\n- **True Portability** - Same environment everywhere\n- **Data Privacy** - Nothing leaves your machine\n- **Cost Effective** - No cloud charges during development\n- **Production Confidence** - Test with real infrastructure locally",
       "image": "urbalurba-infrastructure.png",
-      "url": "https://github.com/helpers-no/urbalurba-infrastructure",
+      "url": "https://uis.sovereignsky.no/",
       "topics": [
         "critical-infrastructure",
         "cybersecurity"
@@ -219,7 +219,7 @@
         "dateStarted": "2024-01-01",
         "status": "active",
         "repository": "https://github.com/helpers-no/urbalurba-infrastructure",
-        "documentation": ""
+        "documentation": "https://uis.sovereignsky.no/"
       }
     },
     {
@@ -232,7 +232,7 @@
       "summary": "A pre-configured development container providing all tools, libraries, and runtime dependencies required to build software—works identically on Windows, macOS, and Linux.",
       "body": "## What Is DevContainer Toolbox?\n\nDevContainer Toolbox establishes a single, reproducible development environment that works identically on Windows, macOS, and Linux—eliminating environment drift and the classic \"it works on my machine\" problem.\n\nBy using the Dev Container standard, the entire development environment is defined as code and version-controlled alongside the application source. When a developer checks out a repository, they get not only the code, but also the exact tools, runtimes, CLI utilities, and configurations required to build, run, debug, and test it—ready to use in minutes.\n\n## Fast and Predictable Onboarding\n\nOnboarding new developers becomes trivial. There is no need for lengthy setup guides, local tool installation, or troubleshooting OS-specific issues. Opening the project in a supported IDE automatically builds and launches the devcontainer with everything installed and configured.\n\nThis enables:\n\n- New developers to be productive on day one\n- External consultants to work in a controlled, compliant environment\n- Teams to scale without increasing setup and support overhead\n\n## A Toolbox, Not a Single-Purpose Container\n\nDevContainer Toolbox is designed as a shared foundation for many types of development work. It includes a rich base environment and a modular architecture for extending functionality as needed.\n\nThe `.devcontainer` directory is structured to support this:\n\n| Directory | Purpose |\n|-----------|----------|\n| `manage/` | Commands and orchestration logic for setup, extension, and maintenance |\n| `additions/` | Scripts that install and configure tools for specific languages and use cases |\n\nThis approach allows teams to enable support for multiple programming languages and technology stacks from a single, standardized container image.\n\n## Multi-Language Support\n\nThe toolbox includes commands and templates for:\n\n| Languages | Frameworks |\n|-----------|------------|\n| C# / .NET | Next.js, React |\n| Python | Express, Spring Boot |\n| Node.js / TypeScript | Web APIs |\n| Go, Java, PHP | Backend services |\n\n## IDE and Platform Support\n\nWorks consistently across Windows, macOS, and Linux with:\n\n- Visual Studio Code\n- JetBrains Rider\n- Visual Studio\n\nThe container abstracts away host OS differences, ensuring that builds, scripts, and tooling behave the same for every developer.\n\n## Security and Stability\n\nBecause all tooling runs inside the container:\n\n- The local machine remains clean and unaffected\n- Developers can safely experiment without breaking their host system\n- Tool versions and dependencies are pinned and auditable\n- Security teams gain better control and predictability\n\nThe base image is built on **Debian 12 (Bookworm)** and includes essential CLI tools such as Azure CLI, Python, Node.js, and common utilities required for modern cloud-native development.\n\n## Key Benefits\n\n- **Consistent environments** across all developers and platforms\n- **Ultra-fast onboarding** with no manual setup\n- **Environment-as-code** checked in alongside application source\n- **Modular architecture** for diverse development needs\n- **Reduced support overhead** and troubleshooting\n- **Improved collaboration** through identical tooling and workflows",
       "image": "devcontainer-toolbox.png",
-      "url": "https://github.com/helpers-no/devcontainer-toolbox",
+      "url": "https://dct.sovereignsky.no/",
       "topics": [
         "cybersecurity"
       ],
@@ -251,6 +251,103 @@
         "dateStarted": "2024-01-01",
         "status": "active",
         "repository": "https://github.com/helpers-no/devcontainer-toolbox",
+        "documentation": "https://dct.sovereignsky.no/"
+      }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "weight": 22,
+      "identifier": "dev-templates",
+      "name": "Dev Templates",
+      "description": "Starting a new project shouldn't mean days of boilerplate setup. Dev Templates provide production-ready starting points for APIs, web apps, and backends — all pre-configured for the DevContainer Toolbox with consistent best practices.",
+      "abstract": "Quick, modern, and standardized project templates for rapid prototyping and consistent development",
+      "summary": "Production-ready templates for APIs, web apps, backends, and experiments. Lower the entry barrier for all developers with rapid prototyping and consistent best practices.",
+      "image": "",
+      "url": "https://github.com/helpers-no/dev-templates",
+      "topics": [
+        "cybersecurity"
+      ],
+      "tags": [
+        "templates",
+        "boilerplate",
+        "development",
+        "rapid-prototyping",
+        "best-practices"
+      ],
+      "audience": [
+        "developer"
+      ],
+      "project": {
+        "dateStarted": "2025-01-01",
+        "status": "active",
+        "repository": "https://github.com/helpers-no/dev-templates",
+        "documentation": ""
+      }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "weight": 23,
+      "identifier": "client-provisioning",
+      "name": "Client Provisioning",
+      "description": "Shadow IT starts with unmanaged machines. Client Provisioning automates the setup of developer workstations with container-based environments, ensuring every machine meets security and compliance requirements from day one.",
+      "abstract": "Automated deployment scripts for setting up developer machines with container-based dev environments",
+      "summary": "Deployment scripts for setting up developer machines with container-based dev environments. Supports Windows (Intune) and macOS (Jamf).",
+      "image": "",
+      "url": "https://github.com/helpers-no/client-provisioning",
+      "topics": [
+        "cybersecurity",
+        "critical-infrastructure"
+      ],
+      "tags": [
+        "provisioning",
+        "intune",
+        "jamf",
+        "windows",
+        "macos",
+        "automation"
+      ],
+      "audience": [
+        "it-ops",
+        "enterprise"
+      ],
+      "project": {
+        "dateStarted": "2025-01-01",
+        "status": "active",
+        "repository": "https://github.com/helpers-no/client-provisioning",
+        "documentation": ""
+      }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "weight": 55,
+      "identifier": "humanitarian-tools",
+      "name": "Humanitarian Tools",
+      "description": "Born from the Ukraine refugee crisis, these tools were developed with SINTEF to solve real problems at Polish reception centers. They demonstrate how open-source technology can serve frontline helpers — the founding mission of helpers.no.",
+      "abstract": "QR-based identification, safety monitoring, and communication tools for humanitarian operations",
+      "summary": "Open-source tools developed with SINTEF during the Ukraine crisis for aid worker identification, safety monitoring, and refugee support at reception centers.",
+      "body": "## Origin Story\n\nDuring the Ukraine refugee crisis in 2022, helpers.no partnered with SINTEF to build practical tools for Polish reception centers. These tools were featured in [Dagens Næringsliv](https://www.dn.no/innlegg/ukraina/flyktninger/it/innlegg-databransjen-kan-hjelpe-polske-flyktningmottak/2-1-1196672).\n\nFor the full story, see the [helpers.no README on GitHub](https://github.com/helpers-no/.github/blob/main/profile/README.md).\n\n## Components\n\n| Tool | Purpose |\n|------|--------|\n| **[QR Armband](https://github.com/helpers-no/qr-armband)** | QR-based wristband identification system for aid workers and refugees |\n| **[Wristbands Frontend](https://github.com/helpers-no/wristbands-fe)** | Web interface for the wristband identification system |\n| **[Simple QR](https://github.com/helpers-no/simple-qr)** | Python API for QR code generation |\n| **[Safe Monitor](https://github.com/helpers-no/safe-monitor)** | Safety and communication monitoring system |\n\n## Why It Matters for Sovereignty\n\nHumanitarian operations handle extremely sensitive personal data — refugee identities, locations, health information. Using foreign-controlled cloud services for this data creates unacceptable risks. These tools demonstrate that critical humanitarian infrastructure can be built on open-source, sovereign foundations.",
+      "image": "",
+      "url": "https://github.com/helpers-no/qr-armband",
+      "topics": [
+        "digital-sovereignty",
+        "data-protection"
+      ],
+      "tags": [
+        "humanitarian",
+        "qr-code",
+        "identification",
+        "safety",
+        "sintef",
+        "ukraine"
+      ],
+      "audience": [
+        "humanitarian",
+        "public-sector"
+      ],
+      "project": {
+        "dateStarted": "2022-03-01",
+        "status": "active",
+        "repository": "https://github.com/helpers-no/qr-armband",
         "documentation": ""
       }
     },

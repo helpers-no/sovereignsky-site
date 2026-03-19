@@ -7,7 +7,8 @@ description: "Cloud lock-in is sovereignty lock-in. Urbalurba provides identical
 summary: "A complete datacenter environment on your laptop - Kubernetes, databases, AI, and cloud services running locally"
 status: "active"
 repository: "https://github.com/helpers-no/urbalurba-infrastructure"
-externalUrl: "https://github.com/helpers-no/urbalurba-infrastructure"
+documentation: "https://uis.sovereignsky.no/"
+externalUrl: "https://uis.sovereignsky.no/"
 topics:
   - "critical-infrastructure"
   - "cybersecurity"

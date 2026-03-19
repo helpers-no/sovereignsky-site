@@ -7,7 +7,8 @@ description: "Cloud-based IDEs like GitHub Codespaces send your code through for
 summary: "A standardized, cross-platform development environment for fast, reliable onboarding and consistent delivery"
 status: "active"
 repository: "https://github.com/helpers-no/devcontainer-toolbox"
-externalUrl: "https://github.com/helpers-no/devcontainer-toolbox"
+documentation: "https://dct.sovereignsky.no/"
+externalUrl: "https://dct.sovereignsky.no/"
 topics:
   - "cybersecurity"
 tags:
