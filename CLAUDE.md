@@ -80,23 +80,37 @@ Every plan needs:
 
 **ALL commands that install packages or run code MUST be executed inside the devcontainer.**
 
-The devcontainer name is `relaxed_napier`. Use this pattern:
+This project uses the **DevContainer Toolbox (DCT)** from helpers-no (`ghcr.io/helpers-no/devcontainer-toolbox`). The workspace inside the container is `/workspace`.
+
+### Finding the container name
+
+The container name is assigned by Docker and changes on rebuild. Find it dynamically:
+
+```bash
+CONTAINER=$(docker ps -q | xargs -I {} docker inspect {} \
+  --format '{{.Name}} {{range .Mounts}}{{.Source}}{{end}}' \
+  | grep sovereignsky-site | cut -d' ' -f1 | tr -d '/')
+```
+
+### Running commands from the host
+
+Use `$CONTAINER` in all `docker exec` commands:
 
 ```bash
 # Install packages
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && npm install <package>"
+docker exec $CONTAINER bash -c "cd /workspace && npm install <package>"
 
 # Run npm scripts
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && npm run <script>"
+docker exec $CONTAINER bash -c "cd /workspace && npm run <script>"
 
 # Run validation
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && npm run validate"
+docker exec $CONTAINER bash -c "cd /workspace && npm run validate"
 
-# Run Hugo server (already running in devcontainer)
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && hugo server -D --bind 0.0.0.0"
+# Run Hugo server
+docker exec $CONTAINER bash -c "cd /workspace && hugo server -D --bind 0.0.0.0"
 
 # Run Node.js scripts
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && node scripts/<script>.js"
+docker exec $CONTAINER bash -c "cd /workspace && node scripts/<script>.js"
 ```
 
 **DO NOT run these directly on the host machine:**
@@ -132,14 +146,14 @@ sovereignsky-site/
 
 ### Generate Pages from Data
 ```bash
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && node scripts/generate-network-pages.js"
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && node scripts/generate-laws-pages.js"
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && node scripts/generate-publications-pages.js"
+docker exec $CONTAINER bash -c "cd /workspace && node scripts/generate-network-pages.js"
+docker exec $CONTAINER bash -c "cd /workspace && node scripts/generate-laws-pages.js"
+docker exec $CONTAINER bash -c "cd /workspace && node scripts/generate-publications-pages.js"
 ```
 
 ### Validate Data Files
 ```bash
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && npm run validate"
+docker exec $CONTAINER bash -c "cd /workspace && npm run validate"
 ```
 
 See **[docs/DATA-VALIDATION.md](docs/DATA-VALIDATION.md)** for schema details.
@@ -152,7 +166,7 @@ The Hugo server runs inside the devcontainer at `http://localhost:1313`.
 
 To restart Hugo:
 ```bash
-docker exec relaxed_napier bash -c "pkill hugo; cd /workspaces/sovereignsky-site && hugo server -D --bind 0.0.0.0 --disableFastRender"
+docker exec $CONTAINER bash -c "pkill hugo; cd /workspace && hugo server -D --bind 0.0.0.0 --disableFastRender"
 ```
 
 See **[docs/PAGE-LAYOUTS.md](docs/PAGE-LAYOUTS.md)** for template information.

@@ -167,7 +167,7 @@ Key sections added:
 
 ## How to Test
 
-1. Start Hugo server: `docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && hugo server -D --bind 0.0.0.0"`
+1. Start Hugo server: `docker exec $CONTAINER bash -c "cd /workspace && hugo server -D --bind 0.0.0.0"`
 2. Open browser to `http://localhost:1313`
 3. Toggle dark mode using the sun/moon icon in the header
 4. Navigate to various pages and verify text is readable

@@ -83,7 +83,7 @@ Following the publications.json pattern:
 `scripts/generate-laws-pages.js` creates content pages from the data:
 
 ```bash
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && node scripts/generate-laws-pages.js"
+docker exec $CONTAINER bash -c "cd /workspace && node scripts/generate-laws-pages.js"
 ```
 
 The script:
@@ -96,7 +96,7 @@ The script:
 ## Validation
 
 ```bash
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && npm run validate"
+docker exec $CONTAINER bash -c "cd /workspace && npm run validate"
 ```
 
 Schemas are in `data/schemas/`:
