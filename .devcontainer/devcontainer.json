@@ -8,7 +8,7 @@
     },
     "ghcr.io/devcontainers/features/hugo:1": {
       "extended": true,
-      "version": "latest"
+      "version": "0.157.0"
     }
   },
   "forwardPorts": [1313],
