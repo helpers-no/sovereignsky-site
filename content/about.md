@@ -20,7 +20,7 @@ In March 2022, 5,000 refugees arrived daily at the Tesco Centre transit camp nea
 
 No IT systems. No volunteer screening. No logistics tracking. No donation management. No big NGOs. No government funding. Just people who showed up. Ordinary people like me and you. Some of us were nerds. And we decided this must never happen again — the people who show up must get the tools they need to help the helpers.
 
-Everything was improvised. We built tools on the ground — a [QR-based wristband identification system](https://github.com/helpers-no/qr-armband) for aid workers, chauffeurs, and refugees, in collaboration with [SINTEF](https://sintef.no). This work was featured in [Dagens Næringsliv](https://www.dn.no/innlegg/ukraina/flyktninger/it/innlegg-databransjen-kan-hjelpe-polske-flyktningmottak/2-1-1196672).
+Everything was improvised. The nightmare: children and women disappearing to human traffickers posing as drivers or aid workers. With the help of [SINTEF](https://sintef.no), we built a [QR-based wristband identification system](https://github.com/helpers-no/qr-armband) to distinguish legitimate helpers from traffickers. This work was featured in [Dagens Næringsliv](https://www.dn.no/innlegg/ukraina/flyktninger/it/innlegg-databransjen-kan-hjelpe-polske-flyktningmottak/2-1-1196672).
 
 That experience taught us: **digital infrastructure must work anywhere, anytime, under any conditions.** That lesson applies far beyond crisis response.
 
@@ -113,7 +113,7 @@ SovereignSky is a work in progress. We welcome:
 - **Expertise** — Legal, technical, or policy knowledge we should include
 - **Feedback** — What would make this resource more useful?
 
-Contact us at [TODO: contact information]
+Contact us at **terje@helpers.no**
 
 ---
 

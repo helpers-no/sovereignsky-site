@@ -3,8 +3,8 @@ title: "Software Database"
 identifier: "software-database"
 weight: 10
 date: 2024-12-01
-description: "Every foreign SaaS tool is a potential backdoor for extraterritorial data access. This database helps organizations identify European and open-source alternatives to reduce dependency on US Cloud Act-subject vendors and maintain data sovereignty."
-summary: "4,400+ software products categorized, validated, and mapped with sovereign alternatives"
+description: "Every foreign SaaS tool is a potential backdoor for extraterritorial data access. We track what France (SILL), Germany (openCode), Denmark, and other European countries recommend — and aggregate their government-vetted catalogs into one searchable database with sovereign alternatives."
+summary: "4,400+ software products from government-vetted catalogs across Europe, mapped with sovereign alternatives"
 status: "active"
 repository: "https://github.com/helpers-no/software-scrape"
 externalUrl: "/sovereignsky/software-database/"
@@ -29,7 +29,7 @@ layout: "single"
 type: "sovereignsky"
 ---
 
-Find replacements for foreign-controlled tools. European and open-source alternatives mapped to common proprietary tools.
+See what France, Germany, and other European governments recommend. Find sovereign replacements for foreign-controlled tools.
 
 ## What It Does
 

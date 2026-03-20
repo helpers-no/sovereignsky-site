@@ -56,6 +56,9 @@
     {{ else if eq $sectionType "projects-roadmap" }}
       {{ partial "homepage/projects-roadmap.html" (dict "config" $config "identifier" $identifier) }}
 
+    {{ else if eq $sectionType "product-cards" }}
+      {{ partial "homepage/product-cards.html" (dict "config" $config "identifier" $identifier) }}
+
     {{ else if eq $sectionType "custom" }}
       {{/* Custom partial - pass through to specified partial */}}
       {{ with $config.partial }}

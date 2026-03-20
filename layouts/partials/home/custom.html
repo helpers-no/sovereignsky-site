@@ -6,24 +6,99 @@
   <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32 py-20 sm:py-28 text-center text-white">
     {{/* Context badge */}}
     <div class="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold mb-6">
-      <span>Totalforsvarsåret 2026</span>
+      <span>Open source</span>
       <span class="opacity-60">·</span>
-      <span class="opacity-80">Digital preparedness</span>
+      <span class="opacity-80">Sovereign infrastructure</span>
     </div>
 
     {{/* Headline */}}
     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-      Digital sovereignty resources for Norwegian organizations
+      Born from crisis. Built for independence.
     </h1>
 
     {{/* Sub-headline */}}
     <p class="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto">
-      Understand your digital dependencies and take action. We map the infrastructure, software, laws, publications, and risks that affect your organization.
+      Working infrastructure, open-source tools, and the data you need to operate independently — with or without the cloud.
     </p>
   </div>
 </div>
 
-{{/* ========== SECTION 2: DATABASES ========== */}}
+{{/* ========== SECTION 2: READY TO USE ========== */}}
+<section id="ready-to-use" class="py-16 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
+  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to use — start building today</h2>
+      <p class="text-lg opacity-80 max-w-2xl mx-auto">We built these tools because they didn't exist when we needed them. Now they're ready for you.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {{/* DevContainer Toolbox */}}
+      <a href="https://dct.sovereignsky.no/" target="_blank" rel="noopener" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-primary/20">
+        <div class="card-body">
+          <div class="flex items-center gap-3 mb-3">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(59, 130, 246, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg style="width: 24px; height: 24px; color: #3b82f6;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="card-title text-lg">DevContainer Toolbox</h3>
+              <div class="badge badge-primary badge-sm">Live</div>
+            </div>
+          </div>
+          <p class="opacity-70 text-sm">Consistent development environment across Windows, Mac, and Linux. 20+ tools pre-configured. AI-ready. One command to install.</p>
+          <div class="card-actions justify-end mt-4">
+            <span class="text-primary font-medium text-sm">Get started →</span>
+          </div>
+        </div>
+      </a>
+
+      {{/* Urbalurba Infrastructure */}}
+      <a href="https://uis.sovereignsky.no/" target="_blank" rel="noopener" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-primary/20">
+        <div class="card-body">
+          <div class="flex items-center gap-3 mb-3">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg style="width: 24px; height: 24px; color: #10b981;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="card-title text-lg">Urbalurba Infrastructure</h3>
+              <div class="badge badge-success badge-sm">Live</div>
+            </div>
+          </div>
+          <p class="opacity-70 text-sm">Complete datacenter on your laptop. Kubernetes, databases, AI, and 30+ services. Runs anywhere — local, on-prem, or sovereign cloud.</p>
+          <div class="card-actions justify-end mt-4">
+            <span class="text-primary font-medium text-sm">Explore the stack →</span>
+          </div>
+        </div>
+      </a>
+
+      {{/* Dev Templates */}}
+      <a href="https://github.com/helpers-no/dev-templates" target="_blank" rel="noopener" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-primary/20">
+        <div class="card-body">
+          <div class="flex items-center gap-3 mb-3">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(168, 85, 247, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg style="width: 24px; height: 24px; color: #a855f7;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="card-title text-lg">Dev Templates</h3>
+              <div class="badge badge-secondary badge-sm">Live</div>
+            </div>
+          </div>
+          <p class="opacity-70 text-sm">Production-ready starters for APIs, web apps, and backends. Skip the boilerplate — start building immediately with best practices built in.</p>
+          <div class="card-actions justify-end mt-4">
+            <span class="text-primary font-medium text-sm">Browse templates →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+{{/* ========== SECTION 3: DATABASES ========== */}}
 <section id="databases" class="py-16 bg-base-200 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
   <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
     <div class="text-center mb-12">
@@ -376,27 +451,12 @@
         </div>
       </div>
 
-      {{/* SovereignSky Software Suite */}}
+      {{/* SecureNet - Planned */}}
       <div class="card bg-base-100 shadow-md md:col-span-2">
         <div class="card-body">
-          <div class="badge badge-accent badge-outline mb-2">Roadmap</div>
-          <h3 class="card-title">SovereignSky Software Suite</h3>
-          <p class="opacity-70 mb-4">Open-source tools for building sovereign infrastructure.</p>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="bg-base-200 rounded-lg p-4">
-              <h4 class="font-semibold mb-2">urbalurba-infrastructure</h4>
-              <p class="text-sm opacity-70">Azure service equivalents on Kubernetes. Self-hosted alternatives for common cloud services.</p>
-            </div>
-            <div class="bg-base-200 rounded-lg p-4">
-              <h4 class="font-semibold mb-2">devcontainer-toolbox</h4>
-              <p class="text-sm opacity-70">All development tools in a secure devcontainer. Reproducible, sovereign development environment.</p>
-            </div>
-            <div class="bg-base-200 rounded-lg p-4">
-              <h4 class="font-semibold mb-2">secure-net</h4>
-              <p class="text-sm opacity-70">Encrypted overlay network. Secure access between developers and production clusters.</p>
-            </div>
-          </div>
+          <div class="badge badge-accent badge-outline mb-2">Planned</div>
+          <h3 class="card-title">SecureNet</h3>
+          <p class="opacity-70">Encrypted overlay network for secure access between developers and production clusters. A 'clean computer within an infected computer' — zero trust networking and containers ensure malware on the host cannot reach your network.</p>
         </div>
       </div>
     </div>

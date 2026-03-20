@@ -28,11 +28,61 @@
         "image": null,
         "imagePosition": "right",
         "badge": {
-          "text": "Totalforsvarsåret 2026",
-          "subtext": "Digital preparedness"
+          "text": "Open source",
+          "subtext": "Sovereign infrastructure"
         },
-        "title": "Digital sovereignty resources for Norwegian organizations",
-        "description": "Understand your digital dependencies and take action. We map the infrastructure, software, laws, publications, and risks that affect your organization."
+        "title": "Born from crisis. Built for independence.",
+        "description": "Working infrastructure, open-source tools, and the data you need to operate independently — with or without the cloud."
+      }
+    },
+    {
+      "@type": "WebPageElement",
+      "identifier": "ready-to-use",
+      "name": "Ready to Use Tools",
+      "sectionType": "product-cards",
+      "weight": 15,
+      "enabled": true,
+      "config": {
+        "title": "Ready to use — start building today",
+        "description": "We built these tools because they didn't exist when we needed them. Now they're ready for you.",
+        "items": [
+          {
+            "title": "DevContainer Toolbox (DCT)",
+            "subtitle": "One command. Full dev environment. Any project.",
+            "description": "New developer productive in minutes, not days. Python, TypeScript, Go, C#, Java, Rust, and 20+ tools pre-configured. Works on Windows, Mac, and Linux.",
+            "url": "/sovereignsky/devcontainer-toolbox/",
+            "video": "/img/dct-hero.webm",
+            "badge": "Live",
+            "cta": "Get started"
+          },
+          {
+            "title": "Urbalurba Infrastructure Stack (UIS)",
+            "subtitle": "Complete datacenter on your laptop.",
+            "description": "Kubernetes, databases, AI, monitoring, and 30+ open-source services. Pre-configured stacks ready to run. No cloud account needed.",
+            "url": "/sovereignsky/urbalurba-infrastructure/",
+            "video": "/img/uis-hero.webm",
+            "badge": "Live",
+            "cta": "Explore services"
+          },
+          {
+            "title": "Dev Templates",
+            "subtitle": "Start building in minutes.",
+            "description": "Production-ready starters for APIs, web apps, and backends. Skip weeks of boilerplate. Best practices built in.",
+            "image": "/sovereignsky/dev-templates/featured.png",
+            "url": "/sovereignsky/dev-templates/",
+            "badge": "Live",
+            "cta": "Browse templates"
+          },
+          {
+            "title": "Client Provisioning",
+            "subtitle": "For ops teams managing machine fleets.",
+            "description": "Automated Rancher Desktop deployment via Intune (Windows) and Jamf (macOS). For unmanaged machines, just download Rancher Desktop and install DCT directly.",
+            "image": "/sovereignsky/client-provisioning/featured.png",
+            "url": "/sovereignsky/client-provisioning/",
+            "badge": "Live",
+            "cta": "Learn more"
+          }
+        ]
       }
     },
     {
@@ -40,12 +90,11 @@
       "identifier": "databases",
       "name": "Databases Stats Grid",
       "sectionType": "stats-grid",
-      "weight": 20,
+      "weight": 75,
       "enabled": true,
       "config": {
         "title": "The data behind digital sovereignty",
         "description": "We've mapped infrastructure, software, laws, and publications across multiple dimensions.",
-        "background": "base-200",
         "columns": 4,
         "items": [
           {
@@ -138,7 +187,7 @@
       "name": "Audience Personas",
       "sectionType": "audience-cards",
       "weight": 30,
-      "enabled": true,
+      "enabled": false,
       "config": {
         "title": "What does digital sovereignty mean for you?",
         "description": "There's a lot to digest. We've curated the content for your role so you can get started quickly.",
@@ -245,7 +294,7 @@
       "name": "Key Events",
       "sectionType": "events-list",
       "weight": 60,
-      "enabled": true,
+      "enabled": false,
       "config": {
         "title": "Key Events in 2026",
         "description": "Conferences, exercises, and gatherings focused on digital sovereignty and preparedness.",
@@ -323,10 +372,19 @@
         "items": [
           {
             "projectRef": "software-database",
+            "description": "Tracking what France, Germany, Denmark, and other European governments recommend. 4,400+ products from government-vetted catalogs, mapped with sovereign alternatives.",
             "badge": "Coming Soon",
             "badgeStyle": "primary",
             "progress": 35,
             "progressLabel": "MVP Complete"
+          },
+          {
+            "projectRef": "sovdev-logger",
+            "description": "One log call — automatic logs, metrics, traces, and service maps. Works with Grafana, Azure Monitor, or any OpenTelemetry backend. TypeScript now, Go/Python/C#/Rust coming.",
+            "badge": "Active",
+            "badgeStyle": "primary",
+            "progress": 60,
+            "progressLabel": "TypeScript available"
           },
           {
             "projectRef": "ndsi",
@@ -334,42 +392,6 @@
             "badgeStyle": "secondary",
             "progress": 15,
             "progressLabel": "Design Phase"
-          },
-          {
-            "title": "SovereignSky Software Suite",
-            "description": "Open-source tools for development and infrastructure management.",
-            "badge": "Roadmap",
-            "badgeStyle": "accent",
-            "fullWidth": true,
-            "subItems": [
-              {
-                "projectRef": "urbalurba-infrastructure"
-              },
-              {
-                "projectRef": "devcontainer-toolbox"
-              },
-              {
-                "projectRef": "securenet"
-              }
-            ]
-          },
-          {
-            "title": "Tools for managing your infrastructure",
-            "description": "Open-source tools for managing your infrastructure.",
-            "badge": "Roadmap",
-            "badgeStyle": "accent",
-            "fullWidth": true,
-            "subItems": [
-              {
-                "projectRef": "sovdev-logger"
-              },
-              {
-                "projectRef": "docuwrite"
-              },
-              {
-                "projectRef": "bifrost"
-              }
-            ]
           }
         ],
         "footer": {

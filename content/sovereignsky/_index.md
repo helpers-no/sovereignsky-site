@@ -15,4 +15,4 @@ display:
   showStats: true
 ---
 
-Born from the chaos of running Europe's largest refugee transit camp with no tools, these projects ensure organizations can operate — with or without the cloud. Built by [helpers.no](https://helpers.no). Open source. Open to everyone.
+Explore our collection of open-source projects focused on digital sovereignty, security, and infrastructure independence. These tools are designed to help organizations reduce dependency on foreign-controlled services and maintain control over their digital infrastructure.

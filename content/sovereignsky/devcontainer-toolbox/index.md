@@ -28,72 +28,50 @@ type: "sovereignsky"
 
 A pre-configured development container providing all tools, libraries, and runtime dependencies required to build software—works identically on Windows, macOS, and Linux.
 
-## What Is DevContainer Toolbox?
+## The Onboarding Problem
 
-DevContainer Toolbox establishes a single, reproducible development environment that works identically on Windows, macOS, and Linux—eliminating environment drift and the classic "it works on my machine" problem.
+New developer joins Monday. Spends the entire first week installing tools, debugging environment issues, and asking colleagues why their build doesn't work. External consultants? Multiply that by the time it takes to get VPN access, security approvals, and the right tool versions.
 
-By using the Dev Container standard, the entire development environment is defined as code and version-controlled alongside the application source. When a developer checks out a repository, they get not only the code, but also the exact tools, runtimes, CLI utilities, and configurations required to build, run, debug, and test it—ready to use in minutes.
+**With DevContainer Toolbox, a new developer is productive in minutes.** Open the project in VS Code, wait for the container to build, start coding. No setup guide. No OS-specific troubleshooting. No "it works on my machine."
 
-## Fast and Predictable Onboarding
+## How It Works
 
-Onboarding new developers becomes trivial. There is no need for lengthy setup guides, local tool installation, or troubleshooting OS-specific issues. Opening the project in a supported IDE automatically builds and launches the devcontainer with everything installed and configured.
+The entire development environment is defined as code and version-controlled alongside your application source. When a developer checks out a repository, they get not only the code, but also the exact tools, runtimes, and configurations required to build, run, debug, and test it.
 
-This enables:
+One command to add it to any project:
 
-- New developers to be productive on day one
-- External consultants to work in a controlled, compliant environment
-- Teams to scale without increasing setup and support overhead
+```bash
+curl -fsSL https://raw.githubusercontent.com/helpers-no/devcontainer-toolbox/main/install.sh | bash
+```
 
-## A Toolbox, Not a Single-Purpose Container
+## What's Included
 
-DevContainer Toolbox is designed as a shared foundation for many types of development work. It includes a rich base environment and a modular architecture for extending functionality as needed.
+20+ tools pre-configured and ready to use:
 
-The `.devcontainer` directory is structured to support this:
+| Languages | Tools & Frameworks |
+|-----------|-------------------|
+| Python, TypeScript, Go | Azure CLI, Kubernetes, Terraform |
+| C#/.NET, Java, Rust | Docker, Git, Node.js |
+| PHP, Fortran, Laravel | Nginx, PowerShell, Databricks |
 
-| Directory | Purpose |
-|-----------|----------|
-| `manage/` | Commands and orchestration logic for setup, extension, and maintenance |
-| `additions/` | Scripts that install and configure tools for specific languages and use cases |
+## Who Benefits
 
-This approach allows teams to enable support for multiple programming languages and technology stacks from a single, standardized container image.
+- **New developers** — productive on day one, not day five
+- **External consultants** — work in a controlled, compliant environment without touching their host machine
+- **Teams inheriting code** — taking over a project from another team or vendor? The devcontainer has the complete environment. No reverse-engineering build steps, no guessing which tool versions they used. Open the project, it just works.
+- **Team leads** — scale the team without scaling setup overhead
+- **Security teams** — pinned tool versions, auditable dependencies, nothing installed on host
 
-## Multi-Language Support
+## Works Everywhere
 
-The toolbox includes commands and templates for:
-
-| Languages | Frameworks |
-|-----------|------------|
-| C# / .NET | Next.js, React |
-| Python | Express, Spring Boot |
-| Node.js / TypeScript | Web APIs |
-| Go, Java, PHP | Backend services |
-
-## IDE and Platform Support
-
-Works consistently across Windows, macOS, and Linux with:
+Identical experience on Windows, macOS, and Linux with:
 
 - Visual Studio Code
 - JetBrains Rider
 - Visual Studio
 
-The container abstracts away host OS differences, ensuring that builds, scripts, and tooling behave the same for every developer.
+## AI-Ready Development
 
-## Security and Stability
+Run AI coding assistants like Claude Code safely inside the container — they can access project files but not your host system. Full AI-powered development without the security risk.
 
-Because all tooling runs inside the container:
-
-- The local machine remains clean and unaffected
-- Developers can safely experiment without breaking their host system
-- Tool versions and dependencies are pinned and auditable
-- Security teams gain better control and predictability
-
-The base image is built on **Debian 12 (Bookworm)** and includes essential CLI tools such as Azure CLI, Python, Node.js, and common utilities required for modern cloud-native development.
-
-## Key Benefits
-
-- **Consistent environments** across all developers and platforms
-- **Ultra-fast onboarding** with no manual setup
-- **Environment-as-code** checked in alongside application source
-- **Modular architecture** for diverse development needs
-- **Reduced support overhead** and troubleshooting
-- **Improved collaboration** through identical tooling and workflows
+**[Full documentation at dct.sovereignsky.no](https://dct.sovereignsky.no/)**

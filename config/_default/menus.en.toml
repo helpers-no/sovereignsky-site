@@ -68,6 +68,12 @@
   weight = 41
 
 [[main]]
+  name = "Projects"
+  parent = "Engage"
+  pageRef = "sovereignsky"
+  weight = 42
+
+[[main]]
   name = "Topics"
   parent = "Learn"
   pageRef = "topics"

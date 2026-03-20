@@ -62,7 +62,7 @@
         },
         "sectionType": {
           "type": "string",
-          "enum": ["hero", "stats-grid", "content-cards", "content-block", "audience-cards", "laws-list", "events-list", "cta", "projects-roadmap", "custom"],
+          "enum": ["hero", "stats-grid", "content-cards", "content-block", "audience-cards", "laws-list", "events-list", "cta", "projects-roadmap", "product-cards", "custom"],
           "description": "Type of section determining which partial to render"
         },
         "weight": {

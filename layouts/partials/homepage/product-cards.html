@@ -1,0 +1,46 @@
+{{/* product-cards.html - Featured product cards with video/image previews */}}
+{{ $config := .config }}
+{{ $identifier := .identifier }}
+{{ $bg := $config.background | default "" }}
+
+<section id="{{ $identifier }}" class="py-16 {{ with $bg }}bg-{{ . }}{{ end }} -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
+  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">{{ $config.title }}</h2>
+      <p class="text-lg opacity-80 max-w-2xl mx-auto">{{ $config.description }}</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-{{ len $config.items }} gap-6">
+      {{ range $config.items }}
+      <a href="{{ .url }}" {{ if hasPrefix .url "http" }}target="_blank" rel="noopener"{{ end }} class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-primary/20 overflow-hidden">
+        {{ with .video }}
+        <figure class="h-40 overflow-hidden bg-slate-800">
+          <video autoplay loop muted playsinline class="w-full h-full object-cover object-top">
+            <source src="{{ . }}" type="video/webm" />
+          </video>
+        </figure>
+        {{ else }}
+          {{ with .image }}
+          <figure class="h-40 overflow-hidden bg-slate-800">
+            <img src="{{ . }}" alt="" class="w-full h-full object-cover object-top" loading="lazy" />
+          </figure>
+          {{ end }}
+        {{ end }}
+        <div class="card-body">
+          <div class="flex items-center gap-3 mb-2">
+            <div>
+              <h3 class="card-title text-lg">{{ .title }}</h3>
+              <div class="badge badge-primary badge-sm">{{ .badge }}</div>
+            </div>
+          </div>
+          {{ with .subtitle }}<p class="font-semibold text-base mb-2">{{ . }}</p>{{ end }}
+          <p class="opacity-70 text-sm">{{ .description }}</p>
+          <div class="card-actions justify-end mt-4">
+            <span class="text-primary font-medium text-sm">{{ .cta }} →</span>
+          </div>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
