@@ -44,7 +44,7 @@ sovereignsky-site/
 
 ```bash
 # Run validation
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && npm run validate"
+docker exec $CONTAINER bash -c "cd /workspace && npm run validate"
 ```
 
 ### Expected Output

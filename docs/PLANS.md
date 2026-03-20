@@ -126,7 +126,7 @@ npm run validate
 
 \`\`\`bash
 # Hugo builds without errors
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && hugo --gc"
+docker exec $CONTAINER bash -c "cd /workspace && hugo --gc"
 
 # Manual check: http://localhost:1313/page/
 \`\`\`
@@ -224,7 +224,7 @@ Every phase MUST end with a validation step. This ensures:
 
 \`\`\`bash
 # Specific command that proves this works
-docker exec relaxed_napier bash -c "cd /workspaces/sovereignsky-site && npm run validate"
+docker exec $CONTAINER bash -c "cd /workspace && npm run validate"
 
 # Expected output
 # ✓ All schemas valid

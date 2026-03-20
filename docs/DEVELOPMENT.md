@@ -4,9 +4,31 @@ Quick reference for local development tasks.
 
 ## DevContainer Setup
 
-This project uses a DevContainer based on `mcr.microsoft.com/devcontainers/base:ubuntu-24.04` with Hugo extended edition installed.
+This project uses the **DevContainer Toolbox (DCT)** from helpers-no (`ghcr.io/helpers-no/devcontainer-toolbox`).
 
-When you open the project in VS Code with the DevContainer extension, you're working **inside** the container.
+When you open the project in VS Code with the DevContainer extension, you're working **inside** the container. The workspace is mounted at `/workspace`.
+
+### First-time setup
+
+After the container starts for the first time:
+
+1. **Install Hugo** (run `dev-setup` and select Hugo from the menu, or directly):
+   ```bash
+   install-fwk-hugo
+   ```
+   Only needed once — DCT remembers and reinstalls on container rebuild.
+
+2. **Install npm dependencies** (needed for validation scripts and page generators):
+   ```bash
+   npm install
+   ```
+
+3. **Verify**:
+   ```bash
+   hugo version    # Should show extended edition
+   node -v         # Should show Node.js
+   npm run validate
+   ```
 
 ## Hugo Server Commands
 
@@ -27,26 +49,26 @@ pgrep -a hugo
 
 ### From Host Machine (outside container)
 
-When running from your host terminal, first find the devcontainer by its mount.
+When running from your host terminal, first find the devcontainer name. The name is assigned by Docker and changes on rebuild.
 
 **Step 1: Find the container**
 ```bash
-docker ps -q | xargs -I {} docker inspect {} \
-  --format '{{.Name}} {{range .Mounts}}{{.Destination}}{{end}}' \
-  | grep sovereignsky-site | cut -d' ' -f1 | tr -d '/'
+CONTAINER=$(docker ps -q | xargs -I {} docker inspect {} \
+  --format '{{.Name}} {{range .Mounts}}{{.Source}}{{end}}' \
+  | grep sovereignsky-site | cut -d' ' -f1 | tr -d '/')
 ```
 
-**Step 2: Restart Hugo** (replace `CONTAINER_NAME` with the result from step 1)
+**Step 2: Restart Hugo**
 ```bash
-docker exec CONTAINER_NAME pkill hugo 2>/dev/null
+docker exec $CONTAINER pkill hugo 2>/dev/null
 sleep 1
-docker exec -d CONTAINER_NAME sh -c 'cd /workspaces/sovereignsky-site && hugo server --bind 0.0.0.0 -p 1313 --disableFastRender'
+docker exec -d $CONTAINER sh -c 'cd /workspace && hugo server --bind 0.0.0.0 -p 1313 --disableFastRender'
 sleep 4
 ```
 
 Or as a one-liner in bash:
 ```bash
-C=$(docker ps -q | xargs -I {} docker inspect {} --format '{{.Name}} {{range .Mounts}}{{.Destination}}{{end}}' | grep sovereignsky-site | awk '{print $1}' | tr -d '/') && docker exec $C pkill hugo; sleep 1; docker exec -d $C sh -c 'cd /workspaces/sovereignsky-site && hugo server --bind 0.0.0.0 -p 1313 --disableFastRender'
+CONTAINER=$(docker ps -q | xargs -I {} docker inspect {} --format '{{.Name}} {{range .Mounts}}{{.Source}}{{end}}' | grep sovereignsky-site | cut -d' ' -f1 | tr -d '/') && docker exec $CONTAINER pkill hugo; sleep 1; docker exec -d $CONTAINER sh -c 'cd /workspace && hugo server --bind 0.0.0.0 -p 1313 --disableFastRender'
 ```
 
 **What the restart command does:**

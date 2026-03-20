@@ -23,3 +23,6 @@ Thumbs.db
 .claude/settings.local.json
 terchris/
 node_modules
+
+# DevContainer Toolbox - credentials folder (NEVER commit)
+.devcontainer.secrets/
