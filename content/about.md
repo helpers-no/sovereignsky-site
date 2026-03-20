@@ -14,25 +14,17 @@ tags:
   - "digital-sovereignty"
 ---
 
-## Where It Started
+## The Crisis We Face Today
 
-In March 2022, 5,000 refugees arrived daily at the Tesco Centre transit camp near the Polish-Ukrainian border.
+81% of Norwegian cloud infrastructure runs on US platforms. Hospitals, government agencies, schools, and businesses all depend on Azure, AWS, and Google Cloud — services subject to the US CLOUD Act. A single political decision, a trade conflict, or a cyberattack could make these services unavailable overnight.
 
-No IT systems. No volunteer screening. No logistics tracking. No donation management. No big NGOs. No government funding. Just people who showed up. Ordinary people like me and you. Some of us were nerds. And we decided this must never happen again — the people who show up must get the tools they need to help the helpers.
+Norway is investing billions in military defence — F-35 fighter jets, new submarines, expanded conscription. But while we prepare for physical threats, our digital infrastructure remains dangerously dependent on foreign powers. Organizations that can't operate without their cloud provider will simply stop functioning.
 
-Everything was improvised. The nightmare: children and women disappearing to human traffickers posing as drivers or aid workers. With the help of [SINTEF](https://sintef.no), we built a [QR-based wristband identification system](https://github.com/helpers-no/qr-armband) to distinguish legitimate helpers from traffickers. This work was featured in [Dagens Næringsliv](https://www.dn.no/innlegg/ukraina/flyktninger/it/innlegg-databransjen-kan-hjelpe-polske-flyktningmottak/2-1-1196672).
+NSM Director Sofie Nystrøm warned: *"We are more vulnerable than we have been in a long time."*
 
-That experience taught us: **digital infrastructure must work anywhere, anytime, under any conditions.** That lesson applies far beyond crisis response.
+That was before the US threatened to take Greenland by force. Before the US and Israel attacked Iran. Before the US invaded Panama and captured the president of Venezuela. The geopolitical landscape has shifted dramatically — and our digital dependency on US platforms has not.
 
----
-
-## From Crisis Response to Digital Sovereignty
-
-Norway is investing billions in military defence — F-35 fighter jets, new submarines, expanded conscription. But while we prepare for physical threats, our digital infrastructure remains dangerously dependent on foreign powers.
-
-We can't buy a bus ticket without American cloud services. Our hospitals, government agencies, and critical infrastructure all run on systems subject to the US CLOUD Act. A single political decision in Washington could disrupt Norwegian society more effectively than any military attack.
-
-Born from the chaos of running Europe's largest refugee transit camp with no tools, **SovereignSky** is a sovereign cloud platform that ensures organizations can operate — with or without the cloud.
+**SovereignSky** is a sovereign cloud platform that ensures organizations can operate — with or without the cloud.
 
 ---
 
@@ -56,19 +48,24 @@ SovereignSky is both a **knowledge platform** and a **set of open-source tools**
 | Tool | Purpose |
 |------|---------|
 | **[DevContainer Toolbox](https://dct.sovereignsky.no/)** | Consistent development environment across all platforms |
-| **[Urbalurba Infrastructure](https://uis.sovereignsky.no/)** | Complete datacenter on your laptop — Kubernetes, databases, AI |
-| **[Dev Templates](https://github.com/helpers-no/dev-templates)** | Production-ready project starters |
-| **[Client Provisioning](https://github.com/helpers-no/client-provisioning)** | Automated developer machine setup |
+| **[Urbalurba Infrastructure Stack](https://uis.sovereignsky.no/)** | Complete datacenter on your laptop — Kubernetes, databases, AI |
+| **[Dev Templates](/sovereignsky/dev-templates/)** | Production-ready project starters |
+| **[Client Provisioning](/sovereignsky/client-provisioning/)** | Automated Rancher Desktop deployment for managed machines |
+| **[sovdev-logger](/sovereignsky/sovdev-logger/)** | Structured logging with OpenTelemetry |
 
 All tools are open source and available on [GitHub](https://github.com/helpers-no).
 
 ---
 
-## A helpers.no Initiative
+## Who Is This For
 
-SovereignSky is built by **[helpers.no](https://helpers.no)** — an organization that exists because ordinary people showed up at a refugee camp and decided to build the tools that were missing.
+SovereignSky serves anyone responsible for digital decisions in Norwegian organizations:
 
-We apply that same approach to digital sovereignty: see a problem, build a solution, share it openly.
+- **IT Leaders and CIOs** — Understanding strategic risks and alternatives
+- **Security Professionals** — Mapping dependencies and compliance requirements
+- **Developers and Architects** — Building sovereign systems
+- **Policy Makers** — Evidence for informed regulation
+- **Concerned Citizens** — Understanding how digital infrastructure affects society
 
 ---
 
@@ -92,18 +89,6 @@ Our databases draw from official sources, legal documents, and verifiable data. 
 
 ---
 
-## Who Is This For
-
-SovereignSky serves anyone responsible for digital decisions in Norwegian organizations:
-
-- **IT Leaders and CIOs** — Understanding strategic risks and alternatives
-- **Security Professionals** — Mapping dependencies and compliance requirements
-- **Developers and Architects** — Building sovereign systems
-- **Policy Makers** — Evidence for informed regulation
-- **Concerned Citizens** — Understanding how digital infrastructure affects society
-
----
-
 ## Get Involved
 
 SovereignSky is a work in progress. We welcome:
@@ -117,17 +102,25 @@ Contact us at **terje@helpers.no**
 
 ---
 
-## The Stakes
+## A helpers.no Initiative
 
-NSM Director Sofie Nystrøm warned: *"We are more vulnerable than we have been in a long time."*
+SovereignSky is built by **[helpers.no](https://helpers.no)** — an organization born from a refugee camp, now grown into a team of developers, sysadmins, and volunteers building the tools that were missing.
 
-Digital sovereignty is not about paranoia or protectionism. It's about resilience. It's about ensuring that Norwegian society can function even when geopolitical relationships change.
+The approach is the same whether you joined at the border or yesterday: see a problem, build a solution, share it openly.
 
-The question is not whether digital disruption will happen — but whether we'll be prepared when it does.
+---
+
+## Where It Started
+
+In March 2022, 5,000 refugees arrived daily at the Tesco Centre transit camp near the Polish-Ukrainian border.
+
+No IT systems. No volunteer screening. No logistics tracking. No donation management. No big NGOs. No government funding. Just people who showed up. Ordinary people. Some were nerds. That experience led to a decision: this must never happen again — the people who show up must get the tools they need to help people in need. That became the mission: **helping the helpers.**
+
+Everything was improvised. The nightmare: children and women disappearing to human traffickers posing as drivers or aid workers. With the help of [SINTEF](https://sintef.no), a [QR-based wristband identification system](https://github.com/helpers-no/qr-armband) was built to distinguish legitimate helpers from traffickers. This work was featured in [Dagens Næringsliv](https://www.dn.no/innlegg/ukraina/flyktninger/it/innlegg-databransjen-kan-hjelpe-polske-flyktningmottak/2-1-1196672).
 
 **Start exploring:**
 
 - [Assess your legal exposure →](/laws/)
 - [Map your cloud dependencies →](/datacenters/)
-- [Understand the framework →](/ndsi/)
+- [Check your tools →](/sovereignsky/)
 - [Read the analysis →](/blog/)
