@@ -4,6 +4,7 @@ resources/_gen/
 
 # Hugo temporary files
 .hugo_build.lock
+hugo_stats.json
 
 # OS files
 .DS_Store
@@ -17,5 +18,8 @@ Thumbs.db
 # Environment files
 .env
 .env.local
+
+# Claude Code settings
+.claude/settings.local.json
 terchris/
 node_modules
