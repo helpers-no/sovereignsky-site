@@ -1,8 +1,8 @@
 ---
-title: "FFI: Frivillige beredskapsorganisasjoner i totalforsvaret"
+title: "FFI: Frivillige beredskapsorganisasjoner i fremtidens totalforsvar"
 description: "Norwegian Defence Research Establishment analysis of voluntary preparedness organizations' role in total defence"
-date: 2023-01-01
-external_url: "https://www.ffi.no/"
+date: 2024-01-01
+external_url: "https://www.ffi.no/publikasjoner/arkiv/frivillige-beredskapsorganisasjoner-i-fremtidens-totalforsvar"
 publisher: "Norwegian Defence Research Establishment (FFI)"
 topics:
   - "national-preparedness"
