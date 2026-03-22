@@ -352,6 +352,233 @@
   }
 }
 
+/* ==========================================================================
+   Sovereign Sky Sidebar
+   ========================================================================== */
+
+.sd-page #sidebar {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Card backgrounds — ghost borders, surface colors, big radius */
+.sd-page #sidebar .card,
+section.sd-page #sidebar .card {
+  background-color: var(--sd-surface-container-low) !important;
+  border: 1px solid rgba(194, 198, 214, 0.15) !important;
+  border-radius: 1rem !important;
+  box-shadow: none !important;
+}
+
+.sd-page #sidebar .card .card-body {
+  padding: 1.25rem !important;
+}
+
+.dark .sd-page #sidebar .card,
+.dark section.sd-page #sidebar .card {
+  background-color: var(--sd-surface-container) !important;
+  border-color: rgba(194, 198, 214, 0.08) !important;
+}
+
+/* Card titles — Stitch style with icon */
+.sd-page #sidebar .card-title {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 0.8125rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  color: var(--sd-on-surface) !important;
+}
+
+/* Labels (dt) — tiny uppercase like Stitch */
+.sd-page #sidebar dl dt {
+  font-size: 0.625rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  color: var(--sd-outline) !important;
+}
+
+/* Values (dd) — bold on-surface */
+.sd-page #sidebar dl dd {
+  font-weight: 700 !important;
+  color: var(--sd-on-surface) !important;
+}
+
+/* Project link buttons — gradient primary */
+.sd-page #sidebar .btn-primary,
+section.sd-page #sidebar .btn-primary,
+.sd-page #sidebar a.btn-primary {
+  background: linear-gradient(to bottom right, #0058be, #2170e4) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 12px rgba(0, 88, 190, 0.2) !important;
+}
+
+.sd-page #sidebar .btn-primary:hover,
+.sd-page #sidebar a.btn-primary:hover {
+  opacity: 0.92;
+}
+
+.dark .sd-page #sidebar .btn-primary,
+.dark .sd-page #sidebar a.btn-primary {
+  background: linear-gradient(to bottom right, #004395, #0058be) !important;
+  color: #d8e2ff !important;
+  box-shadow: none !important;
+}
+
+/* Secondary buttons — ghost borders */
+.sd-page #sidebar .btn-outline,
+.sd-page #sidebar a.btn:not(.btn-primary) {
+  background-color: var(--sd-surface-container-lowest) !important;
+  border: 1px solid rgba(194, 198, 214, 0.2) !important;
+  color: var(--sd-on-surface) !important;
+  font-weight: 700 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: none !important;
+}
+
+.sd-page #sidebar .btn-outline:hover,
+.sd-page #sidebar a.btn:not(.btn-primary):hover {
+  background-color: var(--sd-surface-container-low) !important;
+}
+
+.dark .sd-page #sidebar .btn-outline,
+.dark .sd-page #sidebar a.btn:not(.btn-primary) {
+  background-color: var(--sd-surface-container) !important;
+  border-color: rgba(194, 198, 214, 0.1) !important;
+}
+
+/* Tags — small uppercase pills with ghost borders */
+.sd-page #sidebar a[href*="/tags/"] {
+  display: inline-block !important;
+  padding: 0.125rem 0.5rem !important;
+  border: 1px solid rgba(194, 198, 214, 0.3) !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.6875rem !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
+  color: var(--sd-on-surface-variant) !important;
+  text-decoration: none !important;
+  line-height: 1.5;
+}
+
+.sd-page #sidebar a[href*="/tags/"]:hover {
+  border-color: var(--sd-primary) !important;
+  color: var(--sd-primary) !important;
+}
+
+/* Topics — badge styling */
+.sd-page #sidebar .badge {
+  background-color: var(--sd-surface-container-highest) !important;
+  color: var(--sd-on-surface) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 0.6875rem !important;
+}
+
+/* General sidebar text and links */
+.sd-page #sidebar {
+  color: var(--sd-on-surface);
+}
+
+.sd-page #sidebar a {
+  color: var(--sd-on-surface);
+  text-decoration: none;
+}
+
+.sd-page #sidebar a:hover {
+  color: var(--sd-primary);
+}
+
+/* Icon colors in sidebar */
+.sd-page #sidebar svg.text-primary,
+.sd-page #sidebar .text-primary {
+  color: var(--sd-primary) !important;
+}
+
+/* --- New unified sidebar components --- */
+
+.sd-sidebar-card {
+  background-color: var(--sd-surface-container-low);
+  border: 1px solid rgba(194, 198, 214, 0.15);
+}
+
+.dark .sd-sidebar-card {
+  background-color: var(--sd-surface-container);
+  border-color: rgba(194, 198, 214, 0.08);
+}
+
+.sd-sidebar-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--sd-outline);
+}
+
+.sd-sidebar-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--sd-secondary);
+  flex-shrink: 0;
+}
+
+.sd-sidebar-status-planned .sd-sidebar-status-dot,
+.sd-sidebar-status-dot.sd-sidebar-status-planned { background-color: #eab308; }
+.sd-sidebar-status-completed .sd-sidebar-status-dot,
+.sd-sidebar-status-dot.sd-sidebar-status-completed { background-color: var(--sd-primary); }
+.sd-sidebar-status-archived .sd-sidebar-status-dot,
+.sd-sidebar-status-dot.sd-sidebar-status-archived { background-color: var(--sd-outline); }
+
+.sd-sidebar-topic {
+  padding: 0.25rem 0.75rem;
+  background-color: var(--sd-surface-container-highest);
+  color: var(--sd-on-surface);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+
+.sd-sidebar-tag {
+  padding: 0.125rem 0.5rem;
+  border: 1px solid rgba(194, 198, 214, 0.3);
+  border-radius: 0.25rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--sd-on-surface-variant);
+}
+
+.sd-sidebar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  background-color: var(--sd-surface-container-lowest);
+  color: var(--sd-on-surface);
+  border: 1px solid rgba(194, 198, 214, 0.2);
+  transition: background-color 0.2s;
+}
+
+.sd-sidebar-btn:hover {
+  background-color: var(--sd-surface-container-low);
+  color: var(--sd-on-surface);
+  text-decoration: none;
+}
+
+.dark .sd-sidebar-btn {
+  background-color: var(--sd-surface-container);
+  border-color: rgba(194, 198, 214, 0.1);
+}
+
 /* Custom styles for SovereignSky */
 
 /* Missing Tailwind utilities not in Blowfish compiled CSS */

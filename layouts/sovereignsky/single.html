@@ -46,30 +46,23 @@
     {{ end }}
 
     {{/* Body with sidebar */}}
-    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    {{ $sidebarClass := "" }}
+    {{ if eq .Params.heroStyle "sovereignsky" }}{{ $sidebarClass = "sd-page" }}{{ end }}
+    <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row {{ $sidebarClass }}">
 
       {{/* Right Sidebar */}}
-      {{ partial "sidebar/common-sidebar.html" . }}
-
-          {{/* Project Links */}}
+      {{ if eq .Params.heroStyle "sovereignsky" }}
+        {{ partial "sidebar/sovereignsky-sidebar.html" . }}
+      {{ else }}
+        {{ partial "sidebar/common-sidebar.html" . }}
           {{ partial "sidebar/project-links-card.html" . }}
-
-          {{/* Project Details Card */}}
           {{ partial "sidebar/project-details-card.html" . }}
-
-          {{/* Relevant For (Audiences) */}}
           {{ partial "sidebar/common-audience-card.html" . }}
-
-          {{/* Topics */}}
           {{ partial "sidebar/common-topics-card.html" . }}
-
-          {{/* Tags */}}
           {{ partial "sidebar/common-tags-card.html" . }}
-
-          {{/* Related content */}}
           {{ partial "related-content-sidebar.html" . }}
-
-      {{ partial "sidebar/common-sidebar-end.html" . }}
+        {{ partial "sidebar/common-sidebar-end.html" . }}
+      {{ end }}
 
       {{/* Main Content */}}
       <div class="min-w-0 min-h-0 max-w-fit">
