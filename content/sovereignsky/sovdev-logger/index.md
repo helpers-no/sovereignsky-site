@@ -99,48 +99,62 @@ type: "sovereignsky"
 }
 {{< /feature-grid >}}
 
-{{< highlight-card id="no-vendor-lock-in" >}}
+{{< side-by-side id="side-by-side-4" >}}
 {
-  "icon": "sync_alt",
-  "title": "No Vendor Lock-in",
-  "description": "Built on OpenTelemetry — Microsoft's recommended standard. Same code works with Azure Monitor in production and Grafana locally.",
-  "style": "secondary"
-}
-{{< /highlight-card >}}
-
-{{< tool-icons id="supported-languages" >}}
-{
-  "title": "Supported Languages",
-  "description": "Works with any OpenTelemetry-compatible backend:",
-  "items": [
+  "left": [
     {
-      "icon": "code",
-      "label": "TypeScript (Available)"
+      "type": "highlight-card",
+      "icon": "sync_alt",
+      "title": "No Vendor Lock-in",
+      "description": "Built on OpenTelemetry — Microsoft's recommended standard. Same code works with Azure Monitor in production and Grafana locally.",
+      "style": "secondary"
     },
     {
-      "icon": "schedule",
-      "label": "Go (Planned)"
-    },
+      "type": "tool-icons",
+      "title": "Supported Languages",
+      "description": "Works with any OpenTelemetry-compatible backend:",
+      "items": [
+        {
+          "icon": "code",
+          "label": "TypeScript (Available)"
+        },
+        {
+          "icon": "schedule",
+          "label": "Go (Planned)"
+        },
+        {
+          "icon": "schedule",
+          "label": "Python (Planned)"
+        },
+        {
+          "icon": "schedule",
+          "label": "C# (Planned)"
+        }
+      ]
+    }
+  ],
+  "right": [
     {
-      "icon": "schedule",
-      "label": "Python (Planned)"
-    },
-    {
-      "icon": "schedule",
-      "label": "C# (Planned)"
+      "type": "persona-cards",
+      "title": "Quick Start",
+      "items": [
+        {
+          "icon": "download",
+          "label": "Install",
+          "description": "npm install @sovdev/logger"
+        },
+        {
+          "icon": "code",
+          "label": "One line of code",
+          "description": "sovdev_log(INFO, FUNCTIONNAME, \"Payment processed\", PEER_SERVICES.PAYMENT_GATEWAY, input, output)"
+        },
+        {
+          "icon": "check_circle",
+          "label": "Zero config needed",
+          "description": "Logs to console and ./logs/ directory out of the box. No configuration for local development."
+        }
+      ]
     }
   ]
 }
-{{< /tool-icons >}}
-
-{{< steps id="quick-start" >}}
-{
-  "title": "Quick Start",
-  "description": "No configuration needed for local development. Logs to console and ./logs/ directory out of the box.",
-  "code": {
-    "language": "bash",
-    "label": "bash — install",
-    "command": "npm install @sovdev/logger"
-  }
-}
-{{< /steps >}}
+{{< /side-by-side >}}

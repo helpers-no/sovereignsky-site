@@ -20,22 +20,7 @@
     <div>
       <div class="sd-sidebar-card sd-meta-sticky" style="border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
 
-        {{ with .Page.Params.status }}
-        <div>
-          <span class="sd-sidebar-label">Status</span>
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
-            <span class="sd-sidebar-status-dot"></span>
-            <span style="font-weight: 700; color: var(--sd-on-surface);">{{ . }}</span>
-          </div>
-        </div>
-        {{ end }}
-
-        {{ with .Page.Date }}
-        <div>
-          <span class="sd-sidebar-label">Started</span>
-          <div style="font-weight: 700; color: var(--sd-on-surface); margin-top: 0.25rem;">{{ .Format "Jan 2006" }}</div>
-        </div>
-        {{ end }}
+        {{/* Status and Started are in the hero — not duplicated here */}}
 
         {{ with .Page.Params.topics }}
         <div>

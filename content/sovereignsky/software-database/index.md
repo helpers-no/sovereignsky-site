@@ -38,6 +38,15 @@ type: "sovereignsky"
 {{< /summary >}}
 
 {{< metadata-sidebar >}}
+{{< highlight-card id="the-problem" >}}
+{
+  "icon": "error_outline",
+  "title": "The Problem",
+  "description": "Organizations want to reduce dependency on foreign-controlled software, but there is no single catalog of European and open-source alternatives. Government-vetted lists exist in France, Germany, and Italy — but they use different formats, categories, and identifiers. Finding what is available, where it comes from, and whether a sovereign alternative exists requires searching multiple sources manually.",
+  "style": "tertiary"
+}
+{{< /highlight-card >}}
+
 {{< /metadata-sidebar >}}
 
 {{< feature-grid id="data-sources" >}}
@@ -71,43 +80,46 @@ type: "sovereignsky"
 }
 {{< /feature-grid >}}
 
-{{< highlight-card id="the-challenges" >}}
+{{< side-by-side id="side-by-side-3" >}}
 {
-  "icon": "warning",
-  "title": "The Challenges",
-  "description": "The same software appears across catalogs with different identifiers. Each catalog uses its own category system. Raw catalog data lacks context. We solve this with 942 product mappings, 10,415+ lines of category mappings, and Wikidata enrichment.",
-  "style": "tertiary"
-}
-{{< /highlight-card >}}
-
-{{< persona-cards id="how-we-solve-them" >}}
-{
-  "title": "How We Solve Them",
-  "items": [
+  "left": [
     {
-      "icon": "fingerprint",
-      "label": "Deduplication",
-      "description": "Ansible appears as ansible, red-hat-ansible, and ansible-automation-platform depending on the source. We maintain a canonical registry with 942 product mappings across 4,400+ raw entries."
+      "type": "highlight-card",
+      "icon": "warning",
+      "title": "The Challenges",
+      "description": "The same software appears across catalogs with different identifiers. Each catalog uses its own category system. Raw catalog data lacks context. We solve this with 942 product mappings, 10,415+ lines of category mappings, and Wikidata enrichment.",
+      "style": "tertiary"
     },
     {
-      "icon": "category",
-      "label": "Category Harmonization",
-      "description": "CNCF uses technical hierarchies, SILL France uses publiccode.yml, Euro-Stack uses business focus. We map all to four standardized taxonomies: Technical (43), Developer (26), Business (28), Platforms (8)."
-    },
+      "type": "highlight-card",
+      "icon": "autorenew",
+      "title": "Goal: Fully Automated Pipeline",
+      "description": "A weekly automated pipeline that scrapes all sources, auto-suggests canonical ID mappings using fuzzy matching, and publishes the updated catalog — flagging conflicts for human review without blocking the pipeline.",
+      "style": "primary"
+    }
+  ],
+  "right": [
     {
-      "icon": "auto_awesome",
-      "label": "Data Enrichment",
-      "description": "Enrich products using Wikidata for vendor information and web search to validate descriptions and find missing homepages."
+      "type": "persona-cards",
+      "title": "How We Solve Them",
+      "items": [
+        {
+          "icon": "fingerprint",
+          "label": "Deduplication",
+          "description": "Ansible appears as ansible, red-hat-ansible, and ansible-automation-platform depending on the source. We maintain a canonical registry with 942 product mappings across 4,400+ raw entries."
+        },
+        {
+          "icon": "category",
+          "label": "Category Harmonization",
+          "description": "CNCF uses technical hierarchies, SILL France uses publiccode.yml, Euro-Stack uses business focus. We map all to four standardized taxonomies: Technical (43), Developer (26), Business (28), Platforms (8)."
+        },
+        {
+          "icon": "auto_awesome",
+          "label": "Data Enrichment",
+          "description": "Enrich products using Wikidata for vendor information and web search to validate descriptions and find missing homepages."
+        }
+      ]
     }
   ]
 }
-{{< /persona-cards >}}
-
-{{< highlight-card id="goal-fully-automated-pipeline" >}}
-{
-  "icon": "autorenew",
-  "title": "Goal: Fully Automated Pipeline",
-  "description": "A weekly automated pipeline that scrapes all sources, auto-suggests canonical ID mappings using fuzzy matching, and publishes the updated catalog — flagging conflicts for human review without blocking the pipeline.",
-  "style": "primary"
-}
-{{< /highlight-card >}}
+{{< /side-by-side >}}

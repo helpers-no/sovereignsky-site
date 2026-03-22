@@ -108,62 +108,65 @@ type: "sovereignsky"
 }
 {{< /feature-grid >}}
 
-{{< persona-cards id="pre-configured-stacks" >}}
+{{< side-by-side id="side-by-side-4" >}}
 {
-  "title": "Pre-configured Stacks",
-  "items": [
+  "left": [
     {
-      "icon": "visibility",
-      "label": "Observability Stack",
-      "description": "Complete monitoring with metrics, logs, and distributed tracing. One command."
+      "type": "highlight-card",
+      "icon": "rocket_launch",
+      "title": "Runs Anywhere",
+      "description": "Laptop, Raspberry Pi, Ubuntu server, VM, AKS, or any Kubernetes cluster. Same infrastructure in development and production. No cloud account needed — start building immediately, zero cost.",
+      "style": "primary"
     },
     {
-      "icon": "smart_toy",
-      "label": "Local AI Stack",
-      "description": "Run AI models locally with a unified API and ChatGPT-like chat interface. Your data stays on your machine."
-    },
+      "type": "tool-icons",
+      "title": "Key Benefits",
+      "description": "30+ services, true portability, and data sovereignty:",
+      "items": [
+        {
+          "icon": "apps",
+          "label": "30+ Services"
+        },
+        {
+          "icon": "sync_alt",
+          "label": "True Portability"
+        },
+        {
+          "icon": "shield",
+          "label": "Data Stays Local"
+        },
+        {
+          "icon": "cloud_off",
+          "label": "No Cloud Needed"
+        }
+      ]
+    }
+  ],
+  "right": [
     {
-      "icon": "analytics",
-      "label": "Analytics Stack",
-      "description": "Collaborative data science with Jupyter notebooks, Spark, and Unity Catalog."
+      "type": "persona-cards",
+      "title": "Pre-configured Stacks",
+      "items": [
+        {
+          "icon": "visibility",
+          "label": "Observability Stack",
+          "description": "Complete monitoring with metrics, logs, and distributed tracing. One command."
+        },
+        {
+          "icon": "smart_toy",
+          "label": "Local AI Stack",
+          "description": "Run AI models locally with a unified API and ChatGPT-like chat interface. Your data stays on your machine."
+        },
+        {
+          "icon": "analytics",
+          "label": "Analytics Stack",
+          "description": "Collaborative data science with Jupyter notebooks, Spark, and Unity Catalog."
+        }
+      ]
     }
   ]
 }
-{{< /persona-cards >}}
-
-{{< highlight-card id="runs-anywhere" >}}
-{
-  "icon": "rocket_launch",
-  "title": "Runs Anywhere",
-  "description": "Laptop, Raspberry Pi, Ubuntu server, VM, AKS, or any Kubernetes cluster. Same infrastructure in development and production. No cloud account needed — start building immediately, zero cost.",
-  "style": "primary"
-}
-{{< /highlight-card >}}
-
-{{< tool-icons id="key-benefits" >}}
-{
-  "title": "Key Benefits",
-  "description": "30+ services, true portability, and data sovereignty:",
-  "items": [
-    {
-      "icon": "apps",
-      "label": "30+ Services"
-    },
-    {
-      "icon": "sync_alt",
-      "label": "True Portability"
-    },
-    {
-      "icon": "shield",
-      "label": "Data Stays Local"
-    },
-    {
-      "icon": "cloud_off",
-      "label": "No Cloud Needed"
-    }
-  ]
-}
-{{< /tool-icons >}}
+{{< /side-by-side >}}
 
 {{< cta id="ready-to-build-on-sovereign-infrastructure" >}}
 {

@@ -34,45 +34,83 @@ type: "sovereignsky"
 {{< /summary >}}
 
 {{< metadata-sidebar >}}
-## NDSI Levels
-
-Organizations are scored from Level 0 to Level 4:
-
-| Level | Name | Score | What It Means |
-|-------|------|-------|---------------|
-| 4 | Sovereign | 35-44 | Strong control over digital infrastructure |
-| 3 | Resilient | 26-34 | Good awareness, some dependencies to address |
-| 2 | Aware | 18-25 | Significant dependencies, exit strategies needed |
-| 1 | Dependent | 9-17 | High foreign dependency, priority action needed |
-| 0 | Unassessed | 0-8 | Critical gaps, immediate investigation required |
+{{< highlight-card id="the-problem" >}}
+{
+  "icon": "error_outline",
+  "title": "The Problem",
+  "description": "Organizations know they depend on foreign cloud providers, but they have no standardized way to measure how dependent they are, compare themselves to peers, or track improvement over time.",
+  "style": "tertiary"
+}
+{{< /highlight-card >}}
 
 {{< /metadata-sidebar >}}
 
-{{< persona-cards id="components" >}}
+{{< feature-grid id="ndsi-levels" >}}
 {
-  "title": "Components",
-  "items": [
+  "title": "NDSI Levels",
+  "columns": [
     {
-      "icon": "quiz",
-      "label": "NDSI Quick Scan Survey",
-      "description": "11 questions covering provider jurisdiction, data control, exit readiness, and operational resilience."
+      "icon": "shield",
+      "title": "Strong (Level 3-4)",
+      "color": "secondary",
+      "items": [
+        "Level 4: Sovereign (35-44 pts)",
+        "Level 3: Resilient (26-34 pts)"
+      ]
     },
     {
-      "icon": "security",
-      "label": "Software Risk Check",
-      "description": "Select the tools your organization uses and get an instant risk assessment based on jurisdiction, data location, and portability."
+      "icon": "warning",
+      "title": "Needs Work (Level 0-2)",
+      "color": "tertiary",
+      "items": [
+        "Level 2: Aware (18-25 pts)",
+        "Level 1: Dependent (9-17 pts)",
+        "Level 0: Unassessed (0-8 pts)"
+      ]
     }
   ]
 }
-{{< /persona-cards >}}
+{{< /feature-grid >}}
 
-## Dependencies
-
-NDSI depends on the **Software Database** to provide:
-- Risk scores for individual software products
-- Mapping to European and open-source alternatives
-- Vendor ownership and jurisdiction data
-
-## Current Status
-
-The framework is in planning phase. The survey and basic scoring are functional, but full integration with the Software Database for automated risk assessment is under development.
+{{< side-by-side id="side-by-side-3" >}}
+{
+  "left": [
+    {
+      "type": "persona-cards",
+      "title": "Components",
+      "items": [
+        {
+          "icon": "quiz",
+          "label": "NDSI Quick Scan Survey",
+          "description": "11 questions covering provider jurisdiction, data control, exit readiness, and operational resilience."
+        },
+        {
+          "icon": "security",
+          "label": "Software Risk Check",
+          "description": "Select the tools your organization uses and get an instant risk assessment based on jurisdiction, data location, and portability."
+        }
+      ]
+    }
+  ],
+  "right": [
+    {
+      "type": "persona-cards",
+      "title": "Dependencies",
+      "items": [
+        {
+          "icon": "database",
+          "label": "Software Database",
+          "description": "Risk scores for individual software products, mapping to European alternatives, vendor ownership data."
+        }
+      ]
+    },
+    {
+      "type": "highlight-card",
+      "icon": "info",
+      "title": "Current Status",
+      "description": "The framework is in planning phase. The survey and basic scoring are functional, but full integration with the Software Database for automated risk assessment is under development.",
+      "style": "primary"
+    }
+  ]
+}
+{{< /side-by-side >}}

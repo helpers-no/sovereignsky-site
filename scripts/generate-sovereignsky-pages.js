@@ -248,16 +248,17 @@ function buildSections(sections) {
 
     if (parts.length > 0) parts.push('');
 
-    // After summary, wrap narrative sections in metadata-sidebar
-    if (summaryDone && !sidebarOpened && !sidebarClosed) {
-      // Open the metadata-sidebar wrapper
+    // After summary, wrap highlight-card sections in metadata-sidebar
+    // (only shortcodes, not raw markdown — {{< >}} doesn't process markdown)
+    if (summaryDone && !sidebarOpened && !sidebarClosed && type === 'highlight-card') {
       parts.push('{{< metadata-sidebar >}}');
       sidebarOpened = true;
     }
 
     // If sidebar is open and we hit a non-narrative section, close it
     if (sidebarOpened && !sidebarClosed) {
-      const narrativeTypes = ['markdown', 'highlight-card'];
+      // Only shortcode types can go inside metadata-sidebar (not raw markdown)
+      const narrativeTypes = ['highlight-card'];
       if (!narrativeTypes.includes(type)) {
         parts.push('{{< /metadata-sidebar >}}');
         parts.push('');

@@ -56,42 +56,47 @@ type: "sovereignsky"
 
 {{< /metadata-sidebar >}}
 
-{{< persona-cards id="components" >}}
+{{< side-by-side id="side-by-side-3" >}}
 {
-  "title": "Components",
-  "items": [
+  "left": [
     {
-      "icon": "qr_code_2",
-      "label": "QR Armband",
-      "description": "QR-based wristband identification system for aid workers and refugees."
-    },
+      "type": "highlight-card",
+      "icon": "shield",
+      "title": "Why It Matters for Sovereignty",
+      "description": "Humanitarian operations handle extremely sensitive personal data — refugee identities, locations, health information. Using foreign-controlled cloud services for this data creates unacceptable risks. These tools demonstrate that critical humanitarian infrastructure can be built on open-source, sovereign foundations.",
+      "style": "secondary"
+    }
+  ],
+  "right": [
     {
-      "icon": "web",
-      "label": "Wristbands Frontend",
-      "description": "Web interface for the wristband identification system."
-    },
-    {
-      "icon": "qr_code",
-      "label": "Simple QR",
-      "description": "Python API for QR code generation."
-    },
-    {
-      "icon": "monitor_heart",
-      "label": "Safe Monitor",
-      "description": "Safety and communication monitoring system."
+      "type": "persona-cards",
+      "title": "Components",
+      "items": [
+        {
+          "icon": "qr_code_2",
+          "label": "QR Armband",
+          "description": "QR-based wristband identification system for aid workers and refugees."
+        },
+        {
+          "icon": "web",
+          "label": "Wristbands Frontend",
+          "description": "Web interface for the wristband identification system."
+        },
+        {
+          "icon": "qr_code",
+          "label": "Simple QR",
+          "description": "Python API for QR code generation."
+        },
+        {
+          "icon": "monitor_heart",
+          "label": "Safe Monitor",
+          "description": "Safety and communication monitoring system."
+        }
+      ]
     }
   ]
 }
-{{< /persona-cards >}}
-
-{{< highlight-card id="why-it-matters-for-sovereignty" >}}
-{
-  "icon": "shield",
-  "title": "Why It Matters for Sovereignty",
-  "description": "Humanitarian operations handle extremely sensitive personal data — refugee identities, locations, health information. Using foreign-controlled cloud services for this data creates unacceptable risks. These tools demonstrate that critical humanitarian infrastructure can be built on open-source, sovereign foundations.",
-  "style": "secondary"
-}
-{{< /highlight-card >}}
+{{< /side-by-side >}}
 
 {{< cta id="helping-the-helpers" >}}
 {

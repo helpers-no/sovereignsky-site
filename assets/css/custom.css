@@ -610,6 +610,65 @@ section.sd-page #sidebar .btn-primary,
   max-width: 65ch;
 }
 
+/* Markdown tables in sd-content (prose removed, need explicit styles) */
+.sd-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 1.5rem 0;
+  max-width: none;
+}
+.sd-content table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-weight: 700;
+  border-bottom: 2px solid #e5e7eb;
+  color: var(--sd-on-surface, #131b2e);
+}
+.sd-content table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: var(--sd-on-surface-variant, #424754);
+}
+.sd-content table td:not(:first-child),
+.sd-content table th:not(:first-child) {
+  text-align: center;
+}
+.dark .sd-content table th {
+  border-bottom-color: #374151;
+  color: var(--sd-on-surface, #dae2fd);
+}
+.dark .sd-content table td {
+  border-bottom-color: #1f2937;
+  color: var(--sd-on-surface-variant, #c2c6d6);
+}
+
+/* Markdown headings in sd-content need basic styling */
+.sd-content > h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  color: var(--sd-on-surface, #131b2e);
+}
+.sd-content > h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--sd-on-surface, #131b2e);
+}
+.sd-content > p {
+  margin: 0.75rem 0;
+  line-height: 1.7;
+  color: var(--sd-on-surface-variant, #424754);
+}
+.dark .sd-content > h2,
+.dark .sd-content > h3 {
+  color: var(--sd-on-surface, #dae2fd);
+}
+.dark .sd-content > p {
+  color: var(--sd-on-surface-variant, #c2c6d6);
+}
+
 /* Custom styles for SovereignSky */
 
 /* Missing Tailwind utilities not in Blowfish compiled CSS */

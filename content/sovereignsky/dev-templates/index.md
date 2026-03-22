@@ -76,38 +76,71 @@ type: "sovereignsky"
 | Basic React App | ✅ | ✅ | | |
 | Basic Next.js App | planned | planned | planned | planned |
 
-{{< persona-cards id="what-each-template-includes" >}}
+{{< side-by-side id="side-by-side-4" >}}
 {
-  "title": "What Each Template Includes",
-  "items": [
+  "left": [
     {
-      "icon": "code",
-      "label": "Application code",
-      "description": "Working starter app, not just a skeleton."
-    },
+      "type": "persona-cards",
+      "title": "What Each Template Includes",
+      "items": [
+        {
+          "icon": "code",
+          "label": "Application code",
+          "description": "Working starter app, not just a skeleton."
+        },
+        {
+          "icon": "inventory_2",
+          "label": "Dockerfile",
+          "description": "Container-ready from the start."
+        },
+        {
+          "icon": "cloud_upload",
+          "label": "Kubernetes manifests",
+          "description": "Deployment, service, and kustomization for ArgoCD."
+        },
+        {
+          "icon": "play_circle",
+          "label": "GitHub Actions workflow",
+          "description": "Automatic build and push to GitHub Container Registry."
+        },
+        {
+          "icon": "terminal",
+          "label": "Local development",
+          "description": "Run and test inside the devcontainer."
+        }
+      ]
+    }
+  ],
+  "right": [
     {
-      "icon": "inventory_2",
-      "label": "Dockerfile",
-      "description": "Container-ready from the start."
-    },
-    {
-      "icon": "cloud_upload",
-      "label": "Kubernetes manifests",
-      "description": "Deployment, service, and kustomization for ArgoCD."
-    },
-    {
-      "icon": "play_circle",
-      "label": "GitHub Actions workflow",
-      "description": "Automatic build and push to GitHub Container Registry."
-    },
-    {
-      "icon": "terminal",
-      "label": "Local development",
-      "description": "Run and test inside the devcontainer."
+      "type": "persona-cards",
+      "title": "How It Fits Together",
+      "items": [
+        {
+          "icon": "deployed_code",
+          "label": "DevContainer Toolbox (DCT)",
+          "description": "The development environment — all tools pre-configured."
+        },
+        {
+          "icon": "content_copy",
+          "label": "Dev Templates",
+          "description": "The project starter — you are here."
+        },
+        {
+          "icon": "dns",
+          "label": "Urbalurba Infrastructure Stack (UIS)",
+          "description": "The Kubernetes cluster and services."
+        },
+        {
+          "icon": "devices",
+          "label": "Client Provisioning",
+          "description": "Automated machine setup for managed fleets."
+        }
+      ]
     }
   ]
 }
-{{< /persona-cards >}}
+{{< /side-by-side >}}
 
 {{< highlight-card id="real-world-example-red-cross-norway" >}}
 {
@@ -117,31 +150,3 @@ type: "sovereignsky"
   "style": "secondary"
 }
 {{< /highlight-card >}}
-
-{{< persona-cards id="how-it-fits-together" >}}
-{
-  "title": "How It Fits Together",
-  "items": [
-    {
-      "icon": "deployed_code",
-      "label": "DevContainer Toolbox (DCT)",
-      "description": "The development environment — all tools pre-configured."
-    },
-    {
-      "icon": "content_copy",
-      "label": "Dev Templates",
-      "description": "The project starter — you are here."
-    },
-    {
-      "icon": "dns",
-      "label": "Urbalurba Infrastructure Stack (UIS)",
-      "description": "The Kubernetes cluster and services."
-    },
-    {
-      "icon": "devices",
-      "label": "Client Provisioning",
-      "description": "Automated machine setup for managed fleets."
-    }
-  ]
-}
-{{< /persona-cards >}}
