@@ -1,0 +1,31 @@
+{{/* highlight-card shortcode — gradient background card with icon, title, description */}}
+{{ $config := .Inner | transform.Unmarshal }}
+
+{{ $bgFrom := "var(--sd-primary)" }}
+{{ $bgTo := "var(--sd-primary-container)" }}
+{{ $textColor := "var(--sd-on-primary)" }}
+{{ if eq $config.style "secondary" }}
+  {{ $bgFrom = "var(--sd-secondary)" }}
+  {{ $bgTo = "var(--sd-secondary-container)" }}
+  {{ $textColor = "var(--sd-on-primary)" }}
+{{ else if eq $config.style "tertiary" }}
+  {{ $bgFrom = "var(--sd-tertiary)" }}
+  {{ $bgTo = "var(--sd-tertiary-container)" }}
+  {{ $textColor = "var(--sd-on-tertiary-container)" }}
+{{ end }}
+
+<div class="section-design not-prose" style="margin: 2rem 0;">
+  <div class="editorial-shadow" style="padding: 2.5rem; border-radius: 2rem; background: linear-gradient(to bottom right, {{ $bgFrom }}, {{ $bgTo }}); color: {{ $textColor }};">
+    {{ with $config.icon }}
+    <h3 class="sd-headline" style="font-size: 1.875rem; font-weight: 700; margin: 0 0 1.5rem 0; display: flex; align-items: center; gap: 0.75rem;">
+      <span class="material-symbols-outlined filled" style="font-size: 1.875rem;">{{ . }}</span>
+      {{ $config.title }}
+    </h3>
+    {{ else }}
+    <h3 class="sd-headline" style="font-size: 1.875rem; font-weight: 700; margin: 0 0 1.5rem 0;">{{ $config.title }}</h3>
+    {{ end }}
+    {{ with $config.description }}
+    <p style="font-size: 1.125rem; line-height: 1.7; margin: 0; opacity: 0.9;">{{ . }}</p>
+    {{ end }}
+  </div>
+</div>

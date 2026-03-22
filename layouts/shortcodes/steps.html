@@ -1,0 +1,41 @@
+{{/* steps shortcode — centered heading + description + terminal-style code block */}}
+{{ $config := .Inner | transform.Unmarshal }}
+
+<div class="section-design not-prose" style="margin: 2rem 0;">
+  <div style="text-align: center; max-width: 56rem; margin: 0 auto 2rem;">
+    {{ with $config.title }}
+    <h3 class="sd-headline" style="font-size: 2rem; font-weight: 700; color: var(--sd-on-surface); margin-bottom: 1.5rem;">{{ . }}</h3>
+    {{ end }}
+    {{ with $config.description }}
+    <p style="font-size: 1.125rem; color: var(--sd-on-surface-variant); line-height: 1.7; margin: 0;">{{ . }}</p>
+    {{ end }}
+  </div>
+
+  {{ with $config.code }}
+  <div style="background-color: var(--sd-on-surface); border-radius: 1rem; padding: 0.25rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);">
+    {{/* Terminal title bar */}}
+    <div style="background-color: #0f172a; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1e293b;">
+      <div style="display: flex; gap: 0.5rem;">
+        <span style="width: 0.75rem; height: 0.75rem; border-radius: 50%; background-color: #334155;"></span>
+        <span style="width: 0.75rem; height: 0.75rem; border-radius: 50%; background-color: #334155;"></span>
+        <span style="width: 0.75rem; height: 0.75rem; border-radius: 50%; background-color: #334155;"></span>
+      </div>
+      {{ with .label }}
+      <span style="font-size: 0.75rem; font-family: monospace; color: #94a3b8;">{{ . }}</span>
+      {{ end }}
+    </div>
+    {{/* Terminal content */}}
+    <div style="padding: 2rem; display: flex; align-items: center; justify-content: space-between;">
+      <code style="font-family: monospace; font-size: 1rem; color: #60a5fa; word-break: break-all;">{{ .command }}</code>
+    </div>
+  </div>
+  {{ end }}
+</div>
+
+<style>
+  @media (min-width: 768px) {
+    .section-design [data-sd-steps-code] code {
+      font-size: 1.25rem;
+    }
+  }
+</style>

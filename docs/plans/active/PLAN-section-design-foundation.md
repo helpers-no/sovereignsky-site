@@ -70,15 +70,15 @@ Build 7 shortcode templates using HTML structure from the **Stitch HTML referenc
 
 ### Tasks
 
-- [ ] 2.1 Create `layouts/shortcodes/summary.html` — two-column layout: large headline left, description right, on tinted background
-- [ ] 2.2 Create `layouts/shortcodes/feature-grid.html` — parses JSON config, renders 2-column split with icon headers and dot-item lists
-- [ ] 2.3 Create `layouts/shortcodes/steps.html` — parses JSON config, renders centered heading + description + terminal-style code block
-- [ ] 2.4 Create `layouts/shortcodes/persona-cards.html` — parses JSON config, renders vertical list of persona items with filled Material icons
-- [ ] 2.5 Create `layouts/shortcodes/highlight-card.html` — parses JSON config, renders gradient background card with icon, title, description
-- [ ] 2.6 Create `layouts/shortcodes/tool-icons.html` — parses JSON config, renders row of tool icons with labels in bordered container
-- [ ] 2.7 Create `layouts/shortcodes/cta.html` — parses JSON config, renders call-to-action banner with buttons
-- [ ] 2.8 Add Material Symbols Outlined font to `layouts/partials/extend-head.html`
-- [ ] 2.9 Add section design CSS to `assets/css/custom.css` — scoped under `.section-design` wrapper, using Blowfish color variables. Include `.editorial-shadow` and `.bg-grid-pattern` from Stitch.
+- [x] 2.1 Create `layouts/shortcodes/summary.html` — two-column layout: large headline left, description right, on tinted background
+- [x] 2.2 Create `layouts/shortcodes/feature-grid.html` — parses JSON config, renders 2-column split with icon headers and dot-item lists
+- [x] 2.3 Create `layouts/shortcodes/steps.html` — parses JSON config, renders centered heading + description + terminal-style code block
+- [x] 2.4 Create `layouts/shortcodes/persona-cards.html` — parses JSON config, renders vertical list of persona items with filled Material icons
+- [x] 2.5 Create `layouts/shortcodes/highlight-card.html` — parses JSON config, renders gradient background card with icon, title, description
+- [x] 2.6 Create `layouts/shortcodes/tool-icons.html` — parses JSON config, renders row of tool icons with labels in bordered container
+- [x] 2.7 Create `layouts/shortcodes/cta.html` — parses JSON config, renders call-to-action banner with buttons
+- [x] 2.8 Add Material Symbols Outlined font + Space Grotesk + Inter to `layouts/partials/extend-head.html`
+- [x] 2.9 Add section design CSS to `assets/css/custom.css` — scoped under `.section-design` wrapper with `--sd-*` custom properties, including dark mode overrides and `.editorial-shadow`
 
 ### Validation
 
