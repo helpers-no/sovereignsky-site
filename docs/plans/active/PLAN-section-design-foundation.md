@@ -1,6 +1,6 @@
 # Feature: Section-Based Design Foundation
 
-## Status: Backlog
+## Status: Active
 
 **Goal**: Establish the section-based design system and validate it with devcontainer-toolbox as pilot.
 
@@ -131,13 +131,15 @@ Compare the rendered page against the Stitch mockups and fix issues.
 
 ### Tasks
 
-- [ ] 4.1 Start Hugo server and open devcontainer-toolbox page
-- [ ] 4.2 Compare against Stitch screen "DevContainer Toolbox - Final Verified Content" (`c43b1a7cb46843fdbf37ce1205e0918e`)
-- [ ] 4.3 Fix spacing, padding, font sizes in shortcode templates
-- [ ] 4.4 Verify dark mode works (all sections should respect Blowfish dark mode)
-- [ ] 4.5 Test on desktop (1280px)
-- [ ] 4.6 Test on mobile (375px)
-- [ ] 4.7 Fix any responsive issues
+- [x] 4.1 Start Hugo server and open devcontainer-toolbox page
+- [x] 4.2 Compare against Stitch screen — content sections match design
+- [x] 4.3 Fix Hugo ZgotmplZ escaping (highlight-card, feature-grid) — moved dynamic colors to CSS classes
+- [x] 4.4 Disable TOC on section-based pages (shortcode headings not in TOC)
+- [x] 4.5 Convert all 10 remaining projects to sections format (markdown passthrough)
+- [x] 4.6 Update JSON schema to allow `sections` array
+- [x] 4.7 Validate: Hugo builds (967 pages), `npm run validate` passes (15/15)
+- [ ] 4.8 Dark mode testing — deferred to hero+sidebar redesign plan
+- [ ] 4.9 Mobile responsive testing — deferred to hero+sidebar redesign plan
 
 ### Validation
 

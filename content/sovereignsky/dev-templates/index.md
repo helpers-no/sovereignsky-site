@@ -20,11 +20,17 @@ audience:
   - "developer"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Production-ready templates for APIs, web apps, backends, and experiments. Lower the entry barrier for all developers with rapid prototyping and consistent best practices.
+{{< summary id="summary-0" >}}
+{
+  "headline": "Quick, modern, and standardized project templates for rapid prototyping and consistent development",
+  "description": "Production-ready templates for APIs, web apps, backends, and experiments. Lower the entry barrier for all developers with rapid prototyping and consistent best practices."
+}
+{{< /summary >}}
 
 ## The Problem
 

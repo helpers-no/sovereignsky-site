@@ -23,11 +23,17 @@ audience:
   - "it-ops"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Stop writing separate code for logs, metrics, and traces. Write one log entry and automatically get structured logs, metrics dashboards, distributed traces, and service dependency maps.
+{{< summary id="summary-0" >}}
+{
+  "headline": "One log call — automatic logs, metrics, traces, and service maps. 95% less instrumentation code.",
+  "description": "Stop writing separate code for logs, metrics, and traces. Write one log entry and automatically get structured logs, metrics dashboards, distributed traces, and service dependency maps."
+}
+{{< /summary >}}
 
 ## Who Do You Write Logs For?
 

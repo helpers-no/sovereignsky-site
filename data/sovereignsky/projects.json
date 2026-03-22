@@ -27,7 +27,6 @@
       "name": "SecureNet",
       "description": "Remote workers are prime targets for state-sponsored attacks. SecureNet ensures that even if a developer's laptop is compromised, attackers cannot pivot into your critical infrastructure - essential protection against foreign cyber operations targeting your organization.",
       "abstract": "Secure developer access to internal services without exposing your network",
-      "summary": "A 'clean computer within an infected computer' - isolate developer access to internal services through zero trust networking and containers. Malware on the host cannot reach your network.",
       "image": "securenet.png",
       "url": "/sovereignsky/securenet/",
       "topics": [
@@ -49,7 +48,14 @@
         "status": "planned",
         "repository": "",
         "documentation": ""
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "Secure developer access to internal services without exposing your network",
+          "description": "A 'clean computer within an infected computer' - isolate developer access to internal services through zero trust networking and containers. Malware on the host cannot reach your network."
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -58,8 +64,6 @@
       "name": "Software Database",
       "description": "Every foreign SaaS tool is a potential backdoor for extraterritorial data access. We track what France (SILL), Germany (openCode), Denmark, and other European countries recommend — and aggregate their government-vetted catalogs into one searchable database with sovereign alternatives.",
       "abstract": "4,400+ software products from government-vetted catalogs across Europe, mapped with sovereign alternatives",
-      "summary": "See what France, Germany, and other European governments recommend. Find sovereign replacements for foreign-controlled tools.",
-      "body": "## What It Does\n\nThe Software Database aggregates software from multiple government-vetted and expert-curated catalogs into a unified, searchable catalog. Each product is deduplicated, categorized across four taxonomies, and enriched with vendor information, alternatives mappings, and sovereignty assessments.\n\n## Data Sources\n\nWe prioritize government-vetted catalogs for quality and legal compliance:\n\n| Source | Products | Publisher | Trust Level |\n|--------|----------|-----------|-------------|\n| SILL France | 626 | DINUM - French Government | Government-vetted |\n| CNCF Cloud Native Landscape | 1,358 | Cloud Native Computing Foundation | Foundation-backed |\n| Euro Stack | 1,103 | Abilian SAS / EuroStack Initiative (FR) | Expert-curated |\n| OpenAlternative | 649 | OpenAlternative | Community-curated |\n| Cloud Service Map | 582 | Google Cloud | Expert-curated |\n| switching.software | 130 | Datenpunks (DE) | Expert-curated |\n\n### Planned Sources\n\n| Source | Publisher | Trust Level |\n|--------|-----------|-------------|\n| openCode / ZenDiS | German Government (ZenDiS) | Government-vetted |\n| Developers Italia | Italian Government | Government-vetted |\n| EU OSS Catalogue | European Commission | Government-vetted |\n\n## The Challenges\n\n### Deduplication: One Product, Many Identities\n\nThe same software appears across catalogs with different identifiers. For example, Ansible appears as `ansible`, `red-hat-ansible`, and `ansible-automation-platform` depending on the source. We maintain a canonical registry with 942 product mappings that resolve duplicates across the 4,400+ raw entries from all sources.\n\n### Category Harmonization\n\nEach catalog uses its own category system - CNCF uses technical hierarchies, SILL France uses publiccode.yml categories, Euro-Stack uses business focus. We map all source categories to four standardized taxonomies:\n\n- **Technical** (43 categories): Infrastructure capabilities\n- **Developer** (26 categories): Development tools and frameworks\n- **Business** (28 categories): Use cases and departments\n- **Platforms** (8 categories): Operating systems and clouds\n\nThis requires 10,415+ lines of category mappings.\n\n### Data Enrichment\n\nRaw catalog data lacks context. We enrich products using Wikidata for vendor information (headquarters, founding date) and web search to validate descriptions and find missing homepages.\n\n## Goal: Fully Automated Pipeline\n\nThe target is a weekly automated pipeline that scrapes all sources, auto-suggests canonical ID mappings using fuzzy matching, and publishes the updated catalog - flagging conflicts for human review without blocking the pipeline.",
       "image": "software-database.png",
       "url": "/sovereignsky/software-database/",
       "topics": [
@@ -85,7 +89,18 @@
         "status": "active",
         "repository": "https://github.com/helpers-no/software-scrape",
         "documentation": ""
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "4,400+ software products from government-vetted catalogs across Europe, mapped with sovereign alternatives",
+          "description": "See what France, Germany, and other European governments recommend. Find sovereign replacements for foreign-controlled tools."
+        },
+        {
+          "type": "markdown",
+          "body": "## What It Does\n\nThe Software Database aggregates software from multiple government-vetted and expert-curated catalogs into a unified, searchable catalog. Each product is deduplicated, categorized across four taxonomies, and enriched with vendor information, alternatives mappings, and sovereignty assessments.\n\n## Data Sources\n\nWe prioritize government-vetted catalogs for quality and legal compliance:\n\n| Source | Products | Publisher | Trust Level |\n|--------|----------|-----------|-------------|\n| SILL France | 626 | DINUM - French Government | Government-vetted |\n| CNCF Cloud Native Landscape | 1,358 | Cloud Native Computing Foundation | Foundation-backed |\n| Euro Stack | 1,103 | Abilian SAS / EuroStack Initiative (FR) | Expert-curated |\n| OpenAlternative | 649 | OpenAlternative | Community-curated |\n| Cloud Service Map | 582 | Google Cloud | Expert-curated |\n| switching.software | 130 | Datenpunks (DE) | Expert-curated |\n\n### Planned Sources\n\n| Source | Publisher | Trust Level |\n|--------|-----------|-------------|\n| openCode / ZenDiS | German Government (ZenDiS) | Government-vetted |\n| Developers Italia | Italian Government | Government-vetted |\n| EU OSS Catalogue | European Commission | Government-vetted |\n\n## The Challenges\n\n### Deduplication: One Product, Many Identities\n\nThe same software appears across catalogs with different identifiers. For example, Ansible appears as `ansible`, `red-hat-ansible`, and `ansible-automation-platform` depending on the source. We maintain a canonical registry with 942 product mappings that resolve duplicates across the 4,400+ raw entries from all sources.\n\n### Category Harmonization\n\nEach catalog uses its own category system - CNCF uses technical hierarchies, SILL France uses publiccode.yml categories, Euro-Stack uses business focus. We map all source categories to four standardized taxonomies:\n\n- **Technical** (43 categories): Infrastructure capabilities\n- **Developer** (26 categories): Development tools and frameworks\n- **Business** (28 categories): Use cases and departments\n- **Platforms** (8 categories): Operating systems and clouds\n\nThis requires 10,415+ lines of category mappings.\n\n### Data Enrichment\n\nRaw catalog data lacks context. We enrich products using Wikidata for vendor information (headquarters, founding date) and web search to validate descriptions and find missing homepages.\n\n## Goal: Fully Automated Pipeline\n\nThe target is a weekly automated pipeline that scrapes all sources, auto-suggests canonical ID mappings using fuzzy matching, and publishes the updated catalog - flagging conflicts for human review without blocking the pipeline."
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -94,8 +109,6 @@
       "name": "sovdev-logger",
       "description": "Application telemetry often flows to foreign cloud providers, exposing operational patterns and sensitive metadata. sovdev-logger works with self-hosted backends like Grafana and Loki, keeping your observability data under your control and jurisdiction.",
       "abstract": "One log call — automatic logs, metrics, traces, and service maps. 95% less instrumentation code.",
-      "summary": "Stop writing separate code for logs, metrics, and traces. Write one log entry and automatically get structured logs, metrics dashboards, distributed traces, and service dependency maps.",
-      "body": "## Who Do You Write Logs For?\n\nYou write code for yourself during development. But **you write logs for the operations engineer staring at a screen at 7 PM on Friday.**\n\nYour application just crashed in production. Everyone on your team has left for the weekend. The ops engineer who got the alert doesn't know your codebase, doesn't know your business logic, and definitely doesn't want to be there right now.\n\nGood logging is the difference between a 3-hour debugging session and a 5-minute fix. Help them get home to their family.\n\n## The Problem\n\nTraditional observability requires 20+ lines per operation — separate logger calls, metric counters, trace spans, manual correlation.\n\n## The Solution\n\n```typescript\nsovdev_log(INFO, FUNCTIONNAME, 'Payment processed', PEER_SERVICES.PAYMENT_GATEWAY, input, output);\n// ↑ Automatic logs + metrics + traces + correlation\n```\n\n**Result**: 95% less instrumentation code, complete observability out of the box.\n\n## What You Get Automatically\n\nEvery log call generates:\n\n| Output | Backends |\n|--------|----------|\n| Structured Logs | Azure Log Analytics, Loki, JSON files |\n| Metrics | Azure Monitor, Prometheus, Grafana |\n| Distributed Traces | Application Insights, Tempo |\n| Service Maps | Automatic dependency graphs |\n| File Logs | JSON files for local development |\n\nNo extra code required.\n\n## For Azure Developers\n\nThis library uses **OpenTelemetry** — Microsoft's recommended standard. Same code works with Azure Monitor in production and Grafana locally. No vendor lock-in.\n\n| Environment | Logs | Metrics | Traces |\n|------------|------|---------|--------|\n| Azure Production | Azure Log Analytics | Azure Monitor | Application Insights |\n| Local Development | Console + JSON files | Grafana | Tempo |\n| On-Premises | Loki | Prometheus | Tempo |\n\n## Supported Languages\n\n| Language | Status |\n|----------|--------|\n| TypeScript | ✅ Available |\n| Go, Python, C#, Rust, PHP | 📅 Planned |\n\nWorks with any OpenTelemetry-compatible backend: Azure Monitor, Grafana Cloud, Datadog, New Relic, or self-hosted.\n\n## Quick Start\n\n```bash\nnpm install @sovdev/logger\n```\n\nNo configuration needed for local development. Logs to console and `./logs/` directory out of the box.",
       "image": "sovdev-logger.png",
       "url": "/sovereignsky/sovdev-logger/",
       "topics": [
@@ -119,7 +132,18 @@
         "status": "active",
         "repository": "https://github.com/helpers-no/sovdev-logger",
         "documentation": ""
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "One log call — automatic logs, metrics, traces, and service maps. 95% less instrumentation code.",
+          "description": "Stop writing separate code for logs, metrics, and traces. Write one log entry and automatically get structured logs, metrics dashboards, distributed traces, and service dependency maps."
+        },
+        {
+          "type": "markdown",
+          "body": "## Who Do You Write Logs For?\n\nYou write code for yourself during development. But **you write logs for the operations engineer staring at a screen at 7 PM on Friday.**\n\nYour application just crashed in production. Everyone on your team has left for the weekend. The ops engineer who got the alert doesn't know your codebase, doesn't know your business logic, and definitely doesn't want to be there right now.\n\nGood logging is the difference between a 3-hour debugging session and a 5-minute fix. Help them get home to their family.\n\n## The Problem\n\nTraditional observability requires 20+ lines per operation — separate logger calls, metric counters, trace spans, manual correlation.\n\n## The Solution\n\n```typescript\nsovdev_log(INFO, FUNCTIONNAME, 'Payment processed', PEER_SERVICES.PAYMENT_GATEWAY, input, output);\n// ↑ Automatic logs + metrics + traces + correlation\n```\n\n**Result**: 95% less instrumentation code, complete observability out of the box.\n\n## What You Get Automatically\n\nEvery log call generates:\n\n| Output | Backends |\n|--------|----------|\n| Structured Logs | Azure Log Analytics, Loki, JSON files |\n| Metrics | Azure Monitor, Prometheus, Grafana |\n| Distributed Traces | Application Insights, Tempo |\n| Service Maps | Automatic dependency graphs |\n| File Logs | JSON files for local development |\n\nNo extra code required.\n\n## For Azure Developers\n\nThis library uses **OpenTelemetry** — Microsoft's recommended standard. Same code works with Azure Monitor in production and Grafana locally. No vendor lock-in.\n\n| Environment | Logs | Metrics | Traces |\n|------------|------|---------|--------|\n| Azure Production | Azure Log Analytics | Azure Monitor | Application Insights |\n| Local Development | Console + JSON files | Grafana | Tempo |\n| On-Premises | Loki | Prometheus | Tempo |\n\n## Supported Languages\n\n| Language | Status |\n|----------|--------|\n| TypeScript | ✅ Available |\n| Go, Python, C#, Rust, PHP | 📅 Planned |\n\nWorks with any OpenTelemetry-compatible backend: Azure Monitor, Grafana Cloud, Datadog, New Relic, or self-hosted.\n\n## Quick Start\n\n```bash\nnpm install @sovdev/logger\n```\n\nNo configuration needed for local development. Logs to console and `./logs/` directory out of the box."
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -128,8 +152,6 @@
       "name": "DocuWrite",
       "description": "Cloud document services scan your content and may share data with foreign authorities. DocuWrite runs entirely locally, ensuring sensitive documentation never leaves your infrastructure - critical for classified, legal, or confidential materials.",
       "abstract": "Swiss army knife for converting Markdown to professional PDFs, Word documents, and presentations",
-      "summary": "Generate professional documentation from Markdown files and Azure DevOps Wikis. Containerized toolbox combining Pandoc, Mermaid, and Marp for cross-platform document generation.",
-      "body": "## The Problem It Solves\n\nOutdated documentation that stakeholders can't access. DocuWrite creates snapshot PDFs from your Wiki that everyone can share - same version, same meeting, delete after.\n\n## Output Features\n\n- Professional table of contents\n- Numbered pages with generation timestamp\n- Fully searchable PDF\n- Auto-generated TODO list appendix\n- Figures appendix\n- Mermaid diagram support\n\n## Included Tools\n\n| Tool | Purpose |\n|------|--------|\n| Pandoc | Markdown to PDF, DOCX, and other formats |\n| Mermaid CLI | Diagrams from text descriptions |\n| Marp CLI | Slide decks (PDF, PowerPoint) from Markdown |\n| Puppeteer | PDF from HTML |\n| Firefox | PDF from HTML |\n\n## Repositories\n\n- **docuwrite-base** - Container with all tools (AMD64 + ARM64)\n- **bifrost-docuwrite** - Wiki-to-PDF workflow automation",
       "image": "docuwrite.png",
       "url": "https://github.com/helpers-no/docuwrite-base",
       "topics": [
@@ -155,7 +177,18 @@
         "status": "active",
         "repository": "https://github.com/helpers-no/docuwrite-base",
         "documentation": ""
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "Swiss army knife for converting Markdown to professional PDFs, Word documents, and presentations",
+          "description": "Generate professional documentation from Markdown files and Azure DevOps Wikis. Containerized toolbox combining Pandoc, Mermaid, and Marp for cross-platform document generation."
+        },
+        {
+          "type": "markdown",
+          "body": "## The Problem It Solves\n\nOutdated documentation that stakeholders can't access. DocuWrite creates snapshot PDFs from your Wiki that everyone can share - same version, same meeting, delete after.\n\n## Output Features\n\n- Professional table of contents\n- Numbered pages with generation timestamp\n- Fully searchable PDF\n- Auto-generated TODO list appendix\n- Figures appendix\n- Mermaid diagram support\n\n## Included Tools\n\n| Tool | Purpose |\n|------|--------|\n| Pandoc | Markdown to PDF, DOCX, and other formats |\n| Mermaid CLI | Diagrams from text descriptions |\n| Marp CLI | Slide decks (PDF, PowerPoint) from Markdown |\n| Puppeteer | PDF from HTML |\n| Firefox | PDF from HTML |\n\n## Repositories\n\n- **docuwrite-base** - Container with all tools (AMD64 + ARM64)\n- **bifrost-docuwrite** - Wiki-to-PDF workflow automation"
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -164,8 +197,6 @@
       "name": "Bifrost",
       "description": "You cannot secure what you cannot see. Bifrost maps your entire application landscape and data flows, revealing hidden dependencies on foreign services - the essential first step in any sovereignty assessment or migration planning.",
       "abstract": "Gain full visibility into your organization's application landscape, integrations, and ownership",
-      "summary": "A Configuration Management Database (CMDB) designed to map, document, and govern how applications, APIs, data flows, and stakeholders connect across an organization.",
-      "body": "## What Is Bifrost?\n\nBifrost provides a structured, authoritative view of the IT landscape—combining technical dependencies with clear accountability and ownership.\n\n> **What sets this CMDB apart:** Unlike traditional CMDBs that focus primarily on infrastructure, Bifrost treats applications, APIs, integrations, and stakeholders as equal first-class entities—each with unique identities, ownership, and lifecycle management.\n\n## Application Registry\n\nAt its core, Bifrost maintains a comprehensive application registry where each application is assigned a unique, persistent identifier and enriched with business, technical, and operational metadata. Applications are linked to business owners, technical owners, and other stakeholders, ensuring that responsibility is explicit rather than implicit.\n\nStakeholders are mapped to real identities through integration with Microsoft Entra ID, enabling accurate ownership, role-based access, and traceability over time—even as personnel change.\n\n## Integrations & APIs as First-Class Items\n\nBeyond applications, Bifrost models integrations and APIs as first-class configuration items. Every integration and API is assigned a unique integration identifier (INT number) and documented with:\n\n- Purpose and direction\n- Data classification\n- Lifecycle status\n- Independent stakeholders and owners\n\nAPIs can have their own stakeholders and owners, independent of the applications they connect, reflecting real-world responsibility for interface contracts, security, and availability.\n\n## Dependency Visualization\n\nUsing interactive dependency and integration visualizations, Bifrost shows:\n\n- How applications and APIs are interconnected\n- Which systems depend on which interfaces\n- Where critical business processes are exposed to risk\n\nThis enables accurate impact analysis, supports change management, and reduces uncertainty during incidents or modernization efforts.\n\n## Automation & Integration\n\nTo reduce manual effort and ensure adoption, Bifrost supports:\n\n- **Bulk Import** - Synchronization with Excel and ServiceNow\n- **Documentation Generation** - Auto-generate wikis and PDF catalogs\n- **Living Source of Truth** - Continuously updated model rather than static inventory\n\n## Technical Stack\n\n| Component | Technology |\n|-----------|------------|\n| Frontend | Next.js 14 (App Router) |\n| Backend | Strapi CMS |\n| API | TypeScript |\n| Database | SQLite (dev) / PostgreSQL (prod) |\n| Deployment | Kubernetes, Docker |",
       "image": "bifrost.png",
       "url": "https://github.com/helpers-no/bifrost",
       "topics": [
@@ -187,7 +218,18 @@
         "status": "active",
         "repository": "https://github.com/helpers-no/bifrost",
         "documentation": ""
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "Gain full visibility into your organization's application landscape, integrations, and ownership",
+          "description": "A Configuration Management Database (CMDB) designed to map, document, and govern how applications, APIs, data flows, and stakeholders connect across an organization."
+        },
+        {
+          "type": "markdown",
+          "body": "## What Is Bifrost?\n\nBifrost provides a structured, authoritative view of the IT landscape—combining technical dependencies with clear accountability and ownership.\n\n> **What sets this CMDB apart:** Unlike traditional CMDBs that focus primarily on infrastructure, Bifrost treats applications, APIs, integrations, and stakeholders as equal first-class entities—each with unique identities, ownership, and lifecycle management.\n\n## Application Registry\n\nAt its core, Bifrost maintains a comprehensive application registry where each application is assigned a unique, persistent identifier and enriched with business, technical, and operational metadata. Applications are linked to business owners, technical owners, and other stakeholders, ensuring that responsibility is explicit rather than implicit.\n\nStakeholders are mapped to real identities through integration with Microsoft Entra ID, enabling accurate ownership, role-based access, and traceability over time—even as personnel change.\n\n## Integrations & APIs as First-Class Items\n\nBeyond applications, Bifrost models integrations and APIs as first-class configuration items. Every integration and API is assigned a unique integration identifier (INT number) and documented with:\n\n- Purpose and direction\n- Data classification\n- Lifecycle status\n- Independent stakeholders and owners\n\nAPIs can have their own stakeholders and owners, independent of the applications they connect, reflecting real-world responsibility for interface contracts, security, and availability.\n\n## Dependency Visualization\n\nUsing interactive dependency and integration visualizations, Bifrost shows:\n\n- How applications and APIs are interconnected\n- Which systems depend on which interfaces\n- Where critical business processes are exposed to risk\n\nThis enables accurate impact analysis, supports change management, and reduces uncertainty during incidents or modernization efforts.\n\n## Automation & Integration\n\nTo reduce manual effort and ensure adoption, Bifrost supports:\n\n- **Bulk Import** - Synchronization with Excel and ServiceNow\n- **Documentation Generation** - Auto-generate wikis and PDF catalogs\n- **Living Source of Truth** - Continuously updated model rather than static inventory\n\n## Technical Stack\n\n| Component | Technology |\n|-----------|------------|\n| Frontend | Next.js 14 (App Router) |\n| Backend | Strapi CMS |\n| API | TypeScript |\n| Database | SQLite (dev) / PostgreSQL (prod) |\n| Deployment | Kubernetes, Docker |"
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -196,8 +238,6 @@
       "name": "Urbalurba Infrastructure Stack",
       "description": "Cloud lock-in is sovereignty lock-in. Urbalurba provides identical infrastructure locally, on-premises, and in any cloud - giving you true portability and the freedom to move workloads to sovereign providers without rewriting applications.",
       "abstract": "A complete datacenter environment on your laptop - Kubernetes, databases, AI, and cloud services running locally",
-      "summary": "Zero-friction developer platform for building, testing, and deploying modern apps without needing to know Kubernetes, GitOps, or the cloud. Same infrastructure locally, in cloud, and on-premises.",
-      "body": "## The Problem\n\nYour developers need databases, message queues, AI models, and monitoring — but setting up cloud accounts takes weeks, costs money from day one, and sends your data to foreign providers. Permission bottlenecks, cloud costs, and privacy concerns slow everything down.\n\n## The Solution\n\n30+ open-source services, pre-configured and ready to run on your laptop, AKS, Raspberry Pi, Ubuntu server, VM, or any Kubernetes cluster. Same stack everywhere. No cloud account needed to get started.\n\n## What's Included\n\n| Category | Services | Count |\n|----------|----------|-------|\n| **Observability** | Prometheus, Grafana, Loki, Tempo, OpenTelemetry Collector | 5 |\n| **AI & ML** | LiteLLM (unified API for local AI models), Open WebUI (ChatGPT-like interface) | 2 |\n| **Analytics** | Apache Spark, JupyterHub, Unity Catalog | 3 |\n| **Databases** | PostgreSQL, MongoDB, Redis, Elasticsearch, Qdrant, MinIO | 6 |\n| **Management** | ArgoCD (GitOps), Backstage (developer portal), Tika, SonarQube | 6 |\n| **Identity** | Authentik (SSO, OAuth, LDAP) | 1 |\n| **Networking** | Tailscale, Cloudflare Tunnel | 2 |\n| **Integration** | RabbitMQ, Gravitee API Gateway, event streams | 3 |\n| **Applications** | Nextcloud (file sharing and collaboration) | 1 |\n\n## Pre-configured Stacks\n\nDon't pick individual services — use a ready-made stack:\n\n- **Observability Stack** — Complete monitoring with metrics, logs, and distributed tracing. One command.\n- **Local AI Stack** — Run AI models locally with a unified API and ChatGPT-like chat interface. Your data stays on your machine.\n- **Analytics Stack** — Collaborative data science with Jupyter notebooks, Spark, and Unity Catalog.\n\n## Key Benefits\n\n- **30+ services** — everything a development team needs, pre-configured\n- **Runs anywhere** — laptop, Raspberry Pi, Ubuntu server, VM, AKS, or any Kubernetes cluster\n- **No cloud account needed** — start building immediately, zero cost\n- **Data stays local** — AI, databases, and monitoring all on your machine\n- **Production-identical** — same infrastructure in development and production\n- **True portability** — move workloads between providers without rewriting applications\n\n**[Full documentation at uis.sovereignsky.no](https://uis.sovereignsky.no/)**",
       "image": "urbalurba-infrastructure.png",
       "url": "https://uis.sovereignsky.no/",
       "topics": [
@@ -220,7 +260,18 @@
         "status": "active",
         "repository": "https://github.com/helpers-no/urbalurba-infrastructure",
         "documentation": "https://uis.sovereignsky.no/"
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "A complete datacenter environment on your laptop - Kubernetes, databases, AI, and cloud services running locally",
+          "description": "Zero-friction developer platform for building, testing, and deploying modern apps without needing to know Kubernetes, GitOps, or the cloud. Same infrastructure locally, in cloud, and on-premises."
+        },
+        {
+          "type": "markdown",
+          "body": "## The Problem\n\nYour developers need databases, message queues, AI models, and monitoring — but setting up cloud accounts takes weeks, costs money from day one, and sends your data to foreign providers. Permission bottlenecks, cloud costs, and privacy concerns slow everything down.\n\n## The Solution\n\n30+ open-source services, pre-configured and ready to run on your laptop, AKS, Raspberry Pi, Ubuntu server, VM, or any Kubernetes cluster. Same stack everywhere. No cloud account needed to get started.\n\n## What's Included\n\n| Category | Services | Count |\n|----------|----------|-------|\n| **Observability** | Prometheus, Grafana, Loki, Tempo, OpenTelemetry Collector | 5 |\n| **AI & ML** | LiteLLM (unified API for local AI models), Open WebUI (ChatGPT-like interface) | 2 |\n| **Analytics** | Apache Spark, JupyterHub, Unity Catalog | 3 |\n| **Databases** | PostgreSQL, MongoDB, Redis, Elasticsearch, Qdrant, MinIO | 6 |\n| **Management** | ArgoCD (GitOps), Backstage (developer portal), Tika, SonarQube | 6 |\n| **Identity** | Authentik (SSO, OAuth, LDAP) | 1 |\n| **Networking** | Tailscale, Cloudflare Tunnel | 2 |\n| **Integration** | RabbitMQ, Gravitee API Gateway, event streams | 3 |\n| **Applications** | Nextcloud (file sharing and collaboration) | 1 |\n\n## Pre-configured Stacks\n\nDon't pick individual services — use a ready-made stack:\n\n- **Observability Stack** — Complete monitoring with metrics, logs, and distributed tracing. One command.\n- **Local AI Stack** — Run AI models locally with a unified API and ChatGPT-like chat interface. Your data stays on your machine.\n- **Analytics Stack** — Collaborative data science with Jupyter notebooks, Spark, and Unity Catalog.\n\n## Key Benefits\n\n- **30+ services** — everything a development team needs, pre-configured\n- **Runs anywhere** — laptop, Raspberry Pi, Ubuntu server, VM, AKS, or any Kubernetes cluster\n- **No cloud account needed** — start building immediately, zero cost\n- **Data stays local** — AI, databases, and monitoring all on your machine\n- **Production-identical** — same infrastructure in development and production\n- **True portability** — move workloads between providers without rewriting applications\n\n**[Full documentation at uis.sovereignsky.no](https://uis.sovereignsky.no/)**"
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -257,13 +308,33 @@
               "icon": "code",
               "title": "Languages",
               "color": "primary",
-              "items": ["Python", "TypeScript", "Go", "C#/.NET", "Java", "Rust", "PHP", "Fortran", "Laravel"]
+              "items": [
+                "Python",
+                "TypeScript",
+                "Go",
+                "C#/.NET",
+                "Java",
+                "Rust",
+                "PHP",
+                "Fortran",
+                "Laravel"
+              ]
             },
             {
               "icon": "construction",
               "title": "Tools & Frameworks",
               "color": "secondary",
-              "items": ["Azure CLI", "Kubernetes", "Terraform", "Docker", "Git", "Node.js", "Nginx", "PowerShell", "Databricks"]
+              "items": [
+                "Azure CLI",
+                "Kubernetes",
+                "Terraform",
+                "Docker",
+                "Git",
+                "Node.js",
+                "Nginx",
+                "PowerShell",
+                "Databricks"
+              ]
             }
           ]
         },
@@ -279,20 +350,49 @@
           "title": "Works Everywhere",
           "description": "Identical experience on Windows, macOS, and Linux with:",
           "items": [
-            { "icon": "terminal", "label": "Visual Studio Code" },
-            { "icon": "developer_mode_tv", "label": "JetBrains Rider" },
-            { "icon": "window", "label": "Visual Studio" }
+            {
+              "icon": "terminal",
+              "label": "Visual Studio Code"
+            },
+            {
+              "icon": "developer_mode_tv",
+              "label": "JetBrains Rider"
+            },
+            {
+              "icon": "window",
+              "label": "Visual Studio"
+            }
           ]
         },
         {
           "type": "persona-cards",
           "title": "Who Benefits",
           "items": [
-            { "icon": "person_add", "label": "New developers", "description": "Productive on day one, not day five." },
-            { "icon": "assignment_ind", "label": "External consultants", "description": "Work in a controlled, compliant environment without touching their host machine." },
-            { "icon": "history", "label": "Teams inheriting code", "description": "Taking over a project from another team or vendor? The devcontainer has the complete environment. No reverse-engineering build steps, no guessing which tool versions they used. Open the project, it just works." },
-            { "icon": "leaderboard", "label": "Team leads", "description": "Scale the team without scaling setup overhead." },
-            { "icon": "verified_user", "label": "Security teams", "description": "Pinned tool versions, auditable dependencies, nothing installed on host." }
+            {
+              "icon": "person_add",
+              "label": "New developers",
+              "description": "Productive on day one, not day five."
+            },
+            {
+              "icon": "assignment_ind",
+              "label": "External consultants",
+              "description": "Work in a controlled, compliant environment without touching their host machine."
+            },
+            {
+              "icon": "history",
+              "label": "Teams inheriting code",
+              "description": "Taking over a project from another team or vendor? The devcontainer has the complete environment. No reverse-engineering build steps, no guessing which tool versions they used. Open the project, it just works."
+            },
+            {
+              "icon": "leaderboard",
+              "label": "Team leads",
+              "description": "Scale the team without scaling setup overhead."
+            },
+            {
+              "icon": "verified_user",
+              "label": "Security teams",
+              "description": "Pinned tool versions, auditable dependencies, nothing installed on host."
+            }
           ]
         }
       ],
@@ -326,9 +426,6 @@
       "name": "Dev Templates",
       "description": "Starting a new project shouldn't mean days of boilerplate setup. Dev Templates provide production-ready starting points for APIs, web apps, and backends — all pre-configured for the DevContainer Toolbox with consistent best practices.",
       "abstract": "Quick, modern, and standardized project templates for rapid prototyping and consistent development",
-      "summary": "Production-ready templates for APIs, web apps, backends, and experiments. Lower the entry barrier for all developers with rapid prototyping and consistent best practices.",
-      "image": "dev-templates.png",
-      "body": "## The Problem\n\nStarting a new project means days of boilerplate: setting up build tools, configuring Kubernetes manifests, writing CI/CD pipelines, figuring out deployment. Every team does it differently. When someone else inherits the project, they start over.\n\n## The Solution\n\nSelect a template. Get a complete project with application code, Kubernetes manifests, GitHub Actions workflows, and automatic deployment — all following the same structure. Every project works the same way.\n\n```bash\n# Inside the devcontainer, run:\ndev-template\n```\n\nPick your template (e.g., `typescript-basic-webserver`), and you have a running project with local development, CI/CD, and Kubernetes deployment ready to go.\n\n## Available Templates\n\n### Backend Templates\n\n| Template | TypeScript | Python | Java | C# | Go | PHP |\n|----------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Basic Web Server | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |\n| Simple Database (SQLite) | planned | planned | planned | planned | planned | planned |\n| Database (PostgreSQL) | planned | planned | planned | planned | planned | planned |\n| Message Queue (RabbitMQ/Dapr) | planned | planned | planned | planned | planned | planned |\n| Serverless (Knative) | planned | planned | planned | planned | planned | planned |\n| Object Storage (MinIO) | planned | planned | planned | planned | planned | planned |\n\n### Application Templates\n\n| Template | React | Designsystemet | Next.js | Storybook |\n|----------|:---:|:---:|:---:|:---:|\n| Basic React App | ✅ | ✅ | | |\n| Basic Next.js App | planned | planned | planned | planned |\n\n## What Each Template Includes\n\nEvery template comes with:\n\n- **Application code** — working starter app, not just a skeleton\n- **Dockerfile** — container-ready from the start\n- **Kubernetes manifests** — deployment, service, and kustomization for ArgoCD\n- **GitHub Actions workflow** — automatic build and push to GitHub Container Registry\n- **Local development** — run and test inside the devcontainer\n\n## The Developer Workflow\n\n1. **Create** a GitHub repo and clone it\n2. **Set up** DevContainer Toolbox (one command)\n3. **Select** a template with `dev-template.sh`\n4. **Develop** locally inside the devcontainer\n5. **Push** to GitHub — CI/CD builds and pushes your container image\n6. **Register** with ArgoCD — `./uis argocd register my-app https://github.com/user/repo`\n7. **Test** at `http://my-app.localhost` — automatic routing, no DNS setup\n\n## Real-World Example: Red Cross Norway\n\nThe Norwegian Red Cross has 40,000+ volunteers across 380+ local branches. Many are programmers who see how IT can improve daily operations. Dev Templates give these volunteers a structured way to build solutions that central IT can actually adopt — same project structure, same deployment pipeline, predictable handover.\n\n## How It Fits Together\n\n- **[DevContainer Toolbox (DCT)](/sovereignsky/devcontainer-toolbox/)** — the development environment\n- **Dev Templates** — the project starter (you are here)\n- **[Urbalurba Infrastructure Stack (UIS)](/sovereignsky/urbalurba-infrastructure/)** — the Kubernetes cluster and services\n- **[Client Provisioning](/sovereignsky/client-provisioning/)** — automated machine setup for managed fleets",
       "image": "",
       "url": "/sovereignsky/dev-templates/",
       "topics": [
@@ -349,7 +446,18 @@
         "status": "active",
         "repository": "https://github.com/helpers-no/dev-templates",
         "documentation": ""
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "Quick, modern, and standardized project templates for rapid prototyping and consistent development",
+          "description": "Production-ready templates for APIs, web apps, backends, and experiments. Lower the entry barrier for all developers with rapid prototyping and consistent best practices."
+        },
+        {
+          "type": "markdown",
+          "body": "## The Problem\n\nStarting a new project means days of boilerplate: setting up build tools, configuring Kubernetes manifests, writing CI/CD pipelines, figuring out deployment. Every team does it differently. When someone else inherits the project, they start over.\n\n## The Solution\n\nSelect a template. Get a complete project with application code, Kubernetes manifests, GitHub Actions workflows, and automatic deployment — all following the same structure. Every project works the same way.\n\n```bash\n# Inside the devcontainer, run:\ndev-template\n```\n\nPick your template (e.g., `typescript-basic-webserver`), and you have a running project with local development, CI/CD, and Kubernetes deployment ready to go.\n\n## Available Templates\n\n### Backend Templates\n\n| Template | TypeScript | Python | Java | C# | Go | PHP |\n|----------|:---:|:---:|:---:|:---:|:---:|:---:|\n| Basic Web Server | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |\n| Simple Database (SQLite) | planned | planned | planned | planned | planned | planned |\n| Database (PostgreSQL) | planned | planned | planned | planned | planned | planned |\n| Message Queue (RabbitMQ/Dapr) | planned | planned | planned | planned | planned | planned |\n| Serverless (Knative) | planned | planned | planned | planned | planned | planned |\n| Object Storage (MinIO) | planned | planned | planned | planned | planned | planned |\n\n### Application Templates\n\n| Template | React | Designsystemet | Next.js | Storybook |\n|----------|:---:|:---:|:---:|:---:|\n| Basic React App | ✅ | ✅ | | |\n| Basic Next.js App | planned | planned | planned | planned |\n\n## What Each Template Includes\n\nEvery template comes with:\n\n- **Application code** — working starter app, not just a skeleton\n- **Dockerfile** — container-ready from the start\n- **Kubernetes manifests** — deployment, service, and kustomization for ArgoCD\n- **GitHub Actions workflow** — automatic build and push to GitHub Container Registry\n- **Local development** — run and test inside the devcontainer\n\n## The Developer Workflow\n\n1. **Create** a GitHub repo and clone it\n2. **Set up** DevContainer Toolbox (one command)\n3. **Select** a template with `dev-template.sh`\n4. **Develop** locally inside the devcontainer\n5. **Push** to GitHub — CI/CD builds and pushes your container image\n6. **Register** with ArgoCD — `./uis argocd register my-app https://github.com/user/repo`\n7. **Test** at `http://my-app.localhost` — automatic routing, no DNS setup\n\n## Real-World Example: Red Cross Norway\n\nThe Norwegian Red Cross has 40,000+ volunteers across 380+ local branches. Many are programmers who see how IT can improve daily operations. Dev Templates give these volunteers a structured way to build solutions that central IT can actually adopt — same project structure, same deployment pipeline, predictable handover.\n\n## How It Fits Together\n\n- **[DevContainer Toolbox (DCT)](/sovereignsky/devcontainer-toolbox/)** — the development environment\n- **Dev Templates** — the project starter (you are here)\n- **[Urbalurba Infrastructure Stack (UIS)](/sovereignsky/urbalurba-infrastructure/)** — the Kubernetes cluster and services\n- **[Client Provisioning](/sovereignsky/client-provisioning/)** — automated machine setup for managed fleets"
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -359,8 +467,6 @@
       "description": "Automated deployment of Rancher Desktop and DevContainer Toolbox to developer machines via Intune (Windows) and Jamf (macOS). A developer gets a new machine, the scripts install everything, and they open any project in a fully configured devcontainer within minutes.",
       "abstract": "Automated Rancher Desktop deployment to Windows and Mac machines — via Intune, Jamf, or USB stick.",
       "image": "client-provisioning.png",
-      "summary": "Deployment scripts for setting up developer machines with container-based dev environments. Supports Windows (Intune) and macOS (Jamf).",
-      "body": "## The Goal\n\nA developer gets a new managed machine. The scripts install Rancher Desktop and the DevContainer Toolbox automatically. They open any project in a fully configured devcontainer within minutes. No manual setup. No IT tickets. No \"it works on my machine.\"\n\n## Who This Is For\n\nThis is for **operations teams in larger organizations** responsible for setting up and managing PC/Mac fleets. If your developers use managed machines deployed via Intune (Windows) or Jamf (macOS), these scripts automate the entire developer toolchain rollout.\n\n**Not using managed machines?** If your developers manage their own machines, they can install [DevContainer Toolbox](https://dct.sovereignsky.no/) directly with a single command — no need for this provisioning setup.\n\n## What Gets Installed\n\nThe scripts install [Rancher Desktop](https://rancherdesktop.io/) (a container runtime) and the [DevContainer Toolbox](https://dct.sovereignsky.no/) — giving developers a complete, ready-to-use environment with 20+ pre-configured tools.\n\n| | macOS | Windows |\n|-|-------|---------|\n| **Step 1** | Rancher Desktop | WSL2 (Windows features) |\n| **Step 2** | DevContainer Toolbox | Rancher Desktop |\n| **Step 3** | | DevContainer Toolbox |\n| **Reboot needed** | No | Yes (after WSL2) |\n| **Managed via** | Jamf | Intune |\n\nWindows requires an extra step because WSL2 must be enabled before Rancher Desktop can run.\n\n## Why This Matters for Maintenance\n\nThe biggest benefit isn't just onboarding new developers — it's maintenance. When the maintenance team needs to fix a bug in a system they didn't build, they check out the repo and get the exact same environment the original developer used. Same tools, same versions, same configuration. No guessing.\n\n## Script Standards\n\nEvery script follows strict standards enforced by validation tools:\n\n- Version number and unique ID\n- Numbered error codes (ERR001, etc.)\n- `--help` flag with consistent format\n- Structured logging (`log_info`, `log_error`, `log_success`)\n- Automatic version bumping via pre-commit hook\n\n## CI/CD Pipeline\n\nWindows `.intunewin` packages are built automatically by Azure Pipelines when changes are pushed to `main`. Mac scripts are validated on push. Each package is a separate artifact ready to upload to Intune.\n\n## USB Testing\n\nNo Intune? No problem. Scripts can be copied to a USB stick for manual testing on Windows PCs — useful for testing in isolated environments or before MDM is set up.\n\n## Help Wanted: Silent WSL2 Install\n\nThe biggest unsolved problem: automating WSL2 install on Windows via Intune. WSL2 requires enabling Windows features and a reboot, which is tricky to do silently in an MDM pipeline. If you have experience with Intune and WSL2 deployment, we'd love your help.",
       "url": "/sovereignsky/client-provisioning/",
       "topics": [
         "cybersecurity",
@@ -383,7 +489,18 @@
         "status": "active",
         "repository": "https://github.com/helpers-no/client-provisioning",
         "documentation": ""
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "Automated Rancher Desktop deployment to Windows and Mac machines — via Intune, Jamf, or USB stick.",
+          "description": "Deployment scripts for setting up developer machines with container-based dev environments. Supports Windows (Intune) and macOS (Jamf)."
+        },
+        {
+          "type": "markdown",
+          "body": "## The Goal\n\nA developer gets a new managed machine. The scripts install Rancher Desktop and the DevContainer Toolbox automatically. They open any project in a fully configured devcontainer within minutes. No manual setup. No IT tickets. No \"it works on my machine.\"\n\n## Who This Is For\n\nThis is for **operations teams in larger organizations** responsible for setting up and managing PC/Mac fleets. If your developers use managed machines deployed via Intune (Windows) or Jamf (macOS), these scripts automate the entire developer toolchain rollout.\n\n**Not using managed machines?** If your developers manage their own machines, they can install [DevContainer Toolbox](https://dct.sovereignsky.no/) directly with a single command — no need for this provisioning setup.\n\n## What Gets Installed\n\nThe scripts install [Rancher Desktop](https://rancherdesktop.io/) (a container runtime) and the [DevContainer Toolbox](https://dct.sovereignsky.no/) — giving developers a complete, ready-to-use environment with 20+ pre-configured tools.\n\n| | macOS | Windows |\n|-|-------|---------|\n| **Step 1** | Rancher Desktop | WSL2 (Windows features) |\n| **Step 2** | DevContainer Toolbox | Rancher Desktop |\n| **Step 3** | | DevContainer Toolbox |\n| **Reboot needed** | No | Yes (after WSL2) |\n| **Managed via** | Jamf | Intune |\n\nWindows requires an extra step because WSL2 must be enabled before Rancher Desktop can run.\n\n## Why This Matters for Maintenance\n\nThe biggest benefit isn't just onboarding new developers — it's maintenance. When the maintenance team needs to fix a bug in a system they didn't build, they check out the repo and get the exact same environment the original developer used. Same tools, same versions, same configuration. No guessing.\n\n## Script Standards\n\nEvery script follows strict standards enforced by validation tools:\n\n- Version number and unique ID\n- Numbered error codes (ERR001, etc.)\n- `--help` flag with consistent format\n- Structured logging (`log_info`, `log_error`, `log_success`)\n- Automatic version bumping via pre-commit hook\n\n## CI/CD Pipeline\n\nWindows `.intunewin` packages are built automatically by Azure Pipelines when changes are pushed to `main`. Mac scripts are validated on push. Each package is a separate artifact ready to upload to Intune.\n\n## USB Testing\n\nNo Intune? No problem. Scripts can be copied to a USB stick for manual testing on Windows PCs — useful for testing in isolated environments or before MDM is set up.\n\n## Help Wanted: Silent WSL2 Install\n\nThe biggest unsolved problem: automating WSL2 install on Windows via Intune. WSL2 requires enabling Windows features and a reboot, which is tricky to do silently in an MDM pipeline. If you have experience with Intune and WSL2 deployment, we'd love your help."
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -393,8 +510,6 @@
       "image": "humanitarian-tools.png",
       "description": "Born from the Ukraine refugee crisis, these tools were developed with SINTEF to solve real problems at Polish reception centers. They demonstrate how open-source technology can serve frontline helpers — the founding mission of helpers.no.",
       "abstract": "QR-based identification, safety monitoring, and communication tools for humanitarian operations",
-      "summary": "Open-source tools developed with SINTEF during the Ukraine crisis for aid worker identification, safety monitoring, and refugee support at reception centers.",
-      "body": "## Origin Story\n\nDuring the Ukraine refugee crisis in 2022, helpers.no partnered with SINTEF to build practical tools for Polish reception centers. These tools were featured in [Dagens Næringsliv](https://www.dn.no/innlegg/ukraina/flyktninger/it/innlegg-databransjen-kan-hjelpe-polske-flyktningmottak/2-1-1196672).\n\nFor the full story, see the [helpers.no README on GitHub](https://github.com/helpers-no/.github/blob/main/profile/README.md).\n\n## Components\n\n| Tool | Purpose |\n|------|--------|\n| **[QR Armband](https://github.com/helpers-no/qr-armband)** | QR-based wristband identification system for aid workers and refugees |\n| **[Wristbands Frontend](https://github.com/helpers-no/wristbands-fe)** | Web interface for the wristband identification system |\n| **[Simple QR](https://github.com/helpers-no/simple-qr)** | Python API for QR code generation |\n| **[Safe Monitor](https://github.com/helpers-no/safe-monitor)** | Safety and communication monitoring system |\n\n## Why It Matters for Sovereignty\n\nHumanitarian operations handle extremely sensitive personal data — refugee identities, locations, health information. Using foreign-controlled cloud services for this data creates unacceptable risks. These tools demonstrate that critical humanitarian infrastructure can be built on open-source, sovereign foundations.",
       "url": "https://github.com/helpers-no/qr-armband",
       "topics": [
         "digital-sovereignty",
@@ -417,7 +532,18 @@
         "status": "active",
         "repository": "https://github.com/helpers-no/qr-armband",
         "documentation": ""
-      }
+      },
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "QR-based identification, safety monitoring, and communication tools for humanitarian operations",
+          "description": "Open-source tools developed with SINTEF during the Ukraine crisis for aid worker identification, safety monitoring, and refugee support at reception centers."
+        },
+        {
+          "type": "markdown",
+          "body": "## Origin Story\n\nDuring the Ukraine refugee crisis in 2022, helpers.no partnered with SINTEF to build practical tools for Polish reception centers. These tools were featured in [Dagens Næringsliv](https://www.dn.no/innlegg/ukraina/flyktninger/it/innlegg-databransjen-kan-hjelpe-polske-flyktningmottak/2-1-1196672).\n\nFor the full story, see the [helpers.no README on GitHub](https://github.com/helpers-no/.github/blob/main/profile/README.md).\n\n## Components\n\n| Tool | Purpose |\n|------|--------|\n| **[QR Armband](https://github.com/helpers-no/qr-armband)** | QR-based wristband identification system for aid workers and refugees |\n| **[Wristbands Frontend](https://github.com/helpers-no/wristbands-fe)** | Web interface for the wristband identification system |\n| **[Simple QR](https://github.com/helpers-no/simple-qr)** | Python API for QR code generation |\n| **[Safe Monitor](https://github.com/helpers-no/safe-monitor)** | Safety and communication monitoring system |\n\n## Why It Matters for Sovereignty\n\nHumanitarian operations handle extremely sensitive personal data — refugee identities, locations, health information. Using foreign-controlled cloud services for this data creates unacceptable risks. These tools demonstrate that critical humanitarian infrastructure can be built on open-source, sovereign foundations."
+        }
+      ]
     },
     {
       "@type": "SoftwareSourceCode",
@@ -426,8 +552,6 @@
       "name": "Norwegian Digital Sovereignty Index (NDSI)",
       "description": "What gets measured gets managed. NDSI provides a structured framework to assess your organization's sovereignty posture, identify vulnerabilities to foreign control, and track improvement over time - aligned with EU standards and Norwegian regulations.",
       "abstract": "A community-driven framework for measuring and improving digital sovereignty readiness in Norwegian organizations",
-      "summary": "Measure your organization's digital sovereignty readiness. Based on the EU Cloud Sovereignty Framework.",
-      "body": "## What Is NDSI?\n\nThe Norwegian Digital Sovereignty Index is a practical framework for measuring how dependent your organization is on foreign-controlled digital infrastructure. Based on the EU Cloud Sovereignty Framework, it provides a standardized way to assess, compare, and improve your sovereignty posture.\n\n## NDSI Levels\n\nOrganizations are scored from Level 0 to Level 4:\n\n| Level | Name | Score | What It Means |\n|-------|------|-------|---------------|\n| 4 | Sovereign | 35-44 | Strong control over digital infrastructure |\n| 3 | Resilient | 26-34 | Good awareness, some dependencies to address |\n| 2 | Aware | 18-25 | Significant dependencies, exit strategies needed |\n| 1 | Dependent | 9-17 | High foreign dependency, priority action needed |\n| 0 | Unassessed | 0-8 | Critical gaps, immediate investigation required |\n\n## Components\n\n### [NDSI Quick Scan Survey](survey/)\n\n11 questions covering:\n- **Provider & Jurisdiction** - Who provides your cloud services? Are they subject to the US CLOUD Act?\n- **Data Control** - Where is your data stored? Do you have visibility into all SaaS tools?\n- **Exit Readiness** - Can you migrate away? How long would it take?\n- **Operational Resilience** - Backup procedures tested? Alternative providers identified?\n\n### [Software Risk Check](software-risk-check/)\n\nSelect the tools your organization uses and get an instant risk assessment. Each tool is scored based on:\n- Provider jurisdiction and ownership\n- Data location guarantees\n- Exit capability and portability\n- Availability of sovereign alternatives\n\n## Dependencies\n\nNDSI depends on the **Software Database** to provide:\n- Risk scores for individual software products\n- Mapping to European and open-source alternatives\n- Vendor ownership and jurisdiction data\n\n## Current Status\n\nThe framework is in planning phase. The survey and basic scoring are functional, but full integration with the Software Database for automated risk assessment is under development.",
       "image": "ndsi.png",
       "url": "/sovereignsky/ndsi/",
       "topics": [
@@ -482,11 +606,26 @@
                         "title": "Who provides your organization's primary cloud services (email, documents, collaboration)?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Norwegian company (e.g., Tietoevry, Basefarm)" },
-                          { "value": 3, "text": "EU/EEA company (non-Norwegian)" },
-                          { "value": 1, "text": "US company with EU data centers (Microsoft, Google, AWS)" },
-                          { "value": 0, "text": "US company, unknown data location" },
-                          { "value": 0, "text": "Don't know" }
+                          {
+                            "value": 4,
+                            "text": "Norwegian company (e.g., Tietoevry, Basefarm)"
+                          },
+                          {
+                            "value": 3,
+                            "text": "EU/EEA company (non-Norwegian)"
+                          },
+                          {
+                            "value": 1,
+                            "text": "US company with EU data centers (Microsoft, Google, AWS)"
+                          },
+                          {
+                            "value": 0,
+                            "text": "US company, unknown data location"
+                          },
+                          {
+                            "value": 0,
+                            "text": "Don't know"
+                          }
                         ]
                       },
                       {
@@ -495,10 +634,22 @@
                         "title": "Are your critical cloud providers subject to the US CLOUD Act or similar foreign laws that could compel data access?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "No - all providers are EU/EEA companies not subject to foreign access laws" },
-                          { "value": 2, "text": "Partially - some services are, but critical data is on EU-only providers" },
-                          { "value": 1, "text": "Yes - primary providers (Microsoft 365, Google Workspace, AWS) are US companies" },
-                          { "value": 0, "text": "Don't know" }
+                          {
+                            "value": 4,
+                            "text": "No - all providers are EU/EEA companies not subject to foreign access laws"
+                          },
+                          {
+                            "value": 2,
+                            "text": "Partially - some services are, but critical data is on EU-only providers"
+                          },
+                          {
+                            "value": 1,
+                            "text": "Yes - primary providers (Microsoft 365, Google Workspace, AWS) are US companies"
+                          },
+                          {
+                            "value": 0,
+                            "text": "Don't know"
+                          }
                         ]
                       },
                       {
@@ -507,10 +658,22 @@
                         "title": "Are your cloud service contracts governed by Norwegian or EU law?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Yes - Norwegian law exclusively" },
-                          { "value": 3, "text": "Yes - EU/EEA law" },
-                          { "value": 1, "text": "Mixed - some contracts under foreign law" },
-                          { "value": 0, "text": "Don't know" }
+                          {
+                            "value": 4,
+                            "text": "Yes - Norwegian law exclusively"
+                          },
+                          {
+                            "value": 3,
+                            "text": "Yes - EU/EEA law"
+                          },
+                          {
+                            "value": 1,
+                            "text": "Mixed - some contracts under foreign law"
+                          },
+                          {
+                            "value": 0,
+                            "text": "Don't know"
+                          }
                         ]
                       }
                     ]
@@ -525,10 +688,22 @@
                         "title": "For your core systems (email, documents, CRM, HR, ERP) - do you know where data is stored?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Yes - all in Norway" },
-                          { "value": 3, "text": "Yes - all in EU/EEA" },
-                          { "value": 1, "text": "Yes - some outside EU/EEA" },
-                          { "value": 0, "text": "No - we don't have full visibility" }
+                          {
+                            "value": 4,
+                            "text": "Yes - all in Norway"
+                          },
+                          {
+                            "value": 3,
+                            "text": "Yes - all in EU/EEA"
+                          },
+                          {
+                            "value": 1,
+                            "text": "Yes - some outside EU/EEA"
+                          },
+                          {
+                            "value": 0,
+                            "text": "No - we don't have full visibility"
+                          }
                         ]
                       },
                       {
@@ -537,10 +712,22 @@
                         "title": "Do you have visibility into all SaaS tools used in your organization (Miro, Slack, Notion, Figma, etc.)?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Yes - complete inventory, all approved and tracked by IT" },
-                          { "value": 2, "text": "Mostly - core tools tracked, but some shadow IT exists" },
-                          { "value": 1, "text": "Limited - teams adopt tools without central oversight" },
-                          { "value": 0, "text": "No - we don't know what SaaS tools are being used" }
+                          {
+                            "value": 4,
+                            "text": "Yes - complete inventory, all approved and tracked by IT"
+                          },
+                          {
+                            "value": 2,
+                            "text": "Mostly - core tools tracked, but some shadow IT exists"
+                          },
+                          {
+                            "value": 1,
+                            "text": "Limited - teams adopt tools without central oversight"
+                          },
+                          {
+                            "value": 0,
+                            "text": "No - we don't know what SaaS tools are being used"
+                          }
                         ]
                       },
                       {
@@ -549,10 +736,22 @@
                         "title": "Can you fully migrate your critical systems (CRM, ERP, collaboration) to another provider - including data, configurations, and integrations?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Yes - complete export possible with documented APIs and standard formats" },
-                          { "value": 2, "text": "Mostly - data exportable but would lose some configurations/integrations" },
-                          { "value": 1, "text": "Limited - can export raw data but system logic/workflows are locked in" },
-                          { "value": 0, "text": "Don't know" }
+                          {
+                            "value": 4,
+                            "text": "Yes - complete export possible with documented APIs and standard formats"
+                          },
+                          {
+                            "value": 2,
+                            "text": "Mostly - data exportable but would lose some configurations/integrations"
+                          },
+                          {
+                            "value": 1,
+                            "text": "Limited - can export raw data but system logic/workflows are locked in"
+                          },
+                          {
+                            "value": 0,
+                            "text": "Don't know"
+                          }
                         ]
                       },
                       {
@@ -561,10 +760,22 @@
                         "title": "Do you know the ownership structure of your critical cloud providers?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Yes - Norwegian/EU owned, no foreign controlling interests" },
-                          { "value": 3, "text": "Yes - EU owned but with some foreign investment" },
-                          { "value": 1, "text": "Yes - US/foreign owned (Microsoft, Google, Amazon, etc.)" },
-                          { "value": 0, "text": "Don't know" }
+                          {
+                            "value": 4,
+                            "text": "Yes - Norwegian/EU owned, no foreign controlling interests"
+                          },
+                          {
+                            "value": 3,
+                            "text": "Yes - EU owned but with some foreign investment"
+                          },
+                          {
+                            "value": 1,
+                            "text": "Yes - US/foreign owned (Microsoft, Google, Amazon, etc.)"
+                          },
+                          {
+                            "value": 0,
+                            "text": "Don't know"
+                          }
                         ]
                       }
                     ]
@@ -579,10 +790,22 @@
                         "title": "Do you have a documented exit strategy for your most critical cloud service?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Yes - documented, tested, with timeline and alternative providers identified" },
-                          { "value": 2, "text": "Partially - documented but not tested" },
-                          { "value": 1, "text": "Informally - we've thought about it but nothing documented" },
-                          { "value": 0, "text": "No" }
+                          {
+                            "value": 4,
+                            "text": "Yes - documented, tested, with timeline and alternative providers identified"
+                          },
+                          {
+                            "value": 2,
+                            "text": "Partially - documented but not tested"
+                          },
+                          {
+                            "value": 1,
+                            "text": "Informally - we've thought about it but nothing documented"
+                          },
+                          {
+                            "value": 0,
+                            "text": "No"
+                          }
                         ]
                       },
                       {
@@ -591,11 +814,26 @@
                         "title": "How long would it take to migrate away from your primary cloud provider?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Less than 1 month" },
-                          { "value": 3, "text": "1-3 months" },
-                          { "value": 2, "text": "3-6 months" },
-                          { "value": 1, "text": "6-12 months" },
-                          { "value": 0, "text": "More than 12 months / Don't know" }
+                          {
+                            "value": 4,
+                            "text": "Less than 1 month"
+                          },
+                          {
+                            "value": 3,
+                            "text": "1-3 months"
+                          },
+                          {
+                            "value": 2,
+                            "text": "3-6 months"
+                          },
+                          {
+                            "value": 1,
+                            "text": "6-12 months"
+                          },
+                          {
+                            "value": 0,
+                            "text": "More than 12 months / Don't know"
+                          }
                         ]
                       }
                     ]
@@ -610,10 +848,22 @@
                         "title": "Have you tested backup and recovery procedures for your cloud services in the past 12 months?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Yes - full recovery test completed successfully" },
-                          { "value": 2, "text": "Yes - partial test (some systems)" },
-                          { "value": 1, "text": "No - but we have documented procedures" },
-                          { "value": 0, "text": "No - no testing or documentation" }
+                          {
+                            "value": 4,
+                            "text": "Yes - full recovery test completed successfully"
+                          },
+                          {
+                            "value": 2,
+                            "text": "Yes - partial test (some systems)"
+                          },
+                          {
+                            "value": 1,
+                            "text": "No - but we have documented procedures"
+                          },
+                          {
+                            "value": 0,
+                            "text": "No - no testing or documentation"
+                          }
                         ]
                       },
                       {
@@ -622,10 +872,22 @@
                         "title": "Do you have alternative providers identified for your critical services?",
                         "isRequired": true,
                         "choices": [
-                          { "value": 4, "text": "Yes - alternatives identified, evaluated, and ready to activate" },
-                          { "value": 2, "text": "Yes - alternatives identified but not evaluated" },
-                          { "value": 1, "text": "No - but we could find alternatives" },
-                          { "value": 0, "text": "No - we're locked in / Don't know" }
+                          {
+                            "value": 4,
+                            "text": "Yes - alternatives identified, evaluated, and ready to activate"
+                          },
+                          {
+                            "value": 2,
+                            "text": "Yes - alternatives identified but not evaluated"
+                          },
+                          {
+                            "value": 1,
+                            "text": "No - but we could find alternatives"
+                          },
+                          {
+                            "value": 0,
+                            "text": "No - we're locked in / Don't know"
+                          }
                         ]
                       }
                     ]
@@ -695,11 +957,26 @@
                         "title": "Which communication tools does your organization use?",
                         "isRequired": false,
                         "choices": [
-                          { "value": "ms-teams:2.4", "text": "Microsoft Teams (Microsoft 365 chat, video, collaboration)" },
-                          { "value": "slack:2.5", "text": "Slack (Team messaging with channels and integrations)" },
-                          { "value": "pexip:0.8", "text": "Pexip (Norwegian video conferencing)" },
-                          { "value": "whereby:0.9", "text": "Whereby (Norwegian simple video meetings)" },
-                          { "value": "element:0.7", "text": "Element/Matrix (Open source chat and video)" }
+                          {
+                            "value": "ms-teams:2.4",
+                            "text": "Microsoft Teams (Microsoft 365 chat, video, collaboration)"
+                          },
+                          {
+                            "value": "slack:2.5",
+                            "text": "Slack (Team messaging with channels and integrations)"
+                          },
+                          {
+                            "value": "pexip:0.8",
+                            "text": "Pexip (Norwegian video conferencing)"
+                          },
+                          {
+                            "value": "whereby:0.9",
+                            "text": "Whereby (Norwegian simple video meetings)"
+                          },
+                          {
+                            "value": "element:0.7",
+                            "text": "Element/Matrix (Open source chat and video)"
+                          }
                         ],
                         "colCount": 1
                       }
@@ -716,8 +993,14 @@
                         "title": "Which development tools does your organization use?",
                         "isRequired": false,
                         "choices": [
-                          { "value": "github:2.3", "text": "GitHub (Code hosting, CI/CD, Microsoft-owned)" },
-                          { "value": "gitlab:1.8", "text": "GitLab (Code hosting, CI/CD, self-host option)" }
+                          {
+                            "value": "github:2.3",
+                            "text": "GitHub (Code hosting, CI/CD, Microsoft-owned)"
+                          },
+                          {
+                            "value": "gitlab:1.8",
+                            "text": "GitLab (Code hosting, CI/CD, self-host option)"
+                          }
                         ],
                         "colCount": 1
                       }
@@ -734,7 +1017,10 @@
                         "title": "Which project management tools does your organization use?",
                         "isRequired": false,
                         "choices": [
-                          { "value": "jira:2.2", "text": "Jira (Atlassian project and issue tracking)" }
+                          {
+                            "value": "jira:2.2",
+                            "text": "Jira (Atlassian project and issue tracking)"
+                          }
                         ],
                         "colCount": 1
                       }
@@ -751,8 +1037,14 @@
                         "title": "Which CRM tools does your organization use?",
                         "isRequired": false,
                         "choices": [
-                          { "value": "salesforce:2.8", "text": "Salesforce (CRM, sales and marketing platform)" },
-                          { "value": "superoffice:0.9", "text": "SuperOffice (Norwegian/Scandinavian CRM)" }
+                          {
+                            "value": "salesforce:2.8",
+                            "text": "Salesforce (CRM, sales and marketing platform)"
+                          },
+                          {
+                            "value": "superoffice:0.9",
+                            "text": "SuperOffice (Norwegian/Scandinavian CRM)"
+                          }
                         ],
                         "colCount": 1
                       }
@@ -769,7 +1061,10 @@
                         "title": "Which finance tools does your organization use?",
                         "isRequired": false,
                         "choices": [
-                          { "value": "tripletex:0.6", "text": "Tripletex (Norwegian cloud accounting)" }
+                          {
+                            "value": "tripletex:0.6",
+                            "text": "Tripletex (Norwegian cloud accounting)"
+                          }
                         ],
                         "colCount": 1
                       }
@@ -780,6 +1075,17 @@
               }
             }
           ]
+        }
+      ],
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "A community-driven framework for measuring and improving digital sovereignty readiness in Norwegian organizations",
+          "description": "Measure your organization's digital sovereignty readiness. Based on the EU Cloud Sovereignty Framework."
+        },
+        {
+          "type": "markdown",
+          "body": "## What Is NDSI?\n\nThe Norwegian Digital Sovereignty Index is a practical framework for measuring how dependent your organization is on foreign-controlled digital infrastructure. Based on the EU Cloud Sovereignty Framework, it provides a standardized way to assess, compare, and improve your sovereignty posture.\n\n## NDSI Levels\n\nOrganizations are scored from Level 0 to Level 4:\n\n| Level | Name | Score | What It Means |\n|-------|------|-------|---------------|\n| 4 | Sovereign | 35-44 | Strong control over digital infrastructure |\n| 3 | Resilient | 26-34 | Good awareness, some dependencies to address |\n| 2 | Aware | 18-25 | Significant dependencies, exit strategies needed |\n| 1 | Dependent | 9-17 | High foreign dependency, priority action needed |\n| 0 | Unassessed | 0-8 | Critical gaps, immediate investigation required |\n\n## Components\n\n### [NDSI Quick Scan Survey](survey/)\n\n11 questions covering:\n- **Provider & Jurisdiction** - Who provides your cloud services? Are they subject to the US CLOUD Act?\n- **Data Control** - Where is your data stored? Do you have visibility into all SaaS tools?\n- **Exit Readiness** - Can you migrate away? How long would it take?\n- **Operational Resilience** - Backup procedures tested? Alternative providers identified?\n\n### [Software Risk Check](software-risk-check/)\n\nSelect the tools your organization uses and get an instant risk assessment. Each tool is scored based on:\n- Provider jurisdiction and ownership\n- Data location guarantees\n- Exit capability and portability\n- Availability of sovereign alternatives\n\n## Dependencies\n\nNDSI depends on the **Software Database** to provide:\n- Risk scores for individual software products\n- Mapping to European and open-source alternatives\n- Vendor ownership and jurisdiction data\n\n## Current Status\n\nThe framework is in planning phase. The survey and basic scoring are functional, but full integration with the Software Database for automated risk assessment is under development."
         }
       ]
     }

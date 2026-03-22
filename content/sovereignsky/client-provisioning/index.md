@@ -23,11 +23,17 @@ audience:
   - "enterprise"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Deployment scripts for setting up developer machines with container-based dev environments. Supports Windows (Intune) and macOS (Jamf).
+{{< summary id="summary-0" >}}
+{
+  "headline": "Automated Rancher Desktop deployment to Windows and Mac machines — via Intune, Jamf, or USB stick.",
+  "description": "Deployment scripts for setting up developer machines with container-based dev environments. Supports Windows (Intune) and macOS (Jamf)."
+}
+{{< /summary >}}
 
 ## The Goal
 

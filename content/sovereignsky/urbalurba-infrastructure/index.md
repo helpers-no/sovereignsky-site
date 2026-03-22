@@ -23,11 +23,17 @@ audience:
   - "it-ops"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Zero-friction developer platform for building, testing, and deploying modern apps without needing to know Kubernetes, GitOps, or the cloud. Same infrastructure locally, in cloud, and on-premises.
+{{< summary id="summary-0" >}}
+{
+  "headline": "A complete datacenter environment on your laptop - Kubernetes, databases, AI, and cloud services running locally",
+  "description": "Zero-friction developer platform for building, testing, and deploying modern apps without needing to know Kubernetes, GitOps, or the cloud. Same infrastructure locally, in cloud, and on-premises."
+}
+{{< /summary >}}
 
 ## The Problem
 

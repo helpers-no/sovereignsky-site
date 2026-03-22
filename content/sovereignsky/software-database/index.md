@@ -25,11 +25,17 @@ audience:
   - "humanitarian"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-See what France, Germany, and other European governments recommend. Find sovereign replacements for foreign-controlled tools.
+{{< summary id="summary-0" >}}
+{
+  "headline": "4,400+ software products from government-vetted catalogs across Europe, mapped with sovereign alternatives",
+  "description": "See what France, Germany, and other European governments recommend. Find sovereign replacements for foreign-controlled tools."
+}
+{{< /summary >}}
 
 ## What It Does
 

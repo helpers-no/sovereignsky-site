@@ -21,11 +21,17 @@ audience:
   - "it-ops"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Measure your organization's digital sovereignty readiness. Based on the EU Cloud Sovereignty Framework.
+{{< summary id="summary-0" >}}
+{
+  "headline": "A community-driven framework for measuring and improving digital sovereignty readiness in Norwegian organizations",
+  "description": "Measure your organization's digital sovereignty readiness. Based on the EU Cloud Sovereignty Framework."
+}
+{{< /summary >}}
 
 ## What Is NDSI?
 

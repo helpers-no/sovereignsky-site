@@ -23,11 +23,17 @@ audience:
   - "public-sector"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Open-source tools developed with SINTEF during the Ukraine crisis for aid worker identification, safety monitoring, and refugee support at reception centers.
+{{< summary id="summary-0" >}}
+{
+  "headline": "QR-based identification, safety monitoring, and communication tools for humanitarian operations",
+  "description": "Open-source tools developed with SINTEF during the Ukraine crisis for aid worker identification, safety monitoring, and refugee support at reception centers."
+}
+{{< /summary >}}
 
 ## Origin Story
 

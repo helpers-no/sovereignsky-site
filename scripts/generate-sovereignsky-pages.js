@@ -166,6 +166,11 @@ function generateFrontmatter(project) {
   lines.push(`showHero: true`);
   lines.push(`heroStyle: "big"`);
 
+  // Disable TOC for section-based pages (shortcode headings aren't in TOC)
+  if (project.sections && project.sections.length > 0) {
+    lines.push(`showTableOfContents: false`);
+  }
+
   // Layout and type
   lines.push(`layout: "single"`);
   lines.push(`type: "sovereignsky"`);

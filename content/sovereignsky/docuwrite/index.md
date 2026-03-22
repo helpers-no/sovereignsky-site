@@ -25,11 +25,17 @@ audience:
   - "humanitarian"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Generate professional documentation from Markdown files and Azure DevOps Wikis. Containerized toolbox combining Pandoc, Mermaid, and Marp for cross-platform document generation.
+{{< summary id="summary-0" >}}
+{
+  "headline": "Swiss army knife for converting Markdown to professional PDFs, Word documents, and presentations",
+  "description": "Generate professional documentation from Markdown files and Azure DevOps Wikis. Containerized toolbox combining Pandoc, Mermaid, and Marp for cross-platform document generation."
+}
+{{< /summary >}}
 
 ## The Problem It Solves
 

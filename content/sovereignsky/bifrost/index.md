@@ -21,11 +21,17 @@ audience:
   - "it-ops"
 showHero: true
 heroStyle: "big"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-A Configuration Management Database (CMDB) designed to map, document, and govern how applications, APIs, data flows, and stakeholders connect across an organization.
+{{< summary id="summary-0" >}}
+{
+  "headline": "Gain full visibility into your organization's application landscape, integrations, and ownership",
+  "description": "A Configuration Management Database (CMDB) designed to map, document, and govern how applications, APIs, data flows, and stakeholders connect across an organization."
+}
+{{< /summary >}}
 
 ## What Is Bifrost?
 

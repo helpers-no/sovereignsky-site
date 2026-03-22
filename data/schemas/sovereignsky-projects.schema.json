@@ -111,10 +111,15 @@
           "$ref": "#/$defs/projectDetails",
           "description": "Project-specific fields"
         },
+        "sections": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/section" },
+          "description": "Structured content sections that map to Hugo shortcodes. Replaces body/summary/shortcodes."
+        },
         "shortcodes": {
           "type": "array",
           "items": { "$ref": "#/$defs/shortcode" },
-          "description": "Hugo shortcodes to render after body content"
+          "description": "Hugo shortcodes to render after body content (legacy, use sections instead)"
         },
         "subpages": {
           "type": "array",
@@ -123,6 +128,17 @@
         }
       },
       "additionalProperties": false
+    },
+    "section": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Section type: markdown, summary, feature-grid, steps, persona-cards, highlight-card, tool-icons, cta, code-block, etc."
+        }
+      },
+      "additionalProperties": true
     },
     "shortcode": {
       "type": "object",
