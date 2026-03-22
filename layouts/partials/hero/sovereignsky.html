@@ -62,22 +62,15 @@
         {{ end }}
       </div>
 
-      {{/* Right column: decorative panel */}}
+      {{/* Right column: square image or nothing */}}
+      {{ $heroImage := .Resources.GetMatch "hero.*" }}
+      {{ if $heroImage }}
       <div class="sd-hero-panel-wrap">
-        <div class="sd-hero-panel">
-          {{ $icon := "deployed_code" }}
-          {{ with .Params.topics }}
-            {{ $first := index . 0 }}
-            {{ if eq $first "cybersecurity" }}{{ $icon = "security" }}
-            {{ else if eq $first "critical-infrastructure" }}{{ $icon = "dns" }}
-            {{ else if eq $first "preparedness" }}{{ $icon = "shield" }}
-            {{ else if eq $first "sovereignty" }}{{ $icon = "lock" }}
-            {{ end }}
-          {{ end }}
-          <span class="material-symbols-outlined sd-hero-panel-icon">{{ $icon }}</span>
-          <div class="sd-hero-panel-accent"></div>
+        <div class="sd-hero-panel" style="padding: 0; overflow: hidden;">
+          <img src="{{ $heroImage.RelPermalink }}" alt="{{ .Title }}" style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
       </div>
+      {{ end }}
 
     </div>
   </section>

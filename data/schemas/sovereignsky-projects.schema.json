@@ -81,9 +81,13 @@
           "type": "string",
           "description": "Markdown body content for the project page"
         },
-        "image": {
+        "imageWide": {
           "type": "string",
-          "description": "Image filename in images/sovereignsky/"
+          "description": "Rectangular image filename for social sharing (Open Graph/Twitter cards)"
+        },
+        "imageSquare": {
+          "type": "string",
+          "description": "Square image filename for hero panel and homepage cards"
         },
         "url": {
           "type": "string",

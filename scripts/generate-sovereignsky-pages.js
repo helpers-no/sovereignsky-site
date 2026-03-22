@@ -45,21 +45,39 @@ function copyImage(src, dest) {
  * - Copies from images/sovereignsky/ folder
  * - Saves as featured.{ext} in content folder
  */
+/**
+ * Handle images for a project
+ * - imageWide: rectangular image for social sharing → featured.{ext}
+ * - imageSquare: square image for hero panel → hero.{ext}
+ */
 function handleImage(project, projectDir) {
-  if (!project.image) return false;
+  let copied = false;
 
-  // Determine destination filename (keep original extension)
-  const ext = path.extname(project.image);
-  const destPath = path.join(projectDir, `featured${ext}`);
-
-  // Copy from images folder
-  const srcPath = path.join(IMAGES_DIR, project.image);
-  if (copyImage(srcPath, destPath)) {
-    return true;
-  } else {
-    console.warn(`  Warning: Image not found for ${project.identifier}: ${srcPath}`);
-    return false;
+  // Copy wide image as featured.{ext} (for social sharing meta tags)
+  if (project.imageWide) {
+    const ext = path.extname(project.imageWide);
+    const destPath = path.join(projectDir, `featured${ext}`);
+    const srcPath = path.join(IMAGES_DIR, project.imageWide);
+    if (copyImage(srcPath, destPath)) {
+      copied = true;
+    } else {
+      console.warn(`  Warning: Wide image not found for ${project.identifier}: ${srcPath}`);
+    }
   }
+
+  // Copy square image as hero.{ext} (for hero panel display)
+  if (project.imageSquare) {
+    const ext = path.extname(project.imageSquare);
+    const destPath = path.join(projectDir, `hero${ext}`);
+    const srcPath = path.join(IMAGES_DIR, project.imageSquare);
+    if (copyImage(srcPath, destPath)) {
+      copied = true;
+    } else {
+      console.warn(`  Warning: Square image not found for ${project.identifier}: ${srcPath}`);
+    }
+  }
+
+  return copied;
 }
 
 function yamlEscape(s) {
