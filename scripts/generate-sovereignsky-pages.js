@@ -174,7 +174,71 @@ function generateFrontmatter(project) {
   return lines.join('\n');
 }
 
+/**
+ * Generate a shortcode id from section type and optional title
+ */
+function sectionId(section, index) {
+  if (section.title) {
+    return section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+  return `${section.type}-${index}`;
+}
+
+/**
+ * Build content from a sections array
+ * Each section has a "type" that determines how it renders:
+ * - "markdown" → plain markdown passthrough
+ * - "code-block" → fenced code block with language
+ * - all others → Hugo shortcode with JSON config
+ */
+function buildSections(sections) {
+  const parts = [];
+
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    const id = sectionId(section, i);
+
+    if (parts.length > 0) parts.push('');
+
+    switch (section.type) {
+      case 'markdown': {
+        // Plain markdown passthrough
+        if (section.body) {
+          parts.push(section.body);
+        }
+        break;
+      }
+      case 'code-block': {
+        // Fenced code block
+        const lang = section.language || '';
+        parts.push(`\`\`\`${lang}`);
+        parts.push(section.code || '');
+        parts.push('```');
+        break;
+      }
+      default: {
+        // Hugo shortcode with JSON config
+        const config = { ...section };
+        delete config.type; // type is used for routing, not passed to shortcode
+        const configJson = JSON.stringify(config, null, 2);
+        parts.push(`{{< ${section.type} id="${id}" >}}`);
+        parts.push(configJson);
+        parts.push(`{{< /${section.type} >}}`);
+        break;
+      }
+    }
+  }
+
+  return parts.join('\n');
+}
+
 function buildBody(project) {
+  // If project has sections array, use section-based rendering
+  if (project.sections && project.sections.length > 0) {
+    return buildSections(project.sections);
+  }
+
+  // Fallback: legacy body + shortcodes rendering
   const parts = [];
 
   // Add summary if defined (longer detailed summary)
