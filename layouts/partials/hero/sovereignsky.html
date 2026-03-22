@@ -1,0 +1,84 @@
+{{/*
+  Sovereign Sky Hero — custom hero for sovereignsky project pages
+  Replaces Blowfish's image-based hero with a Stitch-inspired grid layout.
+  Featured images are NOT displayed but remain in the folder for social sharing meta tags.
+*/}}
+
+<div class="section-design not-prose">
+  <section class="sd-hero">
+    <div class="sd-hero-grid">
+
+      {{/* Left column: badge, title, description, CTAs */}}
+      <div class="sd-hero-content">
+
+        {{/* Tag badge */}}
+        {{ $topic := "Sovereign Infrastructure" }}
+        {{ with .Params.topics }}
+          {{ $topic = index . 0 | title }}
+        {{ end }}
+        <div class="sd-hero-badge">
+          <span class="material-symbols-outlined filled" style="font-size: 14px;">security</span>
+          {{ $topic }}
+        </div>
+
+        {{/* Title */}}
+        <h1 class="sd-headline sd-hero-title">{{ .Title }}</h1>
+
+        {{/* Description */}}
+        {{ with .Params.description }}
+        <p class="sd-hero-description">{{ . }}</p>
+        {{ end }}
+
+        {{/* Status + date */}}
+        <div class="sd-hero-meta">
+          {{ with .Params.status }}
+          <span class="sd-hero-status sd-hero-status-{{ . }}">
+            <span class="sd-hero-status-dot"></span>
+            {{ . | title }}
+          </span>
+          {{ end }}
+          {{ with .Date }}
+          <span class="sd-hero-date">Started {{ .Format "January 2006" }}</span>
+          {{ end }}
+        </div>
+
+        {{/* CTA buttons — conditional */}}
+        {{ $hasButtons := or .Params.repository .Params.documentation .Params.externalUrl }}
+        {{ if $hasButtons }}
+        <div class="sd-hero-ctas">
+          {{ with .Params.repository }}
+          <a href="{{ . }}" class="sd-hero-cta-primary">
+            View Repository
+            <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+          </a>
+          {{ end }}
+          {{ with .Params.documentation }}
+          <a href="{{ . }}" class="sd-hero-cta-secondary">Documentation</a>
+          {{ end }}
+          {{ if and .Params.externalUrl (ne .Params.externalUrl .Params.documentation) }}
+          <a href="{{ .Params.externalUrl }}" class="sd-hero-cta-secondary">Project Website</a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </div>
+
+      {{/* Right column: decorative panel */}}
+      <div class="sd-hero-panel-wrap">
+        <div class="sd-hero-panel">
+          {{ $icon := "deployed_code" }}
+          {{ with .Params.topics }}
+            {{ $first := index . 0 }}
+            {{ if eq $first "cybersecurity" }}{{ $icon = "security" }}
+            {{ else if eq $first "critical-infrastructure" }}{{ $icon = "dns" }}
+            {{ else if eq $first "preparedness" }}{{ $icon = "shield" }}
+            {{ else if eq $first "sovereignty" }}{{ $icon = "lock" }}
+            {{ end }}
+          {{ end }}
+          <span class="material-symbols-outlined sd-hero-panel-icon">{{ $icon }}</span>
+          <div class="sd-hero-panel-accent"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>

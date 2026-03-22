@@ -19,7 +19,7 @@ tags:
 audience:
   - "developer"
 showHero: true
-heroStyle: "big"
+heroStyle: "sovereignsky"
 showTableOfContents: false
 layout: "single"
 type: "sovereignsky"

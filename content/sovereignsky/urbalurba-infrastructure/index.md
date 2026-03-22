@@ -22,7 +22,7 @@ audience:
   - "developer"
   - "it-ops"
 showHero: true
-heroStyle: "big"
+heroStyle: "sovereignsky"
 showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
