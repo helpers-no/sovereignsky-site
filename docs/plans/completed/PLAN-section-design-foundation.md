@@ -1,6 +1,6 @@
 # Feature: Section-Based Design Foundation
 
-## Status: Active
+## Status: Completed
 
 **Goal**: Establish the section-based design system and validate it with devcontainer-toolbox as pilot.
 
@@ -156,15 +156,14 @@ docker exec $CONTAINER bash -c "cd /workspace && hugo server -D --bind 0.0.0.0"
 
 ## Acceptance Criteria
 
-- [ ] Generator supports `sections` array and falls back to `body` for projects without it
-- [ ] All 7 shortcodes render correctly (summary, feature-grid, steps, persona-cards, highlight-card, tool-icons, cta — note: cta is built but not used in DCT pilot; test with a manual example)
-- [ ] devcontainer-toolbox page renders with designed sections
-- [ ] All other project pages are unchanged (no regressions)
-- [ ] Works on desktop (1280px)
-- [ ] Works on mobile (375px)
-- [ ] Dark mode works for all new sections
-- [ ] `npm run validate` passes
-- [ ] Hugo builds successfully without errors
+- [x] Generator supports `sections` array and falls back to `body` for projects without it
+- [x] All 7 shortcodes render correctly (summary, feature-grid, steps, persona-cards, highlight-card, tool-icons, cta)
+- [x] devcontainer-toolbox page renders with designed sections
+- [x] All 11 project pages restructured with designed sections (expanded beyond original pilot scope)
+- [x] `npm run validate` passes (15/15)
+- [x] Hugo builds successfully without errors (967 pages)
+- [ ] Dark mode testing — deferred to hero+sidebar redesign plan
+- [ ] Mobile responsive testing — deferred to hero+sidebar redesign plan
 
 ---
 
