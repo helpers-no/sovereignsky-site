@@ -34,6 +34,7 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
+{{< metadata-sidebar >}}
 {{< highlight-card id="the-onboarding-problem" >}}
 {
   "icon": "error_outline",
@@ -42,6 +43,8 @@ type: "sovereignsky"
   "style": "tertiary"
 }
 {{< /highlight-card >}}
+
+{{< /metadata-sidebar >}}
 
 {{< steps id="how-it-works" >}}
 {
@@ -95,65 +98,68 @@ type: "sovereignsky"
 }
 {{< /feature-grid >}}
 
-{{< highlight-card id="ai-ready-development" >}}
+{{< side-by-side id="side-by-side-4" >}}
 {
-  "icon": "psychology",
-  "title": "AI-Ready Development",
-  "description": "Run AI coding assistants like Claude Code safely inside the container — they can access project files but not your host system. Full AI-powered development without the security risk.",
-  "style": "tertiary"
-}
-{{< /highlight-card >}}
-
-{{< tool-icons id="works-everywhere" >}}
-{
-  "title": "Works Everywhere",
-  "description": "Identical experience on Windows, macOS, and Linux with:",
-  "items": [
+  "left": [
     {
-      "icon": "terminal",
-      "label": "Visual Studio Code"
+      "type": "highlight-card",
+      "icon": "psychology",
+      "title": "AI-Ready Development",
+      "description": "Run AI coding assistants like Claude Code safely inside the container — they can access project files but not your host system. Full AI-powered development without the security risk.",
+      "style": "tertiary"
     },
     {
-      "icon": "developer_mode_tv",
-      "label": "JetBrains Rider"
-    },
+      "type": "tool-icons",
+      "title": "Works Everywhere",
+      "description": "Identical experience on Windows, macOS, and Linux with:",
+      "items": [
+        {
+          "icon": "terminal",
+          "label": "Visual Studio Code"
+        },
+        {
+          "icon": "developer_mode_tv",
+          "label": "JetBrains Rider"
+        },
+        {
+          "icon": "window",
+          "label": "Visual Studio"
+        }
+      ]
+    }
+  ],
+  "right": [
     {
-      "icon": "window",
-      "label": "Visual Studio"
+      "type": "persona-cards",
+      "title": "Who Benefits",
+      "items": [
+        {
+          "icon": "person_add",
+          "label": "New developers",
+          "description": "Productive on day one, not day five."
+        },
+        {
+          "icon": "assignment_ind",
+          "label": "External consultants",
+          "description": "Work in a controlled, compliant environment without touching their host machine."
+        },
+        {
+          "icon": "history",
+          "label": "Teams inheriting code",
+          "description": "Taking over a project from another team or vendor? The devcontainer has the complete environment. No reverse-engineering build steps, no guessing which tool versions they used. Open the project, it just works."
+        },
+        {
+          "icon": "leaderboard",
+          "label": "Team leads",
+          "description": "Scale the team without scaling setup overhead."
+        },
+        {
+          "icon": "verified_user",
+          "label": "Security teams",
+          "description": "Pinned tool versions, auditable dependencies, nothing installed on host."
+        }
+      ]
     }
   ]
 }
-{{< /tool-icons >}}
-
-{{< persona-cards id="who-benefits" >}}
-{
-  "title": "Who Benefits",
-  "items": [
-    {
-      "icon": "person_add",
-      "label": "New developers",
-      "description": "Productive on day one, not day five."
-    },
-    {
-      "icon": "assignment_ind",
-      "label": "External consultants",
-      "description": "Work in a controlled, compliant environment without touching their host machine."
-    },
-    {
-      "icon": "history",
-      "label": "Teams inheriting code",
-      "description": "Taking over a project from another team or vendor? The devcontainer has the complete environment. No reverse-engineering build steps, no guessing which tool versions they used. Open the project, it just works."
-    },
-    {
-      "icon": "leaderboard",
-      "label": "Team leads",
-      "description": "Scale the team without scaling setup overhead."
-    },
-    {
-      "icon": "verified_user",
-      "label": "Security teams",
-      "description": "Pinned tool versions, auditable dependencies, nothing installed on host."
-    }
-  ]
-}
-{{< /persona-cards >}}
+{{< /side-by-side >}}

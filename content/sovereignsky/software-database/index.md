@@ -37,6 +37,9 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
+{{< metadata-sidebar >}}
+{{< /metadata-sidebar >}}
+
 {{< feature-grid id="data-sources" >}}
 {
   "title": "Data Sources",

@@ -35,6 +35,7 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
+{{< metadata-sidebar >}}
 {{< highlight-card id="the-problem" >}}
 {
   "icon": "error_outline",
@@ -43,6 +44,8 @@ type: "sovereignsky"
   "style": "tertiary"
 }
 {{< /highlight-card >}}
+
+{{< /metadata-sidebar >}}
 
 {{< steps id="the-solution" >}}
 {

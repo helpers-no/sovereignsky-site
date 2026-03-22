@@ -197,42 +197,85 @@ function sectionId(section, index) {
  * - "code-block" → fenced code block with language
  * - all others → Hugo shortcode with JSON config
  */
+/**
+ * Render a single section to markdown/shortcode
+ */
+function renderSection(section, index) {
+  const id = sectionId(section, index);
+  const parts = [];
+
+  switch (section.type) {
+    case 'markdown': {
+      if (section.body) {
+        parts.push(section.body);
+      }
+      break;
+    }
+    case 'code-block': {
+      const lang = section.language || '';
+      parts.push(`\`\`\`${lang}`);
+      parts.push(section.code || '');
+      parts.push('```');
+      break;
+    }
+    default: {
+      const config = { ...section };
+      delete config.type;
+      const configJson = JSON.stringify(config, null, 2);
+      parts.push(`{{< ${section.type} id="${id}" >}}`);
+      parts.push(configJson);
+      parts.push(`{{< /${section.type} >}}`);
+      break;
+    }
+  }
+
+  return parts.join('\n');
+}
+
 function buildSections(sections) {
   const parts = [];
 
+  // Find the split point: after summary, wrap the next section(s) that are
+  // markdown or highlight-card (narrative content) in a metadata-sidebar.
+  // Everything after that renders full-width.
+  let summaryDone = false;
+  let sidebarOpened = false;
+  let sidebarClosed = false;
+
   for (let i = 0; i < sections.length; i++) {
     const section = sections[i];
-    const id = sectionId(section, i);
+    const type = section.type;
 
     if (parts.length > 0) parts.push('');
 
-    switch (section.type) {
-      case 'markdown': {
-        // Plain markdown passthrough
-        if (section.body) {
-          parts.push(section.body);
-        }
-        break;
-      }
-      case 'code-block': {
-        // Fenced code block
-        const lang = section.language || '';
-        parts.push(`\`\`\`${lang}`);
-        parts.push(section.code || '');
-        parts.push('```');
-        break;
-      }
-      default: {
-        // Hugo shortcode with JSON config
-        const config = { ...section };
-        delete config.type; // type is used for routing, not passed to shortcode
-        const configJson = JSON.stringify(config, null, 2);
-        parts.push(`{{< ${section.type} id="${id}" >}}`);
-        parts.push(configJson);
-        parts.push(`{{< /${section.type} >}}`);
-        break;
+    // After summary, wrap narrative sections in metadata-sidebar
+    if (summaryDone && !sidebarOpened && !sidebarClosed) {
+      // Open the metadata-sidebar wrapper
+      parts.push('{{< metadata-sidebar >}}');
+      sidebarOpened = true;
+    }
+
+    // If sidebar is open and we hit a non-narrative section, close it
+    if (sidebarOpened && !sidebarClosed) {
+      const narrativeTypes = ['markdown', 'highlight-card'];
+      if (!narrativeTypes.includes(type)) {
+        parts.push('{{< /metadata-sidebar >}}');
+        parts.push('');
+        sidebarClosed = true;
       }
     }
+
+    parts.push(renderSection(section, i));
+
+    if (type === 'summary') {
+      summaryDone = true;
+    }
+  }
+
+  // Close sidebar if still open at end
+  if (sidebarOpened && !sidebarClosed) {
+    parts.push('');
+    parts.push('{{< /metadata-sidebar >}}');
   }
 
   return parts.join('\n');

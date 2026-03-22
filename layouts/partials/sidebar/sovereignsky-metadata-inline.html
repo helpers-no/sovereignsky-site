@@ -1,14 +1,13 @@
 {{/*
-  Sovereign Sky Sidebar — unified metadata card matching Stitch design
-  Replaces separate Blowfish cards with one cohesive sidebar.
+  Sovereign Sky Metadata Inline — Topics, Tags, Audience displayed
+  inline within content flow (not as a sidebar).
+  Matches Stitch design where metadata appears alongside content,
+  not in a persistent sidebar.
 */}}
 
-{{ $topClass := cond (hasPrefix site.Params.header.layout "fixed") "lg:top-[140px]" "lg:top-10" }}
-<div id="sidebar" class="section-design order-last px-0 lg:ps-8 w-full lg:w-[340px] lg:flex-shrink-0">
-  <div class="not-prose print:hidden lg:sticky {{ $topClass }}" style="display: flex; flex-direction: column; gap: 1rem;">
-
-    {{/* Unified metadata card — no links/status/date (already in hero) */}}
-    <div class="sd-sidebar-card" style="border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+<div class="section-design not-prose" style="margin: 3rem 0;">
+  <div class="sd-sidebar-card" style="border-radius: 1rem; padding: 2rem;">
+    <div data-sd-metadata-grid style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
 
       {{/* Topics */}}
       {{ with .Params.topics }}
@@ -48,9 +47,16 @@
       {{ end }}
 
     </div>
-
-    {{/* Related content */}}
-    {{ partial "related-content-sidebar.html" . }}
-
   </div>
+
+  {{/* Related content */}}
+  {{ partial "related-content-sidebar.html" . }}
 </div>
+
+<style>
+  @media (min-width: 768px) {
+    [data-sd-metadata-grid] {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+</style>

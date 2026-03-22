@@ -35,11 +35,14 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
+{{< metadata-sidebar >}}
 ## Who This Is For
 
 This is for **operations teams in larger organizations** responsible for setting up and managing PC/Mac fleets. If your developers use managed machines deployed via Intune (Windows) or Jamf (macOS), these scripts automate the entire developer toolchain rollout.
 
 **Not using managed machines?** If your developers manage their own machines, they can install [DevContainer Toolbox](https://dct.sovereignsky.no/) directly with a single command — no need for this provisioning setup.
+
+{{< /metadata-sidebar >}}
 
 {{< feature-grid id="what-gets-installed" >}}
 {

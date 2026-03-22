@@ -33,6 +33,7 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
+{{< metadata-sidebar >}}
 ## NDSI Levels
 
 Organizations are scored from Level 0 to Level 4:
@@ -44,6 +45,8 @@ Organizations are scored from Level 0 to Level 4:
 | 2 | Aware | 18-25 | Significant dependencies, exit strategies needed |
 | 1 | Dependent | 9-17 | High foreign dependency, priority action needed |
 | 0 | Unassessed | 0-8 | Critical gaps, immediate investigation required |
+
+{{< /metadata-sidebar >}}
 
 {{< persona-cards id="components" >}}
 {

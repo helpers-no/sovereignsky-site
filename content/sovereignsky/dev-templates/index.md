@@ -32,6 +32,7 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
+{{< metadata-sidebar >}}
 {{< highlight-card id="the-problem" >}}
 {
   "icon": "warning",
@@ -40,6 +41,8 @@ type: "sovereignsky"
   "style": "tertiary"
 }
 {{< /highlight-card >}}
+
+{{< /metadata-sidebar >}}
 
 {{< steps id="the-solution" >}}
 {

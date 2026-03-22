@@ -33,6 +33,7 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
+{{< metadata-sidebar >}}
 {{< highlight-card id="what-sets-this-cmdb-apart" >}}
 {
   "icon": "star",
@@ -41,6 +42,8 @@ type: "sovereignsky"
   "style": "primary"
 }
 {{< /highlight-card >}}
+
+{{< /metadata-sidebar >}}
 
 {{< persona-cards id="core-capabilities" >}}
 {

@@ -37,6 +37,9 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
+{{< metadata-sidebar >}}
+{{< /metadata-sidebar >}}
+
 {{< persona-cards id="output-features" >}}
 {
   "title": "Output Features",

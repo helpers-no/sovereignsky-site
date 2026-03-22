@@ -165,6 +165,7 @@ docker exec $CONTAINER bash -c "cd /workspaces/sovereignsky-site && hugo --gc"
 - [ ] 4.5 Test on desktop (1280px)
 - [ ] 4.6 Fix responsive issues
 - [ ] 4.7 Verify all 11 project pages work across viewports
+- [ ] 4.8 Fix horizontal lines between pagination and footer on sovereignsky pages (comes from `article-pagination.html` `<hr>` and footer border-top CSS)
 
 ### Validation
 

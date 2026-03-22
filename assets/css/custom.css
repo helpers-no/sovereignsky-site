@@ -579,6 +579,37 @@ section.sd-page #sidebar .btn-primary,
   border-color: rgba(194, 198, 214, 0.1);
 }
 
+/* Remove horizontal lines from sovereignsky pagination */
+.sd-pagination hr {
+  display: none !important;
+}
+.sd-pagination .border-dotted {
+  border: none !important;
+}
+
+/* ==========================================================================
+   Sovereign Sky Content Width
+   ========================================================================== */
+
+/* Remove max-w-prose — shortcodes handle their own width */
+.sd-content {
+  max-width: none !important;
+}
+
+/* Markdown prose sections should still be readable */
+.sd-content > h1,
+.sd-content > h2,
+.sd-content > h3,
+.sd-content > h4,
+.sd-content > h5,
+.sd-content > h6,
+.sd-content > p,
+.sd-content > ul,
+.sd-content > ol,
+.sd-content > blockquote {
+  max-width: 65ch;
+}
+
 /* Custom styles for SovereignSky */
 
 /* Missing Tailwind utilities not in Blowfish compiled CSS */
