@@ -28,24 +28,30 @@ type: "sovereignsky"
 {{< summary id="summary-0" >}}
 {
   "headline": "Quick, modern, and standardized project templates for rapid prototyping and consistent development",
-  "description": "Production-ready templates for APIs, web apps, backends, and experiments. Lower the entry barrier for all developers with rapid prototyping and consistent best practices."
+  "description": "Select a template. Get a complete project with application code, Kubernetes manifests, GitHub Actions workflows, and automatic deployment — all following the same structure."
 }
 {{< /summary >}}
 
-## The Problem
+{{< highlight-card id="the-problem" >}}
+{
+  "icon": "warning",
+  "title": "The Problem",
+  "description": "Starting a new project means days of boilerplate: setting up build tools, configuring Kubernetes manifests, writing CI/CD pipelines, figuring out deployment. Every team does it differently. When someone else inherits the project, they start over.",
+  "style": "tertiary"
+}
+{{< /highlight-card >}}
 
-Starting a new project means days of boilerplate: setting up build tools, configuring Kubernetes manifests, writing CI/CD pipelines, figuring out deployment. Every team does it differently. When someone else inherits the project, they start over.
-
-## The Solution
-
-Select a template. Get a complete project with application code, Kubernetes manifests, GitHub Actions workflows, and automatic deployment — all following the same structure. Every project works the same way.
-
-```bash
-# Inside the devcontainer, run:
-dev-template
-```
-
-Pick your template (e.g., `typescript-basic-webserver`), and you have a running project with local development, CI/CD, and Kubernetes deployment ready to go.
+{{< steps id="the-solution" >}}
+{
+  "title": "The Solution",
+  "description": "Pick your template (e.g., typescript-basic-webserver), and you have a running project with local development, CI/CD, and Kubernetes deployment ready to go.",
+  "code": {
+    "language": "bash",
+    "label": "bash — inside the devcontainer",
+    "command": "dev-template"
+  }
+}
+{{< /steps >}}
 
 ## Available Templates
 
@@ -67,33 +73,72 @@ Pick your template (e.g., `typescript-basic-webserver`), and you have a running 
 | Basic React App | ✅ | ✅ | | |
 | Basic Next.js App | planned | planned | planned | planned |
 
-## What Each Template Includes
+{{< persona-cards id="what-each-template-includes" >}}
+{
+  "title": "What Each Template Includes",
+  "items": [
+    {
+      "icon": "code",
+      "label": "Application code",
+      "description": "Working starter app, not just a skeleton."
+    },
+    {
+      "icon": "inventory_2",
+      "label": "Dockerfile",
+      "description": "Container-ready from the start."
+    },
+    {
+      "icon": "cloud_upload",
+      "label": "Kubernetes manifests",
+      "description": "Deployment, service, and kustomization for ArgoCD."
+    },
+    {
+      "icon": "play_circle",
+      "label": "GitHub Actions workflow",
+      "description": "Automatic build and push to GitHub Container Registry."
+    },
+    {
+      "icon": "terminal",
+      "label": "Local development",
+      "description": "Run and test inside the devcontainer."
+    }
+  ]
+}
+{{< /persona-cards >}}
 
-Every template comes with:
+{{< highlight-card id="real-world-example-red-cross-norway" >}}
+{
+  "icon": "volunteer_activism",
+  "title": "Real-World Example: Red Cross Norway",
+  "description": "The Norwegian Red Cross has 40,000+ volunteers across 380+ local branches. Many are programmers who see how IT can improve daily operations. Dev Templates give these volunteers a structured way to build solutions that central IT can actually adopt — same project structure, same deployment pipeline, predictable handover.",
+  "style": "secondary"
+}
+{{< /highlight-card >}}
 
-- **Application code** — working starter app, not just a skeleton
-- **Dockerfile** — container-ready from the start
-- **Kubernetes manifests** — deployment, service, and kustomization for ArgoCD
-- **GitHub Actions workflow** — automatic build and push to GitHub Container Registry
-- **Local development** — run and test inside the devcontainer
-
-## The Developer Workflow
-
-1. **Create** a GitHub repo and clone it
-2. **Set up** DevContainer Toolbox (one command)
-3. **Select** a template with `dev-template.sh`
-4. **Develop** locally inside the devcontainer
-5. **Push** to GitHub — CI/CD builds and pushes your container image
-6. **Register** with ArgoCD — `./uis argocd register my-app https://github.com/user/repo`
-7. **Test** at `http://my-app.localhost` — automatic routing, no DNS setup
-
-## Real-World Example: Red Cross Norway
-
-The Norwegian Red Cross has 40,000+ volunteers across 380+ local branches. Many are programmers who see how IT can improve daily operations. Dev Templates give these volunteers a structured way to build solutions that central IT can actually adopt — same project structure, same deployment pipeline, predictable handover.
-
-## How It Fits Together
-
-- **[DevContainer Toolbox (DCT)](/sovereignsky/devcontainer-toolbox/)** — the development environment
-- **Dev Templates** — the project starter (you are here)
-- **[Urbalurba Infrastructure Stack (UIS)](/sovereignsky/urbalurba-infrastructure/)** — the Kubernetes cluster and services
-- **[Client Provisioning](/sovereignsky/client-provisioning/)** — automated machine setup for managed fleets
+{{< persona-cards id="how-it-fits-together" >}}
+{
+  "title": "How It Fits Together",
+  "items": [
+    {
+      "icon": "deployed_code",
+      "label": "DevContainer Toolbox (DCT)",
+      "description": "The development environment — all tools pre-configured."
+    },
+    {
+      "icon": "content_copy",
+      "label": "Dev Templates",
+      "description": "The project starter — you are here."
+    },
+    {
+      "icon": "dns",
+      "label": "Urbalurba Infrastructure Stack (UIS)",
+      "description": "The Kubernetes cluster and services."
+    },
+    {
+      "icon": "devices",
+      "label": "Client Provisioning",
+      "description": "Automated machine setup for managed fleets."
+    }
+  ]
+}
+{{< /persona-cards >}}

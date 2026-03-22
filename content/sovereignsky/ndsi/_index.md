@@ -29,13 +29,9 @@ type: "sovereignsky"
 {{< summary id="summary-0" >}}
 {
   "headline": "A community-driven framework for measuring and improving digital sovereignty readiness in Norwegian organizations",
-  "description": "Measure your organization's digital sovereignty readiness. Based on the EU Cloud Sovereignty Framework."
+  "description": "The Norwegian Digital Sovereignty Index is a practical framework for measuring how dependent your organization is on foreign-controlled digital infrastructure. Based on the EU Cloud Sovereignty Framework."
 }
 {{< /summary >}}
-
-## What Is NDSI?
-
-The Norwegian Digital Sovereignty Index is a practical framework for measuring how dependent your organization is on foreign-controlled digital infrastructure. Based on the EU Cloud Sovereignty Framework, it provides a standardized way to assess, compare, and improve your sovereignty posture.
 
 ## NDSI Levels
 
@@ -49,23 +45,23 @@ Organizations are scored from Level 0 to Level 4:
 | 1 | Dependent | 9-17 | High foreign dependency, priority action needed |
 | 0 | Unassessed | 0-8 | Critical gaps, immediate investigation required |
 
-## Components
-
-### [NDSI Quick Scan Survey](survey/)
-
-11 questions covering:
-- **Provider & Jurisdiction** - Who provides your cloud services? Are they subject to the US CLOUD Act?
-- **Data Control** - Where is your data stored? Do you have visibility into all SaaS tools?
-- **Exit Readiness** - Can you migrate away? How long would it take?
-- **Operational Resilience** - Backup procedures tested? Alternative providers identified?
-
-### [Software Risk Check](software-risk-check/)
-
-Select the tools your organization uses and get an instant risk assessment. Each tool is scored based on:
-- Provider jurisdiction and ownership
-- Data location guarantees
-- Exit capability and portability
-- Availability of sovereign alternatives
+{{< persona-cards id="components" >}}
+{
+  "title": "Components",
+  "items": [
+    {
+      "icon": "quiz",
+      "label": "NDSI Quick Scan Survey",
+      "description": "11 questions covering provider jurisdiction, data control, exit readiness, and operational resilience."
+    },
+    {
+      "icon": "security",
+      "label": "Software Risk Check",
+      "description": "Select the tools your organization uses and get an instant risk assessment based on jurisdiction, data location, and portability."
+    }
+  ]
+}
+{{< /persona-cards >}}
 
 ## Dependencies
 

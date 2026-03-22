@@ -34,11 +34,14 @@ type: "sovereignsky"
 }
 {{< /summary >}}
 
-## The Onboarding Problem
-
-New developer joins Monday. Spends the entire first week installing tools, debugging environment issues, and asking colleagues why their build doesn't work. External consultants? Multiply that by the time it takes to get VPN access, security approvals, and the right tool versions.
-
-**With DevContainer Toolbox, a new developer is productive in minutes.** Open the project in VS Code, wait for the container to build, start coding. No setup guide. No OS-specific troubleshooting. No "it works on my machine."
+{{< highlight-card id="the-onboarding-problem" >}}
+{
+  "icon": "error_outline",
+  "title": "The Onboarding Problem",
+  "description": "New developer joins Monday. Spends the entire first week installing tools, debugging environment issues, and asking colleagues why their build doesn't work. External consultants? Multiply that by the time it takes to get VPN access, security approvals, and the right tool versions. With DevContainer Toolbox, a new developer is productive in minutes. Open the project in VS Code, wait for the container to build, start coding. No setup guide. No OS-specific troubleshooting. No \"it works on my machine.\"",
+  "style": "tertiary"
+}
+{{< /highlight-card >}}
 
 {{< steps id="how-it-works" >}}
 {

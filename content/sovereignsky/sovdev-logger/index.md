@@ -31,68 +31,113 @@ type: "sovereignsky"
 {{< summary id="summary-0" >}}
 {
   "headline": "One log call — automatic logs, metrics, traces, and service maps. 95% less instrumentation code.",
-  "description": "Stop writing separate code for logs, metrics, and traces. Write one log entry and automatically get structured logs, metrics dashboards, distributed traces, and service dependency maps."
+  "description": "You write code for yourself during development. But you write logs for the operations engineer staring at a screen at 7 PM on Friday. Good logging is the difference between a 3-hour debugging session and a 5-minute fix."
 }
 {{< /summary >}}
 
-## Who Do You Write Logs For?
+{{< highlight-card id="the-problem" >}}
+{
+  "icon": "error_outline",
+  "title": "The Problem",
+  "description": "Traditional observability requires 20+ lines per operation — separate logger calls, metric counters, trace spans, manual correlation.",
+  "style": "tertiary"
+}
+{{< /highlight-card >}}
 
-You write code for yourself during development. But **you write logs for the operations engineer staring at a screen at 7 PM on Friday.**
+{{< steps id="the-solution" >}}
+{
+  "title": "The Solution",
+  "description": "One call gives you logs, metrics, traces, and correlation — automatically.",
+  "code": {
+    "language": "typescript",
+    "label": "TypeScript — sovdev_log",
+    "command": "sovdev_log(INFO, FUNCTIONNAME, 'Payment processed', PEER_SERVICES.PAYMENT_GATEWAY, input, output);"
+  }
+}
+{{< /steps >}}
 
-Your application just crashed in production. Everyone on your team has left for the weekend. The ops engineer who got the alert doesn't know your codebase, doesn't know your business logic, and definitely doesn't want to be there right now.
+{{< feature-grid id="what-you-get-automatically" >}}
+{
+  "title": "What You Get Automatically",
+  "columns": [
+    {
+      "icon": "description",
+      "title": "Outputs",
+      "color": "primary",
+      "items": [
+        "Structured Logs",
+        "Metrics",
+        "Distributed Traces",
+        "Service Maps",
+        "File Logs"
+      ]
+    },
+    {
+      "icon": "cloud",
+      "title": "Azure Production",
+      "color": "secondary",
+      "items": [
+        "Azure Log Analytics",
+        "Azure Monitor",
+        "Application Insights"
+      ]
+    },
+    {
+      "icon": "computer",
+      "title": "Local / On-Prem",
+      "color": "tertiary",
+      "items": [
+        "Console + JSON files",
+        "Grafana / Prometheus",
+        "Tempo"
+      ]
+    }
+  ]
+}
+{{< /feature-grid >}}
 
-Good logging is the difference between a 3-hour debugging session and a 5-minute fix. Help them get home to their family.
+{{< highlight-card id="no-vendor-lock-in" >}}
+{
+  "icon": "sync_alt",
+  "title": "No Vendor Lock-in",
+  "description": "Built on OpenTelemetry — Microsoft's recommended standard. Same code works with Azure Monitor in production and Grafana locally.",
+  "style": "secondary"
+}
+{{< /highlight-card >}}
 
-## The Problem
+{{< tool-icons id="supported-languages" >}}
+{
+  "title": "Supported Languages",
+  "description": "Works with any OpenTelemetry-compatible backend:",
+  "items": [
+    {
+      "icon": "code",
+      "label": "TypeScript (Available)"
+    },
+    {
+      "icon": "schedule",
+      "label": "Go (Planned)"
+    },
+    {
+      "icon": "schedule",
+      "label": "Python (Planned)"
+    },
+    {
+      "icon": "schedule",
+      "label": "C# (Planned)"
+    }
+  ]
+}
+{{< /tool-icons >}}
 
-Traditional observability requires 20+ lines per operation — separate logger calls, metric counters, trace spans, manual correlation.
-
-## The Solution
-
-```typescript
-sovdev_log(INFO, FUNCTIONNAME, 'Payment processed', PEER_SERVICES.PAYMENT_GATEWAY, input, output);
-// ↑ Automatic logs + metrics + traces + correlation
-```
-
-**Result**: 95% less instrumentation code, complete observability out of the box.
-
-## What You Get Automatically
-
-Every log call generates:
-
-| Output | Backends |
-|--------|----------|
-| Structured Logs | Azure Log Analytics, Loki, JSON files |
-| Metrics | Azure Monitor, Prometheus, Grafana |
-| Distributed Traces | Application Insights, Tempo |
-| Service Maps | Automatic dependency graphs |
-| File Logs | JSON files for local development |
-
-No extra code required.
-
-## For Azure Developers
-
-This library uses **OpenTelemetry** — Microsoft's recommended standard. Same code works with Azure Monitor in production and Grafana locally. No vendor lock-in.
-
-| Environment | Logs | Metrics | Traces |
-|------------|------|---------|--------|
-| Azure Production | Azure Log Analytics | Azure Monitor | Application Insights |
-| Local Development | Console + JSON files | Grafana | Tempo |
-| On-Premises | Loki | Prometheus | Tempo |
-
-## Supported Languages
-
-| Language | Status |
-|----------|--------|
-| TypeScript | ✅ Available |
-| Go, Python, C#, Rust, PHP | 📅 Planned |
-
-Works with any OpenTelemetry-compatible backend: Azure Monitor, Grafana Cloud, Datadog, New Relic, or self-hosted.
-
-## Quick Start
-
-```bash
-npm install @sovdev/logger
-```
-
-No configuration needed for local development. Logs to console and `./logs/` directory out of the box.
+{{< steps id="quick-start" >}}
+{
+  "title": "Quick Start",
+  "description": "No configuration needed for local development. Logs to console and ./logs/ directory out of the box.",
+  "code": {
+    "language": "bash",
+    "label": "bash — install",
+    "command": "npm install @sovdev/logger"
+  }
+}
+{{< /steps >}}

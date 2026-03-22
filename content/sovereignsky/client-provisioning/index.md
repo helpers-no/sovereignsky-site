@@ -30,14 +30,10 @@ type: "sovereignsky"
 
 {{< summary id="summary-0" >}}
 {
-  "headline": "Automated Rancher Desktop deployment to Windows and Mac machines — via Intune, Jamf, or USB stick.",
-  "description": "Deployment scripts for setting up developer machines with container-based dev environments. Supports Windows (Intune) and macOS (Jamf)."
+  "headline": "Automated Rancher Desktop deployment to Windows and Mac machines — via Intune, Jamf, or USB stick",
+  "description": "A developer gets a new managed machine. The scripts install Rancher Desktop and the DevContainer Toolbox automatically. They open any project in a fully configured devcontainer within minutes."
 }
 {{< /summary >}}
-
-## The Goal
-
-A developer gets a new managed machine. The scripts install Rancher Desktop and the DevContainer Toolbox automatically. They open any project in a fully configured devcontainer within minutes. No manual setup. No IT tickets. No "it works on my machine."
 
 ## Who This Is For
 
@@ -45,33 +41,71 @@ This is for **operations teams in larger organizations** responsible for setting
 
 **Not using managed machines?** If your developers manage their own machines, they can install [DevContainer Toolbox](https://dct.sovereignsky.no/) directly with a single command — no need for this provisioning setup.
 
-## What Gets Installed
+{{< feature-grid id="what-gets-installed" >}}
+{
+  "title": "What Gets Installed",
+  "columns": [
+    {
+      "icon": "desktop_mac",
+      "title": "macOS (Jamf)",
+      "color": "primary",
+      "items": [
+        "Rancher Desktop",
+        "DevContainer Toolbox",
+        "No reboot needed"
+      ]
+    },
+    {
+      "icon": "desktop_windows",
+      "title": "Windows (Intune)",
+      "color": "secondary",
+      "items": [
+        "WSL2 (Windows features)",
+        "Rancher Desktop",
+        "DevContainer Toolbox",
+        "Reboot required after WSL2"
+      ]
+    }
+  ]
+}
+{{< /feature-grid >}}
 
-The scripts install [Rancher Desktop](https://rancherdesktop.io/) (a container runtime) and the [DevContainer Toolbox](https://dct.sovereignsky.no/) — giving developers a complete, ready-to-use environment with 20+ pre-configured tools.
+{{< highlight-card id="why-this-matters-for-maintenance" >}}
+{
+  "icon": "build_circle",
+  "title": "Why This Matters for Maintenance",
+  "description": "The biggest benefit isn't just onboarding new developers — it's maintenance. When the maintenance team needs to fix a bug in a system they didn't build, they check out the repo and get the exact same environment the original developer used. Same tools, same versions, same configuration.",
+  "style": "primary"
+}
+{{< /highlight-card >}}
 
-| | macOS | Windows |
-|-|-------|---------|
-| **Step 1** | Rancher Desktop | WSL2 (Windows features) |
-| **Step 2** | DevContainer Toolbox | Rancher Desktop |
-| **Step 3** | | DevContainer Toolbox |
-| **Reboot needed** | No | Yes (after WSL2) |
-| **Managed via** | Jamf | Intune |
-
-Windows requires an extra step because WSL2 must be enabled before Rancher Desktop can run.
-
-## Why This Matters for Maintenance
-
-The biggest benefit isn't just onboarding new developers — it's maintenance. When the maintenance team needs to fix a bug in a system they didn't build, they check out the repo and get the exact same environment the original developer used. Same tools, same versions, same configuration. No guessing.
-
-## Script Standards
-
-Every script follows strict standards enforced by validation tools:
-
-- Version number and unique ID
-- Numbered error codes (ERR001, etc.)
-- `--help` flag with consistent format
-- Structured logging (`log_info`, `log_error`, `log_success`)
-- Automatic version bumping via pre-commit hook
+{{< persona-cards id="script-standards" >}}
+{
+  "title": "Script Standards",
+  "items": [
+    {
+      "icon": "pin",
+      "label": "Version number and unique ID",
+      "description": "Every script is versioned and identifiable."
+    },
+    {
+      "icon": "error_outline",
+      "label": "Numbered error codes",
+      "description": "ERR001, ERR002, etc. for consistent troubleshooting."
+    },
+    {
+      "icon": "help_outline",
+      "label": "--help flag",
+      "description": "Consistent help format across all scripts."
+    },
+    {
+      "icon": "receipt_long",
+      "label": "Structured logging",
+      "description": "log_info, log_error, log_success for CI/CD visibility."
+    }
+  ]
+}
+{{< /persona-cards >}}
 
 ## CI/CD Pipeline
 

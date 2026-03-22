@@ -76,6 +76,42 @@
 .sd-color-secondary-dot { background-color: var(--sd-secondary); }
 .sd-color-tertiary-dot { background-color: var(--sd-tertiary); }
 
+/* Tables inside section-design */
+.section-design table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--sd-outline-variant);
+  font-size: 0.875rem;
+}
+.section-design table thead {
+  background-color: var(--sd-surface-container-low);
+}
+.section-design table th {
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: left;
+  color: var(--sd-on-surface);
+  border-bottom: 1px solid var(--sd-outline-variant);
+}
+.section-design table td {
+  padding: 0.75rem 1rem;
+  color: var(--sd-on-surface-variant);
+  border-bottom: 1px solid rgba(194, 198, 214, 0.15);
+}
+.section-design table tbody tr:last-child td {
+  border-bottom: none;
+}
+.section-design table tbody tr:hover {
+  background-color: var(--sd-surface-container-low);
+}
+.section-design table td:not(:first-child) {
+  text-align: center;
+}
+
 /* Highlight card gradient variants */
 .sd-highlight-primary {
   background: linear-gradient(to bottom right, #0058be, #2170e4);
