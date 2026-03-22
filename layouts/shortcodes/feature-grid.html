@@ -7,18 +7,18 @@
   {{ end }}
   <div data-sd-feature-grid class="editorial-shadow" style="display: grid; grid-template-columns: 1fr; border-radius: 1rem; overflow: hidden; border: 1px solid rgba(194, 198, 214, 0.2);">
     {{ range $i, $col := $config.columns }}
-    {{ $color := "var(--sd-primary)" }}
-    {{ if eq $col.color "secondary" }}{{ $color = "var(--sd-secondary)" }}{{ end }}
-    {{ if eq $col.color "tertiary" }}{{ $color = "var(--sd-tertiary)" }}{{ end }}
+    {{ $colorClass := "sd-color-primary" }}
+    {{ if eq $col.color "secondary" }}{{ $colorClass = "sd-color-secondary" }}{{ end }}
+    {{ if eq $col.color "tertiary" }}{{ $colorClass = "sd-color-tertiary" }}{{ end }}
     <div style="background-color: var(--sd-surface-container-lowest); padding: 2.5rem;">
-      <h4 style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; color: {{ $color }}; margin: 0 0 2rem 0;">
+      <h4 class="{{ $colorClass }}-text" style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3em; margin: 0 0 2rem 0;">
         <span class="material-symbols-outlined" style="font-size: 1.125rem;">{{ $col.icon }}</span>
         {{ $col.title }}
       </h4>
       <div data-sd-feature-items style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem;">
         {{ range $col.items }}
         <div style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: var(--sd-on-surface);">
-          <span style="width: 0.375rem; height: 0.375rem; border-radius: 50%; background-color: {{ $color }}; opacity: 0.4; flex-shrink: 0;"></span>
+          <span class="{{ $colorClass }}-dot" style="width: 0.375rem; height: 0.375rem; border-radius: 50%; opacity: 0.4; flex-shrink: 0;"></span>
           {{ . }}
         </div>
         {{ end }}

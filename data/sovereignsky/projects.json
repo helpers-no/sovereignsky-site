@@ -229,8 +229,73 @@
       "name": "DevContainer Toolbox",
       "description": "Cloud-based IDEs like GitHub Codespaces send your code through foreign infrastructure. DevContainer Toolbox provides the same convenience locally, keeping your source code and development activity within your own security perimeter.",
       "abstract": "A standardized, cross-platform development environment for fast, reliable onboarding and consistent delivery",
-      "summary": "A pre-configured development container providing all tools, libraries, and runtime dependencies required to build software—works identically on Windows, macOS, and Linux.",
-      "body": "## The Onboarding Problem\n\nNew developer joins Monday. Spends the entire first week installing tools, debugging environment issues, and asking colleagues why their build doesn't work. External consultants? Multiply that by the time it takes to get VPN access, security approvals, and the right tool versions.\n\n**With DevContainer Toolbox, a new developer is productive in minutes.** Open the project in VS Code, wait for the container to build, start coding. No setup guide. No OS-specific troubleshooting. No \"it works on my machine.\"\n\n## How It Works\n\nThe entire development environment is defined as code and version-controlled alongside your application source. When a developer checks out a repository, they get not only the code, but also the exact tools, runtimes, and configurations required to build, run, debug, and test it.\n\nOne command to add it to any project:\n\n```bash\ncurl -fsSL https://raw.githubusercontent.com/helpers-no/devcontainer-toolbox/main/install.sh | bash\n```\n\n## What's Included\n\n20+ tools pre-configured and ready to use:\n\n| Languages | Tools & Frameworks |\n|-----------|-------------------|\n| Python, TypeScript, Go | Azure CLI, Kubernetes, Terraform |\n| C#/.NET, Java, Rust | Docker, Git, Node.js |\n| PHP, Fortran, Laravel | Nginx, PowerShell, Databricks |\n\n## Who Benefits\n\n- **New developers** — productive on day one, not day five\n- **External consultants** — work in a controlled, compliant environment without touching their host machine\n- **Teams inheriting code** — taking over a project from another team or vendor? The devcontainer has the complete environment. No reverse-engineering build steps, no guessing which tool versions they used. Open the project, it just works.\n- **Team leads** — scale the team without scaling setup overhead\n- **Security teams** — pinned tool versions, auditable dependencies, nothing installed on host\n\n## Works Everywhere\n\nIdentical experience on Windows, macOS, and Linux with:\n\n- Visual Studio Code\n- JetBrains Rider\n- Visual Studio\n\n## AI-Ready Development\n\nRun AI coding assistants like Claude Code safely inside the container — they can access project files but not your host system. Full AI-powered development without the security risk.\n\n**[Full documentation at dct.sovereignsky.no](https://dct.sovereignsky.no/)**",
+      "sections": [
+        {
+          "type": "summary",
+          "headline": "A standardized, cross-platform development environment for fast, reliable onboarding and consistent delivery",
+          "description": "A pre-configured development container providing all tools, libraries, and runtime dependencies required to build software—works identically on Windows, macOS, and Linux."
+        },
+        {
+          "type": "markdown",
+          "body": "## The Onboarding Problem\n\nNew developer joins Monday. Spends the entire first week installing tools, debugging environment issues, and asking colleagues why their build doesn't work. External consultants? Multiply that by the time it takes to get VPN access, security approvals, and the right tool versions.\n\n**With DevContainer Toolbox, a new developer is productive in minutes.** Open the project in VS Code, wait for the container to build, start coding. No setup guide. No OS-specific troubleshooting. No \"it works on my machine.\""
+        },
+        {
+          "type": "steps",
+          "title": "How It Works",
+          "description": "The entire development environment is defined as code and version-controlled alongside your application source. When a developer checks out a repository, they get not only the code, but also the exact tools, runtimes, and configurations required to build, run, debug, and test it.",
+          "code": {
+            "language": "bash",
+            "label": "bash — install.sh",
+            "command": "curl -fsSL https://raw.githubusercontent.com/helpers-no/devcontainer-toolbox/main/install.sh | bash"
+          }
+        },
+        {
+          "type": "feature-grid",
+          "title": "What's Included",
+          "columns": [
+            {
+              "icon": "code",
+              "title": "Languages",
+              "color": "primary",
+              "items": ["Python", "TypeScript", "Go", "C#/.NET", "Java", "Rust", "PHP", "Fortran", "Laravel"]
+            },
+            {
+              "icon": "construction",
+              "title": "Tools & Frameworks",
+              "color": "secondary",
+              "items": ["Azure CLI", "Kubernetes", "Terraform", "Docker", "Git", "Node.js", "Nginx", "PowerShell", "Databricks"]
+            }
+          ]
+        },
+        {
+          "type": "highlight-card",
+          "icon": "psychology",
+          "title": "AI-Ready Development",
+          "description": "Run AI coding assistants like Claude Code safely inside the container — they can access project files but not your host system. Full AI-powered development without the security risk.",
+          "style": "tertiary"
+        },
+        {
+          "type": "tool-icons",
+          "title": "Works Everywhere",
+          "description": "Identical experience on Windows, macOS, and Linux with:",
+          "items": [
+            { "icon": "terminal", "label": "Visual Studio Code" },
+            { "icon": "developer_mode_tv", "label": "JetBrains Rider" },
+            { "icon": "window", "label": "Visual Studio" }
+          ]
+        },
+        {
+          "type": "persona-cards",
+          "title": "Who Benefits",
+          "items": [
+            { "icon": "person_add", "label": "New developers", "description": "Productive on day one, not day five." },
+            { "icon": "assignment_ind", "label": "External consultants", "description": "Work in a controlled, compliant environment without touching their host machine." },
+            { "icon": "history", "label": "Teams inheriting code", "description": "Taking over a project from another team or vendor? The devcontainer has the complete environment. No reverse-engineering build steps, no guessing which tool versions they used. Open the project, it just works." },
+            { "icon": "leaderboard", "label": "Team leads", "description": "Scale the team without scaling setup overhead." },
+            { "icon": "verified_user", "label": "Security teams", "description": "Pinned tool versions, auditable dependencies, nothing installed on host." }
+          ]
+        }
+      ],
       "image": "devcontainer-toolbox.png",
       "url": "https://dct.sovereignsky.no/",
       "topics": [

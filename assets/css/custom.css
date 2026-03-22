@@ -68,6 +68,40 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
+/* Feature grid color utilities */
+.sd-color-primary-text { color: var(--sd-primary); }
+.sd-color-secondary-text { color: var(--sd-secondary); }
+.sd-color-tertiary-text { color: var(--sd-tertiary); }
+.sd-color-primary-dot { background-color: var(--sd-primary); }
+.sd-color-secondary-dot { background-color: var(--sd-secondary); }
+.sd-color-tertiary-dot { background-color: var(--sd-tertiary); }
+
+/* Highlight card gradient variants */
+.sd-highlight-primary {
+  background: linear-gradient(to bottom right, #0058be, #2170e4);
+  color: #ffffff;
+}
+.sd-highlight-secondary {
+  background: linear-gradient(to bottom right, #006c49, #6cf8bb);
+  color: #ffffff;
+}
+.sd-highlight-tertiary {
+  background: linear-gradient(to bottom right, #6b38d4, #8455ef);
+  color: #fffbff;
+}
+.dark .sd-highlight-primary {
+  background: linear-gradient(to bottom right, #004395, #0058be);
+  color: #d8e2ff;
+}
+.dark .sd-highlight-secondary {
+  background: linear-gradient(to bottom right, #005236, #006c49);
+  color: #6ffbbe;
+}
+.dark .sd-highlight-tertiary {
+  background: linear-gradient(to bottom right, #5516be, #6b38d4);
+  color: #e9ddff;
+}
+
 /* Custom styles for SovereignSky */
 
 /* Missing Tailwind utilities not in Blowfish compiled CSS */

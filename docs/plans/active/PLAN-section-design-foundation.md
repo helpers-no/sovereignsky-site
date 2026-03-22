@@ -97,12 +97,12 @@ Replace the flat `body` field with a structured `sections` array in the JSON, th
 
 ### Tasks
 
-- [ ] 3.1 In `data/sovereignsky/projects.json`, replace the devcontainer-toolbox `body` field with `sections` array (7 sections: summary, markdown, steps, feature-grid, highlight-card + tool-icons, persona-cards — as specified in the investigation file)
-- [ ] 3.2 Remove `summary` field from devcontainer-toolbox JSON (content moves into `summary` section type). Note: the frontmatter `summary` field should still be populated from `abstract` for Hugo SEO/listing excerpts.
-- [ ] 3.3 Keep all other fields unchanged (name, description, abstract, image, topics, tags, audience, project)
-- [ ] 3.4 Run generator: `node scripts/generate-sovereignsky-pages.js`
-- [ ] 3.5 Verify generated `content/sovereignsky/devcontainer-toolbox/index.md` contains correct frontmatter + shortcodes
-- [ ] 3.6 Verify all other project pages are unchanged
+- [x] 3.1 In `data/sovereignsky/projects.json`, replace the devcontainer-toolbox `body` field with `sections` array (7 sections: summary, markdown, steps, feature-grid, highlight-card + tool-icons, persona-cards — as specified in the investigation file)
+- [x] 3.2 Remove `summary` field from devcontainer-toolbox JSON (content moves into `summary` section type). Note: the frontmatter `summary` field should still be populated from `abstract` for Hugo SEO/listing excerpts.
+- [x] 3.3 Keep all other fields unchanged (name, description, abstract, image, topics, tags, audience, project)
+- [x] 3.4 Run generator: `node scripts/generate-sovereignsky-pages.js`
+- [x] 3.5 Verify generated `content/sovereignsky/devcontainer-toolbox/index.md` contains correct frontmatter + shortcodes
+- [x] 3.6 Verify all other project pages are unchanged
 
 ### Validation
 
