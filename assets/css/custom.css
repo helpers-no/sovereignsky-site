@@ -541,6 +541,14 @@ section.sd-page #sidebar .btn-primary,
   font-weight: 700;
   border-radius: 0.5rem;
   text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+a.sd-sidebar-topic:hover {
+  background-color: var(--sd-surface-container-high);
+  color: var(--sd-primary);
+  text-decoration: none;
 }
 
 .sd-sidebar-tag {
@@ -551,6 +559,14 @@ section.sd-page #sidebar .btn-primary,
   text-transform: uppercase;
   font-weight: 500;
   color: var(--sd-on-surface-variant);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+a.sd-sidebar-tag:hover {
+  border-color: var(--sd-primary);
+  color: var(--sd-primary);
+  text-decoration: none;
 }
 
 .sd-sidebar-btn {
