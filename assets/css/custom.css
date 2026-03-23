@@ -699,6 +699,8 @@ body:has(.sd-footer) footer.sd-footer {
   color: var(--sd-on-surface-variant, #c2c6d6);
 }
 
+
+
 /* Custom styles for SovereignSky */
 
 /* Missing Tailwind utilities not in Blowfish compiled CSS */
