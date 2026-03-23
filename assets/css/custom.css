@@ -595,12 +595,26 @@ a.sd-sidebar-tag:hover {
   border-color: rgba(194, 198, 214, 0.1);
 }
 
-/* Remove horizontal lines from sovereignsky pagination */
-.sd-pagination hr {
+/* Remove horizontal lines from sovereignsky pagination and footer */
+footer.sd-pagination hr {
   display: none !important;
 }
-.sd-pagination .border-dotted {
+footer.sd-pagination > div.pt-8 {
+  padding-top: 0 !important;
+}
+footer.sd-pagination {
   border: none !important;
+  margin-top: 0 !important;
+}
+footer.sd-footer {
+  border-top: none !important;
+  margin-top: 0 !important;
+}
+
+/* Override global footer separation rules for sovereignsky */
+body:has(.sd-footer) footer.sd-pagination,
+body:has(.sd-footer) footer.sd-footer {
+  border-top: none !important;
 }
 
 /* ==========================================================================

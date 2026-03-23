@@ -1,0 +1,74 @@
+{{/*
+  Sovereign Sky Footer — Stitch-styled footer for sovereignsky project pages
+  Replaces the default site footer visually (default footer hidden via CSS)
+*/}}
+
+<footer class="sd-footer section-design not-prose" style="margin-top: 2rem; padding: 3rem 0;">
+  <div style="max-width: 80rem; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr; gap: 2rem;">
+
+    {{/* 4-column grid */}}
+    <div data-sd-footer-grid style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+
+      {{/* Column 1: Brand */}}
+      <div>
+        <div class="sd-headline" style="font-size: 1.125rem; font-weight: 700; color: var(--sd-on-surface); margin-bottom: 0.75rem;">SovereignSky</div>
+        <p style="font-size: 0.875rem; color: var(--sd-on-surface-variant); line-height: 1.6;">
+          Building sovereign infrastructure for organizations that need to operate — with or without the cloud.
+        </p>
+      </div>
+
+      {{/* Column 2: Platform */}}
+      <div>
+        <h5 class="sd-headline" style="font-size: 0.875rem; font-weight: 700; color: var(--sd-on-surface); margin-bottom: 1rem;">Platform</h5>
+        <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <a href="/sovereignsky/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Projects</a>
+          <a href="/datacenters/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Datacenters</a>
+          <a href="/software/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Software Database</a>
+          <a href="/networks/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Networks</a>
+        </nav>
+      </div>
+
+      {{/* Column 3: Resources */}}
+      <div>
+        <h5 class="sd-headline" style="font-size: 0.875rem; font-weight: 700; color: var(--sd-on-surface); margin-bottom: 1rem;">Resources</h5>
+        <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <a href="/blog/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Blog</a>
+          <a href="/publications/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Publications</a>
+          <a href="/laws/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Laws</a>
+          <a href="/events/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Events</a>
+        </nav>
+      </div>
+
+      {{/* Column 4: About */}}
+      <div>
+        <h5 class="sd-headline" style="font-size: 0.875rem; font-weight: 700; color: var(--sd-on-surface); margin-bottom: 1rem;">About</h5>
+        <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
+          <a href="/about/" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">About SovereignSky</a>
+          <a href="https://helpers.no" target="_blank" rel="noopener noreferrer" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">Helpers.no</a>
+          <a href="https://github.com/helpers-no" target="_blank" rel="noopener noreferrer" style="font-size: 0.875rem; color: var(--sd-on-surface-variant); text-decoration: none;">GitHub</a>
+        </nav>
+      </div>
+
+    </div>
+
+    {{/* Copyright bar */}}
+    <div style="padding-top: 2rem; border-top: 1px solid rgba(194, 198, 214, 0.15); text-align: center; font-size: 0.75rem; color: var(--sd-outline);">
+      &copy; {{ now.Format "2006" }} SovereignSky Infrastructure. Open source under MIT License.
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  @media (min-width: 768px) {
+    [data-sd-footer-grid] {
+      grid-template-columns: 2fr 1fr 1fr 1fr !important;
+      gap: 3rem !important;
+    }
+  }
+
+  /* Hide default site footer on sovereignsky pages */
+  body:has(.sd-footer) .site-footer {
+    display: none !important;
+  }
+</style>
