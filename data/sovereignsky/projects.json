@@ -744,7 +744,7 @@
         }
       ],
       "imageWide": "urbalurba-infrastructure.png",
-      "imageSquare": ""
+      "imageSquare": "uis-hero.webm"
     },
     {
       "@type": "SoftwareSourceCode",
@@ -901,7 +901,7 @@
         "documentation": "https://dct.sovereignsky.no/"
       },
       "imageWide": "devcontainer-toolbox.png",
-      "imageSquare": ""
+      "imageSquare": "dct-hero.webm"
     },
     {
       "@type": "SoftwareSourceCode",

@@ -62,12 +62,19 @@
         {{ end }}
       </div>
 
-      {{/* Right column: square image or nothing */}}
-      {{ $heroImage := .Resources.GetMatch "hero.*" }}
-      {{ if $heroImage }}
+      {{/* Right column: square image or video (hero.* file) */}}
+      {{ $heroMedia := .Resources.GetMatch "hero.*" }}
+      {{ if $heroMedia }}
       <div class="sd-hero-panel-wrap">
         <div class="sd-hero-panel" style="padding: 0; overflow: hidden;">
-          <img src="{{ $heroImage.RelPermalink }}" alt="{{ .Title }}" style="width: 100%; height: 100%; object-fit: cover;" />
+          {{ $ext := path.Ext $heroMedia.RelPermalink }}
+          {{ if or (eq $ext ".webm") (eq $ext ".mp4") }}
+          <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="{{ $heroMedia.RelPermalink }}" type="video/{{ strings.TrimPrefix "." $ext }}">
+          </video>
+          {{ else }}
+          <img src="{{ $heroMedia.RelPermalink }}" alt="{{ .Title }}" style="width: 100%; height: 100%; object-fit: cover;" />
+          {{ end }}
         </div>
       </div>
       {{ end }}

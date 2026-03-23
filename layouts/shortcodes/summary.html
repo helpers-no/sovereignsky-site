@@ -1,7 +1,7 @@
 {{/* summary shortcode — two-column layout: headline left, description right */}}
 {{ $config := .Inner | transform.Unmarshal }}
 
-<div class="section-design not-prose" style="background-color: var(--sd-surface-container-low); padding: 3rem 1.5rem; margin: 2rem -1.5rem;">
+<div class="section-design not-prose" style="background-color: var(--sd-surface-container-low); padding: 3rem 1.5rem; margin: 2rem 0; border-radius: 1rem;">
   <div data-sd-summary-grid style="max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 2rem;">
     <div>
       <span class="sd-headline" style="display: block; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--sd-secondary); margin-bottom: 1rem;">Summary</span>
