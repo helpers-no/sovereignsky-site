@@ -22,50 +22,166 @@ audience:
   - "developer"
   - "it-ops"
 showHero: true
-heroStyle: "big"
+heroStyle: "sovereignsky"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Zero-friction developer platform for building, testing, and deploying modern apps without needing to know Kubernetes, GitOps, or the cloud. Same infrastructure locally, in cloud, and on-premises.
+{{< summary id="summary-0" >}}
+{
+  "headline": "A complete datacenter environment on your laptop — Kubernetes, databases, AI, and cloud services running locally",
+  "description": "Zero-friction developer platform for building, testing, and deploying modern apps without needing to know Kubernetes, GitOps, or the cloud. Same infrastructure locally, in cloud, and on-premises."
+}
+{{< /summary >}}
 
-## The Problem
+{{< metadata-sidebar >}}
+{{< highlight-card id="the-problem" >}}
+{
+  "icon": "error_outline",
+  "title": "The Problem",
+  "description": "Your developers need databases, message queues, AI models, and monitoring — but setting up cloud accounts takes weeks, costs money from day one, and sends your data to foreign providers. Permission bottlenecks, cloud costs, and privacy concerns slow everything down.",
+  "style": "tertiary"
+}
+{{< /highlight-card >}}
 
-Your developers need databases, message queues, AI models, and monitoring — but setting up cloud accounts takes weeks, costs money from day one, and sends your data to foreign providers. Permission bottlenecks, cloud costs, and privacy concerns slow everything down.
+{{< highlight-card id="the-solution" >}}
+{
+  "icon": "check_circle",
+  "title": "The Solution",
+  "description": "30+ open-source services, pre-configured and ready to run on your laptop, AKS, Raspberry Pi, Ubuntu server, VM, or any Kubernetes cluster. Same stack everywhere. No cloud account needed to get started.",
+  "style": "primary"
+}
+{{< /highlight-card >}}
 
-## The Solution
+{{< /metadata-sidebar >}}
 
-30+ open-source services, pre-configured and ready to run on your laptop, AKS, Raspberry Pi, Ubuntu server, VM, or any Kubernetes cluster. Same stack everywhere. No cloud account needed to get started.
+{{< feature-grid id="what-s-included" >}}
+{
+  "title": "What's Included",
+  "columns": [
+    {
+      "icon": "storage",
+      "title": "Data & Storage",
+      "color": "primary",
+      "items": [
+        "PostgreSQL",
+        "MongoDB",
+        "Redis",
+        "Elasticsearch",
+        "Qdrant",
+        "MinIO",
+        "Nextcloud"
+      ]
+    },
+    {
+      "icon": "monitoring",
+      "title": "Ops & Security",
+      "color": "secondary",
+      "items": [
+        "Prometheus",
+        "Grafana",
+        "Loki",
+        "Tempo",
+        "OpenTelemetry",
+        "ArgoCD",
+        "Backstage",
+        "Authentik",
+        "SonarQube"
+      ]
+    },
+    {
+      "icon": "psychology",
+      "title": "AI & Integration",
+      "color": "tertiary",
+      "items": [
+        "LiteLLM",
+        "Open WebUI",
+        "Apache Spark",
+        "JupyterHub",
+        "Unity Catalog",
+        "RabbitMQ",
+        "Gravitee API Gateway"
+      ]
+    }
+  ]
+}
+{{< /feature-grid >}}
 
-## What's Included
+{{< side-by-side id="side-by-side-4" >}}
+{
+  "left": [
+    {
+      "type": "highlight-card",
+      "icon": "rocket_launch",
+      "title": "Runs Anywhere",
+      "description": "Laptop, Raspberry Pi, Ubuntu server, VM, AKS, or any Kubernetes cluster. Same infrastructure in development and production. No cloud account needed — start building immediately, zero cost.",
+      "style": "primary"
+    },
+    {
+      "type": "tool-icons",
+      "title": "Key Benefits",
+      "description": "30+ services, true portability, and data sovereignty:",
+      "items": [
+        {
+          "icon": "apps",
+          "label": "30+ Services"
+        },
+        {
+          "icon": "sync_alt",
+          "label": "True Portability"
+        },
+        {
+          "icon": "shield",
+          "label": "Data Stays Local"
+        },
+        {
+          "icon": "cloud_off",
+          "label": "No Cloud Needed"
+        }
+      ]
+    }
+  ],
+  "right": [
+    {
+      "type": "persona-cards",
+      "title": "Pre-configured Stacks",
+      "items": [
+        {
+          "icon": "visibility",
+          "label": "Observability Stack",
+          "description": "Complete monitoring with metrics, logs, and distributed tracing. One command."
+        },
+        {
+          "icon": "smart_toy",
+          "label": "Local AI Stack",
+          "description": "Run AI models locally with a unified API and ChatGPT-like chat interface. Your data stays on your machine."
+        },
+        {
+          "icon": "analytics",
+          "label": "Analytics Stack",
+          "description": "Collaborative data science with Jupyter notebooks, Spark, and Unity Catalog."
+        }
+      ]
+    }
+  ]
+}
+{{< /side-by-side >}}
 
-| Category | Services | Count |
-|----------|----------|-------|
-| **Observability** | Prometheus, Grafana, Loki, Tempo, OpenTelemetry Collector | 5 |
-| **AI & ML** | LiteLLM (unified API for local AI models), Open WebUI (ChatGPT-like interface) | 2 |
-| **Analytics** | Apache Spark, JupyterHub, Unity Catalog | 3 |
-| **Databases** | PostgreSQL, MongoDB, Redis, Elasticsearch, Qdrant, MinIO | 6 |
-| **Management** | ArgoCD (GitOps), Backstage (developer portal), Tika, SonarQube | 6 |
-| **Identity** | Authentik (SSO, OAuth, LDAP) | 1 |
-| **Networking** | Tailscale, Cloudflare Tunnel | 2 |
-| **Integration** | RabbitMQ, Gravitee API Gateway, event streams | 3 |
-| **Applications** | Nextcloud (file sharing and collaboration) | 1 |
-
-## Pre-configured Stacks
-
-Don't pick individual services — use a ready-made stack:
-
-- **Observability Stack** — Complete monitoring with metrics, logs, and distributed tracing. One command.
-- **Local AI Stack** — Run AI models locally with a unified API and ChatGPT-like chat interface. Your data stays on your machine.
-- **Analytics Stack** — Collaborative data science with Jupyter notebooks, Spark, and Unity Catalog.
-
-## Key Benefits
-
-- **30+ services** — everything a development team needs, pre-configured
-- **Runs anywhere** — laptop, Raspberry Pi, Ubuntu server, VM, AKS, or any Kubernetes cluster
-- **No cloud account needed** — start building immediately, zero cost
-- **Data stays local** — AI, databases, and monitoring all on your machine
-- **Production-identical** — same infrastructure in development and production
-- **True portability** — move workloads between providers without rewriting applications
-
-**[Full documentation at uis.sovereignsky.no](https://uis.sovereignsky.no/)**
+{{< cta id="ready-to-build-on-sovereign-infrastructure" >}}
+{
+  "title": "Ready to build on sovereign infrastructure?",
+  "description": "Full documentation at uis.sovereignsky.no",
+  "buttons": [
+    {
+      "label": "Documentation",
+      "url": "https://uis.sovereignsky.no/"
+    },
+    {
+      "label": "View Repository",
+      "url": "https://github.com/helpers-no/urbalurba-infrastructure",
+      "style": "secondary"
+    }
+  ]
+}
+{{< /cta >}}

@@ -1,3 +1,721 @@
+/* ==========================================================================
+   Section Design System (Stitch-derived)
+   Scoped under .section-design to avoid conflicts with Blowfish theme
+   ========================================================================== */
+
+.section-design {
+  --sd-primary: #0058be;
+  --sd-primary-container: #2170e4;
+  --sd-secondary: #006c49;
+  --sd-secondary-container: #6cf8bb;
+  --sd-tertiary: #6b38d4;
+  --sd-tertiary-container: #8455ef;
+  --sd-surface: #faf8ff;
+  --sd-surface-container: #eaedff;
+  --sd-surface-container-low: #f2f3ff;
+  --sd-surface-container-lowest: #ffffff;
+  --sd-surface-container-high: #e2e7ff;
+  --sd-surface-container-highest: #dae2fd;
+  --sd-on-surface: #131b2e;
+  --sd-on-surface-variant: #424754;
+  --sd-on-primary: #ffffff;
+  --sd-on-tertiary-container: #fffbff;
+  --sd-outline: #727785;
+  --sd-outline-variant: #c2c6d6;
+  --sd-error: #ba1a1a;
+  font-family: 'Inter', sans-serif;
+}
+
+.dark .section-design {
+  --sd-primary: #adc6ff;
+  --sd-primary-container: #004395;
+  --sd-secondary: #4edea3;
+  --sd-secondary-container: #005236;
+  --sd-tertiary: #d0bcff;
+  --sd-tertiary-container: #5516be;
+  --sd-surface: #131b2e;
+  --sd-surface-container: #1e2640;
+  --sd-surface-container-low: #1a2236;
+  --sd-surface-container-lowest: #0e1524;
+  --sd-surface-container-high: #283044;
+  --sd-surface-container-highest: #323a4e;
+  --sd-on-surface: #dae2fd;
+  --sd-on-surface-variant: #c2c6d6;
+  --sd-on-primary: #001a42;
+  --sd-on-tertiary-container: #e9ddff;
+  --sd-outline: #8c90a0;
+  --sd-outline-variant: #424754;
+  --sd-error: #ffb4ab;
+}
+
+.section-design .sd-headline {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.section-design .material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.section-design .material-symbols-outlined.filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.editorial-shadow {
+  box-shadow: 0 12px 40px rgba(0, 31, 38, 0.04);
+}
+
+.dark .editorial-shadow {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Feature grid color utilities */
+.sd-color-primary-text { color: var(--sd-primary); }
+.sd-color-secondary-text { color: var(--sd-secondary); }
+.sd-color-tertiary-text { color: var(--sd-tertiary); }
+.sd-color-primary-dot { background-color: var(--sd-primary); }
+.sd-color-secondary-dot { background-color: var(--sd-secondary); }
+.sd-color-tertiary-dot { background-color: var(--sd-tertiary); }
+
+/* Tables inside section-design */
+.section-design table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid var(--sd-outline-variant);
+  font-size: 0.875rem;
+}
+.section-design table thead {
+  background-color: var(--sd-surface-container-low);
+}
+.section-design table th {
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: left;
+  color: var(--sd-on-surface);
+  border-bottom: 1px solid var(--sd-outline-variant);
+}
+.section-design table td {
+  padding: 0.75rem 1rem;
+  color: var(--sd-on-surface-variant);
+  border-bottom: 1px solid rgba(194, 198, 214, 0.15);
+}
+.section-design table tbody tr:last-child td {
+  border-bottom: none;
+}
+.section-design table tbody tr:hover {
+  background-color: var(--sd-surface-container-low);
+}
+.section-design table td:not(:first-child) {
+  text-align: center;
+}
+
+/* Highlight card gradient variants */
+.sd-highlight-primary {
+  background: linear-gradient(to bottom right, #0058be, #2170e4);
+  color: #ffffff;
+}
+.sd-highlight-secondary {
+  background: linear-gradient(to bottom right, #006c49, #6cf8bb);
+  color: #ffffff;
+}
+.sd-highlight-tertiary {
+  background: linear-gradient(to bottom right, #6b38d4, #8455ef);
+  color: #fffbff;
+}
+.dark .sd-highlight-primary {
+  background: linear-gradient(to bottom right, #004395, #0058be);
+  color: #d8e2ff;
+}
+.dark .sd-highlight-secondary {
+  background: linear-gradient(to bottom right, #005236, #006c49);
+  color: #6ffbbe;
+}
+.dark .sd-highlight-tertiary {
+  background: linear-gradient(to bottom right, #5516be, #6b38d4);
+  color: #e9ddff;
+}
+
+/* ==========================================================================
+   Sovereign Sky Hero
+   ========================================================================== */
+
+.sd-hero {
+  position: relative;
+  padding: 3rem 1.5rem 4rem;
+  overflow: hidden;
+  background-color: var(--sd-surface);
+}
+
+.sd-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0, 88, 190, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  z-index: 0;
+}
+
+.sd-hero-grid {
+  position: relative;
+  z-index: 1;
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.sd-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sd-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--sd-surface-container-high);
+  color: var(--sd-primary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+}
+
+.sd-hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--sd-on-surface);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  margin: 0 0 1.5rem 0;
+}
+
+.sd-hero-description {
+  font-size: 1.125rem;
+  color: var(--sd-on-surface-variant);
+  line-height: 1.7;
+  max-width: 40rem;
+  margin: 0 0 1.5rem 0;
+}
+
+.sd-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.sd-hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--sd-on-surface);
+}
+
+.sd-hero-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--sd-secondary);
+}
+
+.sd-hero-status-planned .sd-hero-status-dot { background-color: #eab308; }
+.sd-hero-status-completed .sd-hero-status-dot { background-color: var(--sd-primary); }
+.sd-hero-status-archived .sd-hero-status-dot { background-color: var(--sd-outline); }
+
+.sd-hero-date {
+  font-size: 0.875rem;
+  color: var(--sd-on-surface-variant);
+}
+
+.sd-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.sd-hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  background: linear-gradient(to bottom right, #0058be, #2170e4);
+  color: #ffffff;
+  transition: opacity 0.2s;
+}
+
+.sd-hero-cta-primary:hover {
+  opacity: 0.92;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.sd-hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  background-color: var(--sd-surface-container-lowest);
+  color: var(--sd-primary);
+  border: 1px solid rgba(194, 198, 214, 0.2);
+  transition: background-color 0.2s;
+}
+
+.sd-hero-cta-secondary:hover {
+  background-color: var(--sd-surface-container-low);
+  color: var(--sd-primary);
+  text-decoration: none;
+}
+
+/* Decorative panel */
+.sd-hero-panel-wrap {
+  display: none;
+}
+
+.sd-hero-panel {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 2rem;
+  background: linear-gradient(to bottom right, var(--sd-surface-container-high), var(--sd-surface-container-low));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.sd-hero-panel-icon {
+  font-size: 8rem;
+  color: var(--sd-primary);
+  opacity: 0.1;
+}
+
+.sd-hero-panel-accent {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  width: 10rem;
+  height: 10rem;
+  background-color: var(--sd-tertiary);
+  opacity: 0.1;
+  border-radius: 50%;
+  filter: blur(48px);
+  z-index: -1;
+}
+
+.dark .sd-hero-panel {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .sd-hero-cta-primary {
+  background: linear-gradient(to bottom right, #004395, #0058be);
+  color: #d8e2ff;
+}
+
+.dark .sd-hero-cta-secondary {
+  background-color: var(--sd-surface-container);
+  border-color: rgba(194, 198, 214, 0.1);
+}
+
+@media (min-width: 768px) {
+  .sd-hero {
+    padding: 5rem 2rem 6rem;
+  }
+  .sd-hero-grid {
+    grid-template-columns: 7fr 5fr;
+    gap: 3rem;
+  }
+  .sd-hero-title {
+    font-size: 3.5rem;
+  }
+  .sd-hero-panel-wrap {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   Sovereign Sky Sidebar
+   ========================================================================== */
+
+.sd-page #sidebar {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Card backgrounds — ghost borders, surface colors, big radius */
+.sd-page #sidebar .card,
+section.sd-page #sidebar .card {
+  background-color: var(--sd-surface-container-low) !important;
+  border: 1px solid rgba(194, 198, 214, 0.15) !important;
+  border-radius: 1rem !important;
+  box-shadow: none !important;
+}
+
+.sd-page #sidebar .card .card-body {
+  padding: 1.25rem !important;
+}
+
+.dark .sd-page #sidebar .card,
+.dark section.sd-page #sidebar .card {
+  background-color: var(--sd-surface-container) !important;
+  border-color: rgba(194, 198, 214, 0.08) !important;
+}
+
+/* Card titles — Stitch style with icon */
+.sd-page #sidebar .card-title {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-size: 0.8125rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  color: var(--sd-on-surface) !important;
+}
+
+/* Labels (dt) — tiny uppercase like Stitch */
+.sd-page #sidebar dl dt {
+  font-size: 0.625rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.15em !important;
+  color: var(--sd-outline) !important;
+}
+
+/* Values (dd) — bold on-surface */
+.sd-page #sidebar dl dd {
+  font-weight: 700 !important;
+  color: var(--sd-on-surface) !important;
+}
+
+/* Project link buttons — gradient primary */
+.sd-page #sidebar .btn-primary,
+section.sd-page #sidebar .btn-primary,
+.sd-page #sidebar a.btn-primary {
+  background: linear-gradient(to bottom right, #0058be, #2170e4) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 12px rgba(0, 88, 190, 0.2) !important;
+}
+
+.sd-page #sidebar .btn-primary:hover,
+.sd-page #sidebar a.btn-primary:hover {
+  opacity: 0.92;
+}
+
+.dark .sd-page #sidebar .btn-primary,
+.dark .sd-page #sidebar a.btn-primary {
+  background: linear-gradient(to bottom right, #004395, #0058be) !important;
+  color: #d8e2ff !important;
+  box-shadow: none !important;
+}
+
+/* Secondary buttons — ghost borders */
+.sd-page #sidebar .btn-outline,
+.sd-page #sidebar a.btn:not(.btn-primary) {
+  background-color: var(--sd-surface-container-lowest) !important;
+  border: 1px solid rgba(194, 198, 214, 0.2) !important;
+  color: var(--sd-on-surface) !important;
+  font-weight: 700 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: none !important;
+}
+
+.sd-page #sidebar .btn-outline:hover,
+.sd-page #sidebar a.btn:not(.btn-primary):hover {
+  background-color: var(--sd-surface-container-low) !important;
+}
+
+.dark .sd-page #sidebar .btn-outline,
+.dark .sd-page #sidebar a.btn:not(.btn-primary) {
+  background-color: var(--sd-surface-container) !important;
+  border-color: rgba(194, 198, 214, 0.1) !important;
+}
+
+/* Tags — small uppercase pills with ghost borders */
+.sd-page #sidebar a[href*="/tags/"] {
+  display: inline-block !important;
+  padding: 0.125rem 0.5rem !important;
+  border: 1px solid rgba(194, 198, 214, 0.3) !important;
+  border-radius: 0.25rem !important;
+  font-size: 0.6875rem !important;
+  text-transform: uppercase !important;
+  font-weight: 500 !important;
+  color: var(--sd-on-surface-variant) !important;
+  text-decoration: none !important;
+  line-height: 1.5;
+}
+
+.sd-page #sidebar a[href*="/tags/"]:hover {
+  border-color: var(--sd-primary) !important;
+  color: var(--sd-primary) !important;
+}
+
+/* Topics — badge styling */
+.sd-page #sidebar .badge {
+  background-color: var(--sd-surface-container-highest) !important;
+  color: var(--sd-on-surface) !important;
+  border: none !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  font-size: 0.6875rem !important;
+}
+
+/* General sidebar text and links */
+.sd-page #sidebar {
+  color: var(--sd-on-surface);
+}
+
+.sd-page #sidebar a {
+  color: var(--sd-on-surface);
+  text-decoration: none;
+}
+
+.sd-page #sidebar a:hover {
+  color: var(--sd-primary);
+}
+
+/* Icon colors in sidebar */
+.sd-page #sidebar svg.text-primary,
+.sd-page #sidebar .text-primary {
+  color: var(--sd-primary) !important;
+}
+
+/* --- New unified sidebar components --- */
+
+.sd-sidebar-card {
+  background-color: var(--sd-surface-container-low);
+  border: 1px solid rgba(194, 198, 214, 0.15);
+}
+
+.dark .sd-sidebar-card {
+  background-color: var(--sd-surface-container);
+  border-color: rgba(194, 198, 214, 0.08);
+}
+
+.sd-sidebar-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--sd-outline);
+}
+
+.sd-sidebar-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--sd-secondary);
+  flex-shrink: 0;
+}
+
+.sd-sidebar-status-planned .sd-sidebar-status-dot,
+.sd-sidebar-status-dot.sd-sidebar-status-planned { background-color: #eab308; }
+.sd-sidebar-status-completed .sd-sidebar-status-dot,
+.sd-sidebar-status-dot.sd-sidebar-status-completed { background-color: var(--sd-primary); }
+.sd-sidebar-status-archived .sd-sidebar-status-dot,
+.sd-sidebar-status-dot.sd-sidebar-status-archived { background-color: var(--sd-outline); }
+
+.sd-sidebar-topic {
+  padding: 0.25rem 0.75rem;
+  background-color: var(--sd-surface-container-highest);
+  color: var(--sd-on-surface);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+a.sd-sidebar-topic:hover {
+  background-color: var(--sd-surface-container-high);
+  color: var(--sd-primary);
+  text-decoration: none;
+}
+
+.sd-sidebar-tag {
+  padding: 0.125rem 0.5rem;
+  border: 1px solid rgba(194, 198, 214, 0.3);
+  border-radius: 0.25rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--sd-on-surface-variant);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+a.sd-sidebar-tag:hover {
+  border-color: var(--sd-primary);
+  color: var(--sd-primary);
+  text-decoration: none;
+}
+
+.sd-sidebar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  background-color: var(--sd-surface-container-lowest);
+  color: var(--sd-on-surface);
+  border: 1px solid rgba(194, 198, 214, 0.2);
+  transition: background-color 0.2s;
+}
+
+.sd-sidebar-btn:hover {
+  background-color: var(--sd-surface-container-low);
+  color: var(--sd-on-surface);
+  text-decoration: none;
+}
+
+.dark .sd-sidebar-btn {
+  background-color: var(--sd-surface-container);
+  border-color: rgba(194, 198, 214, 0.1);
+}
+
+/* Remove horizontal lines from sovereignsky pagination and footer */
+footer.sd-pagination hr {
+  display: none !important;
+}
+footer.sd-pagination > div.pt-8 {
+  padding-top: 0 !important;
+}
+footer.sd-pagination {
+  border: none !important;
+  margin-top: 0 !important;
+}
+footer.sd-footer {
+  border-top: none !important;
+  margin-top: 0 !important;
+}
+
+/* Override global footer separation rules for sovereignsky */
+body:has(.sd-footer) footer.sd-pagination,
+body:has(.sd-footer) footer.sd-footer {
+  border-top: none !important;
+}
+
+/* ==========================================================================
+   Sovereign Sky Content Width
+   ========================================================================== */
+
+/* Remove max-w-prose — shortcodes handle their own width */
+.sd-content {
+  max-width: none !important;
+}
+
+/* Markdown prose sections should still be readable */
+.sd-content > h1,
+.sd-content > h2,
+.sd-content > h3,
+.sd-content > h4,
+.sd-content > h5,
+.sd-content > h6,
+.sd-content > p,
+.sd-content > ul,
+.sd-content > ol,
+.sd-content > blockquote {
+  max-width: 65ch;
+}
+
+/* Markdown tables in sd-content (prose removed, need explicit styles) */
+.sd-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 1.5rem 0;
+  max-width: none;
+}
+.sd-content table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-weight: 700;
+  border-bottom: 2px solid #e5e7eb;
+  color: var(--sd-on-surface, #131b2e);
+}
+.sd-content table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: var(--sd-on-surface-variant, #424754);
+}
+.sd-content table td:not(:first-child),
+.sd-content table th:not(:first-child) {
+  text-align: center;
+}
+.dark .sd-content table th {
+  border-bottom-color: #374151;
+  color: var(--sd-on-surface, #dae2fd);
+}
+.dark .sd-content table td {
+  border-bottom-color: #1f2937;
+  color: var(--sd-on-surface-variant, #c2c6d6);
+}
+
+/* Markdown headings in sd-content need basic styling */
+.sd-content > h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  color: var(--sd-on-surface, #131b2e);
+}
+.sd-content > h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--sd-on-surface, #131b2e);
+}
+.sd-content > p {
+  margin: 0.75rem 0;
+  line-height: 1.7;
+  color: var(--sd-on-surface-variant, #424754);
+}
+.dark .sd-content > h2,
+.dark .sd-content > h3 {
+  color: var(--sd-on-surface, #dae2fd);
+}
+.dark .sd-content > p {
+  color: var(--sd-on-surface-variant, #c2c6d6);
+}
+
+
+
+/* ==========================================================================
+   Global Navigation — Stitch fonts only (no layout/backdrop changes)
+   ========================================================================== */
+
+.sd-nav-logo {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+}
+
+.main-menu nav a span,
+.main-menu nav .nested-menu a span {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
 /* Custom styles for SovereignSky */
 
 /* Missing Tailwind utilities not in Blowfish compiled CSS */

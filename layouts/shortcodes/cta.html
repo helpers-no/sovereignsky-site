@@ -1,0 +1,30 @@
+{{/* cta shortcode — call-to-action banner with heading and buttons */}}
+{{ $config := .Inner | transform.Unmarshal }}
+
+<div class="section-design not-prose" style="margin: 3rem -1.5rem; padding: 3rem 1.5rem; background: linear-gradient(to bottom right, var(--sd-primary), var(--sd-primary-container)); border-radius: 1rem; text-align: center;">
+  {{ with $config.title }}
+  <h3 class="sd-headline" style="font-size: 2rem; font-weight: 700; color: var(--sd-on-primary); margin: 0 0 1rem 0;">{{ . }}</h3>
+  {{ end }}
+  {{ with $config.description }}
+  <p style="font-size: 1.125rem; color: var(--sd-on-primary); opacity: 0.9; margin: 0 0 2rem 0;">{{ . }}</p>
+  {{ end }}
+  {{ with $config.buttons }}
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    {{ range . }}
+    {{ if eq .style "secondary" }}
+    <a href="{{ .url }}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; border-radius: 0.75rem; font-weight: 700; font-size: 1rem; text-decoration: none; background-color: rgba(255,255,255,0.15); color: var(--sd-on-primary); border: 1px solid rgba(255,255,255,0.3); transition: background-color 0.2s;"
+       onmouseover="this.style.backgroundColor='rgba(255,255,255,0.25)'"
+       onmouseout="this.style.backgroundColor='rgba(255,255,255,0.15)'">
+      {{ .label }}
+    </a>
+    {{ else }}
+    <a href="{{ .url }}" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.875rem 2rem; border-radius: 0.75rem; font-weight: 700; font-size: 1rem; text-decoration: none; background-color: white; color: var(--sd-primary); transition: opacity 0.2s;"
+       onmouseover="this.style.opacity='0.9'"
+       onmouseout="this.style.opacity='1'">
+      {{ .label }}
+    </a>
+    {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
+</div>

@@ -19,9 +19,15 @@ audience:
   - "developer"
   - "it-ops"
 showHero: true
-heroStyle: "big"
+heroStyle: "sovereignsky"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-A 'clean computer within an infected computer' - isolate developer access to internal services through zero trust networking and containers. Malware on the host cannot reach your network.
+{{< summary id="summary-0" >}}
+{
+  "headline": "Secure developer access to internal services without exposing your network",
+  "description": "A 'clean computer within an infected computer' - isolate developer access to internal services through zero trust networking and containers. Malware on the host cannot reach your network."
+}
+{{< /summary >}}

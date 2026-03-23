@@ -24,59 +24,102 @@ audience:
   - "enterprise"
   - "humanitarian"
 showHero: true
-heroStyle: "big"
+heroStyle: "sovereignsky"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-See what France, Germany, and other European governments recommend. Find sovereign replacements for foreign-controlled tools.
+{{< summary id="summary-0" >}}
+{
+  "headline": "4,400+ software products from government-vetted catalogs across Europe, mapped with sovereign alternatives",
+  "description": "The Software Database aggregates software from multiple government-vetted and expert-curated catalogs into a unified, searchable catalog. Each product is deduplicated, categorized across four taxonomies, and enriched with vendor information, alternatives mappings, and sovereignty assessments."
+}
+{{< /summary >}}
 
-## What It Does
+{{< metadata-sidebar >}}
+{{< highlight-card id="the-problem" >}}
+{
+  "icon": "error_outline",
+  "title": "The Problem",
+  "description": "Organizations want to reduce dependency on foreign-controlled software, but there is no single catalog of European and open-source alternatives. Government-vetted lists exist in France, Germany, and Italy — but they use different formats, categories, and identifiers. Finding what is available, where it comes from, and whether a sovereign alternative exists requires searching multiple sources manually.",
+  "style": "tertiary"
+}
+{{< /highlight-card >}}
 
-The Software Database aggregates software from multiple government-vetted and expert-curated catalogs into a unified, searchable catalog. Each product is deduplicated, categorized across four taxonomies, and enriched with vendor information, alternatives mappings, and sovereignty assessments.
+{{< /metadata-sidebar >}}
 
-## Data Sources
+{{< feature-grid id="data-sources" >}}
+{
+  "title": "Data Sources",
+  "columns": [
+    {
+      "icon": "verified",
+      "title": "Government-Vetted",
+      "color": "primary",
+      "items": [
+        "SILL France (626 products)",
+        "openCode / ZenDiS (planned)",
+        "Developers Italia (planned)",
+        "EU OSS Catalogue (planned)"
+      ]
+    },
+    {
+      "icon": "hub",
+      "title": "Foundation & Expert",
+      "color": "secondary",
+      "items": [
+        "CNCF Landscape (1,358)",
+        "Euro Stack (1,103)",
+        "OpenAlternative (649)",
+        "Cloud Service Map (582)",
+        "switching.software (130)"
+      ]
+    }
+  ]
+}
+{{< /feature-grid >}}
 
-We prioritize government-vetted catalogs for quality and legal compliance:
-
-| Source | Products | Publisher | Trust Level |
-|--------|----------|-----------|-------------|
-| SILL France | 626 | DINUM - French Government | Government-vetted |
-| CNCF Cloud Native Landscape | 1,358 | Cloud Native Computing Foundation | Foundation-backed |
-| Euro Stack | 1,103 | Abilian SAS / EuroStack Initiative (FR) | Expert-curated |
-| OpenAlternative | 649 | OpenAlternative | Community-curated |
-| Cloud Service Map | 582 | Google Cloud | Expert-curated |
-| switching.software | 130 | Datenpunks (DE) | Expert-curated |
-
-### Planned Sources
-
-| Source | Publisher | Trust Level |
-|--------|-----------|-------------|
-| openCode / ZenDiS | German Government (ZenDiS) | Government-vetted |
-| Developers Italia | Italian Government | Government-vetted |
-| EU OSS Catalogue | European Commission | Government-vetted |
-
-## The Challenges
-
-### Deduplication: One Product, Many Identities
-
-The same software appears across catalogs with different identifiers. For example, Ansible appears as `ansible`, `red-hat-ansible`, and `ansible-automation-platform` depending on the source. We maintain a canonical registry with 942 product mappings that resolve duplicates across the 4,400+ raw entries from all sources.
-
-### Category Harmonization
-
-Each catalog uses its own category system - CNCF uses technical hierarchies, SILL France uses publiccode.yml categories, Euro-Stack uses business focus. We map all source categories to four standardized taxonomies:
-
-- **Technical** (43 categories): Infrastructure capabilities
-- **Developer** (26 categories): Development tools and frameworks
-- **Business** (28 categories): Use cases and departments
-- **Platforms** (8 categories): Operating systems and clouds
-
-This requires 10,415+ lines of category mappings.
-
-### Data Enrichment
-
-Raw catalog data lacks context. We enrich products using Wikidata for vendor information (headquarters, founding date) and web search to validate descriptions and find missing homepages.
-
-## Goal: Fully Automated Pipeline
-
-The target is a weekly automated pipeline that scrapes all sources, auto-suggests canonical ID mappings using fuzzy matching, and publishes the updated catalog - flagging conflicts for human review without blocking the pipeline.
+{{< side-by-side id="side-by-side-3" >}}
+{
+  "left": [
+    {
+      "type": "highlight-card",
+      "icon": "warning",
+      "title": "The Challenges",
+      "description": "The same software appears across catalogs with different identifiers. Each catalog uses its own category system. Raw catalog data lacks context. We solve this with 942 product mappings, 10,415+ lines of category mappings, and Wikidata enrichment.",
+      "style": "tertiary"
+    },
+    {
+      "type": "highlight-card",
+      "icon": "autorenew",
+      "title": "Goal: Fully Automated Pipeline",
+      "description": "A weekly automated pipeline that scrapes all sources, auto-suggests canonical ID mappings using fuzzy matching, and publishes the updated catalog — flagging conflicts for human review without blocking the pipeline.",
+      "style": "primary"
+    }
+  ],
+  "right": [
+    {
+      "type": "persona-cards",
+      "title": "How We Solve Them",
+      "items": [
+        {
+          "icon": "fingerprint",
+          "label": "Deduplication",
+          "description": "Ansible appears as ansible, red-hat-ansible, and ansible-automation-platform depending on the source. We maintain a canonical registry with 942 product mappings across 4,400+ raw entries."
+        },
+        {
+          "icon": "category",
+          "label": "Category Harmonization",
+          "description": "CNCF uses technical hierarchies, SILL France uses publiccode.yml, Euro-Stack uses business focus. We map all to four standardized taxonomies: Technical (43), Developer (26), Business (28), Platforms (8)."
+        },
+        {
+          "icon": "auto_awesome",
+          "label": "Data Enrichment",
+          "description": "Enrich products using Wikidata for vendor information and web search to validate descriptions and find missing homepages."
+        }
+      ]
+    }
+  ]
+}
+{{< /side-by-side >}}

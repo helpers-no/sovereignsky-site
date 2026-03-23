@@ -1,0 +1,21 @@
+{{/* persona-cards shortcode — vertical list of persona items with filled Material icons */}}
+{{ $config := .Inner | transform.Unmarshal }}
+
+<div class="section-design not-prose" style="margin: 2rem 0;">
+  {{ with $config.title }}
+  <h3 class="sd-headline" style="font-size: 1.875rem; font-weight: 700; color: var(--sd-on-surface); margin-bottom: 2rem;">{{ . }}</h3>
+  {{ end }}
+  <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+    {{ range $config.items }}
+    <div style="display: flex; gap: 1.5rem; padding: 1.5rem; border-radius: 1rem; border: 1px solid transparent; transition: background-color 0.2s, border-color 0.2s;"
+         onmouseover="this.style.backgroundColor='var(--sd-surface-container-lowest)'; this.style.borderColor='rgba(194,198,214,0.1)'"
+         onmouseout="this.style.backgroundColor='transparent'; this.style.borderColor='transparent'">
+      <span class="material-symbols-outlined filled" style="font-size: 1.875rem; color: var(--sd-primary); flex-shrink: 0;">{{ .icon }}</span>
+      <div>
+        <h5 style="font-weight: 700; color: var(--sd-on-surface); margin: 0 0 0.25rem 0; font-size: 1rem;">{{ .label }}</h5>
+        <p style="font-size: 0.875rem; color: var(--sd-on-surface-variant); margin: 0; line-height: 1.5;">{{ .description }}</p>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>

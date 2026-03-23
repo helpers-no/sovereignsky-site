@@ -1,0 +1,32 @@
+{{/* summary shortcode — two-column layout: headline left, description right */}}
+{{ $config := .Inner | transform.Unmarshal }}
+
+<div class="section-design not-prose" style="background-color: var(--sd-surface-container-low); padding: 3rem 1.5rem; margin: 2rem 0; border-radius: 1rem;">
+  <div data-sd-summary-grid style="max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 2rem;">
+    <div>
+      <span class="sd-headline" style="display: block; font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: var(--sd-secondary); margin-bottom: 1rem;">Summary</span>
+      <p class="sd-headline" style="font-size: 1.5rem; font-weight: 600; color: var(--sd-on-surface); line-height: 1.3; margin: 0;">
+        {{ $config.headline }}
+      </p>
+    </div>
+    {{ with $config.description }}
+    <div style="display: flex; flex-direction: column; justify-content: center;">
+      <p style="font-size: 1.125rem; color: var(--sd-on-surface-variant); line-height: 1.7; margin: 0;">
+        {{ . }}
+      </p>
+    </div>
+    {{ end }}
+  </div>
+</div>
+
+<style>
+  @media (min-width: 768px) {
+    [data-sd-summary-grid] {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 4rem !important;
+    }
+    [data-sd-summary-grid] .sd-headline:not(span) {
+      font-size: 1.875rem !important;
+    }
+  }
+</style>

@@ -1,0 +1,62 @@
+{{/*
+  Sovereign Sky Metadata Inline — Topics, Tags, Audience displayed
+  inline within content flow (not as a sidebar).
+  Matches Stitch design where metadata appears alongside content,
+  not in a persistent sidebar.
+*/}}
+
+<div class="section-design not-prose" style="margin: 3rem 0;">
+  <div class="sd-sidebar-card" style="border-radius: 1rem; padding: 2rem;">
+    <div data-sd-metadata-grid style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+
+      {{/* Topics */}}
+      {{ with .Params.topics }}
+      <div>
+        <span class="sd-sidebar-label">Topics</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+          {{ range . }}
+          {{ $topicData := index site.Data.topics.topics . }}
+          <span class="sd-sidebar-topic">{{ with $topicData }}{{ .name }}{{ else }}{{ . | title }}{{ end }}</span>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Tags */}}
+      {{ with .Params.tags }}
+      <div>
+        <span class="sd-sidebar-label">Tags</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem;">
+          {{ range . }}
+          <span class="sd-sidebar-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Audience */}}
+      {{ with .Params.audience }}
+      <div>
+        <span class="sd-sidebar-label">Audience</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem;">
+          {{ range . }}
+          <span class="sd-sidebar-tag">{{ . | humanize | title }}</span>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+    </div>
+  </div>
+
+  {{/* Related content */}}
+  {{ partial "related-content-sidebar.html" . }}
+</div>
+
+<style>
+  @media (min-width: 768px) {
+    [data-sd-metadata-grid] {
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+</style>

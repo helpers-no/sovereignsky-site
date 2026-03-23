@@ -20,54 +20,97 @@ audience:
   - "enterprise"
   - "it-ops"
 showHero: true
-heroStyle: "big"
+heroStyle: "sovereignsky"
+showTableOfContents: false
 layout: "single"
 type: "sovereignsky"
 ---
 
-Measure your organization's digital sovereignty readiness. Based on the EU Cloud Sovereignty Framework.
+{{< summary id="summary-0" >}}
+{
+  "headline": "A community-driven framework for measuring and improving digital sovereignty readiness in Norwegian organizations",
+  "description": "The Norwegian Digital Sovereignty Index is a practical framework for measuring how dependent your organization is on foreign-controlled digital infrastructure. Based on the EU Cloud Sovereignty Framework."
+}
+{{< /summary >}}
 
-## What Is NDSI?
+{{< metadata-sidebar >}}
+{{< highlight-card id="the-problem" >}}
+{
+  "icon": "error_outline",
+  "title": "The Problem",
+  "description": "Organizations know they depend on foreign cloud providers, but they have no standardized way to measure how dependent they are, compare themselves to peers, or track improvement over time.",
+  "style": "tertiary"
+}
+{{< /highlight-card >}}
 
-The Norwegian Digital Sovereignty Index is a practical framework for measuring how dependent your organization is on foreign-controlled digital infrastructure. Based on the EU Cloud Sovereignty Framework, it provides a standardized way to assess, compare, and improve your sovereignty posture.
+{{< /metadata-sidebar >}}
 
-## NDSI Levels
+{{< feature-grid id="ndsi-levels" >}}
+{
+  "title": "NDSI Levels",
+  "columns": [
+    {
+      "icon": "shield",
+      "title": "Strong (Level 3-4)",
+      "color": "secondary",
+      "items": [
+        "Level 4: Sovereign (35-44 pts)",
+        "Level 3: Resilient (26-34 pts)"
+      ]
+    },
+    {
+      "icon": "warning",
+      "title": "Needs Work (Level 0-2)",
+      "color": "tertiary",
+      "items": [
+        "Level 2: Aware (18-25 pts)",
+        "Level 1: Dependent (9-17 pts)",
+        "Level 0: Unassessed (0-8 pts)"
+      ]
+    }
+  ]
+}
+{{< /feature-grid >}}
 
-Organizations are scored from Level 0 to Level 4:
-
-| Level | Name | Score | What It Means |
-|-------|------|-------|---------------|
-| 4 | Sovereign | 35-44 | Strong control over digital infrastructure |
-| 3 | Resilient | 26-34 | Good awareness, some dependencies to address |
-| 2 | Aware | 18-25 | Significant dependencies, exit strategies needed |
-| 1 | Dependent | 9-17 | High foreign dependency, priority action needed |
-| 0 | Unassessed | 0-8 | Critical gaps, immediate investigation required |
-
-## Components
-
-### [NDSI Quick Scan Survey](survey/)
-
-11 questions covering:
-- **Provider & Jurisdiction** - Who provides your cloud services? Are they subject to the US CLOUD Act?
-- **Data Control** - Where is your data stored? Do you have visibility into all SaaS tools?
-- **Exit Readiness** - Can you migrate away? How long would it take?
-- **Operational Resilience** - Backup procedures tested? Alternative providers identified?
-
-### [Software Risk Check](software-risk-check/)
-
-Select the tools your organization uses and get an instant risk assessment. Each tool is scored based on:
-- Provider jurisdiction and ownership
-- Data location guarantees
-- Exit capability and portability
-- Availability of sovereign alternatives
-
-## Dependencies
-
-NDSI depends on the **Software Database** to provide:
-- Risk scores for individual software products
-- Mapping to European and open-source alternatives
-- Vendor ownership and jurisdiction data
-
-## Current Status
-
-The framework is in planning phase. The survey and basic scoring are functional, but full integration with the Software Database for automated risk assessment is under development.
+{{< side-by-side id="side-by-side-3" >}}
+{
+  "left": [
+    {
+      "type": "persona-cards",
+      "title": "Components",
+      "items": [
+        {
+          "icon": "quiz",
+          "label": "NDSI Quick Scan Survey",
+          "description": "11 questions covering provider jurisdiction, data control, exit readiness, and operational resilience."
+        },
+        {
+          "icon": "security",
+          "label": "Software Risk Check",
+          "description": "Select the tools your organization uses and get an instant risk assessment based on jurisdiction, data location, and portability."
+        }
+      ]
+    }
+  ],
+  "right": [
+    {
+      "type": "persona-cards",
+      "title": "Dependencies",
+      "items": [
+        {
+          "icon": "database",
+          "label": "Software Database",
+          "description": "Risk scores for individual software products, mapping to European alternatives, vendor ownership data."
+        }
+      ]
+    },
+    {
+      "type": "highlight-card",
+      "icon": "info",
+      "title": "Current Status",
+      "description": "The framework is in planning phase. The survey and basic scoring are functional, but full integration with the Software Database for automated risk assessment is under development.",
+      "style": "primary"
+    }
+  ]
+}
+{{< /side-by-side >}}

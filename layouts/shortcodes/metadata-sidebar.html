@@ -1,0 +1,74 @@
+{{/*
+  metadata-sidebar shortcode — wraps inner content in an 8/4 grid
+  with a sticky metadata card on the right side.
+
+  Usage in generated markdown:
+  {{< metadata-sidebar >}}
+  ... markdown or shortcodes here ...
+  {{< /metadata-sidebar >}}
+*/}}
+
+<div class="section-design not-prose" style="margin: 2rem 0;">
+  <div data-sd-content-sidebar style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+
+    {{/* Left: inner content */}}
+    <div class="prose dark:prose-invert" style="max-width: none;">
+      {{ .Inner }}
+    </div>
+
+    {{/* Right: metadata card */}}
+    <div>
+      <div class="sd-sidebar-card sd-meta-sticky" style="border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+
+        {{/* Status and Started are in the hero — not duplicated here */}}
+
+        {{ with .Page.Params.topics }}
+        <div>
+          <span class="sd-sidebar-label">Topics</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+            {{ range . }}
+            {{ $topicData := index site.Data.topics.topics . }}
+            <a href="/topics/{{ . | urlize }}/" class="sd-sidebar-topic">{{ with $topicData }}{{ .name }}{{ else }}{{ . | title }}{{ end }}</a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+        {{ with .Page.Params.tags }}
+        <div>
+          <span class="sd-sidebar-label">Tags</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem;">
+            {{ range . }}
+            <a href="/tags/{{ . | urlize }}/" class="sd-sidebar-tag">{{ . }}</a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+        {{ with .Page.Params.audience }}
+        <div>
+          <span class="sd-sidebar-label">Audience</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem;">
+            {{ range . }}
+            <a href="/personas/{{ . | urlize }}/" class="sd-sidebar-tag">{{ . | humanize | title }}</a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  @media (min-width: 1024px) {
+    [data-sd-content-sidebar] {
+      grid-template-columns: 2fr 1fr !important;
+    }
+    .sd-meta-sticky {
+      position: sticky;
+      top: 5rem;
+    }
+  }
+</style>

@@ -45,21 +45,39 @@ function copyImage(src, dest) {
  * - Copies from images/sovereignsky/ folder
  * - Saves as featured.{ext} in content folder
  */
+/**
+ * Handle images for a project
+ * - imageWide: rectangular image for social sharing → featured.{ext}
+ * - imageSquare: square image for hero panel → hero.{ext}
+ */
 function handleImage(project, projectDir) {
-  if (!project.image) return false;
+  let copied = false;
 
-  // Determine destination filename (keep original extension)
-  const ext = path.extname(project.image);
-  const destPath = path.join(projectDir, `featured${ext}`);
-
-  // Copy from images folder
-  const srcPath = path.join(IMAGES_DIR, project.image);
-  if (copyImage(srcPath, destPath)) {
-    return true;
-  } else {
-    console.warn(`  Warning: Image not found for ${project.identifier}: ${srcPath}`);
-    return false;
+  // Copy wide image as featured.{ext} (for social sharing meta tags)
+  if (project.imageWide) {
+    const ext = path.extname(project.imageWide);
+    const destPath = path.join(projectDir, `featured${ext}`);
+    const srcPath = path.join(IMAGES_DIR, project.imageWide);
+    if (copyImage(srcPath, destPath)) {
+      copied = true;
+    } else {
+      console.warn(`  Warning: Wide image not found for ${project.identifier}: ${srcPath}`);
+    }
   }
+
+  // Copy square image as hero.{ext} (for hero panel display)
+  if (project.imageSquare) {
+    const ext = path.extname(project.imageSquare);
+    const destPath = path.join(projectDir, `hero${ext}`);
+    const srcPath = path.join(IMAGES_DIR, project.imageSquare);
+    if (copyImage(srcPath, destPath)) {
+      copied = true;
+    } else {
+      console.warn(`  Warning: Square image not found for ${project.identifier}: ${srcPath}`);
+    }
+  }
+
+  return copied;
 }
 
 function yamlEscape(s) {
@@ -163,8 +181,14 @@ function generateFrontmatter(project) {
   }
 
   // Hero settings
-  lines.push(`showHero: true`);
-  lines.push(`heroStyle: "big"`);
+  if (project.sections && project.sections.length > 0) {
+    lines.push(`showHero: true`);
+    lines.push(`heroStyle: "sovereignsky"`);
+    lines.push(`showTableOfContents: false`);
+  } else {
+    lines.push(`showHero: true`);
+    lines.push(`heroStyle: "big"`);
+  }
 
   // Layout and type
   lines.push(`layout: "single"`);
@@ -174,7 +198,115 @@ function generateFrontmatter(project) {
   return lines.join('\n');
 }
 
+/**
+ * Generate a shortcode id from section type and optional title
+ */
+function sectionId(section, index) {
+  if (section.title) {
+    return section.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
+  return `${section.type}-${index}`;
+}
+
+/**
+ * Build content from a sections array
+ * Each section has a "type" that determines how it renders:
+ * - "markdown" → plain markdown passthrough
+ * - "code-block" → fenced code block with language
+ * - all others → Hugo shortcode with JSON config
+ */
+/**
+ * Render a single section to markdown/shortcode
+ */
+function renderSection(section, index) {
+  const id = sectionId(section, index);
+  const parts = [];
+
+  switch (section.type) {
+    case 'markdown': {
+      if (section.body) {
+        parts.push(section.body);
+      }
+      break;
+    }
+    case 'code-block': {
+      const lang = section.language || '';
+      parts.push(`\`\`\`${lang}`);
+      parts.push(section.code || '');
+      parts.push('```');
+      break;
+    }
+    default: {
+      const config = { ...section };
+      delete config.type;
+      const configJson = JSON.stringify(config, null, 2);
+      parts.push(`{{< ${section.type} id="${id}" >}}`);
+      parts.push(configJson);
+      parts.push(`{{< /${section.type} >}}`);
+      break;
+    }
+  }
+
+  return parts.join('\n');
+}
+
+function buildSections(sections) {
+  const parts = [];
+
+  // Find the split point: after summary, wrap the next section(s) that are
+  // markdown or highlight-card (narrative content) in a metadata-sidebar.
+  // Everything after that renders full-width.
+  let summaryDone = false;
+  let sidebarOpened = false;
+  let sidebarClosed = false;
+
+  for (let i = 0; i < sections.length; i++) {
+    const section = sections[i];
+    const type = section.type;
+
+    if (parts.length > 0) parts.push('');
+
+    // After summary, wrap highlight-card sections in metadata-sidebar
+    // (only shortcodes, not raw markdown — {{< >}} doesn't process markdown)
+    if (summaryDone && !sidebarOpened && !sidebarClosed && type === 'highlight-card') {
+      parts.push('{{< metadata-sidebar >}}');
+      sidebarOpened = true;
+    }
+
+    // If sidebar is open and we hit a non-narrative section, close it
+    if (sidebarOpened && !sidebarClosed) {
+      // Only shortcode types can go inside metadata-sidebar (not raw markdown)
+      const narrativeTypes = ['highlight-card'];
+      if (!narrativeTypes.includes(type)) {
+        parts.push('{{< /metadata-sidebar >}}');
+        parts.push('');
+        sidebarClosed = true;
+      }
+    }
+
+    parts.push(renderSection(section, i));
+
+    if (type === 'summary') {
+      summaryDone = true;
+    }
+  }
+
+  // Close sidebar if still open at end
+  if (sidebarOpened && !sidebarClosed) {
+    parts.push('');
+    parts.push('{{< /metadata-sidebar >}}');
+  }
+
+  return parts.join('\n');
+}
+
 function buildBody(project) {
+  // If project has sections array, use section-based rendering
+  if (project.sections && project.sections.length > 0) {
+    return buildSections(project.sections);
+  }
+
+  // Fallback: legacy body + shortcodes rendering
   const parts = [];
 
   // Add summary if defined (longer detailed summary)

@@ -1,0 +1,25 @@
+{{/* highlight-card shortcode — gradient background card with icon, title, description */}}
+{{ $config := .Inner | transform.Unmarshal }}
+
+{{ $styleClass := "sd-highlight-primary" }}
+{{ if eq $config.style "secondary" }}
+  {{ $styleClass = "sd-highlight-secondary" }}
+{{ else if eq $config.style "tertiary" }}
+  {{ $styleClass = "sd-highlight-tertiary" }}
+{{ end }}
+
+<div class="section-design not-prose" style="margin: 2rem 0;">
+  <div class="editorial-shadow {{ $styleClass }}" style="padding: 2.5rem; border-radius: 2rem;">
+    {{ with $config.icon }}
+    <h3 class="sd-headline" style="font-size: 1.875rem; font-weight: 700; margin: 0 0 1.5rem 0; display: flex; align-items: center; gap: 0.75rem;">
+      <span class="material-symbols-outlined filled" style="font-size: 1.875rem;">{{ . }}</span>
+      {{ $config.title }}
+    </h3>
+    {{ else }}
+    <h3 class="sd-headline" style="font-size: 1.875rem; font-weight: 700; margin: 0 0 1.5rem 0;">{{ $config.title }}</h3>
+    {{ end }}
+    {{ with $config.description }}
+    <p style="font-size: 1.125rem; line-height: 1.7; margin: 0; opacity: 0.9;">{{ . }}</p>
+    {{ end }}
+  </div>
+</div>

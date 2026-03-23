@@ -1,0 +1,56 @@
+{{/*
+  Sovereign Sky Sidebar — unified metadata card matching Stitch design
+  Replaces separate Blowfish cards with one cohesive sidebar.
+*/}}
+
+{{ $topClass := cond (hasPrefix site.Params.header.layout "fixed") "lg:top-[140px]" "lg:top-10" }}
+<div id="sidebar" class="section-design order-last px-0 lg:ps-8 w-full lg:w-[340px] lg:flex-shrink-0">
+  <div class="not-prose print:hidden lg:sticky {{ $topClass }}" style="display: flex; flex-direction: column; gap: 1rem;">
+
+    {{/* Unified metadata card — no links/status/date (already in hero) */}}
+    <div class="sd-sidebar-card" style="border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+
+      {{/* Topics */}}
+      {{ with .Params.topics }}
+      <div>
+        <span class="sd-sidebar-label">Topics</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;">
+          {{ range . }}
+          {{ $topicData := index site.Data.topics.topics . }}
+          <span class="sd-sidebar-topic">{{ with $topicData }}{{ .name }}{{ else }}{{ . | title }}{{ end }}</span>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Tags */}}
+      {{ with .Params.tags }}
+      <div>
+        <span class="sd-sidebar-label">Tags</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem;">
+          {{ range . }}
+          <span class="sd-sidebar-tag">{{ . }}</span>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Audience */}}
+      {{ with .Params.audience }}
+      <div>
+        <span class="sd-sidebar-label">Audience</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.5rem;">
+          {{ range . }}
+          <span class="sd-sidebar-tag">{{ . | humanize | title }}</span>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+    </div>
+
+    {{/* Related content */}}
+    {{ partial "related-content-sidebar.html" . }}
+
+  </div>
+</div>
