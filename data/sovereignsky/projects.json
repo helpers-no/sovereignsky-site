@@ -55,7 +55,7 @@
           "description": "A 'clean computer within an infected computer' - isolate developer access to internal services through zero trust networking and containers. Malware on the host cannot reach your network."
         }
       ],
-      "imageWide": "securenet.png",
+      "imageWide": "securenet-wide.png",
       "imageSquare": ""
     },
     {
@@ -175,7 +175,7 @@
           ]
         }
       ],
-      "imageWide": "software-database.png",
+      "imageWide": "software-database-wide.png",
       "imageSquare": ""
     },
     {
@@ -328,7 +328,7 @@
           ]
         }
       ],
-      "imageWide": "sovdev-logger.png",
+      "imageWide": "sovdev-logger-wide.png",
       "imageSquare": ""
     },
     {
@@ -462,7 +462,7 @@
           ]
         }
       ],
-      "imageWide": "docuwrite.png",
+      "imageWide": "docuwrite-wide.png",
       "imageSquare": ""
     },
     {
@@ -566,7 +566,7 @@
           ]
         }
       ],
-      "imageWide": "bifrost.png",
+      "imageWide": "bifrost-wide.png",
       "imageSquare": ""
     },
     {
@@ -743,8 +743,8 @@
           ]
         }
       ],
-      "imageWide": "urbalurba-infrastructure.png",
-      "imageSquare": "uis-hero.webm"
+      "imageWide": "urbalurba-infrastructure-wide.png",
+      "imageSquare": "urbalurba-infrastructure-square.webm"
     },
     {
       "@type": "SoftwareSourceCode",
@@ -900,8 +900,8 @@
         "repository": "https://github.com/helpers-no/devcontainer-toolbox",
         "documentation": "https://dct.sovereignsky.no/"
       },
-      "imageWide": "devcontainer-toolbox.png",
-      "imageSquare": "dct-hero.webm"
+      "imageWide": "devcontainer-toolbox-wide.png",
+      "imageSquare": "devcontainer-toolbox-square.webm"
     },
     {
       "@type": "SoftwareSourceCode",
@@ -1157,7 +1157,7 @@
           "style": "secondary"
         }
       ],
-      "imageWide": "client-provisioning.png",
+      "imageWide": "client-provisioning-wide.png",
       "imageSquare": ""
     },
     {
@@ -1267,7 +1267,7 @@
           ]
         }
       ],
-      "imageWide": "humanitarian-tools.png",
+      "imageWide": "humanitarian-tools-wide.png",
       "imageSquare": ""
     },
     {
@@ -1881,7 +1881,7 @@
           ]
         }
       ],
-      "imageWide": "ndsi.png",
+      "imageWide": "ndsi-wide.png",
       "imageSquare": ""
     }
   ]
