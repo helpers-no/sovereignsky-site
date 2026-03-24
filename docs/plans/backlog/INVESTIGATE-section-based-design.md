@@ -627,11 +627,11 @@ Established the section-based design system. Originally scoped as devcontainer-t
 
 See: `docs/plans/completed/PLAN-section-design-foundation.md`
 
-### PLAN 1.5: Page-Level Redesign — BACKLOG
+### PLAN 1.5: Page-Level Redesign — ✅ COMPLETED 2026-03-23
 
-Hero, sidebar, and content width redesign for sovereignsky pages. Created after Plan 1 showed that the content area was redesigned but page-level elements still use Blowfish defaults.
+Hero, sidebar removal, full-width layout, footer, nav fonts, image naming, side-by-side layouts. Remaining polish (dark mode, responsive, nav styling) in `PLAN-page-level-polish.md`.
 
-See: `docs/plans/backlog/PLAN-page-level-redesign.md`
+See: `docs/plans/completed/PLAN-page-level-redesign.md`
 
 ### PLAN 2: ~~sovereignsky (remaining projects)~~ — ✅ MERGED INTO PLAN 1
 
@@ -685,7 +685,9 @@ Each plan decides what sections that content type needs, which new shortcodes to
 - [x] Expand Plan 1 to all 11 projects — completed 2026-03-22
 - [x] Review result against Stitch mockups — content sections match, page-level elements deferred
 - [x] Create PLAN-page-level-redesign.md (hero + sidebar + content width) — done 2026-03-22
-- [ ] Implement PLAN-page-level-redesign.md
+- [x] Implement PLAN-page-level-redesign.md — completed 2026-03-23
+- [x] Create component library in Stitch — done 2026-03-24
+- [x] Create docs/SHORTCODES.md reference — done 2026-03-24
 - [ ] Create per-content-type plans as needed (Plans 3-14)
 
 ## Related Documentation
