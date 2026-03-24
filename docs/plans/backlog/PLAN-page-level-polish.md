@@ -106,6 +106,29 @@ The page-level redesign is functionally complete but has unfinished polish items
 - [ ] All 11 project pages work across viewports and color modes
 - [ ] Non-sovereignsky pages are unaffected
 
+---
+
+## Phase 5: Homepage Cleanup (from PLAN-homepage2)
+
+Remaining items from the completed homepage redesign plan.
+
+### Tasks
+
+- [ ] 5.1 Advanced cross-file validation: data paths, countSource, explicit identifiers in homepage JSON
+- [ ] 5.2 Responsive verification for homepage (mobile/tablet/desktop)
+- [ ] 5.3 Remove old `layouts/partials/home/custom.html` or keep as backup
+- [ ] 5.4 Final visual review of homepage
+
+### Validation
+
+```bash
+# Manual: check homepage at 375px, 768px, 1280px
+# Manual: verify all homepage sections render
+```
+
+---
+
 ## Related
 
 - **PLAN-dark-mode-fix.md** — Pre-existing dark mode issue on /about/ and /totalforsvarsaret/ (DaisyUI conflict, separate task)
+- **PLAN-homepage2.md** (completed) — Homepage remaining items moved to Phase 5 above

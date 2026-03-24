@@ -1,6 +1,6 @@
 # PLAN: Homepage Redesign with JSON-Driven Content
 
-## Status: Active
+## Status: Completed
 
 ## Branch: `feature/homepage-json-driven`
 
