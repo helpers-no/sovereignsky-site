@@ -75,37 +75,44 @@
   </section>
 
   {{/* ============================================================
-       FILTERS — Audience + Topic pills
+       FILTERS — Stitch-styled audience + topic pills
        ============================================================ */}}
-  <section class="sd-events-filters">
-    {{/* Audience filter */}}
-    {{ partial "audience-filter.html" . }}
-
-    {{/* Calculate unique topics from events */}}
-    {{- $uniqueTopics := slice -}}
-    {{- range $events -}}
-      {{- range .topics -}}
-        {{- if not (in $uniqueTopics .) -}}
-          {{- $uniqueTopics = $uniqueTopics | append . -}}
-        {{- end -}}
+  {{- $audienceData := site.Data.audience.audience -}}
+  {{- $uniqueTopics := slice -}}
+  {{- range $events -}}
+    {{- range .topics -}}
+      {{- if not (in $uniqueTopics .) -}}
+        {{- $uniqueTopics = $uniqueTopics | append . -}}
       {{- end -}}
     {{- end -}}
-    {{- $uniqueTopics = sort $uniqueTopics -}}
+  {{- end -}}
+  {{- $uniqueTopics = sort $uniqueTopics -}}
 
-    {{/* Build topic items for filter-pills partial */}}
-    {{ $topicItems := slice }}
-    {{ range $uniqueTopics }}
-      {{ $label := index $topicLabels . | default (. | humanize | title) }}
-      {{ $topicItems = $topicItems | append (dict "id" . "name" $label) }}
-    {{ end }}
+  <section class="sd-events-filters">
+    <div class="sd-events-filters-inner">
+      {{/* Audience */}}
+      <div class="sd-events-filter-group">
+        <label class="sd-events-filter-label">Filter by Audience</label>
+        <div class="sd-events-filter-pills" data-filter-group="audience">
+          <button class="sd-events-pill sd-events-pill-active" data-filter="all">All Audiences</button>
+          {{- range $audienceData.itemListElement }}
+          <button class="sd-events-pill" data-filter="{{ .identifier }}">{{ .name }}</button>
+          {{- end }}
+        </div>
+      </div>
 
-    {{/* Topic filter */}}
-    {{ partial "filter-pills.html" (dict
-        "label" "Topic"
-        "filterGroup" "topics"
-        "items" $topicItems
-        "allLabel" "All"
-    ) }}
+      {{/* Topics */}}
+      <div class="sd-events-filter-group">
+        <label class="sd-events-filter-label">Filter by Topic</label>
+        <div class="sd-events-filter-pills" data-filter-group="topics">
+          <button class="sd-events-pill sd-events-pill-active" data-filter="all">All Topics</button>
+          {{- range $uniqueTopics }}
+          {{ $label := index $topicLabels . | default (. | humanize | title) }}
+          <button class="sd-events-pill" data-filter="{{ . }}">{{ $label }}</button>
+          {{- end }}
+        </div>
+      </div>
+    </div>
   </section>
 
   {{/* ============================================================
@@ -154,14 +161,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!target) return;
 
     groupEl.querySelectorAll('button').forEach(b => {
-      b.classList.remove('btn-active', 'btn-primary');
-      b.classList.add('btn-ghost');
-      if (!b.classList.contains('border')) {
-        b.classList.add('border', 'border-base-300');
-      }
+      b.classList.remove('sd-events-pill-active');
     });
-    target.classList.add('btn-primary');
-    target.classList.remove('btn-ghost', 'border', 'border-base-300');
+    target.classList.add('sd-events-pill-active');
 
     activeFilters[filterGroup] = target.dataset.filter;
   }
@@ -221,14 +223,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const filterValue = this.dataset.filter;
 
       groupEl.querySelectorAll('button').forEach(b => {
-        b.classList.remove('btn-active', 'btn-primary');
-        b.classList.add('btn-ghost');
-        if (!b.classList.contains('border')) {
-          b.classList.add('border', 'border-base-300');
-        }
+        b.classList.remove('sd-events-pill-active');
       });
-      this.classList.add('btn-primary');
-      this.classList.remove('btn-ghost', 'border', 'border-base-300');
+      this.classList.add('sd-events-pill-active');
 
       activeFilters[filterGroup] = filterValue;
 
