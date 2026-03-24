@@ -716,6 +716,548 @@ body:has(.sd-footer) footer.sd-footer {
   font-family: 'Space Grotesk', sans-serif !important;
 }
 
+/* ==========================================================================
+   Events Page — Stitch design
+   ========================================================================== */
+
+.sd-events-hero {
+  position: relative;
+  padding: 4rem 1.5rem 6rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0058be 0%, #2170e4 100%);
+}
+
+.sd-events-hero-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  overflow: hidden;
+}
+
+.sd-events-hero-bg::before {
+  content: '';
+  position: absolute;
+  top: -25%;
+  right: -25%;
+  width: 100%;
+  height: 100%;
+  background: #6cf8bb;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+
+.sd-events-hero-bg::after {
+  content: '';
+  position: absolute;
+  bottom: -25%;
+  left: -25%;
+  width: 100%;
+  height: 100%;
+  background: #8455ef;
+  border-radius: 50%;
+  filter: blur(120px);
+}
+
+.sd-events-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.sd-events-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+}
+
+.sd-events-hero-badge-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #4edea3;
+  animation: sd-pulse 2s infinite;
+}
+
+@keyframes sd-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.sd-events-hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.025em;
+  margin: 0 0 1rem 0;
+  line-height: 1.1;
+}
+
+.sd-events-hero-description {
+  font-size: 1.125rem;
+  color: rgba(173, 198, 255, 0.8);
+  line-height: 1.7;
+  max-width: 40rem;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .sd-events-hero { padding: 6rem 2rem 8rem; }
+  .sd-events-hero-title { font-size: 4rem; }
+}
+
+/* Stats */
+.sd-events-stats {
+  max-width: 80rem;
+  margin: -3rem auto 0;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.sd-events-stat-card {
+  background-color: var(--sd-surface-container-lowest);
+  padding: 2rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sd-events-stat-card:hover {
+  background-color: #0058be;
+}
+
+.sd-events-stat-card:hover .sd-events-stat-label { color: rgba(255,255,255,0.7); }
+.sd-events-stat-card:hover .sd-events-stat-value { color: #ffffff; }
+.sd-events-stat-card:hover .sd-events-stat-desc { color: rgba(255,255,255,0.6); }
+
+.sd-events-stat-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--sd-outline);
+  margin-bottom: 1rem;
+}
+
+.sd-events-stat-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.sd-events-stat-value {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--sd-on-surface);
+  line-height: 1;
+}
+
+.sd-events-stat-value-text { font-size: 1.75rem; }
+
+.sd-events-stat-desc {
+  font-size: 0.875rem;
+  color: var(--sd-outline);
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .sd-events-stats {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 2rem;
+  }
+}
+
+/* Filters */
+.sd-events-filters {
+  max-width: 80rem;
+  margin: 3rem auto;
+  padding: 0 1.5rem 2rem;
+  border-bottom: 1px solid var(--sd-outline-variant);
+}
+
+@media (min-width: 768px) {
+  .sd-events-filters { padding: 0 2rem 2rem; }
+}
+
+/* Event list */
+.sd-events-list {
+  max-width: 80rem;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .sd-events-list { padding: 0 2rem; }
+}
+
+/* About bar */
+.sd-events-about {
+  max-width: 80rem;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.sd-events-about-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--sd-surface-container-low);
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--sd-on-surface-variant);
+  flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+  .sd-events-about { padding: 0 2rem; }
+}
+
+/* Filter bar — Stitch design */
+.sd-events-filters-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .sd-events-filters-inner {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.sd-events-filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sd-events-filter-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--sd-outline);
+}
+
+.sd-events-filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sd-events-pill {
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  background-color: var(--sd-surface-container-high);
+  color: var(--sd-on-surface-variant);
+}
+
+.sd-events-pill:hover {
+  background-color: var(--sd-surface-container-highest);
+}
+
+.sd-events-pill-active {
+  background-color: var(--sd-primary) !important;
+  color: #ffffff !important;
+}
+
+.dark .sd-events-pill-active {
+  background-color: var(--sd-primary) !important;
+  color: var(--sd-on-primary) !important;
+}
+
+/* Event cards inside events list */
+.sd-events-list .event-card {
+  background-color: var(--sd-surface-container-low) !important;
+  border: none !important;
+  border-top: 2px solid var(--sd-outline-variant) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 2rem !important;
+  transition: border-color 0.3s !important;
+}
+
+.sd-events-list .event-card:hover {
+  border-top-color: var(--sd-primary) !important;
+  box-shadow: none !important;
+}
+
+/* First event gets featured treatment */
+.sd-events-list .event-card:first-child {
+  border-top: none !important;
+  border-left: 4px solid var(--sd-primary) !important;
+  background-color: var(--sd-surface-container-lowest) !important;
+  box-shadow: 0 4px 20px rgba(0, 31, 38, 0.06) !important;
+  padding: 2.5rem !important;
+}
+
+/* Event date badge */
+.sd-events-list .event-card .bg-primary {
+  border-radius: 0.75rem !important;
+}
+
+/* Event card title */
+.sd-events-list .event-card .card-title a {
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 700 !important;
+  color: var(--sd-on-surface) !important;
+}
+
+.sd-events-list .event-card .card-title a:hover {
+  color: var(--sd-primary) !important;
+}
+
+/* Topic badges inside events */
+.sd-events-list .event-card .rounded-full {
+  background: none !important;
+  background-color: var(--sd-surface-container) !important;
+  color: var(--sd-on-surface-variant) !important;
+  font-size: 0.625rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  border: none !important;
+  padding: 0.25rem 0.75rem !important;
+}
+
+/* Event grid - make non-featured cards 2-column */
+.sd-events-list .event-list {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 0 !important;
+}
+
+@media (min-width: 768px) {
+  /* Featured card spans full width, rest in 2 columns */
+  .sd-events-list .event-list {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .sd-events-list .event-card:first-child {
+    grid-column: 1 / -1 !important;
+  }
+}
+
+/* Empty filter message */
+.events-empty-filtered {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  color: var(--sd-on-surface-variant);
+  background-color: var(--sd-surface-container-low);
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+}
+
+/* Event single page — hero badge */
+.sd-events-single-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--sd-secondary-container);
+  color: var(--sd-on-surface);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+
+/* Event single — hero meta */
+.sd-events-single-hero-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+}
+
+.sd-events-single-hero-date {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sd-events-single-hero-date-icon {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sd-events-single-hero-date-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.sd-events-single-hero-date-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.sd-events-single-hero-desc {
+  font-size: 1.25rem;
+  color: rgba(216, 226, 255, 0.8);
+  line-height: 1.6;
+  max-width: 40rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .sd-events-single-hero-meta {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+/* Bento grid */
+.sd-events-single-bento {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .sd-events-single-bento {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.sd-events-single-info {
+  background-color: var(--sd-surface-container-low);
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+}
+
+.sd-events-single-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .sd-events-single-info-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.sd-events-single-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sd-events-single-info-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sd-outline);
+}
+
+.sd-events-single-info-value {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--sd-on-surface);
+}
+
+/* Audience sidebar */
+.sd-events-single-audience {
+  background-color: var(--sd-surface-container-highest);
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.sd-events-single-audience-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.sd-events-single-audience-card:hover {
+  background: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.dark .sd-events-single-audience-card {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .sd-events-single-audience-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sd-events-single-audience-icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 88, 190, 0.1);
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sd-events-single-status {
+  margin-top: auto;
+  padding-top: 2rem;
+}
+
+.sd-events-single-status > div {
+  background-color: var(--sd-on-surface);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+}
+
+/* Hide default site footer on events pages */
+body:has(.sd-events) .site-footer {
+  display: none !important;
+}
+
 /* Custom styles for SovereignSky */
 
 /* Missing Tailwind utilities not in Blowfish compiled CSS */

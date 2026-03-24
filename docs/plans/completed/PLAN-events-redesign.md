@@ -1,6 +1,8 @@
 # Feature: Events Page Redesign
 
-## Status: Backlog
+## Status: Completed
+
+**Completed**: 2026-03-24
 
 **Goal**: Restyle the events list and single pages to match the Stitch design system ("SovereignSky Events" and "Datasenterdagen 2026 Event Page" screens).
 

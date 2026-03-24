@@ -648,7 +648,7 @@ Each plan decides what sections that content type needs, which new shortcodes to
 | 5 | **publications** | `generate-publications-pages.js` | — | `citation-card`, `resource-card` |
 | 6 | **networks** | `generate-network-pages.js` | `network-map`, `network-data`, `network-actors`, `network-connection-map` | May not need sections — already has rich shortcodes |
 | 7 | **datacenters** | `generate-datacenters-pages.js` | `datacenter-map`, `datacenter-providers`, `datacenter-risk-assessment`, +4 more | May not need sections — already has rich shortcodes |
-| 8 | **events** | `generate-events-pages.js` | `events` | **Separate plan: PLAN-events-redesign.md** — template-level redesign, not section-based. Stitch designs created for both list and single pages. |
+| 8 | **events** | `generate-events-pages.js` | `events` | **✅ COMPLETED** — `PLAN-events-redesign.md`. Template-level redesign with Stitch hero, stat cards, filters, featured/compact cards, bento single page. |
 | 9 | **software** | `generate-software-pages.js` | — | `comparison-table`, `risk-badge` |
 | 10 | **blocs** | `generate-blocs-pages.js` | `bloc-cards`, `bloc-member-map` | `member-list` |
 | 11 | **countries/regions** | `generate-countries-pages.js` | Shares datacenter + jurisdiction shortcodes | Shares with Plan 7 and 12 |

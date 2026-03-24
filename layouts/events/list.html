@@ -5,60 +5,79 @@
   {{ $topicLabels = merge $topicLabels (dict .identifier .name) }}
 {{ end }}
 
-<article class="max-w-full">
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" .Title
-      "description" .Description
-      "icon" "calendar"
-  ) }}
+{{/* Build audience labels from audience.json */}}
+{{ $audienceLabels := dict }}
+{{ range site.Data.audience.audience.itemListElement }}
+  {{ $audienceLabels = merge $audienceLabels (dict .identifier .name) }}
+{{ end }}
 
-  {{/* Stats row */}}
-  {{- $events := site.Data.events.events.itemListElement -}}
-  {{- $now := now.Format "2006-01-02" -}}
-  {{- $upcomingCount := 0 -}}
-  {{- $thisMonthCount := 0 -}}
-  {{- $thisMonth := now.Format "2006-01" -}}
-  {{- range $events -}}
-    {{- if ge .startDate $now -}}
-      {{- $upcomingCount = add $upcomingCount 1 -}}
-      {{- if hasPrefix .startDate $thisMonth -}}
-        {{- $thisMonthCount = add $thisMonthCount 1 -}}
-      {{- end -}}
+{{/* Calculate stats */}}
+{{- $events := site.Data.events.events.itemListElement -}}
+{{- $now := now.Format "2006-01-02" -}}
+{{- $upcomingCount := 0 -}}
+{{- $thisMonthCount := 0 -}}
+{{- $thisMonth := now.Format "2006-01" -}}
+{{- range $events -}}
+  {{- if ge .startDate $now -}}
+    {{- $upcomingCount = add $upcomingCount 1 -}}
+    {{- if hasPrefix .startDate $thisMonth -}}
+      {{- $thisMonthCount = add $thisMonthCount 1 -}}
     {{- end -}}
   {{- end -}}
+{{- end -}}
 
-  <div class="stats stats-vertical sm:stats-horizontal shadow-lg w-full mb-8 bg-base-100">
-    <div class="stat">
-      <div class="stat-figure text-primary">
-        {{ partial "data-icon.html" (dict "name" "calendar" "color" "primary" "size" "8") }}
-      </div>
-      <div class="stat-title">Upcoming Events</div>
-      <div class="stat-value text-primary">{{ $upcomingCount }}</div>
-      <div class="stat-desc">In 2026</div>
-    </div>
-    <div class="stat">
-      <div class="stat-figure text-secondary">
-        {{ partial "data-icon.html" (dict "name" "clock" "color" "secondary" "size" "8") }}
-      </div>
-      <div class="stat-title">This Month</div>
-      <div class="stat-value text-secondary">{{ $thisMonthCount }}</div>
-      <div class="stat-desc">{{ now.Format "January 2006" }}</div>
-    </div>
-    <div class="stat">
-      <div class="stat-figure text-accent">
-        {{ partial "data-icon.html" (dict "name" "location" "color" "accent" "size" "8") }}
-      </div>
-      <div class="stat-title">Focus</div>
-      <div class="stat-value text-accent text-2xl">Norway</div>
-      <div class="stat-desc">Digital sovereignty</div>
-    </div>
-  </div>
+<article class="sd-events section-design">
 
-  {{/* Audience filter - reusable partial */}}
-  {{ partial "audience-filter.html" . }}
+  {{/* ============================================================
+       HERO — Blue gradient with title and description
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Conferences & Exercises</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Events</h1>
+        <p class="sd-events-hero-description">
+          Conferences, exercises, and gatherings focused on digital sovereignty, cybersecurity, and national preparedness. Building the foundation of resilient digital infrastructure.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  {{/* Calculate unique topics from events */}}
+  {{/* ============================================================
+       STATS — 3 cards overlapping the hero
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Upcoming Events</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $upcomingCount }}</span>
+        <span class="sd-events-stat-desc">In {{ now.Format "2006" }}</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">This Month</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $thisMonthCount }}</span>
+        <span class="sd-events-stat-desc">{{ now.Format "January 2006" }}</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Strategic Focus</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value sd-events-stat-value-text">Norway</span>
+        <span class="sd-events-stat-desc">Digital Sovereignty</span>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       FILTERS — Stitch-styled audience + topic pills
+       ============================================================ */}}
+  {{- $audienceData := site.Data.audience.audience -}}
   {{- $uniqueTopics := slice -}}
   {{- range $events -}}
     {{- range .topics -}}
@@ -69,36 +88,59 @@
   {{- end -}}
   {{- $uniqueTopics = sort $uniqueTopics -}}
 
-  {{/* Build topic items for filter-pills partial */}}
-  {{ $topicItems := slice }}
-  {{ range $uniqueTopics }}
-    {{ $label := index $topicLabels . | default (. | humanize | title) }}
-    {{ $topicItems = $topicItems | append (dict "id" . "name" $label) }}
-  {{ end }}
+  <section class="sd-events-filters">
+    <div class="sd-events-filters-inner">
+      {{/* Audience */}}
+      <div class="sd-events-filter-group">
+        <label class="sd-events-filter-label">Filter by Audience</label>
+        <div class="sd-events-filter-pills" data-filter-group="audience">
+          <button class="sd-events-pill sd-events-pill-active" data-filter="all">All Audiences</button>
+          {{- range $audienceData.itemListElement }}
+          <button class="sd-events-pill" data-filter="{{ .identifier }}">{{ .name }}</button>
+          {{- end }}
+        </div>
+      </div>
 
-  {{/* Topic filter - responsive pills that wrap on mobile */}}
-  {{ partial "filter-pills.html" (dict
-      "label" "Topic"
-      "filterGroup" "topics"
-      "items" $topicItems
-      "allLabel" "All"
-  ) }}
-
-  {{/* Event list */}}
-  <div class="events-content mb-8">
-    {{ .Content }}
-  </div>
-
-  {{/* Legend */}}
-  <div class="alert shadow-lg">
-    {{ partial "data-icon.html" (dict "name" "info" "color" "info" "size" "6") }}
-    <div>
-      <h3 class="font-bold">About these events</h3>
-      <p class="text-sm">Curated by SovereignSky for digital sovereignty, cybersecurity, and national preparedness. Not affiliated with organizers unless noted.</p>
+      {{/* Topics */}}
+      <div class="sd-events-filter-group">
+        <label class="sd-events-filter-label">Filter by Topic</label>
+        <div class="sd-events-filter-pills" data-filter-group="topics">
+          <button class="sd-events-pill sd-events-pill-active" data-filter="all">All Topics</button>
+          {{- range $uniqueTopics }}
+          {{ $label := index $topicLabels . | default (. | humanize | title) }}
+          <button class="sd-events-pill" data-filter="{{ . }}">{{ $label }}</button>
+          {{- end }}
+        </div>
+      </div>
     </div>
-    <a href="https://github.com/helpers-no/sovereignsky-site/issues/new" target="_blank" rel="noopener" class="btn btn-sm btn-primary">Suggest Event</a>
-  </div>
+  </section>
+
+  {{/* ============================================================
+       EVENT LIST — Featured card + compact grid
+       ============================================================ */}}
+  <section class="sd-events-list">
+    <div class="events-content">
+      {{ .Content }}
+    </div>
+  </section>
+
+  {{/* ============================================================
+       ABOUT — Info bar
+       ============================================================ */}}
+  <section class="sd-events-about">
+    <div class="sd-events-about-inner">
+      <span class="material-symbols-outlined" style="font-size: 1.5rem; color: var(--sd-primary);">info</span>
+      <div style="flex: 1;">
+        <strong>About these events</strong> — Curated by SovereignSky for digital sovereignty, cybersecurity, and national preparedness. Not affiliated with organizers unless noted.
+      </div>
+      <a href="https://github.com/helpers-no/sovereignsky-site/issues/new" target="_blank" rel="noopener" class="sd-hero-cta-secondary" style="padding: 0.5rem 1rem; font-size: 0.8125rem;">Suggest Event</a>
+    </div>
+  </section>
+
 </article>
+
+{{/* Sovereignsky footer */}}
+{{ partial "sovereignsky-footer.html" . }}
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -118,18 +160,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const target = btn || fallback;
     if (!target) return;
 
-    // Update active state - supports both btn-active and btn-primary styles
     groupEl.querySelectorAll('button').forEach(b => {
-      b.classList.remove('btn-active', 'btn-primary');
-      b.classList.add('btn-ghost');
-      if (!b.classList.contains('border')) {
-        b.classList.add('border', 'border-base-300');
-      }
+      b.classList.remove('sd-events-pill-active');
     });
-    target.classList.add('btn-primary');
-    target.classList.remove('btn-ghost', 'border', 'border-base-300');
+    target.classList.add('sd-events-pill-active');
 
-    // Update state
     activeFilters[filterGroup] = target.dataset.filter;
   }
 
@@ -157,15 +192,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
-    // Show empty message if no results
     const visibleCards = document.querySelectorAll('.event-card:not([style*="display: none"])');
     let emptyMsg = document.querySelector('.events-empty-filtered');
 
     if (visibleCards.length === 0) {
       if (!emptyMsg) {
         emptyMsg = document.createElement('div');
-        emptyMsg.className = 'events-empty-filtered alert alert-warning my-4';
-        emptyMsg.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg><span>No events match the selected filters.</span>';
+        emptyMsg.className = 'events-empty-filtered';
+        emptyMsg.innerHTML = '<span class="material-symbols-outlined">search_off</span> No events match the selected filters.';
         const listEl = document.querySelector('.event-list');
         if (listEl) listEl.appendChild(emptyMsg);
       }
@@ -188,18 +222,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const filterGroup = groupEl.dataset.filterGroup;
       const filterValue = this.dataset.filter;
 
-      // Update active state - supports both btn-active and btn-primary styles
       groupEl.querySelectorAll('button').forEach(b => {
-        b.classList.remove('btn-active', 'btn-primary');
-        b.classList.add('btn-ghost');
-        if (!b.classList.contains('border')) {
-          b.classList.add('border', 'border-base-300');
-        }
+        b.classList.remove('sd-events-pill-active');
       });
-      this.classList.add('btn-primary');
-      this.classList.remove('btn-ghost', 'border', 'border-base-300');
+      this.classList.add('sd-events-pill-active');
 
-      // Update filter state
       activeFilters[filterGroup] = filterValue;
 
       applyFilters();
