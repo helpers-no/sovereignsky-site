@@ -1,10 +1,26 @@
-# Shortcode Reference
+# Design Components Reference
 
-Reusable design components for sovereignsky project pages. Each shortcode maps to a section type in `projects.json`.
+All reusable design components across the SovereignSky site. Components follow the "Sovereign Resilience" design system from Stitch.
 
 **Visual reference**: See the "SovereignSky Component Library" screen in the [Stitch project](https://stitch.withgoogle.com/projects/3224991992411328938).
 
+**CSS tokens**: All components use `--sd-*` CSS custom properties scoped under `.section-design`. See `assets/css/custom.css`.
+
 ---
+
+## Component Types
+
+| Type | Used by | How it works |
+|------|---------|-------------|
+| **Shortcodes** | Project pages (`/sovereignsky/`) | JSON sections in `projects.json` → generator → Hugo shortcodes |
+| **Page templates** | Events (`/events/`) | Hugo templates read data directly, styled with `.sd-events` CSS |
+| **Shared elements** | Hero, footer, metadata | Partials reused across page types |
+
+---
+
+# Part 1: Project Page Shortcodes
+
+Used on `/sovereignsky/` project pages. Each shortcode maps to a section type in `projects.json`.
 
 ## How It Works
 
@@ -354,11 +370,162 @@ Verify icon names exist at https://fonts.google.com/icons before using them.
 
 ---
 
+---
+
+# Part 2: Events Page Components
+
+Used on `/events/` pages. These are template-level components in `layouts/events/list.html` and `single.html`, styled with `.sd-events` CSS classes. Data comes from `data/events/events.json`.
+
+**Stitch references:**
+- List page: "SovereignSky Events" screen
+- Single page: "Datasenterdagen 2026 Event Page" screen
+
+## Events List Page
+
+**Template:** `layouts/events/list.html`
+
+### Events Hero
+
+Blue gradient hero with animated badge, title, and description.
+
+- CSS class: `.sd-events-hero`
+- Background: linear gradient `#0058be → #2170e4` with blurred color orbs
+- Badge: animated pulse dot + uppercase label
+- Title: Space Grotesk, white, large
+
+### Stat Cards
+
+3 cards overlapping the hero via negative margin. Cards hover to blue with white text.
+
+- CSS class: `.sd-events-stat-card`
+- Layout: 1 column mobile, 3 columns desktop
+- Dynamic values: Upcoming count, This Month count, Strategic Focus
+- Hover: background changes to `--sd-primary`, text turns white
+
+### Filter Pills
+
+Audience and Topic filter buttons. Two groups side by side on desktop.
+
+- CSS class: `.sd-events-pill` / `.sd-events-pill-active`
+- Label above pills: `.sd-events-filter-label` (tiny uppercase)
+- Active: `--sd-primary` background, white text
+- Inactive: `--sd-surface-container-high` background
+- JS: toggles `.sd-events-pill-active` class, filters `.event-card` elements by `data-topics` and `data-audience` attributes
+
+### Event Cards
+
+Rendered by the `events` shortcode → `event-list.html` partial. Styled via CSS:
+
+- First card: featured treatment (blue left border, shadow, larger padding)
+- Remaining cards: 2-column grid on desktop, top border turns blue on hover
+- CSS: `.sd-events-list .event-card:first-child` for featured, rest via `.sd-events-list .event-card`
+
+### About Bar
+
+Info bar at the bottom with "Suggest Event" button.
+
+- CSS class: `.sd-events-about-inner`
+- Background: `--sd-surface-container-low`
+
+## Events Single Page
+
+**Template:** `layouts/events/single.html`
+
+### Event Hero
+
+Same blue gradient as list page, with event title, date badge (glass icon + date), and description.
+
+- Reuses `.sd-events-hero` base styles
+- Date badge: `.sd-events-single-hero-date` with glass icon container
+- Title from frontmatter `.Title`
+- Date from frontmatter `.Params.date`
+
+### Bento Info Grid
+
+Two-column layout: Key Information (2/3) + Target Audience (1/3).
+
+- CSS class: `.sd-events-single-bento`
+- Key Info card: `.sd-events-single-info` — location, organizer, format with Material icons. Topics tags. CTA button to event website.
+- Audience card: `.sd-events-single-audience` — persona cards with icons mapped by audience identifier
+
+### Back Link
+
+Simple "← Back to all events" link at the bottom.
+
+---
+
+# Part 3: Shared Elements
+
+## Sovereignsky Hero
+
+Used on project pages. Tag badge, title, description, status, CTA buttons, optional video/image panel.
+
+**Template:** `layouts/partials/hero/sovereignsky.html`
+
+**Activated by:** `heroStyle: "sovereignsky"` in frontmatter (set by generator for section-based projects)
+
+**Fields used from frontmatter:**
+- `.Title` — hero title
+- `.Params.description` — hero description
+- `.Params.status` — status dot (active/planned/completed)
+- `.Date` — "Started" date
+- `.Params.repository` — "View Repository" CTA button
+- `.Params.documentation` — "Documentation" CTA button
+- `.Params.externalUrl` — "Project Website" CTA button
+- `.Params.topics` — tag badge label (first topic)
+- `hero.*` resource — square image/video in right panel
+
+## Sovereignsky Footer
+
+4-column footer: SovereignSky, Platform, Resources, About.
+
+**Template:** `layouts/partials/sovereignsky-footer.html`
+
+**Used by:** Project pages and Events pages. Default site footer hidden via `body:has(.sd-footer) .site-footer { display: none }` and `body:has(.sd-events) .site-footer { display: none }`.
+
+## Metadata Sidebar
+
+Inline metadata card (Topics, Tags, Audience) displayed alongside content in a 2/3 + 1/3 grid.
+
+**Template:** `layouts/shortcodes/metadata-sidebar.html`
+
+**Auto-generated** by the generator — wraps the first `highlight-card` after `summary` in a project's sections.
+
+---
+
+## Icons
+
+All icons use [Material Symbols Outlined](https://fonts.google.com/icons?icon.set=Material+Symbols). Use the icon name as a string (e.g., `"error_outline"`, `"check_circle"`, `"psychology"`).
+
+Persona cards render icons as **filled** (`font-variation-settings: 'FILL' 1`). All other components use the outline style.
+
+Verify icon names exist at https://fonts.google.com/icons before using them.
+
+---
+
+## Color Conventions
+
+| Color | CSS Variable | Used for |
+|-------|-------------|----------|
+| Primary (blue) | `--sd-primary` / `#0058be` | CTAs, links, primary actions, hero gradients |
+| Secondary (green) | `--sd-secondary` / `#006c49` | Success, operational status, badges |
+| Tertiary (purple) | `--sd-tertiary` / `#6b38d4` | Problems, warnings, deep-tech |
+
+---
+
 ## Adding a New Component
 
+### For project pages (shortcode-based):
 1. Design it in Stitch (update the Component Library screen)
 2. Create `layouts/shortcodes/{name}.html` template
-3. Add the JSON schema to this document
+3. Add the JSON schema to this document (Part 1)
 4. Use CSS classes for dynamic colors (never use Hugo template variables in `style=""` attributes — causes `ZgotmplZ`)
 5. If used inside `side-by-side`, add rendering support to `side-by-side.html`
 6. Update `generate-sovereignsky-pages.js` if the new type needs special handling
+
+### For other page types (template-based):
+1. Design it in Stitch
+2. Modify the page template (`layouts/{type}/list.html` or `single.html`)
+3. Add CSS scoped under a page-specific class (e.g., `.sd-events`)
+4. Document the components in this file (Part 2+)
+5. Use `--sd-*` tokens and `.section-design` wrapper for consistency
