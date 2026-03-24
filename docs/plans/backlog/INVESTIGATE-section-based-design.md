@@ -648,7 +648,7 @@ Each plan decides what sections that content type needs, which new shortcodes to
 | 5 | **publications** | `generate-publications-pages.js` | — | `citation-card`, `resource-card` |
 | 6 | **networks** | `generate-network-pages.js` | `network-map`, `network-data`, `network-actors`, `network-connection-map` | May not need sections — already has rich shortcodes |
 | 7 | **datacenters** | `generate-datacenters-pages.js` | `datacenter-map`, `datacenter-providers`, `datacenter-risk-assessment`, +4 more | May not need sections — already has rich shortcodes |
-| 8 | **events** | `generate-events-pages.js` | `events` | `event-card`, `schedule` |
+| 8 | **events** | `generate-events-pages.js` | `events` | **Separate plan: PLAN-events-redesign.md** — template-level redesign, not section-based. Stitch designs created for both list and single pages. |
 | 9 | **software** | `generate-software-pages.js` | — | `comparison-table`, `risk-badge` |
 | 10 | **blocs** | `generate-blocs-pages.js` | `bloc-cards`, `bloc-member-map` | `member-list` |
 | 11 | **countries/regions** | `generate-countries-pages.js` | Shares datacenter + jurisdiction shortcodes | Shares with Plan 7 and 12 |
@@ -658,10 +658,12 @@ Each plan decides what sections that content type needs, which new shortcodes to
 
 ### Notes
 
+- **Plan 8 (events)** has its own plan: `PLAN-events-redesign.md`. It's a template-level redesign (not section-based) with Stitch designs for both list and single pages.
 - Plans 6, 7, 11, 12, 14 already have rich data-driven shortcodes. They may only need minor updates, or may not need the section treatment at all.
 - Plans 11/12/14 share shortcodes with Plans 4, 7, 10 — they should be planned together.
 - Each plan is independent and can be done in any order after Plan 1.
 - Not all content types may benefit from sections — some may stay with flat `body` markdown.
+- Some content types (like events) benefit more from template-level redesign than section-based JSON. The approach depends on the page type: list pages → template redesign, content pages → sections in JSON.
 
 ## Lessons Learned (from Plan 1 implementation)
 
