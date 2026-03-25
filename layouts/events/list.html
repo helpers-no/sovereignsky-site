@@ -89,26 +89,26 @@
   {{- $uniqueTopics = sort $uniqueTopics -}}
 
   <section class="sd-events-filters">
-    <div class="sd-events-filters-inner">
+    <div class="sd-filters-inner">
       {{/* Audience */}}
-      <div class="sd-events-filter-group">
-        <label class="sd-events-filter-label">Filter by Audience</label>
-        <div class="sd-events-filter-pills" data-filter-group="audience">
-          <button class="sd-events-pill sd-events-pill-active" data-filter="all">All Audiences</button>
+      <div class="sd-filter-group">
+        <label class="sd-filter-label">Filter by Audience</label>
+        <div class="sd-filter-pills" data-filter-group="audience">
+          <button class="sd-filter-pill sd-filter-pill-active" data-filter="all">All Audiences</button>
           {{- range $audienceData.itemListElement }}
-          <button class="sd-events-pill" data-filter="{{ .identifier }}">{{ .name }}</button>
+          <button class="sd-filter-pill" data-filter="{{ .identifier }}">{{ .name }}</button>
           {{- end }}
         </div>
       </div>
 
       {{/* Topics */}}
-      <div class="sd-events-filter-group">
-        <label class="sd-events-filter-label">Filter by Topic</label>
-        <div class="sd-events-filter-pills" data-filter-group="topics">
-          <button class="sd-events-pill sd-events-pill-active" data-filter="all">All Topics</button>
+      <div class="sd-filter-group">
+        <label class="sd-filter-label">Filter by Topic</label>
+        <div class="sd-filter-pills" data-filter-group="topics">
+          <button class="sd-filter-pill sd-filter-pill-active" data-filter="all">All Topics</button>
           {{- range $uniqueTopics }}
           {{ $label := index $topicLabels . | default (. | humanize | title) }}
-          <button class="sd-events-pill" data-filter="{{ . }}">{{ $label }}</button>
+          <button class="sd-filter-pill" data-filter="{{ . }}">{{ $label }}</button>
           {{- end }}
         </div>
       </div>
@@ -161,9 +161,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!target) return;
 
     groupEl.querySelectorAll('button').forEach(b => {
-      b.classList.remove('sd-events-pill-active');
+      b.classList.remove('sd-filter-pill-active');
     });
-    target.classList.add('sd-events-pill-active');
+    target.classList.add('sd-filter-pill-active');
 
     activeFilters[filterGroup] = target.dataset.filter;
   }
@@ -223,9 +223,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const filterValue = this.dataset.filter;
 
       groupEl.querySelectorAll('button').forEach(b => {
-        b.classList.remove('sd-events-pill-active');
+        b.classList.remove('sd-filter-pill-active');
       });
-      this.classList.add('sd-events-pill-active');
+      this.classList.add('sd-filter-pill-active');
 
       activeFilters[filterGroup] = filterValue;
 
