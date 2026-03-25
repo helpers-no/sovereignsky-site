@@ -643,7 +643,7 @@ Each plan decides what sections that content type needs, which new shortcodes to
 
 | Plan | Content type | Generator script | Existing shortcodes | May need new shortcodes |
 |---|---|---|---|---|
-| 3 | **blog** | `generate-blog-pages.js` | — | `author-card`, `related-posts` |
+| 3 | **blog** | `generate-blog-pages.js` | — | **Separate plan: PLAN-blog-redesign.md** — template-level redesign. Stitch designs for list (hero, filters, featured+grid cards) and post (hero, TOC, metadata). |
 | 4 | **laws** | `generate-laws-pages.js` | `laws-list`, `jurisdiction-laws` | `relationship-map`, `conflict-card` |
 | 5 | **publications** | `generate-publications-pages.js` | — | `citation-card`, `resource-card` |
 | 6 | **networks** | `generate-network-pages.js` | `network-map`, `network-data`, `network-actors`, `network-connection-map` | May not need sections — already has rich shortcodes |
