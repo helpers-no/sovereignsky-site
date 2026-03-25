@@ -10,149 +10,203 @@
   {{ $topicLabels = merge $topicLabels (dict .identifier .name) }}
 {{ end }}
 
-<article class="max-w-full">
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" .Title
-      "description" .Description
-      "icon" "pencil"
-  ) }}
+{{ $audienceData := site.Data.audience.audience }}
 
-  {{/* Stats cards */}}
-  {{ $total := len .Pages }}
-  {{ $totalReadingTime := 0 }}
-  {{ $uniqueTopics := slice }}
-  {{ range .Pages }}
-    {{ $totalReadingTime = add $totalReadingTime .ReadingTime }}
-    {{ range .Params.topics }}
-      {{ if not (in $uniqueTopics .) }}
-        {{ $uniqueTopics = $uniqueTopics | append . }}
-      {{ end }}
+{{/* Calculate stats */}}
+{{ $pages := .Pages.ByDate.Reverse }}
+{{ $total := len $pages }}
+{{ $totalReadingTime := 0 }}
+{{ $uniqueTopics := slice }}
+{{ range $pages }}
+  {{ $totalReadingTime = add $totalReadingTime .ReadingTime }}
+  {{ range .Params.topics }}
+    {{ if not (in $uniqueTopics .) }}
+      {{ $uniqueTopics = $uniqueTopics | append . }}
     {{ end }}
   {{ end }}
+{{ end }}
 
-  {{/* Build topic items for filter-pills partial */}}
-  {{ $topicItems := slice }}
-  {{ range $uniqueTopics }}
-    {{ $label := index $topicLabels . | default (. | humanize | title) }}
-    {{ $topicItems = $topicItems | append (dict "id" . "name" $label) }}
-  {{ end }}
+<article class="sd-blog section-design">
 
-  <div class="stats stats-vertical sm:stats-horizontal shadow-lg w-full mb-8 bg-base-100">
-    <div class="stat">
-      <div class="stat-figure text-primary">
-        {{ partial "data-icon.html" (dict "name" "pencil" "color" "primary" "size" "8") }}
+  {{/* ============================================================
+       HERO — Blue gradient
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Knowledge Hub</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Blog</h1>
+        <p class="sd-events-hero-description">
+          Insights on sovereign infrastructure, cryptographic security, and the future of digital independence in a decentralized world.
+        </p>
       </div>
-      <div class="stat-title">Blog Posts</div>
-      <div class="stat-value text-primary">{{ $total }}</div>
-      <div class="stat-desc">Articles published</div>
     </div>
-    <div class="stat">
-      <div class="stat-figure text-secondary">
-        {{ partial "data-icon.html" (dict "name" "clock" "color" "secondary" "size" "8") }}
+  </section>
+
+  {{/* ============================================================
+       STATS — 3 cards overlapping hero
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Blog Posts</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $total }}</span>
+        <span class="sd-events-stat-desc">Articles published</span>
       </div>
-      <div class="stat-title">Reading Time</div>
-      <div class="stat-value text-secondary">{{ $totalReadingTime }}</div>
-      <div class="stat-desc">Minutes total</div>
     </div>
-    <div class="stat">
-      <div class="stat-figure text-accent">
-        {{ partial "data-icon.html" (dict "name" "tag" "color" "accent" "size" "8") }}
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Reading Time</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalReadingTime }}</span>
+        <span class="sd-events-stat-desc">Minutes total</span>
       </div>
-      <div class="stat-title">Topics Covered</div>
-      <div class="stat-value text-accent">{{ len $uniqueTopics }}</div>
-      <div class="stat-desc">Subject areas</div>
     </div>
-  </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Topics Covered</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ len $uniqueTopics }}</span>
+        <span class="sd-events-stat-desc">Subject areas</span>
+      </div>
+    </div>
+  </section>
 
-  {{/* Audience filter - reusable partial */}}
-  {{ partial "audience-filter.html" . }}
+  {{/* ============================================================
+       FILTERS — Shared Stitch-styled pills
+       ============================================================ */}}
+  <section class="sd-events-filters">
+    <div class="sd-filters-inner">
+      {{/* Audience */}}
+      <div class="sd-filter-group">
+        <label class="sd-filter-label">Filter by Audience</label>
+        <div class="sd-filter-pills" data-filter-group="audience">
+          <button class="sd-filter-pill sd-filter-pill-active" data-filter="all">All Audiences</button>
+          {{- range $audienceData.itemListElement }}
+          <button class="sd-filter-pill" data-filter="{{ .identifier }}">{{ .name }}</button>
+          {{- end }}
+        </div>
+      </div>
 
-  {{/* Topic filter - responsive pills that wrap on mobile */}}
-  {{ partial "filter-pills.html" (dict
-      "label" "Topic"
-      "filterGroup" "topics"
-      "items" $topicItems
-      "allLabel" "All"
-  ) }}
+      {{/* Topics */}}
+      <div class="sd-filter-group">
+        <label class="sd-filter-label">Filter by Topic</label>
+        <div class="sd-filter-pills" data-filter-group="topics">
+          <button class="sd-filter-pill sd-filter-pill-active" data-filter="all">All Topics</button>
+          {{- range $uniqueTopics }}
+          {{ $label := index $topicLabels . | default (. | humanize | title) }}
+          <button class="sd-filter-pill" data-filter="{{ . }}">{{ $label }}</button>
+          {{- end }}
+        </div>
+      </div>
+    </div>
+  </section>
 
-  {{/* Blog Grid */}}
-  <div id="blog-grid" class="grid sm:grid-cols-2" style="gap: 2.5rem;">
-    {{ range .Pages.ByDate.Reverse }}
-    {{ $featured := .Resources.GetMatch "featured*" }}
-    {{ $topics := .Params.topics | default (slice) }}
-    {{ $audiences := .Params.audience | default (slice) }}
-    {{ $tags := .Params.tags | default (slice) }}
+  {{/* ============================================================
+       BLOG FEED — Featured post + grid
+       ============================================================ */}}
+  <section class="sd-blog-feed">
 
-    <article
-      class="blog-card card bg-base-100 shadow-md hover:shadow-lg transition-all group border border-base-200 h-full flex flex-col"
-      data-topics="{{ delimit $topics "," }}"
-      data-audience="{{ delimit $audiences "," }}"
-    >
-      <a href="{{ .RelPermalink }}" class="flex flex-col h-full no-underline">
-        {{/* Cover image */}}
-        {{ if $featured }}
-        {{ $img := $featured.Fill "600x280 webp" }}
-        <figure class="h-40 overflow-hidden bg-base-200">
-          <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" width="{{ $img.Width }}" height="{{ $img.Height }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
-        </figure>
-        {{ else }}
-        {{/* Placeholder if no image */}}
-        <figure class="h-40 overflow-hidden bg-gradient-to-br from-primary/10 to-secondary/10 flex items-center justify-center">
-          <div class="text-primary/30">
-            {{ partial "data-icon.html" (dict "name" "pencil" "size" "16" "class" "w-16 h-16") }}
+    {{ range $i, $page := $pages }}
+    {{ $featured := $page.Resources.GetMatch "featured*" }}
+    {{ $topics := $page.Params.topics | default (slice) }}
+    {{ $audiences := $page.Params.audience | default (slice) }}
+
+    {{ if eq $i 0 }}
+    {{/* ---- FEATURED POST (first/most recent) ---- */}}
+    <article class="sd-blog-featured blog-card" data-topics="{{ delimit $topics "," }}" data-audience="{{ delimit $audiences "," }}">
+      <a href="{{ $page.RelPermalink }}" class="sd-blog-featured-inner">
+        <div class="sd-blog-featured-image">
+          {{ if $featured }}
+          {{ $img := $featured.Fill "800x500 webp" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />
+          {{ else }}
+          <div class="sd-blog-featured-placeholder">
+            <span class="material-symbols-outlined" style="font-size: 4rem; color: var(--sd-primary); opacity: 0.3;">article</span>
           </div>
-        </figure>
-        {{ end }}
-
-        <div class="card-body p-4 flex-grow flex flex-col">
-          {{/* Date and reading time row */}}
-          <div class="flex items-center justify-between gap-2 mb-2">
-            {{/* Date */}}
-            {{ with .Date }}
-            <time datetime="{{ .Format "2006-01-02" }}" class="text-xs text-neutral-500 dark:text-neutral-400">
-              {{ .Format "Jan 2, 2006" }}
-            </time>
-            {{ end }}
-
-            {{/* Reading time */}}
-            {{ with .ReadingTime }}
-            <span class="text-xs text-neutral-500 dark:text-neutral-400">{{ . }} min read</span>
-            {{ end }}
-          </div>
-
-          {{/* Title */}}
-          <h2 class="card-title text-base leading-tight group-hover:text-primary transition-colors line-clamp-2">{{ .Title }}</h2>
-
-          {{/* Description */}}
-          {{ with .Description }}
-          <p class="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 mt-1">{{ . }}</p>
           {{ end }}
-
-          {{/* Topics only - cleaner look */}}
-          <div class="mt-auto pt-2">
-            <div class="flex flex-wrap gap-1.5">
-              {{ range first 2 $topics }}
-                {{ $topicInfo := index $topicsLookup . }}
-                {{ if $topicInfo }}
-                <span class="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary-700 dark:text-primary-300">{{ $topicInfo.name }}</span>
-                {{ end }}
-              {{ end }}
-            </div>
+          <span class="sd-blog-featured-badge">Featured</span>
+        </div>
+        <div class="sd-blog-featured-content">
+          <div class="sd-blog-meta">
+            {{ with $page.Date }}<span>{{ .Format "Jan 2, 2006" }}</span>{{ end }}
+            <span>•</span>
+            <span>{{ $page.ReadingTime }} min read</span>
           </div>
+          <h2 class="sd-headline sd-blog-featured-title">{{ $page.Title }}</h2>
+          {{ with $page.Description }}
+          <p class="sd-blog-featured-desc">{{ . }}</p>
+          {{ end }}
+          <div class="sd-blog-tags">
+            {{ range first 3 $topics }}
+            {{ $label := index $topicLabels . | default (. | humanize | title) }}
+            <span class="sd-blog-tag">#{{ upper $label }}</span>
+            {{ end }}
+          </div>
+          <span class="sd-blog-read-more">
+            Read Full Insight
+            <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
+          </span>
         </div>
       </a>
     </article>
-    {{ end }}
-  </div>
 
-  {{/* No results message */}}
-  <div id="no-results" class="hidden alert alert-warning my-4">
-    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-    <span>No posts match the selected filters.</span>
-  </div>
+    {{ else }}
+
+    {{ if eq $i 1 }}
+    {{/* Open the grid after featured post */}}
+    <div class="sd-blog-grid">
+    {{ end }}
+
+    {{/* ---- REGULAR POST CARD ---- */}}
+    <article class="sd-blog-card blog-card" data-topics="{{ delimit $topics "," }}" data-audience="{{ delimit $audiences "," }}">
+      <a href="{{ $page.RelPermalink }}" class="sd-blog-card-inner">
+        <div class="sd-blog-card-image">
+          {{ if $featured }}
+          {{ $img := $featured.Fill "600x340 webp" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />
+          {{ else }}
+          <div class="sd-blog-featured-placeholder">
+            <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--sd-primary); opacity: 0.3;">article</span>
+          </div>
+          {{ end }}
+        </div>
+        <div class="sd-blog-card-content">
+          <div class="sd-blog-meta">
+            {{ with $page.Date }}<span>{{ .Format "Jan 2, 2006" }}</span>{{ end }}
+            <span>•</span>
+            <span>{{ $page.ReadingTime }} min read</span>
+          </div>
+          <h3 class="sd-headline sd-blog-card-title">{{ $page.Title }}</h3>
+          {{ with $page.Description }}
+          <p class="sd-blog-card-desc">{{ . }}</p>
+          {{ end }}
+        </div>
+      </a>
+    </article>
+
+    {{ if eq $i (sub (len $pages) 1) }}
+    {{/* Close the grid after last post */}}
+    </div>
+    {{ end }}
+
+    {{ end }}
+    {{ end }}
+
+    {{/* No results */}}
+    <div id="no-results" class="events-empty-filtered" style="display: none;">
+      <span class="material-symbols-outlined">search_off</span>
+      No posts match the selected filters.
+    </div>
+
+  </section>
 
 </article>
+
+{{/* Sovereignsky footer */}}
+{{ partial "sovereignsky-footer.html" . }}
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -173,18 +227,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const target = btn || fallback;
     if (!target) return;
 
-    // Update active state - supports both btn-active and btn-primary styles
     groupEl.querySelectorAll('button').forEach(b => {
-      b.classList.remove('btn-active', 'btn-primary');
-      b.classList.add('btn-ghost');
-      if (!b.classList.contains('border')) {
-        b.classList.add('border', 'border-base-300');
-      }
+      b.classList.remove('sd-filter-pill-active');
     });
-    target.classList.add('btn-primary');
-    target.classList.remove('btn-ghost', 'border', 'border-base-300');
-
-    // Update state
+    target.classList.add('sd-filter-pill-active');
     activeFilters[filterGroup] = target.dataset.filter;
   }
 
@@ -199,14 +245,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function applyFilters() {
     let visibleCount = 0;
-
     blogCards.forEach(card => {
       const cardTopics = card.dataset.topics || '';
       const cardAudience = card.dataset.audience || '';
-
       const matchesTopics = activeFilters.topics === 'all' || cardTopics.includes(activeFilters.topics);
       const matchesAudience = activeFilters.audience === 'all' || cardAudience.includes(activeFilters.audience);
-
       if (matchesTopics && matchesAudience) {
         card.style.display = '';
         visibleCount++;
@@ -214,43 +257,22 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.display = 'none';
       }
     });
-
-    // Show/hide no results message
-    if (visibleCount === 0) {
-      noResults.classList.remove('hidden');
-    } else {
-      noResults.classList.add('hidden');
-    }
+    noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
   }
 
   // Initialize from URL
   const params = new URLSearchParams(window.location.search);
-  const urlAudience = params.get('audience') || 'all';
-  const urlTopic = params.get('topic') || params.get('topics') || 'all';
-  setActiveButton('audience', urlAudience);
-  setActiveButton('topics', urlTopic);
+  setActiveButton('audience', params.get('audience') || 'all');
+  setActiveButton('topics', params.get('topic') || params.get('topics') || 'all');
   applyFilters();
 
   filterButtons.forEach(btn => {
     btn.addEventListener('click', function() {
       const groupEl = this.closest('[data-filter-group]');
       const filterGroup = groupEl.dataset.filterGroup;
-      const filterValue = this.dataset.filter;
-
-      // Update active state - supports both btn-active and btn-primary styles
-      groupEl.querySelectorAll('button').forEach(b => {
-        b.classList.remove('btn-active', 'btn-primary');
-        b.classList.add('btn-ghost');
-        if (!b.classList.contains('border')) {
-          b.classList.add('border', 'border-base-300');
-        }
-      });
-      this.classList.add('btn-primary');
-      this.classList.remove('btn-ghost', 'border', 'border-base-300');
-
-      // Update filter state
-      activeFilters[filterGroup] = filterValue;
-
+      groupEl.querySelectorAll('button').forEach(b => b.classList.remove('sd-filter-pill-active'));
+      this.classList.add('sd-filter-pill-active');
+      activeFilters[filterGroup] = this.dataset.filter;
       applyFilters();
       updateURL();
     });
