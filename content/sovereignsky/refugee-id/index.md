@@ -1,7 +1,7 @@
 ---
 title: "Refugee ID"
 identifier: "refugee-id"
-weight: 55
+weight: 50
 date: 2022-03-01
 description: "When 5,000 refugees arrived daily at the Polish-Ukrainian border, there were no IT systems and no way to tell helpers from traffickers. Refugee ID is a QR-based wristband identification system built to protect the most vulnerable."
 summary: "QR-based wristband identification for humanitarian operations — built at the Polish-Ukrainian border to stop human trafficking"
@@ -11,6 +11,8 @@ externalUrl: "https://github.com/helpers-no/qr-armband"
 topics:
   - "digital-sovereignty"
   - "data-protection"
+  - "humanitarian-technology"
+  - "privacy"
 tags:
   - "humanitarian"
   - "qr-code"

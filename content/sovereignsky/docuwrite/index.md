@@ -1,7 +1,7 @@
 ---
 title: "DocuWrite"
 identifier: "docuwrite"
-weight: 45
+weight: 100
 date: 2024-01-01
 description: "Cloud document services scan your content and may share data with foreign authorities. DocuWrite runs entirely locally, ensuring sensitive documentation never leaves your infrastructure - critical for classified, legal, or confidential materials."
 summary: "Swiss army knife for converting Markdown to professional PDFs, Word documents, and presentations"
@@ -10,6 +10,8 @@ repository: "https://github.com/helpers-no/docuwrite-base"
 externalUrl: "https://github.com/helpers-no/docuwrite-base"
 topics:
   - "critical-infrastructure"
+  - "data-protection"
+  - "cloud-sovereignty"
 tags:
   - "documentation"
   - "markdown"

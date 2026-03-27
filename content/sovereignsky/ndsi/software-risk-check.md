@@ -6,10 +6,13 @@ summary: "Select the tools your organization uses. Get an instant risk assessmen
 topics:
   - "digital-sovereignty"
   - "data-protection"
+  - "national-preparedness"
+  - "digital-resilience"
 audience:
   - "public-sector"
   - "enterprise"
   - "it-ops"
+  - "security"
 ---
 
 ## Which Tools Does Your Organization Use?

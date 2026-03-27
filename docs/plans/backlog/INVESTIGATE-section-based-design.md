@@ -633,6 +633,12 @@ Hero, sidebar removal, full-width layout, footer, nav fonts, image naming, side-
 
 See: `docs/plans/completed/PLAN-page-level-redesign.md`
 
+### PLAN 1.6: Projects List Redesign — ✅ COMPLETED 2026-03-27
+
+Restyled `/sovereignsky/` list page with Stitch design: blue gradient hero, stat cards, shared filter pills, featured project card (by weight), 3-column grid. Expanded topics and audiences for all 11 projects. Reordered projects by user preference.
+
+See: `docs/plans/completed/PLAN-projects-list-redesign.md`
+
 ### PLAN 2: ~~sovereignsky (remaining projects)~~ — ✅ MERGED INTO PLAN 1
 
 All 11 sovereignsky projects converted to sections during Plan 1 implementation.
@@ -689,8 +695,11 @@ Each plan decides what sections that content type needs, which new shortcodes to
 - [x] Create PLAN-page-level-redesign.md (hero + sidebar + content width) — done 2026-03-22
 - [x] Implement PLAN-page-level-redesign.md — completed 2026-03-23
 - [x] Create component library in Stitch — done 2026-03-24
-- [x] Create docs/SHORTCODES.md reference — done 2026-03-24
-- [ ] Create per-content-type plans as needed (Plans 3-14)
+- [x] Create docs/SHORTCODES.md reference (now docs/DESIGN-COMPONENTS.md) — done 2026-03-24
+- [x] Implement PLAN-events-redesign.md — completed 2026-03-24
+- [x] Implement PLAN-blog-redesign.md — completed 2026-03-25
+- [x] Implement PLAN-projects-list-redesign.md — completed 2026-03-27
+- [ ] Create per-content-type plans as needed (remaining Plans 4-14)
 
 ## Related Documentation
 

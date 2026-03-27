@@ -1,7 +1,7 @@
 ---
 title: "Norwegian Digital Sovereignty Index (NDSI)"
 identifier: "ndsi"
-weight: 15
+weight: 90
 date: 2024-01-01
 description: "What gets measured gets managed. NDSI provides a structured framework to assess your organization's sovereignty posture, identify vulnerabilities to foreign control, and track improvement over time - aligned with EU standards and Norwegian regulations."
 summary: "A community-driven framework for measuring and improving digital sovereignty readiness in Norwegian organizations"
@@ -10,6 +10,8 @@ externalUrl: "/sovereignsky/ndsi/"
 topics:
   - "digital-sovereignty"
   - "data-protection"
+  - "national-preparedness"
+  - "digital-resilience"
 tags:
   - "norway"
   - "index"
@@ -19,6 +21,7 @@ audience:
   - "public-sector"
   - "enterprise"
   - "it-ops"
+  - "security"
 showHero: true
 heroStyle: "sovereignsky"
 showTableOfContents: false

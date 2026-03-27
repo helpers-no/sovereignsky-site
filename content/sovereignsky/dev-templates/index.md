@@ -1,7 +1,7 @@
 ---
 title: "Dev Templates"
 identifier: "dev-templates"
-weight: 22
+weight: 30
 date: 2025-01-01
 description: "Starting a new project shouldn't mean days of boilerplate setup. Dev Templates provide production-ready starting points for APIs, web apps, and backends — all pre-configured for the DevContainer Toolbox with consistent best practices."
 summary: "Quick, modern, and standardized project templates for rapid prototyping and consistent development"
@@ -10,6 +10,8 @@ repository: "https://github.com/helpers-no/dev-templates"
 externalUrl: "/sovereignsky/dev-templates/"
 topics:
   - "cybersecurity"
+  - "digital-sovereignty"
+  - "open-source"
 tags:
   - "templates"
   - "boilerplate"
@@ -18,6 +20,7 @@ tags:
   - "best-practices"
 audience:
   - "developer"
+  - "it-ops"
 showHero: true
 heroStyle: "sovereignsky"
 showTableOfContents: false

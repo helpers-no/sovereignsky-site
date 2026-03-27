@@ -1,7 +1,7 @@
 ---
 title: "sovdev-logger"
 identifier: "sovdev-logger"
-weight: 30
+weight: 60
 date: 2025-01-01
 description: "Application telemetry often flows to foreign cloud providers, exposing operational patterns and sensitive metadata. sovdev-logger works with self-hosted backends like Grafana and Loki, keeping your observability data under your control and jurisdiction."
 summary: "One log call — automatic logs, metrics, traces, and service maps. 95% less instrumentation code."
@@ -11,6 +11,8 @@ externalUrl: "/sovereignsky/sovdev-logger/"
 topics:
   - "cybersecurity"
   - "critical-infrastructure"
+  - "cloud-sovereignty"
+  - "data-protection"
 tags:
   - "logging"
   - "observability"

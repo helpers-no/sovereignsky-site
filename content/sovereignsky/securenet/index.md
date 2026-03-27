@@ -1,7 +1,7 @@
 ---
 title: "SecureNet"
 identifier: "securenet"
-weight: 50
+weight: 110
 date: 2025-12-01
 description: "Remote workers are prime targets for state-sponsored attacks. SecureNet ensures that even if a developer's laptop is compromised, attackers cannot pivot into your critical infrastructure - essential protection against foreign cyber operations targeting your organization."
 summary: "Secure developer access to internal services without exposing your network"
@@ -10,6 +10,8 @@ externalUrl: "/sovereignsky/securenet/"
 topics:
   - "cybersecurity"
   - "critical-infrastructure"
+  - "digital-resilience"
+  - "encryption"
 tags:
   - "zero-trust"
   - "isolation"
@@ -18,6 +20,8 @@ tags:
 audience:
   - "developer"
   - "it-ops"
+  - "security"
+  - "enterprise"
 showHero: true
 heroStyle: "sovereignsky"
 showTableOfContents: false

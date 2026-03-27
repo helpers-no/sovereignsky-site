@@ -1,7 +1,7 @@
 ---
 title: "DevContainer Toolbox"
 identifier: "devcontainer-toolbox"
-weight: 20
+weight: 10
 date: 2024-01-01
 description: "Cloud-based IDEs like GitHub Codespaces send your code through foreign infrastructure. DevContainer Toolbox provides the same convenience locally, keeping your source code and development activity within your own security perimeter."
 summary: "A standardized, cross-platform development environment for fast, reliable onboarding and consistent delivery"
@@ -11,6 +11,8 @@ documentation: "https://dct.sovereignsky.no/"
 externalUrl: "https://dct.sovereignsky.no/"
 topics:
   - "cybersecurity"
+  - "digital-sovereignty"
+  - "cloud-sovereignty"
 tags:
   - "devcontainer"
   - "docker"
@@ -20,6 +22,7 @@ tags:
 audience:
   - "developer"
   - "it-ops"
+  - "security"
 showHero: true
 heroStyle: "sovereignsky"
 showTableOfContents: false

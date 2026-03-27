@@ -22,7 +22,7 @@
   "itemListElement": [
     {
       "@type": "SoftwareSourceCode",
-      "weight": 50,
+      "weight": 110,
       "identifier": "securenet",
       "name": "SecureNet",
       "description": "Remote workers are prime targets for state-sponsored attacks. SecureNet ensures that even if a developer's laptop is compromised, attackers cannot pivot into your critical infrastructure - essential protection against foreign cyber operations targeting your organization.",
@@ -30,7 +30,9 @@
       "url": "/sovereignsky/securenet/",
       "topics": [
         "cybersecurity",
-        "critical-infrastructure"
+        "critical-infrastructure",
+        "digital-resilience",
+        "encryption"
       ],
       "tags": [
         "zero-trust",
@@ -40,7 +42,9 @@
       ],
       "audience": [
         "developer",
-        "it-ops"
+        "it-ops",
+        "security",
+        "enterprise"
       ],
       "project": {
         "dateStarted": "2025-12-01",
@@ -60,7 +64,7 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 10,
+      "weight": 80,
       "identifier": "software-database",
       "name": "Software Database",
       "description": "Every foreign SaaS tool is a potential backdoor for extraterritorial data access. We track what France (SILL), Germany (openCode), Denmark, and other European countries recommend — and aggregate their government-vetted catalogs into one searchable database with sovereign alternatives.",
@@ -68,7 +72,9 @@
       "url": "/sovereignsky/software-database/",
       "topics": [
         "digital-sovereignty",
-        "data-protection"
+        "data-protection",
+        "cloud-act",
+        "platform-dependency"
       ],
       "tags": [
         "software",
@@ -180,7 +186,7 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 30,
+      "weight": 60,
       "identifier": "sovdev-logger",
       "name": "sovdev-logger",
       "description": "Application telemetry often flows to foreign cloud providers, exposing operational patterns and sensitive metadata. sovdev-logger works with self-hosted backends like Grafana and Loki, keeping your observability data under your control and jurisdiction.",
@@ -188,7 +194,9 @@
       "url": "/sovereignsky/sovdev-logger/",
       "topics": [
         "cybersecurity",
-        "critical-infrastructure"
+        "critical-infrastructure",
+        "cloud-sovereignty",
+        "data-protection"
       ],
       "tags": [
         "logging",
@@ -333,14 +341,16 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 45,
+      "weight": 100,
       "identifier": "docuwrite",
       "name": "DocuWrite",
       "description": "Cloud document services scan your content and may share data with foreign authorities. DocuWrite runs entirely locally, ensuring sensitive documentation never leaves your infrastructure - critical for classified, legal, or confidential materials.",
       "abstract": "Swiss army knife for converting Markdown to professional PDFs, Word documents, and presentations",
       "url": "https://github.com/helpers-no/docuwrite-base",
       "topics": [
-        "critical-infrastructure"
+        "critical-infrastructure",
+        "data-protection",
+        "cloud-sovereignty"
       ],
       "tags": [
         "documentation",
@@ -467,14 +477,16 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 35,
+      "weight": 70,
       "identifier": "bifrost",
       "name": "Bifrost",
       "description": "You cannot secure what you cannot see. Bifrost maps your entire application landscape and data flows, revealing hidden dependencies on foreign services - the essential first step in any sovereignty assessment or migration planning.",
       "abstract": "Gain full visibility into your organization's application landscape, integrations, and ownership",
       "url": "https://github.com/helpers-no/bifrost",
       "topics": [
-        "critical-infrastructure"
+        "critical-infrastructure",
+        "cybersecurity",
+        "digital-resilience"
       ],
       "tags": [
         "application-portfolio",
@@ -485,7 +497,9 @@
       ],
       "audience": [
         "developer",
-        "it-ops"
+        "it-ops",
+        "enterprise",
+        "security"
       ],
       "project": {
         "dateStarted": "2024-01-01",
@@ -571,7 +585,7 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 25,
+      "weight": 20,
       "identifier": "urbalurba-infrastructure",
       "name": "Urbalurba Infrastructure Stack",
       "description": "Cloud lock-in is sovereignty lock-in. Urbalurba provides identical infrastructure locally, on-premises, and in any cloud - giving you true portability and the freedom to move workloads to sovereign providers without rewriting applications.",
@@ -579,7 +593,9 @@
       "url": "https://uis.sovereignsky.no/",
       "topics": [
         "critical-infrastructure",
-        "cybersecurity"
+        "cybersecurity",
+        "cloud-sovereignty",
+        "digital-sovereignty"
       ],
       "tags": [
         "kubernetes",
@@ -590,7 +606,8 @@
       ],
       "audience": [
         "developer",
-        "it-ops"
+        "it-ops",
+        "enterprise"
       ],
       "project": {
         "dateStarted": "2024-01-01",
@@ -748,7 +765,7 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 20,
+      "weight": 10,
       "identifier": "devcontainer-toolbox",
       "name": "DevContainer Toolbox",
       "description": "Cloud-based IDEs like GitHub Codespaces send your code through foreign infrastructure. DevContainer Toolbox provides the same convenience locally, keeping your source code and development activity within your own security perimeter.",
@@ -881,7 +898,9 @@
       ],
       "url": "https://dct.sovereignsky.no/",
       "topics": [
-        "cybersecurity"
+        "cybersecurity",
+        "digital-sovereignty",
+        "cloud-sovereignty"
       ],
       "tags": [
         "devcontainer",
@@ -892,7 +911,8 @@
       ],
       "audience": [
         "developer",
-        "it-ops"
+        "it-ops",
+        "security"
       ],
       "project": {
         "dateStarted": "2024-01-01",
@@ -905,14 +925,16 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 22,
+      "weight": 30,
       "identifier": "dev-templates",
       "name": "Dev Templates",
       "description": "Starting a new project shouldn't mean days of boilerplate setup. Dev Templates provide production-ready starting points for APIs, web apps, and backends — all pre-configured for the DevContainer Toolbox with consistent best practices.",
       "abstract": "Quick, modern, and standardized project templates for rapid prototyping and consistent development",
       "url": "/sovereignsky/dev-templates/",
       "topics": [
-        "cybersecurity"
+        "cybersecurity",
+        "digital-sovereignty",
+        "open-source"
       ],
       "tags": [
         "templates",
@@ -922,7 +944,8 @@
         "best-practices"
       ],
       "audience": [
-        "developer"
+        "developer",
+        "it-ops"
       ],
       "project": {
         "dateStarted": "2025-01-01",
@@ -1034,7 +1057,7 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 23,
+      "weight": 40,
       "identifier": "client-provisioning",
       "name": "Client Provisioning of Rancher Desktop",
       "description": "Automated deployment of Rancher Desktop and DevContainer Toolbox to developer machines via Intune (Windows) and Jamf (macOS). A developer gets a new machine, the scripts install everything, and they open any project in a fully configured devcontainer within minutes.",
@@ -1042,7 +1065,8 @@
       "url": "/sovereignsky/client-provisioning/",
       "topics": [
         "cybersecurity",
-        "critical-infrastructure"
+        "critical-infrastructure",
+        "digital-resilience"
       ],
       "tags": [
         "provisioning",
@@ -1162,7 +1186,7 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 55,
+      "weight": 50,
       "identifier": "refugee-id",
       "name": "Refugee ID",
       "description": "When 5,000 refugees arrived daily at the Polish-Ukrainian border, there were no IT systems and no way to tell helpers from traffickers. Refugee ID is a QR-based wristband identification system built to protect the most vulnerable.",
@@ -1170,7 +1194,9 @@
       "url": "https://github.com/helpers-no/qr-armband",
       "topics": [
         "digital-sovereignty",
-        "data-protection"
+        "data-protection",
+        "humanitarian-technology",
+        "privacy"
       ],
       "tags": [
         "humanitarian",
@@ -1272,7 +1298,7 @@
     },
     {
       "@type": "SoftwareSourceCode",
-      "weight": 15,
+      "weight": 90,
       "identifier": "ndsi",
       "name": "Norwegian Digital Sovereignty Index (NDSI)",
       "description": "What gets measured gets managed. NDSI provides a structured framework to assess your organization's sovereignty posture, identify vulnerabilities to foreign control, and track improvement over time - aligned with EU standards and Norwegian regulations.",
@@ -1280,7 +1306,9 @@
       "url": "/sovereignsky/ndsi/",
       "topics": [
         "digital-sovereignty",
-        "data-protection"
+        "data-protection",
+        "national-preparedness",
+        "digital-resilience"
       ],
       "tags": [
         "norway",
@@ -1291,7 +1319,8 @@
       "audience": [
         "public-sector",
         "enterprise",
-        "it-ops"
+        "it-ops",
+        "security"
       ],
       "project": {
         "dateStarted": "2024-01-01",

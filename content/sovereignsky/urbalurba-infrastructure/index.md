@@ -1,7 +1,7 @@
 ---
 title: "Urbalurba Infrastructure Stack"
 identifier: "urbalurba-infrastructure"
-weight: 25
+weight: 20
 date: 2024-01-01
 description: "Cloud lock-in is sovereignty lock-in. Urbalurba provides identical infrastructure locally, on-premises, and in any cloud - giving you true portability and the freedom to move workloads to sovereign providers without rewriting applications."
 summary: "A complete datacenter environment on your laptop - Kubernetes, databases, AI, and cloud services running locally"
@@ -12,6 +12,8 @@ externalUrl: "https://uis.sovereignsky.no/"
 topics:
   - "critical-infrastructure"
   - "cybersecurity"
+  - "cloud-sovereignty"
+  - "digital-sovereignty"
 tags:
   - "kubernetes"
   - "docker"
@@ -21,6 +23,7 @@ tags:
 audience:
   - "developer"
   - "it-ops"
+  - "enterprise"
 showHero: true
 heroStyle: "sovereignsky"
 showTableOfContents: false

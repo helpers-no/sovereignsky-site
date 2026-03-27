@@ -6,10 +6,13 @@ summary: "Answer 11 questions and discover your NDSI level. Get a clear picture 
 topics:
   - "digital-sovereignty"
   - "data-protection"
+  - "national-preparedness"
+  - "digital-resilience"
 audience:
   - "public-sector"
   - "enterprise"
   - "it-ops"
+  - "security"
 ---
 
 ## How Sovereign Is Your Organization?

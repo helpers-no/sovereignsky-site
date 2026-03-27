@@ -1693,8 +1693,9 @@ body:has(.sd-events) .site-footer {
   padding: 2rem 1.5rem 4rem;
 }
 
-/* Hide default site footer on blog pages */
-body:has(.sd-blog) .site-footer {
+/* Hide default site footer on blog and projects list pages */
+body:has(.sd-blog) .site-footer,
+body:has(.sd-projects) .site-footer {
   display: none !important;
 }
 
