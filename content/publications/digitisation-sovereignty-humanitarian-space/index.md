@@ -4,6 +4,7 @@ description: "Academic analysis of how digitalisation and reliance on global pla
 date: 2022-03-20
 external_url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10153061/"
 publisher: "Taylor & Francis"
+weight: 40
 authors:
   - "Aaron Martin"
   - "Gargi Sharma"
@@ -19,10 +20,13 @@ topics:
   - "digital-sovereignty"
   - "digital-identity"
   - "privacy"
+  - "platform-dependency"
+  - "humanitarian-technology"
 audience:
   - "humanitarian"
   - "public-sector"
   - "enterprise"
+  - "it-ops"
 tags:
   - "digital-platforms"
   - "power-relations"

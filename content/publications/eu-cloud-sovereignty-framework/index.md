@@ -4,12 +4,15 @@ description: "Understanding the European Commission's framework for measuring an
 date: 2025-01-15
 external_url: "https://commission.europa.eu/document/download/09579818-64a6-4dd5-9577-446ab6219113_en"
 publisher: "European Commission"
+weight: 20
 authors:
   - "European Commission"
   - "Directorate-General for Digital Services"
 topics:
   - "digital-sovereignty"
-  - "compliance"
+  - "cloud-sovereignty"
+  - "data-protection"
+  - "platform-dependency"
 audience:
   - "public-sector"
   - "enterprise"

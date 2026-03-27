@@ -221,6 +221,11 @@ function buildFrontmatter(pub) {
     `publisher: ${yamlString(pub.publisher)}`
   ];
 
+  // Weight for sorting
+  if (pub.weight !== undefined) {
+    lines.push(`weight: ${pub.weight}`);
+  }
+
   // Authors (optional - some reports don't have named authors)
   if (pub.author && pub.author.length > 0) {
     lines.push(...yamlStringList('authors', pub.author));

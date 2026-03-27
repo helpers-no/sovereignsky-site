@@ -4,8 +4,12 @@ description: "Norwegian Defence Research Establishment analysis of voluntary pre
 date: 2024-01-01
 external_url: "https://www.ffi.no/publikasjoner/arkiv/frivillige-beredskapsorganisasjoner-i-fremtidens-totalforsvar"
 publisher: "Norwegian Defence Research Establishment (FFI)"
+weight: 10
 topics:
   - "national-preparedness"
+  - "total-defence"
+  - "civil-protection"
+  - "digital-resilience"
 audience:
   - "public-sector"
   - "humanitarian"

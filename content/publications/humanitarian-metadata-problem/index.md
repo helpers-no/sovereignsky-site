@@ -4,14 +4,19 @@ description: "Technical analysis of how metadata from telecommunications, messag
 date: 2020-11-01
 external_url: "https://www.icrc.org/en/document/digital-trails-could-endanger-people-receiving-humanitarian-aid-icrc-and-privacy"
 publisher: "ICRC / Privacy International"
+weight: 60
 topics:
   - "privacy"
   - "cybersecurity"
+  - "surveillance"
+  - "metadata"
+  - "data-protection"
 audience:
   - "humanitarian"
   - "public-sector"
   - "it-ops"
   - "consumer"
+  - "security"
 tags:
   - "metadata"
   - "cell-tower"

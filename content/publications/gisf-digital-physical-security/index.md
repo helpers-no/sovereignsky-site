@@ -4,13 +4,17 @@ description: "Practitioner guidance on integrating digital threats into security
 date: 2024-01-01
 external_url: "https://gisf.ngo/wp-content/uploads/2024/01/Digital-Security-Final-Design-for-Publication.pdf"
 publisher: "Global Interagency Security Forum (GISF)"
+weight: 80
 topics:
   - "cybersecurity"
   - "critical-infrastructure"
+  - "digital-resilience"
+  - "humanitarian-technology"
 audience:
   - "humanitarian"
   - "security"
   - "it-ops"
+  - "enterprise"
 tags:
   - "security-triangle"
   - "staff-training"

@@ -4,12 +4,16 @@ description: "ICRC analysis of how cyber operations, data breaches, and disinfor
 date: 2022-10-13
 external_url: "https://blogs.icrc.org/law-and-policy/2022/10/13/safeguarding-humanitarian-organizations-from-digital-threats/"
 publisher: "ICRC Humanitarian Law & Policy Blog"
+weight: 70
 authors:
   - "Tilman Rodenhäuser"
   - "Balthasar Staehelin"
   - "Massimo Marelli"
 topics:
   - "cybersecurity"
+  - "digital-resilience"
+  - "disinformation"
+  - "data-protection"
 audience:
   - "humanitarian"
   - "public-sector"

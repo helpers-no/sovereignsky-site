@@ -1,130 +1,209 @@
 {{ define "main" }}
 {{/* Build lookup maps */}}
-{{ $topicsLookup := dict }}
-{{ range site.Data.topics.topics.itemListElement }}
-  {{ $topicsLookup = merge $topicsLookup (dict .identifier .) }}
-{{ end }}
-
 {{ $topicLabels := dict }}
 {{ range site.Data.topics.topics.itemListElement }}
   {{ $topicLabels = merge $topicLabels (dict .identifier .name) }}
 {{ end }}
 
-<article class="max-w-full">
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" .Title
-      "description" .Description
-      "icon" "book"
-  ) }}
+{{ $audienceData := site.Data.audience.audience }}
 
-  {{/* Stats cards */}}
-  {{ $total := len .Pages }}
-  {{ $topicCounts := dict }}
-  {{ range .Pages }}
-    {{ range .Params.topics }}
-      {{ $count := index $topicCounts . | default 0 }}
-      {{ $topicCounts = merge $topicCounts (dict . (add $count 1)) }}
+{{/* Get sorted pages and stats */}}
+{{ $pages := .Pages.ByWeight }}
+{{ $total := len $pages }}
+{{ $uniqueTopics := slice }}
+{{ $uniquePublishers := slice }}
+{{ range $pages }}
+  {{ range .Params.topics }}
+    {{ if not (in $uniqueTopics .) }}
+      {{ $uniqueTopics = $uniqueTopics | append . }}
     {{ end }}
   {{ end }}
-  {{/* Get all unique topics and build items for filter-pills */}}
-  {{ $uniqueTopics := slice }}
-  {{ range $topic, $count := $topicCounts }}
-    {{ $uniqueTopics = $uniqueTopics | append $topic }}
+  {{ with .Params.publisher }}
+    {{ if and . (not (in $uniquePublishers .)) }}
+      {{ $uniquePublishers = $uniquePublishers | append . }}
+    {{ end }}
   {{ end }}
-  {{ $uniqueTopics = sort $uniqueTopics }}
+{{ end }}
 
-  {{/* Build topic items for filter-pills partial */}}
-  {{ $topicItems := slice }}
-  {{ range $uniqueTopics }}
-    {{ $label := index $topicLabels . | default (. | humanize | title) }}
-    {{ $topicItems = $topicItems | append (dict "id" . "name" $label) }}
-  {{ end }}
+<article class="sd-publications section-design">
 
-  <div class="stats stats-vertical sm:stats-horizontal shadow-lg w-full mb-8 bg-base-100">
-    <div class="stat">
-      <div class="stat-figure text-primary">
-        {{ partial "data-icon.html" (dict "name" "book" "color" "primary" "size" "8") }}
+  {{/* ============================================================
+       HERO
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Research & Reports</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Publications</h1>
+        <p class="sd-events-hero-description">
+          Authoritative sources on digital sovereignty, data protection, and humanitarian technology from governments, research institutions, and international organizations.
+        </p>
       </div>
-      <div class="stat-title">Publications</div>
-      <div class="stat-value text-primary">{{ $total }}</div>
-      <div class="stat-desc">Reports & papers</div>
     </div>
-    <div class="stat">
-      <div class="stat-figure text-accent">
-        {{ partial "data-icon.html" (dict "name" "tag" "color" "accent" "size" "8") }}
+  </section>
+
+  {{/* ============================================================
+       STATS
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Publications</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $total }}</span>
+        <span class="sd-events-stat-desc">Reports & papers</span>
       </div>
-      <div class="stat-title">Topics Covered</div>
-      <div class="stat-value text-accent">{{ len $uniqueTopics }}</div>
-      <div class="stat-desc">Subject areas</div>
     </div>
-  </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Topics Covered</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ len $uniqueTopics }}</span>
+        <span class="sd-events-stat-desc">Subject areas</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Sources</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ len $uniquePublishers }}</span>
+        <span class="sd-events-stat-desc">Publishers</span>
+      </div>
+    </div>
+  </section>
 
-  {{/* Audience filter - reusable partial */}}
-  {{ partial "audience-filter.html" . }}
+  {{/* ============================================================
+       FILTERS
+       ============================================================ */}}
+  <section class="sd-events-filters">
+    <div class="sd-filters-inner">
+      <div class="sd-filter-group">
+        <label class="sd-filter-label">Filter by Audience</label>
+        <div class="sd-filter-pills" data-filter-group="audience">
+          <button class="sd-filter-pill sd-filter-pill-active" data-filter="all">All Audiences</button>
+          {{- range $audienceData.itemListElement }}
+          <button class="sd-filter-pill" data-filter="{{ .identifier }}">{{ .name }}</button>
+          {{- end }}
+        </div>
+      </div>
 
-  {{/* Topic filter - responsive pills that wrap on mobile */}}
-  {{ partial "filter-pills.html" (dict
-      "label" "Topic"
-      "filterGroup" "topics"
-      "items" $topicItems
-      "allLabel" "All"
-  ) }}
+      <div class="sd-filter-group">
+        <label class="sd-filter-label">Filter by Topic</label>
+        <div class="sd-filter-pills" data-filter-group="topics">
+          <button class="sd-filter-pill sd-filter-pill-active" data-filter="all">All Topics</button>
+          {{- range $uniqueTopics }}
+          {{ $label := index $topicLabels . | default (. | humanize | title) }}
+          <button class="sd-filter-pill" data-filter="{{ . }}">{{ $label }}</button>
+          {{- end }}
+        </div>
+      </div>
+    </div>
+  </section>
 
-  {{/* Publication cards - compact layout */}}
-  <div id="publications-grid" class="grid sm:grid-cols-2" style="gap: 1.5rem;">
-    {{ range .Pages }}
-    {{/* Get featured image from page bundle */}}
-    {{ $featured := .Resources.GetMatch "featured*" }}
-    {{ $topics := .Params.topics | default (slice) }}
-    {{ $audiences := .Params.audience | default (slice) }}
+  {{/* ============================================================
+       PUBLICATIONS — Featured + compact grid
+       ============================================================ */}}
+  <section class="sd-blog-feed">
 
-    {{/* Build category label: "Type | Publisher" */}}
-    {{ $typeLabel := "" }}
-    {{ with .Params.publication_type }}
-      {{ if eq . "book" }}{{ $typeLabel = "Book" }}
-      {{ else if eq . "report" }}{{ $typeLabel = "Report" }}
-      {{ else if eq . "paper" }}{{ $typeLabel = "Paper" }}
-      {{ else if eq . "guide" }}{{ $typeLabel = "Guide" }}
-      {{ else }}{{ $typeLabel = . | humanize | title }}{{ end }}
+    {{ range $i, $page := $pages }}
+    {{ $featured := $page.Resources.GetMatch "featured*" }}
+    {{ $topics := $page.Params.topics | default (slice) }}
+    {{ $audiences := $page.Params.audience | default (slice) }}
+    {{ $publisher := $page.Params.publisher | default "" }}
+    {{ $pubType := $page.Params.publication_type | default "" }}
+
+    {{ if eq $i 0 }}
+    {{/* ---- FEATURED PUBLICATION ---- */}}
+    <article class="sd-blog-featured publication-card" data-topics="{{ delimit $topics "," }}" data-audience="{{ delimit $audiences "," }}">
+      <a href="{{ $page.RelPermalink }}" class="sd-blog-featured-inner">
+        <div class="sd-blog-featured-image">
+          {{ if $featured }}
+          {{ $img := $featured.Fill "800x500 webp" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />
+          {{ else }}
+          <div class="sd-blog-featured-placeholder">
+            <span class="material-symbols-outlined" style="font-size: 4rem; color: var(--sd-primary); opacity: 0.3;">menu_book</span>
+          </div>
+          {{ end }}
+        </div>
+        <div class="sd-blog-featured-content">
+          <div class="sd-blog-meta">
+            {{ with $pubType }}<span>{{ . | humanize | title }}</span><span>•</span>{{ end }}
+            {{ with $publisher }}<span>{{ . }}</span>{{ end }}
+          </div>
+          <h2 class="sd-headline sd-blog-featured-title">{{ $page.Title }}</h2>
+          {{ with $page.Description }}
+          <p class="sd-blog-featured-desc">{{ . }}</p>
+          {{ end }}
+          <div class="sd-blog-tags">
+            {{ range first 3 $topics }}
+            {{ $label := index $topicLabels . | default (. | humanize | title) }}
+            <span class="sd-blog-tag">#{{ upper $label }}</span>
+            {{ end }}
+          </div>
+          <span class="sd-blog-read-more">
+            Read Publication
+            <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
+          </span>
+        </div>
+      </a>
+    </article>
+
+    {{ else }}
+
+    {{ if eq $i 1 }}
+    <div class="sd-pub-grid">
     {{ end }}
 
-    {{ $publisher := "" }}
-    {{ with .Params.publisher }}{{ $publisher = . }}{{ else }}{{ with .Params.institutions }}{{ $publisher = index . 0 }}{{ end }}{{ end }}
+    {{/* ---- COMPACT PUBLICATION CARD ---- */}}
+    <article class="sd-pub-card publication-card" data-topics="{{ delimit $topics "," }}" data-audience="{{ delimit $audiences "," }}">
+      <a href="{{ $page.RelPermalink }}" class="sd-pub-card-inner">
+        <div class="sd-pub-card-image">
+          {{ if $featured }}
+          {{ $img := $featured.Fill "120x120 webp" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />
+          {{ else }}
+          <div class="sd-pub-card-placeholder">
+            <span class="material-symbols-outlined" style="font-size: 2rem; color: var(--sd-primary); opacity: 0.3;">menu_book</span>
+          </div>
+          {{ end }}
+        </div>
+        <div class="sd-pub-card-content">
+          <div class="sd-blog-meta">
+            {{ with $pubType }}<span>{{ . | humanize | title }}</span><span>•</span>{{ end }}
+            {{ with $publisher }}<span>{{ . }}</span>{{ end }}
+          </div>
+          <h3 class="sd-headline sd-pub-card-title">{{ $page.Title }}</h3>
+        </div>
+      </a>
+    </article>
 
-    {{/* Use compact card partial */}}
-    <div class="publication-card" data-topics="{{ delimit $topics "," }}" data-audience="{{ delimit $audiences "," }}">
-      {{ partial "card-compact.html" (dict
-          "title" .Title
-          "url" .RelPermalink
-          "category" $typeLabel
-          "subcategory" $publisher
-          "thumbnail" $featured
-          "year" .Params.year
-          "icon" "book"
-      ) }}
+    {{ if eq $i (sub (len $pages) 1) }}
     </div>
     {{ end }}
-  </div>
 
-  {{/* No results message */}}
-  <div id="no-results" class="hidden alert alert-warning my-4">
-    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-    <span>No publications match the selected filters.</span>
-  </div>
+    {{ end }}
+    {{ end }}
+
+    <div id="no-results" class="events-empty-filtered" style="display: none;">
+      <span class="material-symbols-outlined">search_off</span>
+      No publications match the selected filters.
+    </div>
+
+  </section>
 
 </article>
+
+{{ partial "sovereignsky-footer.html" . }}
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const filterButtons = document.querySelectorAll('[data-filter-group] button[data-filter]');
-  const publicationCards = document.querySelectorAll('.publication-card');
+  const pubCards = document.querySelectorAll('.publication-card');
   const noResults = document.getElementById('no-results');
 
-  let activeFilters = {
-    topics: 'all',
-    audience: 'all'
-  };
+  let activeFilters = { topics: 'all', audience: 'all' };
 
   function setActiveButton(filterGroup, filterValue) {
     const groupEl = document.querySelector(`[data-filter-group="${filterGroup}"]`);
@@ -133,82 +212,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const fallback = groupEl.querySelector(`button[data-filter="all"]`);
     const target = btn || fallback;
     if (!target) return;
-
-    // Update active state - supports both btn-active and btn-primary styles
-    groupEl.querySelectorAll('button').forEach(b => {
-      b.classList.remove('btn-active', 'btn-primary');
-      b.classList.add('btn-ghost');
-      if (!b.classList.contains('border')) {
-        b.classList.add('border', 'border-base-300');
-      }
-    });
-    target.classList.add('btn-primary');
-    target.classList.remove('btn-ghost', 'border', 'border-base-300');
-
+    groupEl.querySelectorAll('button').forEach(b => b.classList.remove('sd-filter-pill-active'));
+    target.classList.add('sd-filter-pill-active');
     activeFilters[filterGroup] = target.dataset.filter;
   }
 
   function updateURL() {
     const params = new URLSearchParams();
-    if (activeFilters.topics && activeFilters.topics !== 'all') params.set('topic', activeFilters.topics);
-    if (activeFilters.audience && activeFilters.audience !== 'all') params.set('audience', activeFilters.audience);
+    if (activeFilters.topics !== 'all') params.set('topic', activeFilters.topics);
+    if (activeFilters.audience !== 'all') params.set('audience', activeFilters.audience);
     const qs = params.toString();
-    const newURL = qs ? `?${qs}` : window.location.pathname;
-    history.replaceState(null, '', newURL);
+    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
   }
 
   function applyFilters() {
     let visibleCount = 0;
-
-    publicationCards.forEach(card => {
-      const cardTopics = card.dataset.topics || '';
-      const cardAudience = card.dataset.audience || '';
-
-      const matchesTopics = activeFilters.topics === 'all' || cardTopics.includes(activeFilters.topics);
-      const matchesAudience = activeFilters.audience === 'all' || cardAudience.includes(activeFilters.audience);
-
-      if (matchesTopics && matchesAudience) {
-        card.style.display = '';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
-      }
+    pubCards.forEach(card => {
+      const t = card.dataset.topics || '';
+      const a = card.dataset.audience || '';
+      const show = (activeFilters.topics === 'all' || t.includes(activeFilters.topics))
+                && (activeFilters.audience === 'all' || a.includes(activeFilters.audience));
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
     });
-
-    if (visibleCount === 0) {
-      noResults.classList.remove('hidden');
-    } else {
-      noResults.classList.add('hidden');
-    }
+    noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
   }
 
-  // Initialize from URL
   const params = new URLSearchParams(window.location.search);
-  const urlAudience = params.get('audience') || 'all';
-  const urlTopic = params.get('topic') || params.get('topics') || 'all';
-
-  setActiveButton('audience', urlAudience);
-  setActiveButton('topics', urlTopic);
+  setActiveButton('audience', params.get('audience') || 'all');
+  setActiveButton('topics', params.get('topic') || params.get('topics') || 'all');
   applyFilters();
 
   filterButtons.forEach(btn => {
     btn.addEventListener('click', function() {
       const groupEl = this.closest('[data-filter-group]');
-      const filterGroup = groupEl.dataset.filterGroup;
-      const filterValue = this.dataset.filter;
-
-      // Update active state - supports both btn-active and btn-primary styles
-      groupEl.querySelectorAll('button').forEach(b => {
-        b.classList.remove('btn-active', 'btn-primary');
-        b.classList.add('btn-ghost');
-        if (!b.classList.contains('border')) {
-          b.classList.add('border', 'border-base-300');
-        }
-      });
-      this.classList.add('btn-primary');
-      this.classList.remove('btn-ghost', 'border', 'border-base-300');
-
-      activeFilters[filterGroup] = filterValue;
+      groupEl.querySelectorAll('button').forEach(b => b.classList.remove('sd-filter-pill-active'));
+      this.classList.add('sd-filter-pill-active');
+      activeFilters[groupEl.dataset.filterGroup] = this.dataset.filter;
       applyFilters();
       updateURL();
     });

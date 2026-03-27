@@ -24,12 +24,15 @@
     "topics": [
       "digital-sovereignty",
       "digital-identity",
-      "privacy"
+      "privacy",
+      "platform-dependency",
+      "humanitarian-technology"
     ],
     "audience": [
       "humanitarian",
       "public-sector",
-      "enterprise"
+      "enterprise",
+      "it-ops"
     ],
     "tags": [
       "digital-platforms",
@@ -37,7 +40,8 @@
       "platform-dependency",
       "biometric-data",
       "blockchain-payments"
-    ]
+    ],
+    "weight": 40
   },
   {
     "identifier": "safeguarding-humanitarian-digital-threats",
@@ -55,7 +59,10 @@
     ],
     "publisher": "ICRC Humanitarian Law & Policy Blog",
     "topics": [
-      "cybersecurity"
+      "cybersecurity",
+      "digital-resilience",
+      "disinformation",
+      "data-protection"
     ],
     "audience": [
       "humanitarian",
@@ -69,7 +76,8 @@
       "disinformation",
       "digital-emblem",
       "law-of-war"
-    ]
+    ],
+    "weight": 70
   },
   {
     "identifier": "humanitarian-metadata-problem",
@@ -83,13 +91,17 @@
     "publisher": "ICRC / Privacy International",
     "topics": [
       "privacy",
-      "cybersecurity"
+      "cybersecurity",
+      "surveillance",
+      "metadata",
+      "data-protection"
     ],
     "audience": [
       "humanitarian",
       "public-sector",
       "it-ops",
-      "consumer"
+      "consumer",
+      "security"
     ],
     "tags": [
       "metadata",
@@ -97,7 +109,8 @@
       "messaging-apps",
       "mobile-money",
       "encryption"
-    ]
+    ],
+    "weight": 60
   },
   {
     "identifier": "gisf-digital-physical-security",
@@ -111,12 +124,15 @@
     "publisher": "Global Interagency Security Forum (GISF)",
     "topics": [
       "cybersecurity",
-      "critical-infrastructure"
+      "critical-infrastructure",
+      "digital-resilience",
+      "humanitarian-technology"
     ],
     "audience": [
       "humanitarian",
       "security",
-      "it-ops"
+      "it-ops",
+      "enterprise"
     ],
     "tags": [
       "security-triangle",
@@ -124,7 +140,8 @@
       "field-operations",
       "supply-chain",
       "hybrid-threats"
-    ]
+    ],
+    "weight": 80
   },
   {
     "identifier": "icrc-data-protection-handbook",
@@ -142,12 +159,15 @@
     "topics": [
       "privacy",
       "digital-sovereignty",
-      "digital-identity"
+      "digital-identity",
+      "data-protection",
+      "humanitarian-technology"
     ],
     "audience": [
       "humanitarian",
       "public-sector",
-      "it-ops"
+      "it-ops",
+      "security"
     ],
     "tags": [
       "cloud-act",
@@ -155,7 +175,8 @@
       "patriot-act",
       "swiss-jurisdiction",
       "vendor-jurisdiction"
-    ]
+    ],
+    "weight": 50
   },
   {
     "identifier": "totalberedskapsmeldingen-2025",
@@ -169,7 +190,10 @@
     "publisher": "Norwegian Government",
     "topics": [
       "national-preparedness",
-      "critical-infrastructure"
+      "critical-infrastructure",
+      "total-defence",
+      "digital-resilience",
+      "civil-protection"
     ],
     "audience": [
       "public-sector",
@@ -184,7 +208,8 @@
       "food-security",
       "public-private",
       "norway"
-    ]
+    ],
+    "weight": 30
   },
   {
     "identifier": "ffi-frivillige-beredskapsorganisasjoner-totalforsvar",
@@ -197,7 +222,10 @@
     "url": "https://www.ffi.no/publikasjoner/arkiv/frivillige-beredskapsorganisasjoner-i-fremtidens-totalforsvar",
     "publisher": "Norwegian Defence Research Establishment (FFI)",
     "topics": [
-      "national-preparedness"
+      "national-preparedness",
+      "total-defence",
+      "civil-protection",
+      "digital-resilience"
     ],
     "audience": [
       "public-sector",
@@ -210,7 +238,8 @@
       "coordination",
       "legal-frameworks",
       "norway"
-    ]
+    ],
+    "weight": 10
   },
   {
     "identifier": "eu-cloud-sovereignty-framework",
@@ -229,7 +258,9 @@
     "publisher": "European Commission",
     "topics": [
       "digital-sovereignty",
-      "compliance"
+      "cloud-sovereignty",
+      "data-protection",
+      "platform-dependency"
     ],
     "audience": [
       "public-sector",
@@ -242,6 +273,7 @@
       "sovereignty",
       "cloud",
       "assessment"
-    ]
+    ],
+    "weight": 20
   }
 ]

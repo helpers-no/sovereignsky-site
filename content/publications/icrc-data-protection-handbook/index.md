@@ -4,16 +4,20 @@ description: "The authoritative reference on data protection for humanitarian or
 date: 2024-01-15
 external_url: "https://www.cambridge.org/core/books/handbook-on-data-protection-in-humanitarian-action/025CE3DFD1FAD908DD1412C20E49F955"
 publisher: "Cambridge University Press"
+weight: 50
 authors:
   - "Massimo Marelli"
 topics:
   - "privacy"
   - "digital-sovereignty"
   - "digital-identity"
+  - "data-protection"
+  - "humanitarian-technology"
 audience:
   - "humanitarian"
   - "public-sector"
   - "it-ops"
+  - "security"
 tags:
   - "cloud-act"
   - "fisa-702"

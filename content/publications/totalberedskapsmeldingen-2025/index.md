@@ -4,9 +4,13 @@ description: "Norwegian Government's comprehensive national preparedness strateg
 date: 2025-01-01
 external_url: "https://www.regjeringen.no/"
 publisher: "Norwegian Government"
+weight: 30
 topics:
   - "national-preparedness"
   - "critical-infrastructure"
+  - "total-defence"
+  - "digital-resilience"
+  - "civil-protection"
 audience:
   - "public-sector"
   - "security"
