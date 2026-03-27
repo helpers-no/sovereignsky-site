@@ -1,7 +1,7 @@
 ---
 title: "Client Provisioning of Rancher Desktop"
 identifier: "client-provisioning"
-weight: 23
+weight: 40
 date: 2025-01-01
 description: "Automated deployment of Rancher Desktop and DevContainer Toolbox to developer machines via Intune (Windows) and Jamf (macOS). A developer gets a new machine, the scripts install everything, and they open any project in a fully configured devcontainer within minutes."
 summary: "Automated Rancher Desktop deployment to Windows and Mac machines — via Intune, Jamf, or USB stick."
@@ -11,6 +11,7 @@ externalUrl: "/sovereignsky/client-provisioning/"
 topics:
   - "cybersecurity"
   - "critical-infrastructure"
+  - "digital-resilience"
 tags:
   - "provisioning"
   - "intune"
