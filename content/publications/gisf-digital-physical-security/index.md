@@ -21,21 +21,12 @@ tags:
   - "field-operations"
   - "supply-chain"
   - "hybrid-threats"
+abstract: "Practitioner guidance establishing that digital security is a security risk management problem requiring integration across programmes, operations, and security teams—not just an IT issue."
+summary: "The leading humanitarian security network documents how digital attacks translate to physical harm through disinformation endangering field staff, supply chain compromises, and shared infrastructure risks. The report adapts the traditional NGO security triangle (acceptance, protection, deterrence) to digital contexts and identifies critical gaps in staff training and resource equity between headquarters and field."
 type: publications
 showHero: true
 heroStyle: "big"
 ---
-
-## Abstract
-
-Practitioner guidance establishing that digital security is a security risk management problem requiring integration across programmes, operations, and security teams—not just an IT issue.
-
-## Summary
-
-The leading humanitarian security network documents how digital attacks translate to physical harm through disinformation endangering field staff, supply chain compromises, and shared infrastructure risks. The report adapts the traditional NGO security triangle (acceptance, protection, deterrence) to digital contexts and identifies critical gaps in staff training and resource equity between headquarters and field.
-
----
-
 ## Key Findings
 
 ### On Why Digital Threats Matter for Physical Security
@@ -84,8 +75,6 @@ A critical point about digital dependencies:
 
 > "Humanitarian organisations frequently rely on the same infrastructure and suppliers as governments and militaries (dual-use technology). As such, when a government's or military's digital servers are attacked, the humanitarian organisations sharing the digital infrastructure with the government will be vulnerable to an attack as well, even if these organisations are not the direct target."
 
----
-
 ## The Threat Landscape
 
 ### External Threats
@@ -106,8 +95,6 @@ A critical point about digital dependencies:
 | **Process** | Over-reliance on data, failure to assess new technology risks |
 | **Investment** | Security underfunded, donor priorities misaligned |
 | **Organisational** | New technology adopted without management adaptation |
-
----
 
 ## The Security Triangle in Digital Contexts
 
@@ -133,8 +120,6 @@ On the limits of physical-world protective strategies:
 
 > "To quote an interviewee, 'deterrence is not really an option' when looking at digital actions. This is partly because many actors from a wide variety of backgrounds can launch digital attacks, which are often difficult to identify, and they might be aiming to bring aid activities to a halt."
 
----
-
 ## Data as an Undervalued Asset
 
 The report identifies a cultural problem:
@@ -144,8 +129,6 @@ The report identifies a cultural problem:
 The Afghanistan case illustrates the consequences:
 
 > "Some organisations had not made contingency plans on what to do with their data (regarding local staff and communities) as the Taliban approached Kabul in 2021, forcing them to make quick decisions on the fly."
-
----
 
 ## Recommendations
 
@@ -169,8 +152,6 @@ The Afghanistan case illustrates the consequences:
 
 > "Where possible, INGOs should take advantage of their digital security infrastructure and promote risk sharing with local organisations."
 
----
-
 ## Why This Matters Beyond Humanitarian Work
 
 The GISF analysis applies to any organisation facing the intersection of digital and physical risks:
@@ -185,23 +166,17 @@ The report's core framework question applies universally:
 
 > "As the contexts in which humanitarian organisations deliver assistance to crisis-affected communities evolve, so do the types of vulnerabilities, threats, and risks aid workers face."
 
----
-
 ## About GISF
 
 The **Global Interagency Security Forum (GISF)** is the leading security risk management network for humanitarian, development, human rights, and environmental protection organisations. Member-led, it serves as a hub for information sharing, knowledge management, and coordination on security issues.
 
 This research was funded by USAID under a three-year cooperative agreement.
 
----
-
 ## Access
 
 **[Read the Full Report (PDF) →](https://gisf.ngo/wp-content/uploads/2024/01/Digital-Security-Final-Design-for-Publication.pdf)**
 
 Available as open access PDF from GISF.
-
----
 
 ## Related Resources
 

@@ -24,21 +24,12 @@ tags:
   - "patriot-act"
   - "swiss-jurisdiction"
   - "vendor-jurisdiction"
+abstract: "The authoritative 382-page reference establishing that vendor jurisdiction—not data location—determines cloud security risk, with detailed analysis of how US laws enable government access to humanitarian data."
+summary: "This third edition (2024) provides the most thorough publicly available analysis of CLOUD Act, FISA 702, and PATRIOT Act implications for cloud-hosted sensitive data. The handbook documents that there are no humanitarian exemption clauses in these laws, and that organisations may never know their data was accessed due to non-disclosure obligations on providers. Mitigation strategies include encryption, Swiss-jurisdiction providers, and contractual notification requirements."
 type: publications
 showHero: true
 heroStyle: "big"
 ---
-
-## Abstract
-
-The authoritative 382-page reference establishing that vendor jurisdiction—not data location—determines cloud security risk, with detailed analysis of how US laws enable government access to humanitarian data.
-
-## Summary
-
-This third edition (2024) provides the most thorough publicly available analysis of CLOUD Act, FISA 702, and PATRIOT Act implications for cloud-hosted sensitive data. The handbook documents that there are no humanitarian exemption clauses in these laws, and that organisations may never know their data was accessed due to non-disclosure obligations on providers. Mitigation strategies include encryption, Swiss-jurisdiction providers, and contractual notification requirements.
-
----
-
 ## Key Findings
 
 ### On the Stakes
@@ -68,8 +59,6 @@ The handbook provides this simplified scenario:
 
 > A Humanitarian Organization stores dialogue with group G in a public cloud environment. The Cloud Services are provided by a service provider incorporated in New York. **Data are stored in Europe.** Under the US CLOUD Act, US authorities could have the power to legally oblige the provider to disclose such data... The provider might be prohibited from informing the organization of this request.
 
----
-
 ## Cloud Risks Identified
 
 The handbook categorises cloud risks into two main areas:
@@ -84,8 +73,6 @@ Specific risks include:
 - The interception of sensitive information
 - Unauthorised international data sharing
 - Data theft from the provider
-
----
 
 ## Mitigation Strategies
 
@@ -102,8 +89,6 @@ The handbook cites **Swiss law** (Article 271 of the Criminal Code) as an exampl
 ### Contractual Measures
 
 > "Negotiate in their contracts with service providers... that, in case of a request, the service providers should at least inform authorities of the fact that the data sought may be subject to privileges and immunities."
-
----
 
 ## The 17 Chapters
 
@@ -127,8 +112,6 @@ The handbook covers:
 16. **Connectivity as Aid** — Network provision and associated data risks
 17. **Artificial Intelligence** — Algorithmic decision-making in humanitarian contexts
 
----
-
 ## Why This Matters Beyond Humanitarian Work
 
 The handbook's analysis of jurisdiction risks applies to **any organisation** with sensitive data using US-headquartered cloud providers:
@@ -141,8 +124,6 @@ The handbook's analysis of jurisdiction risks applies to **any organisation** wi
 
 The core finding — that **vendor jurisdiction trumps data location** — is documented with legal precision rarely found in public sources.
 
----
-
 ## Access
 
 **[Read the Full Handbook (Open Access PDF) →](https://www.cambridge.org/core/books/handbook-on-data-protection-in-humanitarian-action/025CE3DFD1FAD908DD1412C20E49F955)**
@@ -152,8 +133,6 @@ Individual chapters can be downloaded separately.
 ### Key Chapter
 
 **[Chapter 11: Cloud and Government Access →](https://www.cambridge.org/core/books/handbook-on-data-protection-in-humanitarian-action/cloud-and-government-access/3BB97213A8D4F913AB353A1515903494)** — The standalone chapter on jurisdiction risks, CLOUD Act analysis, and mitigation strategies.
-
----
 
 ## Related Resources
 

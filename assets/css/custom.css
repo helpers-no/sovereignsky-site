@@ -626,17 +626,17 @@ body:has(.sd-footer) footer.sd-footer {
   max-width: none !important;
 }
 
-/* Markdown prose sections should still be readable */
-.sd-content > h1,
-.sd-content > h2,
-.sd-content > h3,
-.sd-content > h4,
-.sd-content > h5,
-.sd-content > h6,
-.sd-content > p,
-.sd-content > ul,
-.sd-content > ol,
-.sd-content > blockquote {
+/* Markdown prose sections should still be readable — only on sovereignsky project pages */
+.sd-page .sd-content > h1,
+.sd-page .sd-content > h2,
+.sd-page .sd-content > h3,
+.sd-page .sd-content > h4,
+.sd-page .sd-content > h5,
+.sd-page .sd-content > h6,
+.sd-page .sd-content > p,
+.sd-page .sd-content > ul,
+.sd-page .sd-content > ol,
+.sd-page .sd-content > blockquote {
   max-width: 65ch;
 }
 
@@ -697,6 +697,18 @@ body:has(.sd-footer) footer.sd-footer {
 }
 .dark .sd-content > p {
   color: var(--sd-on-surface-variant, #c2c6d6);
+}
+
+/* Links in sd-content */
+.sd-content a {
+  color: var(--sd-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sd-content a:hover {
+  color: var(--sd-primary);
+  opacity: 0.8;
 }
 
 

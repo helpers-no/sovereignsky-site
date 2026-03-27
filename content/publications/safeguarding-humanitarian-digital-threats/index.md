@@ -25,21 +25,12 @@ tags:
   - "disinformation"
   - "digital-emblem"
   - "law-of-war"
+abstract: "ICRC analysis establishing that International Humanitarian Law protections extend to cyberspace—digital attacks on humanitarian organisations violate international law and may constitute war crimes."
+summary: "Written in response to the 2022 ICRC data breach affecting 515,000 people, three senior officials document how cyber operations, data breaches, and disinformation cause real-world harm. The report proposes protective measures including a digital Red Cross emblem and sovereign humanitarian cloud infrastructure separate from commercial providers."
 type: publications
 showHero: true
 heroStyle: "big"
 ---
-
-## Abstract
-
-ICRC analysis establishing that International Humanitarian Law protections extend to cyberspace—digital attacks on humanitarian organisations violate international law and may constitute war crimes.
-
-## Summary
-
-Written in response to the 2022 ICRC data breach affecting 515,000 people, three senior officials document how cyber operations, data breaches, and disinformation cause real-world harm. The report proposes protective measures including a digital Red Cross emblem and sovereign humanitarian cloud infrastructure separate from commercial providers.
-
----
-
 ## Key Findings
 
 ### On the 2022 ICRC Data Breach
@@ -92,8 +83,6 @@ The analysis notes that attacking humanitarian organisations may constitute war 
 
 > "Depending on the circumstances, attacking humanitarian organizations may even amount to a war crime – including in the digital sphere (see articles 8(2)(b)(iii); 8(2)(b)(xxiv); 8(2)(e)(iii) Rome Statute of the International Criminal Court)."
 
----
-
 ## Proposed Solutions
 
 The authors propose multilayered responses:
@@ -115,8 +104,6 @@ The authors propose new protective mechanisms:
 - **Delegation for Cyberspace** — Safe environments to develop and test digital humanitarian services
 - **Disinformation preparedness** — Increased capacity to manage false information campaigns
 
----
-
 ## The Disinformation Threat
 
 The analysis specifically addresses online information operations:
@@ -126,8 +113,6 @@ The analysis specifically addresses online information operations:
 And on legal limits:
 
 > "It is clearly unlawful to use social media – or any other media – to incite violence against civilians, including humanitarian personnel."
-
----
 
 ## Why This Matters Beyond Humanitarian Work
 
@@ -142,8 +127,6 @@ The core message applies universally:
 
 > "For as long as people affected by armed conflict need impartial and independent humanitarian relief, those who provide it must be safeguarded, including against new threats."
 
----
-
 ## The Authors
 
 | Author | Role | Expertise |
@@ -152,15 +135,11 @@ The core message applies universally:
 | **Balthasar Staehelin** | Special Envoy for Foresight and Techplomacy, ICRC | Strategic engagement on technology and humanitarian action |
 | **Massimo Marelli** | Head of Data Protection Office, ICRC | Leads ICRC's data protection policy and practice |
 
----
-
 ## Access
 
 **[Read the Full Analysis →](https://blogs.icrc.org/law-and-policy/2022/10/13/safeguarding-humanitarian-organizations-from-digital-threats/)**
 
 Also available as PDF download from the blog.
-
----
 
 ## Related Resources
 

@@ -23,21 +23,12 @@ tags:
   - "food-security"
   - "public-private"
   - "norway"
+abstract: "Norway's landmark 2025 white paper marking a \"historic turning point\" from post-Cold War peace assumptions to preparedness for crisis and war, containing over 100 specific measures."
+summary: "Presented by the Prime Minister on 10 January 2025, this document follows up the Totalberedskapskommisjonen recommendations with measures including expanding Sivilforsvaret to 12,000 personnel, lifting the 1998 shelter construction ban, mandatory preparedness councils, 50% food self-sufficiency by 2030, and new cyber preparedness schemes through public-private cooperation."
 type: publications
 showHero: true
 heroStyle: "big"
 ---
-
-## Abstract
-
-Norway's landmark 2025 white paper marking a "historic turning point" from post-Cold War peace assumptions to preparedness for crisis and war, containing over 100 specific measures.
-
-## Summary
-
-Presented by the Prime Minister on 10 January 2025, this document follows up the Totalberedskapskommisjonen recommendations with measures including expanding Sivilforsvaret to 12,000 personnel, lifting the 1998 shelter construction ban, mandatory preparedness councils, 50% food self-sufficiency by 2030, and new cyber preparedness schemes through public-private cooperation.
-
----
-
 ## Three Main Goals
 
 The report establishes three overarching objectives for strengthening civil society's resilience:
@@ -47,8 +38,6 @@ The report establishes three overarching objectives for strengthening civil soci
 | **Prepared for crisis and war** | A civil society that is ready to prevent and handle crises, from natural disasters to armed conflict |
 | **Resilient against hybrid threats** | A civil society that can withstand compound/hybrid threats including disinformation, cyber attacks, and foreign interference |
 | **Supporting military efforts** | A civil society that can sustain and support military operations during security crises and armed conflict |
-
----
 
 ## Key Measures
 
@@ -88,8 +77,6 @@ The report establishes three overarching objectives for strengthening civil soci
 
 - **Strategy against disinformation** to strengthen population's source criticism capabilities
 
----
-
 ## Context
 
 The white paper was written against the backdrop of:
@@ -102,8 +89,6 @@ As stated in the presentation:
 
 > "We are leaving behind the time period we have lived in since the 1990s and the fall of the Berlin Wall, with preparedness based on deep peace. Going forward, we must plan for a new era."
 
----
-
 ## Implications for Voluntary Organisations
 
 The white paper significantly expands the role of voluntary organisations in Norwegian preparedness:
@@ -114,8 +99,6 @@ The white paper significantly expands the role of voluntary organisations in Nor
 
 This builds on and validates the findings of the [FFI report on voluntary emergency organisations](/publications/ffi-frivillige-beredskapsorganisasjoner-totalforsvar/), which documented the capabilities and potential contributions of organisations like Norwegian Red Cross, Norwegian People's Aid, and Norske Kvinners Sanitetsforening.
 
----
-
 ## The Publishers
 
 | Institution | Role |
@@ -123,15 +106,11 @@ This builds on and validates the findings of the [FFI report on voluntary emerge
 | **Statsministerens kontor** | Prime Minister's Office — overall government coordination |
 | **Justis- og beredskapsdepartementet** | Ministry of Justice and Public Security — lead ministry for civil preparedness |
 
----
-
 ## Access
 
 **[Read the Full White Paper (Norwegian) →](https://www.regjeringen.no/no/dokumenter/meld.-st.-9-20242025/id3082364/)**
 
 **[Press Release (English) →](https://www.regjeringen.no/en/whats-new/white-paper-on-total-preparedness-prepared-for-crisis-or-war/id3082581/)**
-
----
 
 ## Related Resources
 

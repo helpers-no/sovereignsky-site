@@ -33,21 +33,12 @@ tags:
   - "platform-dependency"
   - "biometric-data"
   - "blockchain-payments"
+abstract: "Peer-reviewed analysis of how humanitarian organisations' dependence on US tech platforms creates fundamental tensions with their mandate for independence and neutrality."
+summary: "Through cases including WFP's Palantir partnership, biometric registration standoffs in Yemen, and blockchain payment systems, researchers from six institutions with an ICRC practitioner examine how digital technology disrupts humanitarian space. The core finding: platform dependencies create vulnerabilities that may exceed physical security risks, while \"decentralised\" systems still operate within existing power structures."
 type: publications
 showHero: true
 heroStyle: "big"
 ---
-
-## Abstract
-
-Peer-reviewed analysis of how humanitarian organisations' dependence on US tech platforms creates fundamental tensions with their mandate for independence and neutrality.
-
-## Summary
-
-Through cases including WFP's Palantir partnership, biometric registration standoffs in Yemen, and blockchain payment systems, researchers from six institutions with an ICRC practitioner examine how digital technology disrupts humanitarian space. The core finding: platform dependencies create vulnerabilities that may exceed physical security risks, while "decentralised" systems still operate within existing power structures.
-
----
-
 ## Key Findings
 
 ### On the WFP-Palantir Partnership
@@ -100,8 +91,6 @@ And on corporate capture:
 
 > "There are unresolved questions about how far these partnerships facilitate tracking and profit, even when sensitive beneficiary information is not recorded 'on chain'."
 
----
-
 ## The Four Conceptualisations of Humanitarian Space
 
 The article offers a useful framework for understanding "humanitarian space":
@@ -115,8 +104,6 @@ The article offers a useful framework for understanding "humanitarian space":
 
 The authors argue digital technologies disrupt all four conceptualisations.
 
----
-
 ## Power *Over* vs Power *To*
 
 The forum proposes a critical distinction for analysing digital sovereignty:
@@ -126,8 +113,6 @@ The forum proposes a critical distinction for analysing digital sovereignty:
 Classic sovereignty debates focus on power *over* territories and populations. The authors argue for recentring around power *to*:
 
 > "How humanitarian organisations can arrange their digital sovereignty in ways that serve affected people and thus the humanitarian mission, rather than allowing technology to merely increase their (or their contractors and collaborators') power *over* those people."
-
----
 
 ## Why This Matters Beyond Humanitarian Work
 
@@ -143,8 +128,6 @@ The core question the authors pose applies universally:
 
 > "How can organisations avoid co-optation by commercial technology partners who seek power *over* markets through their proofs-of-concept in humanitarian space?"
 
----
-
 ## The Contributors
 
 This forum brings together an unusually strong group:
@@ -158,15 +141,11 @@ This forum brings together an unusually strong group:
 | Stephan Scheel | Duisburg-Essen | Parasitic sovereignty and function creep |
 | Huub Dijstelbloem | Amsterdam IAS | Sovereignty experiments and conclusion |
 
----
-
 ## Access
 
 **[Read the Full Article (Open Access) →](https://pmc.ncbi.nlm.nih.gov/articles/PMC10153061/)**
 
 Available via PubMed Central. Also accessible through Taylor & Francis with DOI: 10.1080/14650045.2022.2047468
-
----
 
 ## Related Resources
 
