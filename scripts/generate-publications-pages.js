@@ -221,6 +221,11 @@ function buildFrontmatter(pub) {
     `publisher: ${yamlString(pub.publisher)}`
   ];
 
+  // Weight for sorting
+  if (pub.weight !== undefined) {
+    lines.push(`weight: ${pub.weight}`);
+  }
+
   // Authors (optional - some reports don't have named authors)
   if (pub.author && pub.author.length > 0) {
     lines.push(...yamlStringList('authors', pub.author));
@@ -241,6 +246,35 @@ function buildFrontmatter(pub) {
     lines.push(...yamlStringList('tags', pub.tags));
   }
 
+  // Abstract and summary for template access
+  if (pub.abstract) {
+    lines.push(`abstract: ${yamlString(pub.abstract)}`);
+  }
+  if (pub.summary) {
+    lines.push(`summary: ${yamlString(pub.summary)}`);
+  }
+
+  // Institutions
+  if (pub.institutions && pub.institutions.length > 0) {
+    lines.push(...yamlStringList('institutions', pub.institutions));
+  }
+
+  // Credibility flags
+  if (pub.peer_reviewed) lines.push(`peer_reviewed: true`);
+  if (pub.open_access) lines.push(`open_access: true`);
+  if (pub.academic_publisher) lines.push(`academic_publisher: true`);
+
+  // Edition
+  if (pub.edition) lines.push(`edition: ${yamlString(pub.edition)}`);
+
+  // Publication type
+  if (pub.publication_type) lines.push(`publication_type: ${yamlString(pub.publication_type)}`);
+
+  // Takeaways
+  if (pub.takeaways && pub.takeaways.length > 0) {
+    lines.push(...yamlStringList('takeaways', pub.takeaways));
+  }
+
   // Hugo type
   lines.push(`type: publications`);
 
@@ -251,21 +285,18 @@ function buildFrontmatter(pub) {
   return lines.join('\n');
 }
 
-// Build the abstract, summary, and body sections from JSON
+// Build the body content from JSON
+// Note: abstract and summary are now in frontmatter and displayed by the template,
+// so they are NOT included in the body to avoid duplication.
 function buildAbstractAndSummary(pub) {
   const parts = [];
 
-  if (pub.abstract) {
-    parts.push(`## Abstract\n\n${pub.abstract}`);
-  }
-
-  if (pub.summary) {
-    parts.push(`## Summary\n\n${pub.summary}`);
-  }
-
   // Add body content if present (full markdown content)
+  // Remove all standalone --- lines (horizontal rules) — they add visual noise
+  // in the new design where sections are already visually separated
   if (pub.body) {
-    parts.push(`---\n\n${pub.body}`);
+    const cleaned = pub.body.replace(/^\s*---\s*$/gm, '').replace(/\n{3,}/g, '\n\n');
+    parts.push(cleaned.trim());
   }
 
   return parts.join('\n\n');

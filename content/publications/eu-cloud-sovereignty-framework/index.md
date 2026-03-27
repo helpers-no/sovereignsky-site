@@ -4,12 +4,15 @@ description: "Understanding the European Commission's framework for measuring an
 date: 2025-01-15
 external_url: "https://commission.europa.eu/document/download/09579818-64a6-4dd5-9577-446ab6219113_en"
 publisher: "European Commission"
+weight: 20
 authors:
   - "European Commission"
   - "Directorate-General for Digital Services"
 topics:
   - "digital-sovereignty"
-  - "compliance"
+  - "cloud-sovereignty"
+  - "data-protection"
+  - "platform-dependency"
 audience:
   - "public-sector"
   - "enterprise"
@@ -20,19 +23,11 @@ tags:
   - "sovereignty"
   - "cloud"
   - "assessment"
+abstract: "The EU Cloud Sovereignty Framework provides a structured approach to assess and improve digital sovereignty when using cloud services."
+summary: "A comprehensive methodology developed by the European Commission to help organizations assess their digital sovereignty posture across eight dimensions: Strategic, Legal, Data, Operational, Supply Chain, Technology, Security, and Environmental sovereignty. This framework forms the foundation for the Norwegian Digital Sovereignty Index (NDSI)."
 type: publications
 showHero: true
 heroStyle: "big"
----
-
-## Abstract
-
-The EU Cloud Sovereignty Framework provides a structured approach to assess and improve digital sovereignty when using cloud services.
-
-## Summary
-
-A comprehensive methodology developed by the European Commission to help organizations assess their digital sovereignty posture across eight dimensions: Strategic, Legal, Data, Operational, Supply Chain, Technology, Security, and Environmental sovereignty. This framework forms the foundation for the Norwegian Digital Sovereignty Index (NDSI).
-
 ---
 
 ## Why Cloud Sovereignty Matters

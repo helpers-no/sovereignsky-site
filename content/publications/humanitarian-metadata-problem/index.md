@@ -4,35 +4,31 @@ description: "Technical analysis of how metadata from telecommunications, messag
 date: 2020-11-01
 external_url: "https://www.icrc.org/en/document/digital-trails-could-endanger-people-receiving-humanitarian-aid-icrc-and-privacy"
 publisher: "ICRC / Privacy International"
+weight: 60
 topics:
   - "privacy"
   - "cybersecurity"
+  - "surveillance"
+  - "metadata"
+  - "data-protection"
 audience:
   - "humanitarian"
   - "public-sector"
   - "it-ops"
   - "consumer"
+  - "security"
 tags:
   - "metadata"
   - "cell-tower"
   - "messaging-apps"
   - "mobile-money"
   - "encryption"
+abstract: "Technical analysis of how metadata from telecommunications, messaging, and payments can identify, locate, and profile individuals in crisis situations—risks that persist even when content is encrypted."
+summary: "This ICRC/Privacy International report documents how even \"off\" phones can be tracked via cell tower pings, how messaging apps reveal relationships and behaviour patterns through metadata, and how mobile money creates financial profiles. The finding applies beyond humanitarian work: any organisation handling sensitive data faces the same metadata exposure risks."
 type: publications
 showHero: true
 heroStyle: "big"
 ---
-
-## Abstract
-
-Technical analysis of how metadata from telecommunications, messaging, and payments can identify, locate, and profile individuals in crisis situations—risks that persist even when content is encrypted.
-
-## Summary
-
-This ICRC/Privacy International report documents how even "off" phones can be tracked via cell tower pings, how messaging apps reveal relationships and behaviour patterns through metadata, and how mobile money creates financial profiles. The finding applies beyond humanitarian work: any organisation handling sensitive data faces the same metadata exposure risks.
-
----
-
 ## Key Findings
 
 ### On What Metadata Reveals
@@ -89,8 +85,6 @@ Even people without accounts are tracked:
 
 > "Often, even if a user deletes a given social media account, limits the number of apps that can access it, or never had an account in the first place, their shadow profile exists and is fed by information gleaned from other social media accounts or websites they use and even from their contacts' social media accounts."
 
----
-
 ## Risks by Technology Type
 
 | Technology | Key Risks | Mitigation |
@@ -100,8 +94,6 @@ Even people without accounts are tracked:
 | **Mobile Money** | Unencrypted SMS confirmations, financial profiling, KYC data sharing | Check telecom ownership; avoid single-group CTPs |
 | **Smartcards** | Transaction metadata identifies individuals, geo-tracking | Map all entities with data access; negotiate data minimisation |
 | **Social Media** | Shadow profiles, SOCMINT exploitation, platform data sharing | Digital literacy; sector-wide negotiation with platforms |
-
----
 
 ## The Data Types
 
@@ -114,8 +106,6 @@ The report distinguishes three categories of metadata:
 | **Interest/intent data** | Information about what users seek | Search queries, clicked links, app usage |
 
 All three types can be "owned, processed, shared and stored for different periods of time, by different third parties, and under different jurisdictions applying different regulations."
-
----
 
 ## Specific Recommendations
 
@@ -135,8 +125,6 @@ All three types can be "owned, processed, shared and stored for different period
 
 > "The sector as a whole could jointly negotiate with major social media platforms (e.g. Facebook and Twitter) in order to secure specific safeguards across their services and in particular for humanitarian metadata."
 
----
-
 ## Why This Matters Beyond Humanitarian Work
 
 The metadata risks documented here apply to any organisation:
@@ -150,8 +138,6 @@ The report's core principle applies universally:
 
 > "To reconcile these actions with the 'do no harm' principle, the humanitarian community must better understand the risks associated with the generation, exposure and processing of metadata."
 
----
-
 ## The Publishers
 
 | Organisation | Role | Standing |
@@ -161,15 +147,11 @@ The report's core principle applies universally:
 
 This report builds on Privacy International's influential 2013 study *Aiding Surveillance*, which first documented how development and humanitarian technology enables surveillance and repression.
 
----
-
 ## Access
 
 **[Read the Full Report →](https://www.icrc.org/en/document/digital-trails-could-endanger-people-receiving-humanitarian-aid-icrc-and-privacy)**
 
 Available as open access PDF from ICRC.
-
----
 
 ## Related Resources
 

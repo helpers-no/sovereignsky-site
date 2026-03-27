@@ -626,17 +626,17 @@ body:has(.sd-footer) footer.sd-footer {
   max-width: none !important;
 }
 
-/* Markdown prose sections should still be readable */
-.sd-content > h1,
-.sd-content > h2,
-.sd-content > h3,
-.sd-content > h4,
-.sd-content > h5,
-.sd-content > h6,
-.sd-content > p,
-.sd-content > ul,
-.sd-content > ol,
-.sd-content > blockquote {
+/* Markdown prose sections should still be readable — only on sovereignsky project pages */
+.sd-page .sd-content > h1,
+.sd-page .sd-content > h2,
+.sd-page .sd-content > h3,
+.sd-page .sd-content > h4,
+.sd-page .sd-content > h5,
+.sd-page .sd-content > h6,
+.sd-page .sd-content > p,
+.sd-page .sd-content > ul,
+.sd-page .sd-content > ol,
+.sd-page .sd-content > blockquote {
   max-width: 65ch;
 }
 
@@ -697,6 +697,18 @@ body:has(.sd-footer) footer.sd-footer {
 }
 .dark .sd-content > p {
   color: var(--sd-on-surface-variant, #c2c6d6);
+}
+
+/* Links in sd-content */
+.sd-content a {
+  color: var(--sd-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sd-content a:hover {
+  color: var(--sd-primary);
+  opacity: 0.8;
 }
 
 
@@ -1693,10 +1705,96 @@ body:has(.sd-events) .site-footer {
   padding: 2rem 1.5rem 4rem;
 }
 
-/* Hide default site footer on blog and projects list pages */
+/* Hide default site footer on redesigned pages */
 body:has(.sd-blog) .site-footer,
-body:has(.sd-projects) .site-footer {
+body:has(.sd-projects) .site-footer,
+body:has(.sd-publications) .site-footer {
   display: none !important;
+}
+
+/* ==========================================================================
+   Publications — Compact card grid
+   ========================================================================== */
+
+.sd-pub-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .sd-pub-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .sd-pub-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.sd-pub-card-inner {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(194, 198, 214, 0.15);
+  background-color: var(--sd-surface-container-lowest);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  height: 100%;
+}
+
+.sd-pub-card-inner:hover {
+  border-color: var(--sd-primary);
+  box-shadow: 0 4px 12px rgba(0, 31, 38, 0.06);
+  text-decoration: none;
+  color: inherit;
+}
+
+.sd-pub-card-image {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sd-pub-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sd-pub-card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 88, 190, 0.08), rgba(0, 108, 73, 0.08));
+}
+
+.sd-pub-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.sd-pub-card-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--sd-on-surface);
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color 0.2s;
+}
+
+.sd-pub-card-inner:hover .sd-pub-card-title {
+  color: var(--sd-primary);
 }
 
 /* Custom styles for SovereignSky */

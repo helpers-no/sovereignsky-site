@@ -13,8 +13,8 @@ All reusable design components across the SovereignSky site. Components follow t
 | Type | Used by | How it works |
 |------|---------|-------------|
 | **Shortcodes** | Project pages (`/sovereignsky/`) | JSON sections in `projects.json` → generator → Hugo shortcodes |
-| **Page templates** | Events (`/events/`) | Hugo templates read data directly, styled with `.sd-events` CSS |
-| **Shared elements** | Hero, footer, metadata | Partials reused across page types |
+| **Page templates** | Events (`/events/`), Blog (`/blog/`), Publications (`/publications/`) | Hugo templates read data directly, styled with page-specific CSS |
+| **Shared elements** | Hero, footer, metadata, filters | Partials and CSS classes reused across page types |
 
 ---
 
@@ -454,7 +454,130 @@ Simple "← Back to all events" link at the bottom.
 
 ---
 
-# Part 3: Shared Elements
+# Part 3: Publications Page Components
+
+Used on `/publications/` pages. Template-level components styled with `.sd-publications` CSS class and shared components.
+
+**Data source**: `data/publications/publications.json` — array of publication objects.
+
+## Publications List Page
+
+**Template:** `layouts/publications/list.html`
+
+### Hero + Stats + Filters
+
+Reuses the same shared components as events and blog:
+- Blue gradient hero (`.sd-events-hero`) with "Research & Reports" badge
+- 3 stat cards (publications count, topics covered, sources/publishers)
+- Shared filter pills (`.sd-filter-pill`) for audience + topic
+
+### Featured Publication Card
+
+First publication by `weight` gets the large horizontal card treatment. Reuses `.sd-blog-featured` CSS classes.
+
+Shows: image, type badge (Report/Paper/Guide/Book), publisher, title, description, topic tags, "Read Publication" link.
+
+### Compact Publication Grid
+
+Remaining publications in a 2-column grid (`.sd-pub-grid`) with compact cards (`.sd-pub-card`).
+
+Each card shows: thumbnail (80x80), type + publisher meta line, title. No description — compact style.
+
+## Publications Single Page
+
+**Template:** `layouts/publications/single.html`
+
+### Featured Image
+
+Full-width image at top (same as blog). Uses `featured.*` from content bundle.
+
+### Summary Section
+
+Two-column layout (same pattern as DCT summary):
+- **Left**: Type · Publisher · Year label, title, "Authors: ..." list, "Read Original Publication" CTA button
+- **Right**: Abstract text
+
+### Summary Card + Details Sidebar (2/3 + 1/3 grid)
+
+- **Left (2/3)**: Blue highlight card (`.sd-highlight-primary`) showing the `summary` field text
+- **Right (1/3)**: Sticky details card (`.sd-sidebar-card`) with institutions, credibility indicators (Open Access, Peer Reviewed, Academic Publisher), edition, topics, tags, audience
+
+Type/year/publisher NOT duplicated in details card (already in summary header).
+
+### Full-Width Content
+
+Body content renders below the sidebar grid at full width using `.sd-content` class. The `65ch` max-width constraint only applies on sovereignsky project pages (`.sd-page`), not publications.
+
+Links styled blue with underlines in `.sd-content`.
+
+### Key Takeaways
+
+If available in frontmatter, displayed as a green-bordered callout box before body content.
+
+### Back Link
+
+"← Back to publications" link at bottom.
+
+---
+
+# Part 4: Blog Page Components
+
+Used on `/blog/` pages. Template-level components styled with `.sd-blog` CSS class.
+
+**Data source**: Blog posts generated from `data/blog/blog.json`.
+
+## Blog List Page
+
+**Template:** `layouts/blog/list.html`
+
+### Hero + Stats + Filters
+
+Same shared components as events and publications:
+- Blue gradient hero with "Knowledge Hub" badge
+- 3 stat cards (total posts, reading time, topics covered)
+- Shared filter pills (`.sd-filter-pill`)
+
+### Featured Blog Post
+
+Most recent post by date gets the large horizontal card (`.sd-blog-featured`). Shows: image, "Featured" badge, date, reading time, title, description, topic tags, "Read Full Insight" link.
+
+Topic tags on featured card only — grid cards kept clean.
+
+### Blog Post Grid
+
+Remaining posts in 3-column grid (`.sd-blog-grid`) with cards (`.sd-blog-card`). Each shows: image, date, reading time, title, description.
+
+## Blog Single Page
+
+**Template:** `layouts/blog/single.html`
+
+### Featured Image
+
+Full-width image at top — no overlay/blur. Image is visible content.
+
+### Header
+
+Centered: topic badge, title, date + reading time + author meta line.
+
+### Metadata Bar
+
+Topics, tags, audience displayed as clickable pills between header and content. 3-column grid on desktop.
+
+### TOC
+
+Collapsible Table of Contents — collapsed by default. Styled with Stitch tokens (`.sd-blog-toc`).
+
+### Content
+
+Prose content with Space Grotesk headings. External URL button ("Read Original Article") for posts linking to external sources.
+
+### Footer
+
+Related posts + "← Back to blog" link.
+
+---
+
+# Part 5: Shared Elements
 
 ## Sovereignsky Hero
 
