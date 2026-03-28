@@ -4,6 +4,7 @@ identifier: "2025-12-01-norway-exit-strategy"
 date: 2025-12-01
 description: "Minister Karianne Tung urges Norwegian organizations to prepare contingency plans for US cloud providers"
 summary: "Minister Karianne Tung urges Norwegian organizations to prepare contingency plans for US cloud providers"
+abstract: "Minister Karianne Tung urges Norwegian organizations to prepare contingency plans for US cloud providers"
 showHero: true
 externalUrl: "https://www.digi.no/artikler/tung-ber-alle-ha-exit-strategi-klar-i-tilfelle-google-og-microsoft-blir-ulovlig/556705"
 topics:

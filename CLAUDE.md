@@ -106,8 +106,8 @@ docker exec $CONTAINER bash -c "cd /workspace && npm run <script>"
 # Run validation
 docker exec $CONTAINER bash -c "cd /workspace && npm run validate"
 
-# Run Hugo server
-docker exec $CONTAINER bash -c "cd /workspace && hugo server -D --bind 0.0.0.0"
+# Run Hugo server (with drafts and future-dated posts visible)
+docker exec $CONTAINER bash -c "cd /workspace && hugo server -D --buildFuture --bind 0.0.0.0 --disableFastRender"
 
 # Run Node.js scripts
 docker exec $CONTAINER bash -c "cd /workspace && node scripts/<script>.js"
@@ -166,7 +166,7 @@ The Hugo server runs inside the devcontainer at `http://localhost:1313`.
 
 To restart Hugo:
 ```bash
-docker exec $CONTAINER bash -c "pkill hugo; cd /workspace && hugo server -D --bind 0.0.0.0 --disableFastRender"
+docker exec $CONTAINER bash -c "pkill hugo; cd /workspace && hugo server -D --buildFuture --bind 0.0.0.0 --disableFastRender"
 ```
 
 See **[docs/PAGE-LAYOUTS.md](docs/PAGE-LAYOUTS.md)** for template information.

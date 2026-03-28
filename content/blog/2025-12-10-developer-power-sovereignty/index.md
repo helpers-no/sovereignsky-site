@@ -4,6 +4,7 @@ identifier: "2025-12-10-developer-power-sovereignty"
 date: 2025-12-10
 description: "Why your technical decisions matter for your country's independence - and what you can do about it"
 summary: "Why your technical decisions matter for your country's independence - and what you can do about it"
+abstract: "Why your technical decisions matter for your country's independence - and what you can do about it"
 showHero: true
 topics:
   - "digital-sovereignty"

@@ -4,6 +4,7 @@ identifier: "2025-12-06-vendor-lock-in-hidden-cost"
 date: 2025-12-06
 description: "How quick decisions to use proprietary cloud services create long-term migration debt and what organizations can do about it"
 summary: "How quick decisions to use proprietary cloud services create long-term migration debt and what organizations can do about it"
+abstract: "How quick decisions to use proprietary cloud services create long-term migration debt and what organizations can do about it"
 showHero: true
 topics:
   - "platform-dependency"

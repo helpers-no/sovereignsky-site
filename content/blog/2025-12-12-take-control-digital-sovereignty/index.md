@@ -4,6 +4,7 @@ identifier: "2025-12-12-take-control-digital-sovereignty"
 date: 2025-12-12
 description: "You have the power to protect yourself from being locked out of your own computer. Small steps toward open standards create personal insurance and national sovereignty."
 summary: "You have the power to protect yourself from being locked out of your own computer. Small steps toward open standards create personal insurance and national sovereignty."
+abstract: "You have the power to protect yourself from being locked out of your own computer. Small steps toward open standards create personal insurance and national sovereignty."
 showHero: true
 topics:
   - "digital-sovereignty"

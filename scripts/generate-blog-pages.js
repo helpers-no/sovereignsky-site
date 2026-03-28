@@ -109,6 +109,7 @@ function generateFrontmatter(post) {
   // Abstract/Summary
   if (post.abstract) {
     lines.push(`summary: "${post.abstract.replace(/"/g, '\\"')}"`);
+    lines.push(`abstract: "${post.abstract.replace(/"/g, '\\"')}"`);
   }
 
   // Show hero
