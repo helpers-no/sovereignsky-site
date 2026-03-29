@@ -5,7 +5,7 @@ description: "National total defence exercise focusing on civil-military coopera
 date: "2026-10-01"
 endDate: "2026-10-31"
 status: "scheduled"
-attendanceMode: "mixed"
+attendanceMode: "hybrid"
 locationName: "Nationwide"
 locationCountry: "NO"
 organizerName: "DSB and Norwegian Armed Forces"

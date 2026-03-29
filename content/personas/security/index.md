@@ -4,7 +4,7 @@ description: "Military, police, intelligence, and civil protection organisations
 abstract: "Military, police, intelligence, and civil protection organizations requiring high-assurance, sovereign solutions for sensitive operations."
 persona_id: "security"
 icon: "shield-check"
-date: 2026-03-28
+date: 2026-03-29
 showHero: true
 showDate: false
 showAuthor: false

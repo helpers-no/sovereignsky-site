@@ -37,6 +37,8 @@ heroStyle: "big"
 
 ---
 
+---
+
 ## Key Findings
 
 ### On the Stakes

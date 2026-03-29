@@ -7,14 +7,13 @@
     "generate:datacenter-countries": "node scripts/generate-datacenter-country-pages.js",
     "generate:datacenters": "node scripts/generate-datacenters-pages.js",
     "generate:events": "node scripts/generate-events-pages.js",
-    "generate:jurisdictions": "node scripts/generate-jurisdictions-pages.js",
     "generate:laws": "node scripts/generate-laws-pages.js",
     "generate:networks": "node scripts/generate-network-pages.js",
     "generate:personas": "node scripts/generate-persona-pages.js",
     "generate:publications": "node scripts/generate-publications-pages.js",
     "generate:software": "node scripts/generate-software-pages.js",
     "generate:sovereignsky": "node scripts/generate-sovereignsky-pages.js",
-    "generate:all": "npm run generate:blocs && npm run generate:blog && npm run generate:countries && npm run generate:datacenter-countries && npm run generate:datacenters && npm run generate:events && npm run generate:jurisdictions && npm run generate:laws && npm run generate:networks && npm run generate:personas && npm run generate:publications && npm run generate:software && npm run generate:sovereignsky",
+    "generate:all": "npm run generate:blog && npm run generate:events && npm run generate:laws && npm run generate:networks && npm run generate:personas && npm run generate:publications && npm run generate:software && npm run generate:sovereignsky && npm run generate:countries && npm run generate:datacenters && npm run generate:datacenter-countries && npm run generate:blocs",
     "build": "npm run validate && npm run generate:all"
   },
   "devDependencies": {

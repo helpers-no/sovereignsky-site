@@ -34,6 +34,8 @@ heroStyle: "big"
 
 ---
 
+---
+
 ## Key Findings
 
 ### On Why Digital Threats Matter for Physical Security

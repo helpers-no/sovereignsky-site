@@ -1,7 +1,7 @@
 ---
 title: "Personas"
 description: "Target audiences for content, events, and software recommendations"
-date: 2026-03-28
+date: 2026-03-29
 showHero: false
 showDate: false
 showAuthor: false

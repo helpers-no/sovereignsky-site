@@ -36,6 +36,8 @@ heroStyle: "big"
 
 ---
 
+---
+
 ## Key Findings
 
 ### On What Metadata Reveals
