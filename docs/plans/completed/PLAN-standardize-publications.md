@@ -1,6 +1,8 @@
 # Standardize Publications Content Type
 
-## Status: Active
+## Status: Completed
+
+**Completed**: 2026-03-29
 
 **Goal**: Make publications.json follow the standard content field conventions — ItemList wrapper, standard field names, body content as single source of truth in JSON.
 
