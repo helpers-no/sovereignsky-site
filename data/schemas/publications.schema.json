@@ -2,16 +2,42 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "publications.schema.json",
   "title": "Publications",
-  "description": "Reports, papers, and guides on digital sovereignty, data protection, and humanitarian technology",
-  "type": "array",
-  "items": {
-    "$ref": "#/$defs/publication"
+  "description": "Schema for publications in schema.org ItemList format",
+  "type": "object",
+  "required": ["@context", "@type", "name", "itemListElement"],
+  "properties": {
+    "@context": {
+      "const": "https://schema.org"
+    },
+    "@type": {
+      "const": "ItemList"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the publications collection"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the publications collection"
+    },
+    "itemListElement": {
+      "type": "array",
+      "description": "Array of publications",
+      "items": {
+        "$ref": "#/$defs/publication"
+      }
+    }
   },
+  "additionalProperties": false,
   "$defs": {
     "publication": {
       "type": "object",
-      "required": ["identifier", "name", "description", "abstract", "datePublished", "publisher", "topics", "audience"],
+      "required": ["@type", "identifier", "name", "description", "abstract", "datePublished", "publisher", "topics", "audience"],
       "properties": {
+        "@type": {
+          "type": "string",
+          "description": "Schema.org type (e.g. ScholarlyArticle, Report, Book)"
+        },
         "identifier": {
           "type": "string",
           "pattern": "^[a-z0-9-]+$",
@@ -35,18 +61,22 @@
         },
         "body": {
           "type": "string",
-          "description": "Full markdown content"
+          "description": "Full markdown content — single source of truth"
         },
-        "image": {
+        "imageWide": {
           "type": "string",
-          "description": "Image filename in images/ folder"
+          "description": "Rectangular image filename or URL for social sharing"
+        },
+        "imageSquare": {
+          "type": "string",
+          "description": "Square image filename or URL for hero/cards"
         },
         "datePublished": {
           "type": "string",
           "format": "date",
           "description": "Publication date (YYYY-MM-DD)"
         },
-        "url": {
+        "externalUrl": {
           "type": "string",
           "description": "External URL to the original publication"
         },
@@ -109,6 +139,10 @@
           "type": "integer",
           "minimum": 0,
           "description": "Sort order (lower = first)"
+        },
+        "draft": {
+          "type": "boolean",
+          "description": "Whether this publication is a draft"
         }
       },
       "additionalProperties": false

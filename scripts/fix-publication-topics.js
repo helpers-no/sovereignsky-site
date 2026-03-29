@@ -10,7 +10,8 @@ const topics = JSON.parse(fs.readFileSync(path.join(DATA_DIR, 'topics', 'topics.
 const validTopics = new Set(topics.itemListElement.map(t => t.identifier));
 
 const pubsPath = path.join(DATA_DIR, 'publications', 'publications.json');
-const pubs = JSON.parse(fs.readFileSync(pubsPath, 'utf8'));
+const pubsData = JSON.parse(fs.readFileSync(pubsPath, 'utf8'));
+const pubs = pubsData.itemListElement;
 
 console.log('Valid topics:', validTopics.size);
 console.log('Processing publications...\n');
@@ -28,7 +29,7 @@ pubs.forEach(pub => {
   }
 });
 
-fs.writeFileSync(pubsPath, JSON.stringify(pubs, null, 2));
+fs.writeFileSync(pubsPath, JSON.stringify(pubsData, null, 2));
 
 const uniqueTopics = [...new Set(pubs.flatMap(p => p.topics))];
 console.log(`\nDone. Removed ${totalRemoved} invalid topic references.`);

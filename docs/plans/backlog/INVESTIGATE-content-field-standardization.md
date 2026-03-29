@@ -297,6 +297,7 @@ If CI always regenerates, `content/` files could be `.gitignored`. Trade-off: ca
 14. **`showHero`** — this is a template setting (Hugo/Blowfish frontmatter), not content data. Generators set it, not JSON. Keep as generator responsibility, not a standard field.
 15. **`body` on all page + data content** — required even if empty. Lookup data (networks-actors, networks-places) doesn't need it.
 16. **Three tiers of standardization** — page content: all standard fields required. Data content: standard fields where they exist + body. Lookup data: minimal (identifier, name, description, @type).
+17. **`author` stays singular in JSON** — schema.org uses `author` (singular) even for arrays. Generators map to `authors` (plural) in Hugo frontmatter. Both blog and publications already do this consistently. Not a standardization issue — intentional mapping.
 
 ---
 

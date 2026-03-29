@@ -115,7 +115,7 @@
     {{ $countries := len .Site.Data.countries.countries.itemListElement | default 50 }}
     {{ $laws := len .Site.Data.laws.laws.itemListElement | default 40 }}
     {{ $networks := len .Site.Data.networks.networks | default 25 }}
-    {{ $publications := len .Site.Data.publications.publications | default 10 }}
+    {{ $publications := len .Site.Data.publications.publications.itemListElement | default 10 }}
     {{ $blogs := len (where .Site.RegularPages "Section" "blog") }}
     {{ $blocs := len .Site.Data.blocs.blocs.itemListElement | default 6 }}
 

@@ -3,21 +3,19 @@
 /**
  * Generate /publications/{publication-id}/ pages from data/publications/publications.json
  *
- * JSON Structure (schema.org-aligned):
- * - identifier, name, description, datePublished, url, author, publisher, topics, audience, tags
- * - abstract (short), summary (longer) for generated headings
- * - image (filename or URL) for hero image
+ * JSON Structure (schema.org ItemList):
+ * - Wrapper: { "@type": "ItemList", "itemListElement": [...] }
+ * - Fields: @type, identifier, name, description, abstract, summary, body,
+ *   imageWide, datePublished, externalUrl, author, publisher, topics, audience, tags, weight, draft
  *
  * Field Mappings (JSON → Frontmatter):
  * - datePublished → date (schema.org → Hugo)
  * - name → title
- * - url → external_url
- * - topics → topics (direct mapping)
+ * - externalUrl → external_url
  * - author → authors
  *
- * Creates stub pages for each publication. If a page already exists with content,
- * it preserves the content AFTER the Summary section and only updates frontmatter
- * and the Abstract/Summary headings from JSON.
+ * JSON body is the single source of truth — custom markdown content in existing
+ * files is NOT preserved. All content must live in publications.json.
  *
  * Image handling:
  * - If image starts with http, downloads from URL
@@ -104,10 +102,10 @@ function downloadImage(url, dest) {
  * - Saves as featured.{ext} in content folder (preserves original extension)
  */
 async function handleImage(pub, pubDir) {
-  if (!pub.image) return false;
+  if (!pub.imageWide) return false;
 
   // Determine extension from source
-  const ext = path.extname(pub.image) || '.png';
+  const ext = path.extname(pub.imageWide) || '.png';
   const destPath = path.join(pubDir, `featured${ext}`);
 
   // Remove any existing featured.* files with different extensions
@@ -120,9 +118,9 @@ async function handleImage(pub, pubDir) {
   });
 
   // Check if it's a URL
-  if (pub.image.startsWith('http://') || pub.image.startsWith('https://')) {
+  if (pub.imageWide.startsWith('http://') || pub.imageWide.startsWith('https://')) {
     try {
-      await downloadImage(pub.image, destPath);
+      await downloadImage(pub.imageWide, destPath);
       console.log(`  Downloaded image for: ${pub.identifier}`);
       return true;
     } catch (err) {
@@ -132,7 +130,7 @@ async function handleImage(pub, pubDir) {
   }
 
   // It's a local filename - copy from images folder
-  const srcPath = path.join(IMAGES_DIR, pub.image);
+  const srcPath = path.join(IMAGES_DIR, pub.imageWide);
   if (copyImage(srcPath, destPath)) {
     console.log(`  Copied image for: ${pub.identifier}`);
     return true;
@@ -140,60 +138,6 @@ async function handleImage(pub, pubDir) {
     console.warn(`  Warning: Image not found for ${pub.identifier}: ${srcPath}`);
     return false;
   }
-}
-
-// Parse existing markdown to extract frontmatter and content
-function parseMarkdown(content) {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
-  if (match) {
-    return {
-      frontmatter: match[1],
-      body: match[2].trim()
-    };
-  }
-  return { frontmatter: '', body: content.trim() };
-}
-
-/**
- * Extract body content AFTER the Summary section
- * Looks for content after the first "---" divider that follows "## Summary"
- */
-function extractBodyAfterSummary(body) {
-  if (!body) return '';
-
-  // Find ## Summary section
-  const summaryMatch = body.match(/^## Summary\s*\n/m);
-  if (!summaryMatch) {
-    // No Summary section found - might be custom format, preserve as-is
-    // But check if it starts with ## Abstract (already processed)
-    if (body.startsWith('## Abstract')) {
-      // Already processed - extract content after ## Summary section
-      const afterAbstract = body.replace(/^## Abstract[\s\S]*?(?=## |$)/, '');
-      const afterSummary = afterAbstract.replace(/^## Summary[\s\S]*?(?=---\s*\n|## |$)/, '');
-      return afterSummary.replace(/^---\s*\n/, '').trim();
-    }
-    return body;
-  }
-
-  // Find the first "---" divider after ## Summary
-  const afterSummaryStart = summaryMatch.index + summaryMatch[0].length;
-  const restOfBody = body.slice(afterSummaryStart);
-
-  // Look for the divider "---" that ends the summary section
-  const dividerMatch = restOfBody.match(/\n---\s*\n/);
-  if (dividerMatch) {
-    const contentAfterDivider = restOfBody.slice(dividerMatch.index + dividerMatch[0].length).trim();
-    return contentAfterDivider;
-  }
-
-  // No divider found - check for next ## heading
-  const nextHeadingMatch = restOfBody.match(/\n## /);
-  if (nextHeadingMatch) {
-    return restOfBody.slice(nextHeadingMatch.index + 1).trim();
-  }
-
-  // No clear boundary - return empty (summary was all the content)
-  return '';
 }
 
 function yamlEscapeString(s) {
@@ -221,7 +165,7 @@ function buildFrontmatter(pub) {
     `title: ${yamlString(pub.name)}`,           // name → title
     `description: ${yamlString(pub.description)}`,
     `date: ${pub.datePublished}`,               // datePublished → date
-    `external_url: ${yamlString(pub.url)}`,     // url → external_url
+    `external_url: ${yamlString(pub.externalUrl)}`,     // externalUrl → external_url
     `publisher: ${yamlString(pub.publisher)}`
   ];
 
@@ -319,14 +263,23 @@ function buildDefaultBody(pub) {
 async function main() {
   console.log('Generating /publications/ pages from data/publications/publications.json...\n');
 
-  const publications = readJson(path.join(DATA_DIR, 'publications.json'));
+  const data = readJson(path.join(DATA_DIR, 'publications.json'));
+  const publications = data.itemListElement;
 
   ensureDir(CONTENT_DIR);
 
   let created = 0;
   let updated = 0;
+  let skipped = 0;
 
   for (const pub of publications) {
+    // Skip drafts
+    if (pub.draft) {
+      console.log(`  SKIP (draft): ${pub.identifier}`);
+      skipped++;
+      continue;
+    }
+
     const pubDir = path.join(CONTENT_DIR, pub.identifier);
     const indexPath = path.join(pubDir, 'index.md');
 
@@ -335,36 +288,13 @@ async function main() {
     // Handle image (copy or download)
     await handleImage(pub, pubDir);
 
-    // Start with abstract and summary from JSON
-    const abstractSummary = buildAbstractAndSummary(pub);
-    let customBody = '';
+    // JSON body is the single source of truth
+    const body = buildAbstractAndSummary(pub);
 
-    // Check if file exists and has custom content after the summary
-    // Only preserve custom content if there's NO body field in JSON
     if (fs.existsSync(indexPath)) {
-      if (!pub.body) {
-        // No body in JSON, so preserve any custom content from existing file
-        const existing = fs.readFileSync(indexPath, 'utf8');
-        const parsed = parseMarkdown(existing);
-
-        // Extract content after the Summary section
-        customBody = extractBodyAfterSummary(parsed.body);
-
-        if (customBody && !customBody.includes('No additional commentary yet')) {
-          console.log(`  Preserving custom content for: ${pub.identifier}`);
-        } else {
-          customBody = '';
-        }
-      }
       updated++;
     } else {
       created++;
-    }
-
-    // Build full body: Abstract + Summary (+ body from JSON), then any custom content
-    let body = abstractSummary;
-    if (customBody) {
-      body += '\n\n---\n\n' + customBody;
     }
 
     const frontmatter = buildFrontmatter(pub);
@@ -400,6 +330,7 @@ description: "Curated references to authoritative sources on digital sovereignty
 
   console.log(`\nCreated: ${created} new publication pages`);
   console.log(`Updated: ${updated} existing publication pages`);
+  if (skipped) console.log(`Skipped: ${skipped} drafts`);
   console.log(`Total: ${publications.length} publications in /publications/{id}/index.md`);
 }
 
