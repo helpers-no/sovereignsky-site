@@ -11,6 +11,10 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
+const { validateBeforeGenerate } = require('./lib/schema-validator');
+
+// Validate data before generating
+validateBeforeGenerate('data/blog/blog.json', 'data/schemas/blog.schema.json');
 
 const DATA_FILE = path.join(__dirname, '..', 'data', 'blog', 'blog.json');
 const CONTENT_DIR = path.join(__dirname, '..', 'content', 'blog');

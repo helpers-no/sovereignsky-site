@@ -20,6 +20,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const { validateBeforeGenerate } = require('./lib/schema-validator');
+
+// Validate data before generating
+validateBeforeGenerate('data/software/software.json', 'data/schemas/software.schema.json');
 
 // Paths
 const dataDir = path.join(__dirname, '..', 'data');

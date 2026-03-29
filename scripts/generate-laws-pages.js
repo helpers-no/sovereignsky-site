@@ -17,6 +17,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const { validateBeforeGenerate } = require('./lib/schema-validator');
+
+// Validate data before generating
+validateBeforeGenerate('data/laws/laws.json', 'data/schemas/laws.schema.json');
 const https = require('https');
 const http = require('http');
 

@@ -29,6 +29,13 @@ type: publications
 showHero: true
 heroStyle: "big"
 ---
+
+
+
+---
+
+---
+
 ## Three Main Goals
 
 The report establishes three overarching objectives for strengthening civil society's resilience:

@@ -15,6 +15,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const { validateBeforeGenerate } = require('./lib/schema-validator');
+
+// Validate data before generating
+validateBeforeGenerate('data/sovereignsky/projects.json', 'data/schemas/sovereignsky-projects.schema.json');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const DATA_FILE = path.join(ROOT_DIR, 'data', 'sovereignsky', 'projects.json');

@@ -31,6 +31,10 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
+const { validateBeforeGenerate } = require('./lib/schema-validator');
+
+// Validate data before generating
+validateBeforeGenerate('data/publications/publications.json', 'data/schemas/publications.schema.json');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const DATA_DIR = path.join(ROOT_DIR, 'data', 'publications');

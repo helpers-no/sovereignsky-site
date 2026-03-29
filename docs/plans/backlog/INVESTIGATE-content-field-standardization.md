@@ -104,11 +104,21 @@ There are **13 content types** with generators:
 
 The JSON must be the complete source for all content. No content should live only in markdown files.
 
-- **Blog**: ✅ has `body`
-- **Projects**: ✅ has `sections` (structured body)
-- **Publications**: ❌ needs `body` added — move markdown content into JSON
-- **Events**: ❌ needs `body` added (even if empty for most events)
-- **Other types**: audit needed
+**Audit result (2026-03-28):**
+
+| Content Type | Body in JSON? | Body in markdown only? | Action needed |
+|-------------|:---:|:---:|---|
+| **Blog** | ✅ `body` (11/11) | Matches JSON | None |
+| **Projects** | ✅ `sections` (11/11) | — | None |
+| **Publications** | ❌ 1 of 8 | ⚠️ 7 of 8 have body ONLY in markdown | **Must migrate before CI/CD generation** |
+| **Laws** | ❌ 0 of 41 | ⚠️ All 41 have body ONLY in markdown | **Must migrate before CI/CD generation** |
+| **Datacenters** | ❌ 0 | ⚠️ 43 pages have body in markdown | **Must migrate before CI/CD generation** |
+| **Events** | No body needed | No body | None |
+| **Networks** | No body | No body | None |
+| **Countries** | No body | No body | None |
+| **Personas** | No body | No body | None |
+
+**⚠️ WARNING**: Running `generate:all` in CI/CD before migrating publication, law, and datacenter body content to JSON will NOT destroy content (generators preserve existing markdown body when JSON has no `body` field). However, the JSON is not the single source of truth until this migration is complete.
 
 ### 3. Field names follow standards
 
@@ -320,13 +330,15 @@ If CI always regenerates, `content/` files could be `.gitignored`. Trade-off: ca
 
 One plan per content type. Each plan is independent and leaves the system working after completion. Plans should be created and implemented in this order.
 
-### Plan 0: CI/CD and Build Pipeline
-- Update CI/CD to include `npm run generate:all`
-- Create missing schemas (publications, datacenters, software)
-- This is a prerequisite for all other plans
+### Plan 0: CI/CD and Build Pipeline — ✅ COMPLETED 2026-03-29
+- All 13 generators in npm scripts + `generate:all` + `build`
+- Created missing schemas (publications, datacenters, software) — validation now 18/18
+- CI/CD updated with generation step (⚠️ blocked until publications/laws/datacenters body content migrated to JSON)
+- All 13 generators validate data before generating (`scripts/lib/schema-validator.js`)
+- See: `docs/plans/completed/PLAN-standardize-build-pipeline.md`
 
 ### Page content types (Stitch-designed)
-- **PLAN-standardize-publications.md** — Add ItemList wrapper, add `body` field (move markdown content to JSON), drop `summary` → merge into `abstract`, rename `image` → `imageWide`, add `@type`, `draft`. Create schema.
+- **PLAN-standardize-publications.md** — Add ItemList wrapper, add `body` field (move markdown content to JSON), keep `summary`, rename `image` → `imageWide`, add `@type`, `draft`. Schema already created.
 - **PLAN-standardize-blog.md** — Rename `image` → `imageWide`, add `weight`, add `summary`, rename `url` → `externalUrl`, remove `showHero` from JSON (generator sets it).
 - **PLAN-standardize-events.md** — Add `abstract`, `summary`, `tags`, `weight`, `draft`, `imageWide`, rename `url` → `externalUrl`, add `@type`.
 - **PLAN-standardize-projects.md** — Flatten `project.*` → `status`, `maturity`, `repositoryUrl`, `documentationUrl`. Rename `url` → `externalUrl` (or remove — was internal path). Add `summary`, `draft`. Standardize `project.dateStarted` → `datePublished`.

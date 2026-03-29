@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "publications.schema.json",
+  "title": "Publications",
+  "description": "Reports, papers, and guides on digital sovereignty, data protection, and humanitarian technology",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/publication"
+  },
+  "$defs": {
+    "publication": {
+      "type": "object",
+      "required": ["identifier", "name", "description", "abstract", "datePublished", "publisher", "topics", "audience"],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "URL slug for the publication"
+        },
+        "name": {
+          "type": "string",
+          "description": "Publication title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Short SEO description (1-2 sentences)"
+        },
+        "abstract": {
+          "type": "string",
+          "description": "Medium display summary (2-3 sentences)"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Detailed summary paragraph for highlight cards"
+        },
+        "body": {
+          "type": "string",
+          "description": "Full markdown content"
+        },
+        "image": {
+          "type": "string",
+          "description": "Image filename in images/ folder"
+        },
+        "datePublished": {
+          "type": "string",
+          "format": "date",
+          "description": "Publication date (YYYY-MM-DD)"
+        },
+        "url": {
+          "type": "string",
+          "description": "External URL to the original publication"
+        },
+        "author": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Author names"
+        },
+        "publisher": {
+          "type": "string",
+          "description": "Publishing organization"
+        },
+        "institutions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Contributing institutions"
+        },
+        "publication_type": {
+          "type": "string",
+          "enum": ["book", "report", "paper", "guide"],
+          "description": "Type of publication"
+        },
+        "peer_reviewed": {
+          "type": "boolean",
+          "description": "Whether the publication is peer reviewed"
+        },
+        "open_access": {
+          "type": "boolean",
+          "description": "Whether the publication is open access"
+        },
+        "academic_publisher": {
+          "type": "boolean",
+          "description": "Whether published by an academic publisher"
+        },
+        "edition": {
+          "type": "string",
+          "description": "Edition number or name"
+        },
+        "takeaways": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Key takeaways list"
+        },
+        "topics": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Topic identifiers"
+        },
+        "audience": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Target audience identifiers"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Free-form tags"
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Sort order (lower = first)"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
