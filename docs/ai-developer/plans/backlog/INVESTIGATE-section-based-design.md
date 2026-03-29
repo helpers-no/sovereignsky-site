@@ -625,19 +625,19 @@ Established the section-based design system. Originally scoped as devcontainer-t
 - JSON schema updated to validate `sections` array
 - Consistent patterns: Problem → tertiary highlight-card, Solution → primary highlight-card or steps
 
-See: `docs/plans/completed/PLAN-section-design-foundation.md`
+See: `docs/ai-developer/plans/completed/PLAN-section-design-foundation.md`
 
 ### PLAN 1.5: Page-Level Redesign — ✅ COMPLETED 2026-03-23
 
 Hero, sidebar removal, full-width layout, footer, nav fonts, image naming, side-by-side layouts. Remaining polish (dark mode, responsive, nav styling) in `PLAN-page-level-polish.md`.
 
-See: `docs/plans/completed/PLAN-page-level-redesign.md`
+See: `docs/ai-developer/plans/completed/PLAN-page-level-redesign.md`
 
 ### PLAN 1.6: Projects List Redesign — ✅ COMPLETED 2026-03-27
 
 Restyled `/sovereignsky/` list page with Stitch design: blue gradient hero, stat cards, shared filter pills, featured project card (by weight), 3-column grid. Expanded topics and audiences for all 11 projects. Reordered projects by user preference.
 
-See: `docs/plans/completed/PLAN-projects-list-redesign.md`
+See: `docs/ai-developer/plans/completed/PLAN-projects-list-redesign.md`
 
 ### PLAN 2: ~~sovereignsky (remaining projects)~~ — ✅ MERGED INTO PLAN 1
 

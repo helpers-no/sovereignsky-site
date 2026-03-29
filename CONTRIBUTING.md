@@ -18,17 +18,17 @@ Please use the issue templates - they help us understand and implement your sugg
 ### 2. What Happens After You Create an Issue?
 
 1. **Triage** - We review new issues and add appropriate labels
-2. **Planning** - Approved issues become implementation plans in `docs/plans/backlog/`
-3. **Implementation** - We work through the backlog, moving plans to `docs/plans/active/`
-4. **Completion** - Implemented features move to `docs/plans/completed/`
+2. **Planning** - Approved issues become implementation plans in `docs/ai-developer/plans/backlog/`
+3. **Implementation** - We work through the backlog, moving plans to `docs/ai-developer/plans/active/`
+4. **Completion** - Implemented features move to `docs/ai-developer/plans/completed/`
 
-You can track progress by watching the `docs/plans/` folder.
+You can track progress by watching the `docs/ai-developer/plans/` folder.
 
 ### 3. Direct Code Contributions
 
 We also welcome pull requests! Before starting significant work:
 
-1. Check existing [issues](https://github.com/helpers-no/sovereignsky-site/issues) and [plans](./docs/plans/)
+1. Check existing [issues](https://github.com/helpers-no/sovereignsky-site/issues) and [plans](./docs/ai-developer/plans/)
 2. Open an issue to discuss your idea
 3. Wait for feedback before investing time in implementation
 
