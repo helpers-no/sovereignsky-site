@@ -22,7 +22,8 @@ const EVENTS_JSON_PATH = path.join(ROOT_DIR, 'data/events/events.json');
 const EVENTS_CONTENT_DIR = path.join(ROOT_DIR, 'content/events');
 
 // Load events data
-const events = JSON.parse(fs.readFileSync(EVENTS_JSON_PATH, 'utf8'));
+const eventsData = JSON.parse(fs.readFileSync(EVENTS_JSON_PATH, 'utf8'));
+const events = eventsData.itemListElement || eventsData;
 
 console.log('Generating /events/ pages from data/events/events.json...\n');
 console.log(`Found ${events.length} events to process\n`);
