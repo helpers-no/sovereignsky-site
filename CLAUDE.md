@@ -7,8 +7,9 @@
 1. Check `docs/ai-developer/plans/active/` for in-progress work
 2. Create an INVESTIGATE-*.md or PLAN-*.md in `docs/ai-developer/plans/backlog/`
 3. Wait for user approval before implementing
-4. Read [docs/ai-developer/WORKFLOW.md](docs/ai-developer/WORKFLOW.md) for the full process
-5. Read [docs/ai-developer/PLANS.md](docs/ai-developer/PLANS.md) for plan structure
+4. Update the active plan file as you work — mark each task `[x]` immediately after completing it, mark phase headings as DONE
+5. Read [docs/ai-developer/WORKFLOW.md](docs/ai-developer/WORKFLOW.md) for the full process
+6. Read [docs/ai-developer/PLANS.md](docs/ai-developer/PLANS.md) for plan structure
 
 All commands must run inside the devcontainer. Never run directly on the host.
 

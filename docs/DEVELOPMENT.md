@@ -38,10 +38,10 @@ When working in VS Code's integrated terminal (inside the devcontainer), run com
 
 ```bash
 # Start Hugo server
-hugo server --bind 0.0.0.0 -p 1313 --disableFastRender
+hugo server -D --bind 0.0.0.0 --disableFastRender --buildFuture
 
 # Restart Hugo (kill and start)
-pkill hugo; sleep 1; hugo server --bind 0.0.0.0 -p 1313 --disableFastRender &
+pkill hugo; sleep 1; hugo server -D --bind 0.0.0.0 --disableFastRender --buildFuture &
 
 # Check if Hugo is running
 pgrep -a hugo
@@ -62,13 +62,13 @@ CONTAINER=$(docker ps -q | xargs -I {} docker inspect {} \
 ```bash
 docker exec $CONTAINER pkill hugo 2>/dev/null
 sleep 1
-docker exec -d $CONTAINER sh -c 'cd /workspace && hugo server --bind 0.0.0.0 -p 1313 --disableFastRender'
+docker exec -d $CONTAINER sh -c 'cd /workspace && hugo server -D --bind 0.0.0.0 --disableFastRender --buildFuture'
 sleep 4
 ```
 
 Or as a one-liner in bash:
 ```bash
-CONTAINER=$(docker ps -q | xargs -I {} docker inspect {} --format '{{.Name}} {{range .Mounts}}{{.Source}}{{end}}' | grep sovereignsky-site | cut -d' ' -f1 | tr -d '/') && docker exec $CONTAINER pkill hugo; sleep 1; docker exec -d $CONTAINER sh -c 'cd /workspace && hugo server --bind 0.0.0.0 -p 1313 --disableFastRender'
+CONTAINER=$(docker ps -q | xargs -I {} docker inspect {} --format '{{.Name}} {{range .Mounts}}{{.Source}}{{end}}' | grep sovereignsky-site | cut -d' ' -f1 | tr -d '/') && docker exec $CONTAINER pkill hugo; sleep 1; docker exec -d $CONTAINER sh -c 'cd /workspace && hugo server -D --bind 0.0.0.0 --disableFastRender --buildFuture'
 ```
 
 **What the restart command does:**
@@ -78,18 +78,27 @@ CONTAINER=$(docker ps -q | xargs -I {} docker inspect {} --format '{{.Name}} {{r
 4. `--disableFastRender` - Forces full rebuild (needed for template changes)
 5. `sleep 4` - Waits for server to be ready
 
-## When to Restart Hugo
+## When to Rebuild or Restart Hugo
 
-**IMPORTANT:** You must restart Hugo after most code changes. Hugo's live reload is unreliable for:
+Hugo automatically rebuilds when files change, but not all changes are picked up equally.
 
-- **Template/layout changes** (any file in `layouts/`)
-- **Partial changes** (`layouts/partials/`)
-- **Shortcode changes** (`layouts/shortcodes/`)
-- **CSS changes** (`assets/css/`) - CSS is bundled and fingerprinted
-- **Config file changes** (`config.toml`, `params.toml`)
-- **Data file changes** (`data/`)
+**Automatic rebuild** — no action needed:
+- Content file changes (`.md` files)
 
-Only content file changes (`.md` files) reliably auto-reload without restart.
+**Force a full rebuild** — touch a config file:
+```bash
+touch config/_default/config.toml
+```
+This works for changes to:
+- Templates and layouts (`layouts/`)
+- Partials (`layouts/partials/`)
+- Existing shortcodes (`layouts/shortcodes/`)
+- CSS (`assets/css/`)
+- Data files (`data/`)
+
+**Restart required** — kill and start Hugo again:
+- **New shortcode files** — Hugo does not detect newly created shortcode files without a restart ([known bug](https://github.com/gohugoio/hugo/issues/14207))
+- Config file changes (`config.toml`, `params.toml`)
 
 **When in doubt, restart Hugo.** It only takes a few seconds and prevents debugging phantom issues from stale caches.
 

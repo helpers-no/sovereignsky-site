@@ -4,7 +4,9 @@
 > - [WORKFLOW.md](../../WORKFLOW.md) - The implementation process
 > - [PLANS.md](../../PLANS.md) - Plan structure and best practices
 
-## Status: Backlog
+## Status: Completed
+
+**Completed**: 2026-03-29
 
 **Goal**: Create a portable `docs/ai-developer/` folder with universal AI development workflow docs, create project-specific `project-sovereignsky.md`, move plans, rewrite CLAUDE.md as thin enforcer, delete old docs. Test by cold-starting Claude.
 
@@ -200,18 +202,18 @@ User confirms all 6 portable files are project-agnostic.
 
 ---
 
-## Phase 7: Cold Start Test
+## Phase 7: Cold Start Test — DONE
 
 The real test: commit, end session, restart Claude with fresh context.
 
 ### Tasks
 
-- [ ] 7.1 Commit all changes
-- [ ] 7.2 End this Claude Code session
-- [ ] 7.3 Start a new Claude Code session
-- [ ] 7.4 Tell Claude: "Read docs/ai-developer/ and tell me what you understand about how to work on this project"
-- [ ] 7.5 Evaluate: Can Claude explain the workflow? Does it know about investigations, plans, devcontainer, git rules, and the project specifics?
-- [ ] 7.6 Fix any gaps discovered during the cold start test
+- [x] 7.1 Commit all changes ✓
+- [x] 7.2 End this Claude Code session ✓
+- [x] 7.3 Start a new Claude Code session ✓
+- [x] 7.4 Tell Claude: "Read docs/ai-developer/ and tell me what you understand about how to work on this project" ✓
+- [x] 7.5 Evaluate: Can Claude explain the workflow? Does it know about investigations, plans, devcontainer, git rules, and the project specifics? ✓
+- [x] 7.6 Fix any gaps discovered during the cold start test — Added plan update reminder to CLAUDE.md ✓
 
 ### Validation
 
@@ -227,7 +229,7 @@ Claude can explain the complete workflow from a cold start by reading only CLAUD
 - [x] CLAUDE.md is thin enforcer (workflow rule + container rule + pointer)
 - [x] Old `docs/PLANS.md`, `docs/WORKFLOW.md`, `docs/plans/` deleted
 - [x] No broken internal links
-- [ ] Cold start test passes — Claude understands workflow and project from docs alone
+- [x] Cold start test passes — Claude understands workflow and project from docs alone
 
 ---
 

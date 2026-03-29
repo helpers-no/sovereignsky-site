@@ -1,6 +1,6 @@
 # Project: SovereignSky Site
 
-A Hugo-based website about digital sovereignty, data protection, and humanitarian technology.
+A Hugo-based website about digital sovereignty, data protection, and humanitarian technology. Uses the Blowfish theme with DaisyUI components and Tailwind CSS.
 
 ---
 
@@ -28,127 +28,34 @@ Inside the container: `/workspace/`
 
 ---
 
-## Project Structure
-
-```
-sovereignsky-site/
-├── config/                    # Hugo configuration
-├── content/                   # Hugo content (generated markdown pages)
-├── data/                      # Data files (JSON — single source of truth)
-│   ├── schemas/               # JSON schemas for validation
-│   ├── publications/          # publications.json
-│   ├── blog/                  # blog.json
-│   ├── events/                # events.json
-│   ├── sovereignsky/          # projects.json
-│   └── ...                    # networks, laws, countries, etc.
-├── docs/                      # Documentation
-│   └── ai-developer/          # AI developer docs (you are here)
-│       └── plans/             # Implementation plans
-├── images/                    # Source images for content
-├── layouts/                   # Hugo templates and partials
-│   ├── partials/              # Reusable template fragments
-│   └── shortcodes/            # Hugo shortcodes
-├── scripts/                   # Node.js generator and utility scripts
-├── static/                    # Static assets
-└── assets/css/                # Custom CSS
-```
-
----
-
-## Data Pipeline
-
-**JSON is the single source of truth.** Content flows through a pipeline:
-
-```
-data/*.json → scripts/generate-*-pages.js → content/*/index.md → Hugo build → HTML
-```
-
-1. **Edit JSON** in `data/{type}/{type}.json`
-2. **Run generator** to produce markdown pages
-3. **Hugo builds** HTML from the generated markdown
-
-**Never edit files in `content/` directly** — they are generated and will be overwritten.
-
-See [docs/DATA-PIPELINE.md](../DATA-PIPELINE.md) for the complete architecture.
-
----
-
 ## Key Commands
 
 All commands run inside the devcontainer.
 
-### Validation
-
 ```bash
-npm run validate              # Validate all JSON against schemas (18 schemas)
-```
-
-### Generation
-
-```bash
-npm run generate:all          # Run all 13 generators
+npm run validate              # Validate all JSON against schemas
+npm run generate:all          # Run all generators
 npm run build                 # validate + generate:all
-node scripts/generate-publications-pages.js   # Run a single generator
+hugo server -D --bind 0.0.0.0 --disableFastRender --buildFuture   # Start Hugo
 ```
 
-### Hugo Server
-
-Hugo runs inside the devcontainer at `http://localhost:1313`.
-
-```bash
-# Start Hugo (with drafts and future posts visible)
-hugo server -D --buildFuture --bind 0.0.0.0 --disableFastRender
-
-# Restart Hugo
-pkill hugo; hugo server -D --buildFuture --bind 0.0.0.0 --disableFastRender
-
-# Build for production
-hugo --gc
-```
-
-**When to restart Hugo**: After changing templates, partials, shortcodes, CSS, config files, or data files. Markdown content changes are picked up automatically.
-
 ---
 
-## Content Types
+## When to Read What
 
-There are **13 content types** with generators:
+The `docs/` folder contains detailed documentation for this project. Read the relevant doc before working in that area.
 
-| Type | Data file | Generator |
-|------|-----------|-----------|
-| projects | `data/sovereignsky/projects.json` | `generate-sovereignsky-pages.js` |
-| blog | `data/blog/blog.json` | `generate-blog-pages.js` |
-| publications | `data/publications/publications.json` | `generate-publications-pages.js` |
-| events | `data/events/events.json` | `generate-events-pages.js` |
-| networks | `data/networks/networks.json` | `generate-network-pages.js` |
-| laws | `data/laws/laws.json` | `generate-laws-pages.js` |
-| countries | `data/countries/countries.json` | `generate-countries-pages.js` |
-| datacenters | `data/datacenters/datacenters.json` | `generate-datacenters-pages.js` |
-| blocs | `data/blocs/blocs.json` | `generate-blocs-pages.js` |
-| software | `data/software/software.json` | `generate-software-pages.js` |
-| personas | `data/audience/audience.json` | `generate-persona-pages.js` |
-| jurisdictions | (uses laws data) | `generate-jurisdictions-pages.js` |
-| datacenter-countries | (uses countries data) | `generate-datacenter-country-pages.js` |
+| When you are... | Read first |
+|-----------------|------------|
+| Changing data files, generators, or content types | [docs/DATA-PIPELINE.md](../DATA-PIPELINE.md) — JSON-to-HTML architecture, all 13 content types, generator patterns, shortcodes |
+| Adding or modifying JSON schemas or validation | [docs/DATA-VALIDATION.md](../DATA-VALIDATION.md) — Schema structure, validation script, adding new validations |
+| Working on templates, partials, or page layouts | [docs/PAGE-LAYOUTS.md](../PAGE-LAYOUTS.md) — List/detail page components, section headers, icon system |
+| Designing or styling components | [docs/DESIGN-COMPONENTS.md](../DESIGN-COMPONENTS.md) — All shortcodes, section types, color system, CSS tokens |
+| Setting up the dev environment or Hugo server | [docs/DEVELOPMENT.md](../DEVELOPMENT.md) — First-time setup, Hugo commands, when to restart |
 
----
+### Key rules from the docs
 
-## Styling
-
-- **Hugo theme**: Blowfish
-- **Component library**: DaisyUI (loaded via CDN in `layouts/partials/extend-head.html`)
-- **CSS framework**: Tailwind (from Blowfish)
-- **Custom CSS**: `assets/css/custom.css`
-
-Prefer Tailwind/DaisyUI classes over custom CSS when possible.
-
----
-
-## Detailed Documentation
-
-| Document | Content |
-|----------|---------|
-| [docs/DEVELOPMENT.md](../DEVELOPMENT.md) | Full development setup guide |
-| [docs/DATA-VALIDATION.md](../DATA-VALIDATION.md) | JSON schema validation details |
-| [docs/DATA-PIPELINE.md](../DATA-PIPELINE.md) | Complete data flow architecture |
-| [docs/PAGE-LAYOUTS.md](../PAGE-LAYOUTS.md) | Component naming and page types |
-| [docs/DESIGN-COMPONENTS.md](../DESIGN-COMPONENTS.md) | Shortcodes, templates, color system |
+- **Never edit files in `content/` directly** — they are generated and will be overwritten
+- **Data pipeline**: `data/*.json` → `scripts/generate-*-pages.js` → `content/*/index.md` → Hugo build
+- **Restart Hugo** after changing templates, partials, shortcodes, CSS, config, or data files
+- **Styling**: Prefer Tailwind/DaisyUI classes over custom CSS. Custom CSS is in `assets/css/custom.css`
