@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "datacenters.schema.json",
+  "title": "Datacenters",
+  "description": "Cloud and datacenter providers with their regions and locations",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/provider"
+  },
+  "$defs": {
+    "provider": {
+      "type": "object",
+      "required": ["identifier", "name", "providerType", "vendorCountryId", "regions"],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "Provider slug"
+        },
+        "name": {
+          "type": "string",
+          "description": "Provider name"
+        },
+        "providerType": {
+          "type": "string",
+          "description": "Type of provider (hyperscaler, regional, etc.)"
+        },
+        "vendorCountryId": {
+          "type": "string",
+          "description": "Country code of the vendor headquarters"
+        },
+        "url": {
+          "type": "string",
+          "description": "Provider website URL"
+        },
+        "dateModified": {
+          "type": "string",
+          "description": "Last modified date"
+        },
+        "regions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/region" },
+          "description": "Datacenter regions"
+        },
+        "meta": {
+          "type": "object",
+          "description": "Additional metadata"
+        }
+      },
+      "additionalProperties": false
+    },
+    "region": {
+      "type": "object",
+      "required": ["identifier", "name", "countryId"],
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "Region identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Region display name"
+        },
+        "countryId": {
+          "type": "string",
+          "description": "Country code where region is located"
+        },
+        "city": {
+          "type": "string",
+          "description": "City name"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": { "type": "number" },
+          "minItems": 2,
+          "maxItems": 2,
+          "description": "Latitude and longitude"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

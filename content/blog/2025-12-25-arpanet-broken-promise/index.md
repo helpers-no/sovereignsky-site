@@ -4,6 +4,7 @@ identifier: "2025-12-25-arpanet-broken-promise"
 date: 2025-12-25
 description: "The internet was built to survive nuclear war. We've since made it vulnerable to fishing trawlers and policy changes in Washington. The same architecture designed for resilience has been recentralized - and Russia is already testing our cables."
 summary: "The internet was built to survive nuclear war. We've since made it vulnerable to fishing trawlers and policy changes in Washington. The same architecture designed for resilience has been recentralized - and Russia is already testing our cables."
+abstract: "The internet was built to survive nuclear war. We've since made it vulnerable to fishing trawlers and policy changes in Washington. The same architecture designed for resilience has been recentralized - and Russia is already testing our cables."
 showHero: true
 topics:
   - "digital-sovereignty"

@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "software.schema.json",
+  "title": "Software Database",
+  "description": "Software products with sovereignty risk assessments",
+  "type": "object",
+  "required": ["products"],
+  "properties": {
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/product"
+      }
+    }
+  },
+  "$defs": {
+    "product": {
+      "type": "object",
+      "required": ["id", "name", "description", "vendor_id", "risk_level"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Product identifier"
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL slug"
+        },
+        "name": {
+          "type": "string",
+          "description": "Product name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Product description"
+        },
+        "vendor_id": {
+          "type": "string",
+          "description": "Vendor identifier"
+        },
+        "use_areas": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Use area categories"
+        },
+        "risk_level": {
+          "type": "string",
+          "description": "Overall risk level"
+        },
+        "assessments": {
+          "type": "object",
+          "description": "Risk assessments (NDSI, etc.)"
+        },
+        "alternatives": {
+          "type": "array",
+          "description": "Alternative products"
+        },
+        "key_concerns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Key sovereignty concerns"
+        },
+        "mitigations": {
+          "type": "array",
+          "description": "Possible mitigations"
+        },
+        "hosting": {
+          "description": "Hosting options"
+        },
+        "data_portability": {
+          "description": "Data portability information"
+        },
+        "open_source": {
+          "type": "boolean",
+          "description": "Whether the product is open source"
+        },
+        "meta": {
+          "type": "object",
+          "description": "Additional metadata"
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

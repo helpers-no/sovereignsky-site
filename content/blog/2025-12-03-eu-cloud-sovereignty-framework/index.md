@@ -4,6 +4,7 @@ identifier: "2025-12-03-eu-cloud-sovereignty-framework"
 date: 2025-12-03
 description: "The European Commission commits major funding to reduce dependence on US hyperscalers"
 summary: "The European Commission commits major funding to reduce dependence on US hyperscalers"
+abstract: "The European Commission commits major funding to reduce dependence on US hyperscalers"
 showHero: true
 topics:
   - "digital-sovereignty"

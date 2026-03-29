@@ -90,6 +90,18 @@ const validations = [
     schema: "data/schemas/content-types.schema.json",
     data: "data/content-types/content-types.json",
   },
+  {
+    schema: "data/schemas/publications.schema.json",
+    data: "data/publications/publications.json",
+  },
+  {
+    schema: "data/schemas/datacenters.schema.json",
+    data: "data/datacenters/datacenters.json",
+  },
+  {
+    schema: "data/schemas/software.schema.json",
+    data: "data/software/software.json",
+  },
 ];
 
 // Load JSON file with error handling

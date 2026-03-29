@@ -11,6 +11,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const { validateBeforeGenerate } = require('./lib/schema-validator');
+
+// Validate data before generating
+validateBeforeGenerate('data/datacenters/datacenters.json', 'data/schemas/datacenters.schema.json');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const CONTENT_DIR = path.join(__dirname, '..', 'content', 'datacenters');

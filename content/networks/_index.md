@@ -4,6 +4,6 @@ description: "Submarine cables, terrestrial fibre, and network infrastructure co
 echarts: true
 ---
 
-{{< network-map showSimulation="true" >}}
+{{< network-map >}}
 
 {{< network-data >}}

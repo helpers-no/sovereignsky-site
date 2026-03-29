@@ -18,6 +18,10 @@
 
 const fs = require("fs");
 const path = require("path");
+const { validateBeforeGenerate } = require('./lib/schema-validator');
+
+// Validate data before generating
+validateBeforeGenerate('data/networks/networks.json', 'data/schemas/networks.schema.json');
 
 const ROOT = process.cwd();
 const NETWORKS_PATH = path.join(ROOT, "data/networks/networks.json");

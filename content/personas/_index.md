@@ -1,7 +1,7 @@
 ---
 title: "Personas"
-description: "User types and their filtering criteria for finding relevant software, laws, and events."
-date: 2026-01-04
+description: "Target audiences for content, events, and software recommendations"
+date: 2026-03-28
 showHero: false
 showDate: false
 showAuthor: false
@@ -10,6 +10,7 @@ showTableOfContents: false
 showPagination: false
 ---
 
-These personas are used across the site (especially for event "audience" and software filtering). Pick one to jump into relevant events, laws, and products.
+{{< page-stats section="personas" >}}
 
+These personas are used across the site (especially for event "audience" and software filtering). Pick one to jump into relevant events, laws, and products.
 

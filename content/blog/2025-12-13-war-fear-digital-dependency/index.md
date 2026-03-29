@@ -4,6 +4,7 @@ identifier: "2025-12-13-war-fear-digital-dependency"
 date: 2025-12-13
 description: "Norwegian trust in NATO collapsed from 80% to 47% in three months. If we can't rely on American security guarantees, can we rely on American digital infrastructure?"
 summary: "Norwegian trust in NATO collapsed from 80% to 47% in three months. If we can't rely on American security guarantees, can we rely on American digital infrastructure?"
+abstract: "Norwegian trust in NATO collapsed from 80% to 47% in three months. If we can't rely on American security guarantees, can we rely on American digital infrastructure?"
 showHero: true
 topics:
   - "digital-sovereignty"

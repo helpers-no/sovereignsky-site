@@ -43,6 +43,9 @@ jobs:
       - name: Validate data files
         run: npm run validate
 
+      - name: Generate content from data
+        run: npm run generate:all
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:

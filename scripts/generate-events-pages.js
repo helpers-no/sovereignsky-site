@@ -12,6 +12,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const { validateBeforeGenerate } = require('./lib/schema-validator');
+
+// Validate data before generating
+validateBeforeGenerate('data/events/events.json', 'data/schemas/events.schema.json');
 
 const ROOT_DIR = path.join(__dirname, '..');
 const EVENTS_JSON_PATH = path.join(ROOT_DIR, 'data/events/events.json');

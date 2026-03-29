@@ -4,6 +4,7 @@ identifier: "2025-12-15-hybrid-war-already-here"
 date: 2025-12-15
 description: "GPS jamming 294 days a year. A Norwegian dam hacked by pro-Russian actors. 40 sabotage operations across Europe. The hybrid war isn't coming - it's happening now. And our digital infrastructure is dangerously exposed."
 summary: "GPS jamming 294 days a year. A Norwegian dam hacked by pro-Russian actors. 40 sabotage operations across Europe. The hybrid war isn't coming - it's happening now. And our digital infrastructure is dangerously exposed."
+abstract: "GPS jamming 294 days a year. A Norwegian dam hacked by pro-Russian actors. 40 sabotage operations across Europe. The hybrid war isn't coming - it's happening now. And our digital infrastructure is dangerously exposed."
 showHero: true
 topics:
   - "cybersecurity"

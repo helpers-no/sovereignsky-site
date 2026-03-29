@@ -4,6 +4,7 @@ identifier: "2025-12-08-hyperscaler-to-local-sovereignty"
 date: 2025-12-08
 description: "The geopatriation trend - moving from US hyperscalers to local cloud providers for sovereignty, security, and control."
 summary: "The geopatriation trend - moving from US hyperscalers to local cloud providers for sovereignty, security, and control."
+abstract: "The geopatriation trend - moving from US hyperscalers to local cloud providers for sovereignty, security, and control."
 showHero: true
 topics:
   - "digital-sovereignty"
