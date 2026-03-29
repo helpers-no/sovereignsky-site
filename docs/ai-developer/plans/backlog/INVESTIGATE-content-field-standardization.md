@@ -336,7 +336,7 @@ One plan per content type. Each plan is independent and leaves the system workin
 - Created missing schemas (publications, datacenters, software) — validation now 18/18
 - CI/CD updated with generation step (⚠️ blocked until publications/laws/datacenters body content migrated to JSON)
 - All 13 generators validate data before generating (`scripts/lib/schema-validator.js`)
-- See: `docs/plans/completed/PLAN-standardize-build-pipeline.md`
+- See: `docs/ai-developer/plans/completed/PLAN-standardize-build-pipeline.md`
 
 ### Page content types (Stitch-designed)
 - **PLAN-standardize-publications.md** — Add ItemList wrapper, add `body` field (move markdown content to JSON), keep `summary`, rename `image` → `imageWide`, add `@type`, `draft`. Schema already created.

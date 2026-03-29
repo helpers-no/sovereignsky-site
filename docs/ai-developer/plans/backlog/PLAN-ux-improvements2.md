@@ -6,7 +6,7 @@
 
 **Created**: 2026-01-12
 
-**Previous Plan**: `docs/plans/completed/PLAN-ux-improvements.md`
+**Previous Plan**: `docs/ai-developer/plans/completed/PLAN-ux-improvements.md`
 
 ---
 
