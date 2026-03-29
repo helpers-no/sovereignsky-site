@@ -1,279 +1,308 @@
-[
-  {
-    "identifier": "digitisation-sovereignty-humanitarian-space",
-    "name": "Digitisation and Sovereignty in Humanitarian Space",
-    "description": "Academic analysis of how digitalisation and reliance on global platforms reshape power relations, authority, and sovereignty in humanitarian operations",
-    "abstract": "Peer-reviewed analysis of how humanitarian organisations' dependence on US tech platforms creates fundamental tensions with their mandate for independence and neutrality.",
-    "summary": "Through cases including WFP's Palantir partnership, biometric registration standoffs in Yemen, and blockchain payment systems, researchers from six institutions with an ICRC practitioner examine how digital technology disrupts humanitarian space. The core finding: platform dependencies create vulnerabilities that may exceed physical security risks, while \"decentralised\" systems still operate within existing power structures.",
-    "image": "digitisation-sovereignty-humanitarian-space.png",
-    "datePublished": "2022-03-20",
-    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10153061/",
-    "author": [
-      "Aaron Martin",
-      "Gargi Sharma",
-      "Siddharth Peter de Souza",
-      "Linnet Taylor",
-      "Boudewijn van Eerd",
-      "Sean Martin McDonald",
-      "Massimo Marelli",
-      "Margie Cheesman",
-      "Stephan Scheel",
-      "Huub Dijstelbloem"
-    ],
-    "publisher": "Taylor & Francis",
-    "topics": [
-      "digital-sovereignty",
-      "digital-identity",
-      "privacy",
-      "platform-dependency",
-      "humanitarian-technology"
-    ],
-    "audience": [
-      "humanitarian",
-      "public-sector",
-      "enterprise",
-      "it-ops"
-    ],
-    "tags": [
-      "digital-platforms",
-      "power-relations",
-      "platform-dependency",
-      "biometric-data",
-      "blockchain-payments"
-    ],
-    "weight": 40
-  },
-  {
-    "identifier": "safeguarding-humanitarian-digital-threats",
-    "name": "Safeguarding Humanitarian Organisations from Digital Threats",
-    "description": "ICRC analysis of how cyber operations, data breaches, and disinformation cause real-world harm to humanitarian organisations",
-    "abstract": "ICRC analysis establishing that International Humanitarian Law protections extend to cyberspace—digital attacks on humanitarian organisations violate international law and may constitute war crimes.",
-    "summary": "Written in response to the 2022 ICRC data breach affecting 515,000 people, three senior officials document how cyber operations, data breaches, and disinformation cause real-world harm. The report proposes protective measures including a digital Red Cross emblem and sovereign humanitarian cloud infrastructure separate from commercial providers.",
-    "image": "safeguarding-humanitarian-digital-threats.png",
-    "datePublished": "2022-10-13",
-    "url": "https://blogs.icrc.org/law-and-policy/2022/10/13/safeguarding-humanitarian-organizations-from-digital-threats/",
-    "author": [
-      "Tilman Rodenhäuser",
-      "Balthasar Staehelin",
-      "Massimo Marelli"
-    ],
-    "publisher": "ICRC Humanitarian Law & Policy Blog",
-    "topics": [
-      "cybersecurity",
-      "digital-resilience",
-      "disinformation",
-      "data-protection"
-    ],
-    "audience": [
-      "humanitarian",
-      "public-sector",
-      "security",
-      "it-ops"
-    ],
-    "tags": [
-      "cyberattacks",
-      "data-breach",
-      "disinformation",
-      "digital-emblem",
-      "law-of-war"
-    ],
-    "weight": 70
-  },
-  {
-    "identifier": "humanitarian-metadata-problem",
-    "name": "The Humanitarian Metadata Problem: 'Doing No Harm' in the Digital Era",
-    "description": "Technical analysis of how metadata from telecommunications, messaging apps, cash transfers, and social media can endanger humanitarian beneficiaries and staff",
-    "abstract": "Technical analysis of how metadata from telecommunications, messaging, and payments can identify, locate, and profile individuals in crisis situations—risks that persist even when content is encrypted.",
-    "summary": "This ICRC/Privacy International report documents how even \"off\" phones can be tracked via cell tower pings, how messaging apps reveal relationships and behaviour patterns through metadata, and how mobile money creates financial profiles. The finding applies beyond humanitarian work: any organisation handling sensitive data faces the same metadata exposure risks.",
-    "image": "humanitarian-metadata-problem.png",
-    "datePublished": "2020-11-01",
-    "url": "https://www.icrc.org/en/document/digital-trails-could-endanger-people-receiving-humanitarian-aid-icrc-and-privacy",
-    "publisher": "ICRC / Privacy International",
-    "topics": [
-      "privacy",
-      "cybersecurity",
-      "surveillance",
-      "metadata",
-      "data-protection"
-    ],
-    "audience": [
-      "humanitarian",
-      "public-sector",
-      "it-ops",
-      "consumer",
-      "security"
-    ],
-    "tags": [
-      "metadata",
-      "cell-tower",
-      "messaging-apps",
-      "mobile-money",
-      "encryption"
-    ],
-    "weight": 60
-  },
-  {
-    "identifier": "gisf-digital-physical-security",
-    "name": "Humanitarian Security in an Age of Uncertainty: The Intersection of Digital and Physical Risks",
-    "description": "Practitioner guidance on integrating digital threats into security risk management",
-    "abstract": "Practitioner guidance establishing that digital security is a security risk management problem requiring integration across programmes, operations, and security teams—not just an IT issue.",
-    "summary": "The leading humanitarian security network documents how digital attacks translate to physical harm through disinformation endangering field staff, supply chain compromises, and shared infrastructure risks. The report adapts the traditional NGO security triangle (acceptance, protection, deterrence) to digital contexts and identifies critical gaps in staff training and resource equity between headquarters and field.",
-    "image": "gisf-digital-physical-security.png",
-    "datePublished": "2024-01-01",
-    "url": "https://gisf.ngo/wp-content/uploads/2024/01/Digital-Security-Final-Design-for-Publication.pdf",
-    "publisher": "Global Interagency Security Forum (GISF)",
-    "topics": [
-      "cybersecurity",
-      "critical-infrastructure",
-      "digital-resilience",
-      "humanitarian-technology"
-    ],
-    "audience": [
-      "humanitarian",
-      "security",
-      "it-ops",
-      "enterprise"
-    ],
-    "tags": [
-      "security-triangle",
-      "staff-training",
-      "field-operations",
-      "supply-chain",
-      "hybrid-threats"
-    ],
-    "weight": 80
-  },
-  {
-    "identifier": "icrc-data-protection-handbook",
-    "name": "Handbook on Data Protection in Humanitarian Action",
-    "description": "The authoritative reference on data protection for humanitarian organisations, covering cloud services, biometrics, digital identity, and risk assessment frameworks",
-    "abstract": "The authoritative 382-page reference establishing that vendor jurisdiction—not data location—determines cloud security risk, with detailed analysis of how US laws enable government access to humanitarian data.",
-    "summary": "This third edition (2024) provides the most thorough publicly available analysis of CLOUD Act, FISA 702, and PATRIOT Act implications for cloud-hosted sensitive data. The handbook documents that there are no humanitarian exemption clauses in these laws, and that organisations may never know their data was accessed due to non-disclosure obligations on providers. Mitigation strategies include encryption, Swiss-jurisdiction providers, and contractual notification requirements.",
-    "image": "icrc-data-protection-handbook.png",
-    "datePublished": "2024-01-15",
-    "url": "https://www.cambridge.org/core/books/handbook-on-data-protection-in-humanitarian-action/025CE3DFD1FAD908DD1412C20E49F955",
-    "author": [
-      "Massimo Marelli"
-    ],
-    "publisher": "Cambridge University Press",
-    "topics": [
-      "privacy",
-      "digital-sovereignty",
-      "digital-identity",
-      "data-protection",
-      "humanitarian-technology"
-    ],
-    "audience": [
-      "humanitarian",
-      "public-sector",
-      "it-ops",
-      "security"
-    ],
-    "tags": [
-      "cloud-act",
-      "fisa-702",
-      "patriot-act",
-      "swiss-jurisdiction",
-      "vendor-jurisdiction"
-    ],
-    "weight": 50
-  },
-  {
-    "identifier": "totalberedskapsmeldingen-2025",
-    "name": "Totalberedskapsmeldingen 2025",
-    "description": "Norwegian Government's comprehensive national preparedness strategy covering civil-military cooperation, digital resilience, and societal security",
-    "abstract": "Norway's landmark 2025 white paper marking a \"historic turning point\" from post-Cold War peace assumptions to preparedness for crisis and war, containing over 100 specific measures.",
-    "summary": "Presented by the Prime Minister on 10 January 2025, this document follows up the Totalberedskapskommisjonen recommendations with measures including expanding Sivilforsvaret to 12,000 personnel, lifting the 1998 shelter construction ban, mandatory preparedness councils, 50% food self-sufficiency by 2030, and new cyber preparedness schemes through public-private cooperation.",
-    "image": "totalberedskapsmeldingen-2025.png",
-    "datePublished": "2025-01-01",
-    "url": "https://www.regjeringen.no/",
-    "publisher": "Norwegian Government",
-    "topics": [
-      "national-preparedness",
-      "critical-infrastructure",
-      "total-defence",
-      "digital-resilience",
-      "civil-protection"
-    ],
-    "audience": [
-      "public-sector",
-      "security",
-      "humanitarian",
-      "enterprise",
-      "it-ops"
-    ],
-    "tags": [
-      "sivilforsvaret",
-      "shelter-construction",
-      "food-security",
-      "public-private",
-      "norway"
-    ],
-    "weight": 30
-  },
-  {
-    "identifier": "ffi-frivillige-beredskapsorganisasjoner-totalforsvar",
-    "name": "FFI: Frivillige beredskapsorganisasjoner i fremtidens totalforsvar",
-    "description": "Norwegian Defence Research Establishment analysis of voluntary preparedness organizations' role in total defence",
-    "abstract": "Norwegian Defence Research analysis of how voluntary organisations like Red Cross and People's Aid can strengthen total defence, finding significant but underutilised resources requiring better coordination frameworks.",
-    "summary": "Commissioned by Norske Kvinners Sanitetsforening, this FFI report maps the capabilities of Norway's major voluntary emergency organisations and recommends their formal inclusion in coordination arenas at central, regional, and local levels. The research anticipates increased voluntary participation during security crises and identifies the need for legal frameworks governing their role within international humanitarian law.",
-    "image": "ffi-frivillige-beredskapsorganisasjoner-totalforsvar.png",
-    "datePublished": "2024-01-01",
-    "url": "https://www.ffi.no/publikasjoner/arkiv/frivillige-beredskapsorganisasjoner-i-fremtidens-totalforsvar",
-    "publisher": "Norwegian Defence Research Establishment (FFI)",
-    "topics": [
-      "national-preparedness",
-      "total-defence",
-      "civil-protection",
-      "digital-resilience"
-    ],
-    "audience": [
-      "public-sector",
-      "humanitarian",
-      "security"
-    ],
-    "tags": [
-      "red-cross",
-      "voluntary-sector",
-      "coordination",
-      "legal-frameworks",
-      "norway"
-    ],
-    "weight": 10
-  },
-  {
-    "identifier": "eu-cloud-sovereignty-framework",
-    "name": "EU Cloud Sovereignty Framework",
-    "description": "Understanding the European Commission's framework for measuring and achieving cloud sovereignty",
-    "abstract": "The EU Cloud Sovereignty Framework provides a structured approach to assess and improve digital sovereignty when using cloud services.",
-    "summary": "A comprehensive methodology developed by the European Commission to help organizations assess their digital sovereignty posture across eight dimensions: Strategic, Legal, Data, Operational, Supply Chain, Technology, Security, and Environmental sovereignty. This framework forms the foundation for the Norwegian Digital Sovereignty Index (NDSI).",
-    "body": "## Why Cloud Sovereignty Matters\n\nEuropean organizations face increasing pressure to maintain control over their digital infrastructure and data. Key drivers include:\n\n- **Regulatory compliance** - GDPR, NIS2, and sector-specific regulations\n- **Geopolitical risks** - Dependency on non-EU technology providers\n- **Data protection** - Ensuring data remains under European jurisdiction\n- **Operational resilience** - Reducing single points of failure\n\n## The Eight Dimensions\n\nThe EU framework evaluates cloud sovereignty across eight dimensions:\n\n### SOV-1: Strategic Sovereignty\n\nAssesses the strategic alignment and control over cloud services, including vendor independence and long-term viability.\n\n**Key questions:**\n- Where is the vendor headquartered?\n- What is the ownership structure?\n- How dependent is your organization on this single vendor?\n\n### SOV-2: Legal Sovereignty\n\nEvaluates the legal framework governing data access and protection, particularly regarding foreign jurisdiction claims.\n\n**Key questions:**\n- Is the vendor subject to the US CLOUD Act?\n- Does the vendor comply with GDPR?\n- Can foreign authorities compel data disclosure?\n\n### SOV-3: Data Sovereignty\n\nMeasures control over data location, processing, and access.\n\n**Key questions:**\n- Where is data stored and processed?\n- Can you choose data residency?\n- Who has access to your data?\n\n### SOV-4: Operational Sovereignty\n\nAssesses operational control and the ability to manage and migrate services.\n\n**Key questions:**\n- Can you self-host the solution?\n- What export options exist?\n- How complex is migration to alternatives?\n\n### SOV-5: Supply Chain Sovereignty\n\nEvaluates dependencies on third-party components and infrastructure.\n\n**Key questions:**\n- What are the key infrastructure dependencies?\n- Are there European alternatives for critical components?\n- How transparent is the supply chain?\n\n### SOV-6: Technology Sovereignty\n\nMeasures control over underlying technology, including open source availability and interoperability.\n\n**Key questions:**\n- Is the source code available?\n- Does it use open standards?\n- Can you modify or extend the solution?\n\n### SOV-7: Security Sovereignty\n\nAssesses security controls and the ability to implement organization-specific security measures.\n\n**Key questions:**\n- What certifications does the vendor hold?\n- Can you use your own encryption keys?\n- What security controls can you configure?\n\n### SOV-8: Environmental Sovereignty\n\nEvaluates environmental sustainability and alignment with European climate goals.\n\n**Key questions:**\n- What is the carbon footprint?\n- Does the vendor use renewable energy?\n- Is there transparency in environmental reporting?\n\n## Scoring Methodology\n\nEach dimension is scored on a scale of 1-5:\n\n| Score | Risk Level | Description |\n|-------|------------|-------------|\n| 1.0-1.5 | Low | Full sovereignty control |\n| 1.5-2.5 | Moderate | Acceptable with mitigations |\n| 2.5-3.5 | Elevated | Significant concerns |\n| 3.5-4.5 | High | Major sovereignty gaps |\n| 4.5-5.0 | Critical | Unacceptable for sensitive use |\n\nThe overall score is a weighted average, with SOV-2 (Legal) often serving as a \"gate\" - if legal sovereignty fails, the overall assessment is flagged regardless of other scores.\n\n## Applying the Framework\n\n### For Organizations\n\n1. **Inventory your software** - List all cloud services in use\n2. **Assess each service** - Use the eight dimensions\n3. **Identify risks** - Focus on high-scoring (risky) areas\n4. **Plan mitigations** - Implement controls where possible\n5. **Consider alternatives** - Evaluate European alternatives for high-risk services\n\n### For Procurement\n\nWhen evaluating new software:\n\n- Include sovereignty requirements in RFPs\n- Weight sovereignty alongside price and features\n- Consider total cost including migration risk\n- Prefer vendors with clear European commitment\n\n## Norwegian Context\n\nFor Norwegian organizations, additional considerations apply:\n\n- **Schrems II implications** - US-EU data transfers remain problematic\n- **National security** - Critical infrastructure has stricter requirements\n- **Sector regulations** - Finance, health, and government have specific rules\n- **Nordic alternatives** - Consider Norwegian and Nordic vendors first",
-    "image": "eu-cloud-sovereignty-framework.jpg",
-    "datePublished": "2025-01-15",
-    "url": "https://commission.europa.eu/document/download/09579818-64a6-4dd5-9577-446ab6219113_en",
-    "author": [
-      "European Commission",
-      "Directorate-General for Digital Services"
-    ],
-    "publisher": "European Commission",
-    "topics": [
-      "digital-sovereignty",
-      "cloud-sovereignty",
-      "data-protection",
-      "platform-dependency"
-    ],
-    "audience": [
-      "public-sector",
-      "enterprise",
-      "it-ops"
-    ],
-    "tags": [
-      "eu",
-      "framework",
-      "sovereignty",
-      "cloud",
-      "assessment"
-    ],
-    "weight": 20
-  }
-]
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Publications",
+  "description": "Research, reports, and policy documents on digital sovereignty, data protection, and humanitarian technology",
+  "itemListElement": [
+    {
+      "@type": "ScholarlyArticle",
+      "identifier": "digitisation-sovereignty-humanitarian-space",
+      "name": "Digitisation and Sovereignty in Humanitarian Space",
+      "description": "Academic analysis of how digitalisation and reliance on global platforms reshape power relations, authority, and sovereignty in humanitarian operations",
+      "abstract": "Peer-reviewed analysis of how humanitarian organisations' dependence on US tech platforms creates fundamental tensions with their mandate for independence and neutrality.",
+      "summary": "Through cases including WFP's Palantir partnership, biometric registration standoffs in Yemen, and blockchain payment systems, researchers from six institutions with an ICRC practitioner examine how digital technology disrupts humanitarian space. The core finding: platform dependencies create vulnerabilities that may exceed physical security risks, while \"decentralised\" systems still operate within existing power structures.",
+      "body": "## Key Findings\n\n### On the WFP-Palantir Partnership\n\n> \"WFP's operational data provides Palantir with deep insights regarding global food in/security. Their access to this information has heightened concerns among host states about the involvement of a private technology firm with strong ties to the US security establishment in sensitive humanitarian work.\"\n\nAnd quoting Palantir's CEO directly:\n\n> \"The core mission of our company always was to make the West, especially America, the strongest in the world, the strongest it's ever been, for the sake of global peace and prosperity.\"\n\nThe authors note this mission statement is \"at odds with core humanitarian principles, namely those emphasising neutrality... and independence.\"\n\n### On the Yemen Biometrics Standoff\n\nWFP suspended food aid when Houthi authorities refused biometric registration:\n\n> \"WFP's decision to suspend aid in this case set a critical precedent – it was the **first time that a humanitarian organisation had withdrawn assistance in response to local resistance to the use of digital technology**.\"\n\nThe Houthis' objection was explicitly about sovereignty:\n\n> \"They refuse the enrolling of beneficiaries in a biometrics programme because it is counter to national security... the collection of biometric data by WFP is part of an intelligence operation.\"\n\n### On Digital Dependencies and Cyber Risk\n\nMassimo Marelli (ICRC) contributes a section on how humanitarian organisations become collateral damage in great power cyber conflicts:\n\n> \"By depending too much on the tools, systems and networks used by one of the actors involved in the 'great power' competition in cyberspace, a humanitarian organisation runs the risk of going against the logic of the security rules and principles.\"\n\nHe draws a physical analogy:\n\n> \"Just as a humanitarian organisation could be the victim of a rocket attack on a military base if it had its office physically located in or near the base.\"\n\n### On \"Parasitic Sovereignty\" and Function Creep\n\nStephan Scheel introduces the concept of \"parasitic sovereignty\" — how digital systems built for one purpose get repurposed for state control:\n\n> \"Function creep is part of the modus operandi of sovereign power... The parasitic nature of sovereign power shows itself most vividly in the context of the execution of deportations.\"\n\nHe documents the QMM system in Germany — software built to manage refugee accommodation that was repurposed to track individuals for deportation:\n\n> \"Social workers suspected that the immigration authority office had used the QMM system... to check if the person they were looking for was present or absent.\"\n\n### On Blockchain's Failed Promise\n\nMargie Cheesman (Oxford Internet Institute) analyses blockchain in humanitarian payments and finds the sovereignty claims exaggerated:\n\n> \"Despite concerns about anarchic, borderless, revolutionary change, humanitarian organisations are incorporating blockchains into geographically specific sovereign structures of political and financial authority.\"\n\nAnd on corporate capture:\n\n> \"There are unresolved questions about how far these partnerships facilitate tracking and profit, even when sensitive beneficiary information is not recorded 'on chain'.\"\n\n## The Four Conceptualisations of Humanitarian Space\n\nThe article offers a useful framework for understanding \"humanitarian space\":\n\n| Concept | Focus |\n|---------|-------|\n| **Agency space** | Humanitarian orgs operate neutrally, distinct from military/political actors |\n| **Affected community space** | Centres rights and protection of crisis-affected people |\n| **International humanitarian legal space** | Focuses on IHL obligations of warring parties |\n| **Complex political, military and legal arena** | Emphasises that humanitarian needs arise from dynamic interplay of actors |\n\nThe authors argue digital technologies disrupt all four conceptualisations.\n\n## Power *Over* vs Power *To*\n\nThe forum proposes a critical distinction for analysing digital sovereignty:\n\n> \"The analyses of digitisation and sovereignty in this forum position the distinction between **power *over*** and **power *to*** as an urgent consideration in the governance of humanitarian space.\"\n\nClassic sovereignty debates focus on power *over* territories and populations. The authors argue for recentring around power *to*:\n\n> \"How humanitarian organisations can arrange their digital sovereignty in ways that serve affected people and thus the humanitarian mission, rather than allowing technology to merely increase their (or their contractors and collaborators') power *over* those people.\"\n\n## Why This Matters Beyond Humanitarian Work\n\nThis analysis applies to any organisation considering partnerships with major technology platforms:\n\n- **The Palantir problem** — When your operational data becomes intelligence for a company with explicit geopolitical missions\n- **The biometrics precedent** — Host countries may refuse digital systems on sovereignty grounds\n- **The function creep risk** — Data collected for legitimate purposes can be repurposed for state surveillance\n- **The blockchain reality check** — \"Decentralised\" systems still operate within existing power structures\n- **The dependency trap** — Using the same infrastructure as geopolitical actors makes you a target\n\nThe core question the authors pose applies universally:\n\n> \"How can organisations avoid co-optation by commercial technology partners who seek power *over* markets through their proofs-of-concept in humanitarian space?\"\n\n## The Contributors\n\nThis forum brings together an unusually strong group:\n\n| Author | Affiliation | Contribution |\n|--------|-------------|--------------|\n| Aaron Martin et al. | Tilburg TILT | Introduction and framework |\n| Sean Martin McDonald | CIGI | Analysis of sovereignty definitions and paradoxes |\n| Massimo Marelli | ICRC | Digital dependencies and cyber risk |\n| Margie Cheesman | Oxford Internet Institute | Blockchain and humanitarian payments |\n| Stephan Scheel | Duisburg-Essen | Parasitic sovereignty and function creep |\n| Huub Dijstelbloem | Amsterdam IAS | Sovereignty experiments and conclusion |\n\n## Access\n\n**[Read the Full Article (Open Access) →](https://pmc.ncbi.nlm.nih.gov/articles/PMC10153061/)**\n\nAvailable via PubMed Central. Also accessible through Taylor & Francis with DOI: 10.1080/14650045.2022.2047468\n\n## Related Resources\n\n- [Handbook on Data Protection in Humanitarian Action](/publications/icrc-data-protection-handbook/) — The ICRC reference work, co-authored by Marelli\n- [Tilburg TILT Research](https://www.tilburguniversity.edu/research/institutes-and-research-groups/tilt) — The lead research group\n- [Centre for International Governance Innovation](https://www.cigionline.org/) — McDonald's institutional home",
+      "imageWide": "digitisation-sovereignty-humanitarian-space.png",
+      "datePublished": "2022-03-20",
+      "externalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10153061/",
+      "author": [
+        "Aaron Martin",
+        "Gargi Sharma",
+        "Siddharth Peter de Souza",
+        "Linnet Taylor",
+        "Boudewijn van Eerd",
+        "Sean Martin McDonald",
+        "Massimo Marelli",
+        "Margie Cheesman",
+        "Stephan Scheel",
+        "Huub Dijstelbloem"
+      ],
+      "publisher": "Taylor & Francis",
+      "topics": [
+        "digital-sovereignty",
+        "digital-identity",
+        "privacy",
+        "platform-dependency",
+        "humanitarian-technology"
+      ],
+      "audience": [
+        "humanitarian",
+        "public-sector",
+        "enterprise",
+        "it-ops"
+      ],
+      "tags": [
+        "digital-platforms",
+        "power-relations",
+        "platform-dependency",
+        "biometric-data",
+        "blockchain-payments"
+      ],
+      "weight": 40,
+      "draft": false
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "identifier": "safeguarding-humanitarian-digital-threats",
+      "name": "Safeguarding Humanitarian Organisations from Digital Threats",
+      "description": "ICRC analysis of how cyber operations, data breaches, and disinformation cause real-world harm to humanitarian organisations",
+      "abstract": "ICRC analysis establishing that International Humanitarian Law protections extend to cyberspace—digital attacks on humanitarian organisations violate international law and may constitute war crimes.",
+      "summary": "Written in response to the 2022 ICRC data breach affecting 515,000 people, three senior officials document how cyber operations, data breaches, and disinformation cause real-world harm. The report proposes protective measures including a digital Red Cross emblem and sovereign humanitarian cloud infrastructure separate from commercial providers.",
+      "body": "## Key Findings\n\n### On the 2022 ICRC Data Breach\n\nThe authors write from direct experience:\n\n> \"In 2022 alone, the Red Cross and Red Crescent Movement members have been targeted in different ways, from a sophisticated data breach affecting personal data of over half a million people, to information operations that put their staff at risk, or 'Distributed Denial of Service (DDoS)' operations making websites or servers unavailable.\"\n\nThe consequences were operational:\n\n> \"One of the consequences of the 2022 breach of data hosted by the ICRC was that servers had to be taken down, systems rebuilt, and for several weeks services to locate missing family members could only continue at minimal levels, at times going back to using pens and paper.\"\n\n### On Real-World Harm from Digital Attacks\n\nThe authors document how digital operations cause physical harm:\n\n> \"If computer systems or databases used by impartial humanitarian organisations are disrupted by cyber operations, their relief work necessarily slows down, becomes dysfunctional, and cannot reach people at scale – or at all.\"\n\nAnd on disinformation:\n\n> \"Even if disinformation and threats of violence against humanitarian personnel are spread online on social media and other digital platforms, their negative impact is felt offline. In places affected by armed conflict, tensions are high, rumors spread easily, and false information falls on fertile ground.\"\n\n### On IHL's Three-Layer Protection\n\nThe analysis documents three layers of legal protection under International Humanitarian Law:\n\n| Layer | Protection |\n|-------|------------|\n| **Civilian protection** | Humanitarian premises, materials, and personnel must not be attacked (Additional Protocol I, Arts. 51-52) |\n| **Facilitation obligation** | Agreed humanitarian operations must be allowed and facilitated by parties to conflict (Additional Protocol I, Art. 70) |\n| **Respect and protect** | Humanitarian operations and personnel must be respected and protected from harm (Additional Protocol I, Art. 71) |\n\n### On Applying IHL to Cyberspace\n\nThe authors argue these protections extend to digital operations:\n\n> \"Directing such operations against impartial humanitarian organisations is prohibited... such operations will likely violate the obligations to allow and facilitate humanitarian activities and to respect and protect humanitarian operations.\"\n\nOn data breaches specifically:\n\n> \"If such operations involve manipulating, encrypting, or destroying humanitarian data, it would unduly interfere with humanitarian relief efforts and be prohibited.\"\n\nAnd a critical point on espionage:\n\n> \"Even breaching humanitarian data without damaging or misusing it may be difficult to reconcile with the letter and spirit of IHL. For instance, spying on impartial humanitarian organisations would compromise the confidentiality of information, a key working modality for the ICRC.\"\n\n### On War Crimes\n\nThe analysis notes that attacking humanitarian organisations may constitute war crimes:\n\n> \"Depending on the circumstances, attacking humanitarian organizations may even amount to a war crime – including in the digital sphere (see articles 8(2)(b)(iii); 8(2)(b)(xxiv); 8(2)(e)(iii) Rome Statute of the International Criminal Court).\"\n\n## Proposed Solutions\n\nThe authors propose multilayered responses:\n\n### Legal and Policy\n\n> \"We must strive towards a clear understanding of the real harm that digital threats against impartial humanitarian organisations cause and build a robust political understanding that they are unacceptable and, in fact, unlawful.\"\n\n### Operational\n\n> \"Impartial humanitarian organisations have an important responsibility to adopt and implement appropriate cyber security, data protection and up-to-date strategies and processes to ensure resilience of their operations.\"\n\n### Innovative Measures\n\nThe authors propose new protective mechanisms:\n\n- **Digital emblem** — A cyber equivalent of the Red Cross emblem to signal protected status in digital space\n- **Humanitarian cloud** — Sovereign cloud infrastructure for humanitarian data, separate from commercial and government systems\n- **Delegation for Cyberspace** — Safe environments to develop and test digital humanitarian services\n- **Disinformation preparedness** — Increased capacity to manage false information campaigns\n\n## The Disinformation Threat\n\nThe analysis specifically addresses online information operations:\n\n> \"If the perception of their work changes, fueled by online or offline disinformation, humanitarian personnel can quickly be unable to leave their offices, distribute life-saving assistance, visit detainees, or bring news to people who have lost contact with a family member.\"\n\nAnd on legal limits:\n\n> \"It is clearly unlawful to use social media – or any other media – to incite violence against civilians, including humanitarian personnel.\"\n\n## Why This Matters Beyond Humanitarian Work\n\nThis analysis establishes important precedents for any organisation handling sensitive data:\n\n- **Legal framework exists** — IHL provides a model for arguing that attacks on critical civilian digital infrastructure violate international law\n- **Data breaches have physical consequences** — The ICRC case demonstrates how cyber attacks translate to real-world harm\n- **Disinformation is a security threat** — Online campaigns directly endanger personnel safety\n- **Sovereignty through infrastructure** — The humanitarian cloud proposal shows how organisations can reduce dependency on commercial providers\n\nThe core message applies universally:\n\n> \"For as long as people affected by armed conflict need impartial and independent humanitarian relief, those who provide it must be safeguarded, including against new threats.\"\n\n## The Authors\n\n| Author | Role | Expertise |\n|--------|------|-----------|\n| **Tilman Rodenhäuser** | Thematic Legal Adviser, ICRC | PhD in international law; expert on IHL and cyber operations |\n| **Balthasar Staehelin** | Special Envoy for Foresight and Techplomacy, ICRC | Strategic engagement on technology and humanitarian action |\n| **Massimo Marelli** | Head of Data Protection Office, ICRC | Leads ICRC's data protection policy and practice |\n\n## Access\n\n**[Read the Full Analysis →](https://blogs.icrc.org/law-and-policy/2022/10/13/safeguarding-humanitarian-organizations-from-digital-threats/)**\n\nAlso available as PDF download from the blog.\n\n## Related Resources\n\n- [Safeguarding Humanitarian Data (Movement Resolution)](https://rcrcconference.org/wp-content/uploads/2022/06/CD22-R12-Safeguarding-Humanitarian-Data_23-June-2022_FINAL_EN.pdf) — The formal resolution adopted by the International Red Cross and Red Crescent Movement\n- [ICRC Cyber-attack: What We Know](https://www.icrc.org/en/document/cyber-attack-icrc-what-we-know) — Official ICRC statement on the 2022 breach\n- [Handbook on Data Protection in Humanitarian Action](/publications/icrc-data-protection-handbook/) — The comprehensive reference work\n- [Digitalising the Red Cross Emblems](https://www.icrc.org/en/document/icrc-digital-emblems-report) — Report on the digital emblem proposal",
+      "imageWide": "safeguarding-humanitarian-digital-threats.png",
+      "datePublished": "2022-10-13",
+      "externalUrl": "https://blogs.icrc.org/law-and-policy/2022/10/13/safeguarding-humanitarian-organizations-from-digital-threats/",
+      "author": [
+        "Tilman Rodenhäuser",
+        "Balthasar Staehelin",
+        "Massimo Marelli"
+      ],
+      "publisher": "ICRC Humanitarian Law & Policy Blog",
+      "topics": [
+        "cybersecurity",
+        "digital-resilience",
+        "disinformation",
+        "data-protection"
+      ],
+      "audience": [
+        "humanitarian",
+        "public-sector",
+        "security",
+        "it-ops"
+      ],
+      "tags": [
+        "cyberattacks",
+        "data-breach",
+        "disinformation",
+        "digital-emblem",
+        "law-of-war"
+      ],
+      "weight": 70,
+      "draft": false
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "identifier": "humanitarian-metadata-problem",
+      "name": "The Humanitarian Metadata Problem: 'Doing No Harm' in the Digital Era",
+      "description": "Technical analysis of how metadata from telecommunications, messaging apps, cash transfers, and social media can endanger humanitarian beneficiaries and staff",
+      "abstract": "Technical analysis of how metadata from telecommunications, messaging, and payments can identify, locate, and profile individuals in crisis situations—risks that persist even when content is encrypted.",
+      "summary": "This ICRC/Privacy International report documents how even \"off\" phones can be tracked via cell tower pings, how messaging apps reveal relationships and behaviour patterns through metadata, and how mobile money creates financial profiles. The finding applies beyond humanitarian work: any organisation handling sensitive data faces the same metadata exposure risks.",
+      "body": "## Key Findings\n\n### On What Metadata Reveals\n\nThe report documents how metadata enables detailed profiling:\n\n> \"Using the large amount of data and metadata generated on social media, it is possible to very accurately predict people's behaviour, preferences, and other personal details (e.g. ethnicity, sexual orientation and political and religious affiliations).\"\n\n### On the Stakes\n\nThe foreword makes the risk explicit:\n\n> \"Protecting the processing of their Personal Data can literally be a matter of life and death.\"\n\n### On Telecommunications\n\nEven basic mobile phone use generates exploitable metadata:\n\n> \"When using telecommunications, humanitarian organisations put all parties involved at risk of their telecommunication data (message or call content) being intercepted and the associated metadata (sender/recipient, time and location) being accessed.\"\n\nAnd critically:\n\n> \"Even when calls or messages are not being exchanged, mobile phones regularly 'ping' nearby cell towers to ensure the best possible continuous service. As a result, **users can be tracked through their phones' location service. This tracking continues even when the phone is not being used, is in sleep mode, or is turned off**.\"\n\n### On Messaging Apps\n\nThe report notes that encryption is insufficient:\n\n> \"While some messaging apps encrypt message content during communications, they also commonly ask the user to reveal more data, share more data than the user may realise (such as the device and SIM identifiers – IMSI and IMEI – and information on the phone), or ask the user to give the app permission to access other information on their device such as location, photos and contacts.\"\n\nInference over time is the real risk:\n\n> \"A messaging app could infer – from the frequency of your calls or SMS communications – when you wake up, go to sleep, what time zone you're in, and who your closest friends are.\"\n\n### On Mobile Money\n\nCash transfer programmes using mobile money create specific vulnerabilities:\n\n> \"Mobile money transaction details are often reported to the recipient via an unencrypted SMS. Thus, even when the electronic transfer is encrypted, the details of the transaction are not and can be intercepted directly or by other apps on the recipient's phone.\"\n\nThe consequences extend to financial access:\n\n> \"The domestic telecommunications company may be obliged (e.g. by Know Your Customer regulations) or inclined (e.g. for their commercial partnerships) to share data collected or inferred from the CTP. These data can be used to financially profile a person, and this may restrict their access to financial services in the future.\"\n\n### On Smartcards\n\nThe report documents how transaction metadata identifies individuals:\n\n> \"Smartcard metadata are usually sufficient to identify an individual with a high degree of precision. Behavioural patterns, physical movements, and purchasing habits can then all be inferred and attributed to the identified individual(s).\"\n\n### On Social Media Shadow Profiles\n\nEven people without accounts are tracked:\n\n> \"Often, even if a user deletes a given social media account, limits the number of apps that can access it, or never had an account in the first place, their shadow profile exists and is fed by information gleaned from other social media accounts or websites they use and even from their contacts' social media accounts.\"\n\n## Risks by Technology Type\n\n| Technology | Key Risks | Mitigation |\n|------------|-----------|------------|\n| **Telecommunications (SMS/Voice)** | Location tracking, content interception, 2G vulnerabilities | Use end-to-end encrypted alternatives; plan for interception |\n| **Messaging Apps** | Device data collection, contact access, inference over time | Digital literacy training; limit app permissions; risk assessment |\n| **Mobile Money** | Unencrypted SMS confirmations, financial profiling, KYC data sharing | Check telecom ownership; avoid single-group CTPs |\n| **Smartcards** | Transaction metadata identifies individuals, geo-tracking | Map all entities with data access; negotiate data minimisation |\n| **Social Media** | Shadow profiles, SOCMINT exploitation, platform data sharing | Digital literacy; sector-wide negotiation with platforms |\n\n## The Data Types\n\nThe report distinguishes three categories of metadata:\n\n| Type | Description | Example |\n|------|-------------|---------|\n| **Declared data** | Information users explicitly provide | Name, phone number, address |\n| **Inferred data** | Information derived from behaviour | Sleep patterns, relationships, location history |\n| **Interest/intent data** | Information about what users seek | Search queries, clicked links, app usage |\n\nAll three types can be \"owned, processed, shared and stored for different periods of time, by different third parties, and under different jurisdictions applying different regulations.\"\n\n## Specific Recommendations\n\n### For Telecommunications\n\n> \"End-to-end encrypted, secure communication methods should be used instead of voice or SMS even if they do not always prevent metadata from being accessed.\"\n\n> \"Humanitarian organisations should conduct advance risk assessments for all telecommunications exchanges; here, they should always plan for scenarios in which third parties are able to gain access to the content, time and location of all exchanges.\"\n\n### For Cash Transfers\n\n> \"Because the use of CTPs is strongly associated with humanitarian programmes, organisations should take steps to ensure that persons registered in these programmes are not automatically associated with specific identity factors.\"\n\n> \"Humanitarian organisations should also check who owns/controls the telecommunications operations involved in a CTP. This may reveal useful information on how the company operates and what additional threats or risks there may be regarding data sharing.\"\n\n### For Social Media\n\n> \"The sector as a whole could jointly negotiate with major social media platforms (e.g. Facebook and Twitter) in order to secure specific safeguards across their services and in particular for humanitarian metadata.\"\n\n## Why This Matters Beyond Humanitarian Work\n\nThe metadata risks documented here apply to any organisation:\n\n- **Healthcare** — Patient messaging and appointment data reveals conditions and treatment patterns\n- **Legal services** — Communication metadata reveals client relationships and case timing\n- **Journalism** — Source protection fails when metadata reveals contact patterns\n- **Any sensitive work** — Location tracking continues even when devices appear \"off\"\n\nThe report's core principle applies universally:\n\n> \"To reconcile these actions with the 'do no harm' principle, the humanitarian community must better understand the risks associated with the generation, exposure and processing of metadata.\"\n\n## The Publishers\n\n| Organisation | Role | Standing |\n|--------------|------|----------|\n| **ICRC** | Operational humanitarian expertise | Guardian of IHL since 1863; direct field experience |\n| **Privacy International** | Technical surveillance research | UK charity since 1990; award-winning research on surveillance technology |\n\nThis report builds on Privacy International's influential 2013 study *Aiding Surveillance*, which first documented how development and humanitarian technology enables surveillance and repression.\n\n## Access\n\n**[Read the Full Report →](https://www.icrc.org/en/document/digital-trails-could-endanger-people-receiving-humanitarian-aid-icrc-and-privacy)**\n\nAvailable as open access PDF from ICRC.\n\n## Related Resources\n\n- [Aiding Surveillance (2013)](https://privacyinternational.org/report/841/aiding-surveillance) — Privacy International's foundational report on surveillance and development aid\n- [Humanitarian Futures for Messaging Apps (2017)](https://www.icrc.org/en/document/messaging-apps-untapped-humanitarian-resource) — ICRC, The Engine Room, and Block Party's analysis of messaging app opportunities and risks\n- [Handbook on Data Protection in Humanitarian Action](/publications/icrc-data-protection-handbook/) — The comprehensive ICRC reference work\n- [Privacy International](https://privacyinternational.org/) — Ongoing surveillance research and advocacy",
+      "imageWide": "humanitarian-metadata-problem.png",
+      "datePublished": "2020-11-01",
+      "externalUrl": "https://www.icrc.org/en/document/digital-trails-could-endanger-people-receiving-humanitarian-aid-icrc-and-privacy",
+      "publisher": "ICRC / Privacy International",
+      "topics": [
+        "privacy",
+        "cybersecurity",
+        "surveillance",
+        "metadata",
+        "data-protection"
+      ],
+      "audience": [
+        "humanitarian",
+        "public-sector",
+        "it-ops",
+        "consumer",
+        "security"
+      ],
+      "tags": [
+        "metadata",
+        "cell-tower",
+        "messaging-apps",
+        "mobile-money",
+        "encryption"
+      ],
+      "weight": 60,
+      "draft": false
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "identifier": "gisf-digital-physical-security",
+      "name": "Humanitarian Security in an Age of Uncertainty: The Intersection of Digital and Physical Risks",
+      "description": "Practitioner guidance on integrating digital threats into security risk management",
+      "abstract": "Practitioner guidance establishing that digital security is a security risk management problem requiring integration across programmes, operations, and security teams—not just an IT issue.",
+      "summary": "The leading humanitarian security network documents how digital attacks translate to physical harm through disinformation endangering field staff, supply chain compromises, and shared infrastructure risks. The report adapts the traditional NGO security triangle (acceptance, protection, deterrence) to digital contexts and identifies critical gaps in staff training and resource equity between headquarters and field.",
+      "body": "## Key Findings\n\n### On Why Digital Threats Matter for Physical Security\n\nThe report connects digital and physical risk directly:\n\n> \"By increasing their reliance on digital technology, humanitarians open themselves up to numerous vulnerabilities, threats, and risks.\"\n\nAnd on the consequences:\n\n> \"The implications of such attacks can threaten the safety and security of humanitarian staff and their operations.\"\n\n### On Geographic and Temporal Scope\n\nUnlike physical threats, digital risks have no boundaries:\n\n> \"Digital data exist indefinitely and can be accessed from nearly anywhere in the world. As a result, **there are no geographic or temporal limitations** for many of the external threats and internal vulnerabilities resulting from digital technology.\"\n\n> \"Actors can exploit vulnerabilities or conduct targeted attacks from far outside the geographic area of a specific operation and well into the future.\"\n\n### On Disinformation as a Security Threat\n\nMultiple interviewees identified disinformation as the greatest physical security risk:\n\n> \"Two interviewees highlighted that the spread of misinformation is one of the greatest risks to the physical security of in-country humanitarians.\"\n\nThe report cites research on how false information spreads:\n\n> \"Research investigating the different rates at which true and fake news stories spread on X found that 'falsehood diffused significantly farther, faster, deeper and [more] broadly' than true information.\"\n\n### On the White Helmets Case\n\nThe report documents a concrete example of disinformation impact:\n\n> \"The Syria Campaign, a human rights organisation opposing Assad and the Russians, reported that on X alone, bots and trolls targeting the White Helmets reached 56 million people during 2016 and 2017. The impact of this campaign was so severe that it contributed to the US State Department's decision to freeze aid to the group in 2018.\"\n\n### On NGOs as Easy Targets\n\nThe report quotes cybersecurity practitioners directly:\n\n> \"Digital threat actors increasingly view humanitarian organisations as easy targets because they struggle to protect themselves.\"\n\n### On Shared Infrastructure Risk\n\nA critical point about digital dependencies:\n\n> \"Humanitarian organisations frequently rely on the same infrastructure and suppliers as governments and militaries (dual-use technology). As such, when a government's or military's digital servers are attacked, the humanitarian organisations sharing the digital infrastructure with the government will be vulnerable to an attack as well, even if these organisations are not the direct target.\"\n\n## The Threat Landscape\n\n### External Threats\n\n| Category | Examples |\n|----------|----------|\n| **Geopolitical shifts** | Great power competition, strategic use of cyberspace, erosion of humanitarian norms |\n| **Warfare digitalisation** | Drones, OSINT, AI-enabled targeting, cyber operations |\n| **Disinformation** | Coordinated campaigns against humanitarian orgs, false narratives about aid |\n| **Supply chain attacks** | SolarWinds-type compromises affecting NGO vendors |\n\n### Internal Vulnerabilities\n\n| Category | Examples |\n|----------|----------|\n| **Technical** | Phishing, hacking, inadequate IT security in field offices |\n| **People** | Poor digital literacy, inability to identify false information |\n| **Process** | Over-reliance on data, failure to assess new technology risks |\n| **Investment** | Security underfunded, donor priorities misaligned |\n| **Organisational** | New technology adopted without management adaptation |\n\n## The Security Triangle in Digital Contexts\n\nThe report examines how the traditional NGO security framework applies digitally:\n\n### Acceptance\n\n> \"Increasingly, we see digital campaigns, such as mis/disinformation campaigns, directly or indirectly undermine the relationship between the community served and the humanitarian organisations and staff working there.\"\n\nThe report notes a key difference from physical acceptance:\n\n> \"Establishing trust and achieving acceptance will remain a challenge in an online environment, even when digital emblems are widely used. Spoof accounts and phishing emails will include humanitarian-created digital insignia, fake email addresses, and varying levels of personnel-specific information.\"\n\n### Protection\n\n> \"When it comes to ensuring digital security... organisations typically focus on implementing protective IT security measures at headquarters but fail to implement similarly comprehensive digital security measures across all of the organisation's operations and geographic locations.\"\n\nOn the limits of physical-world protective strategies:\n\n> \"In the digital realm... Humanitarian organisations frequently rely on the same infrastructure and suppliers as governments and militaries (dual-use technology).\"\n\n### Deterrence\n\n> \"To quote an interviewee, 'deterrence is not really an option' when looking at digital actions. This is partly because many actors from a wide variety of backgrounds can launch digital attacks, which are often difficult to identify, and they might be aiming to bring aid activities to a halt.\"\n\n## Data as an Undervalued Asset\n\nThe report identifies a cultural problem:\n\n> \"Interviewees expressed that humanitarian organisations often do not view data as an asset that needs to be valued to the same degree as physical assets, such as cash and vehicles.\"\n\nThe Afghanistan case illustrates the consequences:\n\n> \"Some organisations had not made contingency plans on what to do with their data (regarding local staff and communities) as the Taliban approached Kabul in 2021, forcing them to make quick decisions on the fly.\"\n\n## Recommendations\n\n### 1. Security at the Enterprise Level\n\n> \"All decisions made about the use of technology at all levels need to be viewed through the lens of SRM.\"\n\n> \"SRM experts should gain a seat at the table in both meetings involving high-level executives as well as board meetings.\"\n\n### 2. Interdisciplinary Teams\n\n> \"This requires creating job roles and hiring people with interdisciplinary knowledge who are able to 'speak the language' of all the experts, such as the language used in operations, IT, physical security, fundraising, and advocacy.\"\n\n### 3. Investment in People\n\n> \"For the last 10 years, much of the investment around digital technologies has focused on innovation of the digital tools themselves and not the people who use them or on mitigating the associated risks.\"\n\n> \"Access to (digital) security training should be equitable across the sector, regardless of location or position.\"\n\n### 4. Risk Sharing with Partners\n\n> \"Where possible, INGOs should take advantage of their digital security infrastructure and promote risk sharing with local organisations.\"\n\n## Why This Matters Beyond Humanitarian Work\n\nThe GISF analysis applies to any organisation facing the intersection of digital and physical risks:\n\n- **Geopolitical exposure** — Organisations working internationally face state-sponsored threats\n- **Supply chain vulnerability** — Dependence on third-party technology creates shared risk\n- **Disinformation impact** — Online campaigns affect real-world operations and safety\n- **Security integration** — Digital security cannot remain siloed in IT departments\n- **Staff equity** — Field staff often lack the training and tools available at headquarters\n\nThe report's core framework question applies universally:\n\n> \"As the contexts in which humanitarian organisations deliver assistance to crisis-affected communities evolve, so do the types of vulnerabilities, threats, and risks aid workers face.\"\n\n## About GISF\n\nThe **Global Interagency Security Forum (GISF)** is the leading security risk management network for humanitarian, development, human rights, and environmental protection organisations. Member-led, it serves as a hub for information sharing, knowledge management, and coordination on security issues.\n\nThis research was funded by USAID under a three-year cooperative agreement.\n\n## Access\n\n**[Read the Full Report (PDF) →](https://gisf.ngo/wp-content/uploads/2024/01/Digital-Security-Final-Design-for-Publication.pdf)**\n\nAvailable as open access PDF from GISF.\n\n## Related Resources\n\n- [GISF Security to Go Toolkit](https://www.gisf.ngo/resource/security-to-go/) — GISF's foundational security risk management guide\n- [GISF Digital Risk Report (2021)](https://gisf.ngo/wp-content/uploads/2021/12/Digital_Risk_how_new_technologies_impact_acceptance_and_raise_new_challenges_for_NGOs.pdf) — Earlier GISF analysis on digital risks and acceptance\n- [NGO Cyber Security Blog](https://gisf.ngo/blogs/ngo-cyber-security/) — GISF's practical orientation for NGOs new to cybersecurity\n- [Safeguarding Humanitarian Organisations from Digital Threats](/publications/safeguarding-humanitarian-digital-threats/) — ICRC's legal and policy analysis",
+      "imageWide": "gisf-digital-physical-security.png",
+      "datePublished": "2024-01-01",
+      "externalUrl": "https://gisf.ngo/wp-content/uploads/2024/01/Digital-Security-Final-Design-for-Publication.pdf",
+      "publisher": "Global Interagency Security Forum (GISF)",
+      "topics": [
+        "cybersecurity",
+        "critical-infrastructure",
+        "digital-resilience",
+        "humanitarian-technology"
+      ],
+      "audience": [
+        "humanitarian",
+        "security",
+        "it-ops",
+        "enterprise"
+      ],
+      "tags": [
+        "security-triangle",
+        "staff-training",
+        "field-operations",
+        "supply-chain",
+        "hybrid-threats"
+      ],
+      "weight": 80,
+      "draft": false
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "identifier": "icrc-data-protection-handbook",
+      "name": "Handbook on Data Protection in Humanitarian Action",
+      "description": "The authoritative reference on data protection for humanitarian organisations, covering cloud services, biometrics, digital identity, and risk assessment frameworks",
+      "abstract": "The authoritative 382-page reference establishing that vendor jurisdiction—not data location—determines cloud security risk, with detailed analysis of how US laws enable government access to humanitarian data.",
+      "summary": "This third edition (2024) provides the most thorough publicly available analysis of CLOUD Act, FISA 702, and PATRIOT Act implications for cloud-hosted sensitive data. The handbook documents that there are no humanitarian exemption clauses in these laws, and that organisations may never know their data was accessed due to non-disclosure obligations on providers. Mitigation strategies include encryption, Swiss-jurisdiction providers, and contractual notification requirements.",
+      "body": "## Key Findings\n\n### On the Stakes\n\n> \"They must work as effectively and efficiently as possible to assist individuals faced with persecution or natural disasters, so **protecting the processing of their Personal Data can literally be a matter of life and death**.\"\n> — *Foreword to the Third Edition*\n\n### On the CLOUD Act Problem\n\nThe handbook documents that US authorities can compel disclosure from any provider under US jurisdiction:\n\n> \"US authorities may compel the disclosure of content and traffic data over which a service provider under US personal jurisdiction has 'possession, custody or control': for purposes of certain criminal proceedings; **irrespective of where the data are located**.\"\n\nAnd critically:\n\n> \"There is nothing in this first part of the CLOUD Act that exempts Humanitarian Data from its scope of application, nor are there any other limitations within the CLOUD Act that would implicitly exempt such data.\"\n\n### The Notification Problem\n\nOrganisations may never know their data was accessed:\n\n> \"The US government can impose a non-disclosure obligation on the service provider under certain circumstances. This means that the **service provider may be prohibited from notifying** the Humanitarian Organization of the existence of a request for its data.\"\n\n### A Concrete Example\n\nThe handbook provides this simplified scenario:\n\n> A Humanitarian Organization stores dialogue with group G in a public cloud environment. The Cloud Services are provided by a service provider incorporated in New York. **Data are stored in Europe.** Under the US CLOUD Act, US authorities could have the power to legally oblige the provider to disclose such data... The provider might be prohibited from informing the organization of this request.\n\n## Cloud Risks Identified\n\nThe handbook categorises cloud risks into two main areas:\n\n1. **Lack of control over data**\n2. **Absence of transparency about processing operations**\n\nSpecific risks include:\n\n- Possible access by government and law enforcement authorities\n- Long data processing chains of subcontractors out of effective control\n- The interception of sensitive information\n- Unauthorised international data sharing\n- Data theft from the provider\n\n## Mitigation Strategies\n\n### Technical Measures\n\n> \"While encryption per se cannot mitigate the risk of disclosure of data, it can make it more difficult to use the disclosed data, as such data would not be legible. This is of particular relevance in the context of legal frameworks that **do not contain any obligations to furnish decrypted data**, such as the CLOUD Act.\"\n\n### Vendor Selection\n\n> \"Humanitarian Organizations might wish to only choose service providers under the jurisdiction of States which have granted privileges and immunities to the organization, and/or that **have in place effective blocking statutes**.\"\n\nThe handbook cites **Swiss law** (Article 271 of the Criminal Code) as an example of a blocking statute that may prevent Swiss providers from assisting foreign authorities without authorisation.\n\n### Contractual Measures\n\n> \"Negotiate in their contracts with service providers... that, in case of a request, the service providers should at least inform authorities of the fact that the data sought may be subject to privileges and immunities.\"\n\n## The 17 Chapters\n\nThe handbook covers:\n\n1. **Introduction** — Data protection as integral to protecting life, integrity, and dignity\n2. **Basic Principles** — Core data protection concepts adapted for emergencies\n3. **Legal Bases** — Grounds for processing personal data in humanitarian contexts\n4. **International Data Sharing** — Cross-border data transfer frameworks\n5. **Data Protection Impact Assessments** — Risk evaluation frameworks\n6. **Designing for Data Protection** — Privacy by design principles\n7. **Drones** — Surveillance and imagery collection issues\n8. **Biometrics** — Fingerprints, iris scans, and identification systems\n9. **Cash and Voucher Assistance** — Digital payment data protection\n10. **Cloud Services** — Vendor selection, contracts, and security measures\n11. **Cloud and Government Access** — CLOUD Act, FISA, and surveillance law analysis\n12. **Mobile Messaging Apps** — Metadata risks and platform selection\n13. **Digital Identity** — Identity management and function creep risks\n14. **Social Media** — Data collection from public platforms\n15. **Blockchain** — Immutability vs. the right to erasure\n16. **Connectivity as Aid** — Network provision and associated data risks\n17. **Artificial Intelligence** — Algorithmic decision-making in humanitarian contexts\n\n## Why This Matters Beyond Humanitarian Work\n\nThe handbook's analysis of jurisdiction risks applies to **any organisation** with sensitive data using US-headquartered cloud providers:\n\n- **Healthcare organisations** processing patient data\n- **Educational institutions** with student records\n- **Government agencies** with citizen data\n- **NGOs** working with vulnerable populations\n- **Legal firms** with privileged communications\n\nThe core finding — that **vendor jurisdiction trumps data location** — is documented with legal precision rarely found in public sources.\n\n## Access\n\n**[Read the Full Handbook (Open Access PDF) →](https://www.cambridge.org/core/books/handbook-on-data-protection-in-humanitarian-action/025CE3DFD1FAD908DD1412C20E49F955)**\n\nIndividual chapters can be downloaded separately.\n\n### Key Chapter\n\n**[Chapter 11: Cloud and Government Access →](https://www.cambridge.org/core/books/handbook-on-data-protection-in-humanitarian-action/cloud-and-government-access/3BB97213A8D4F913AB353A1515903494)** — The standalone chapter on jurisdiction risks, CLOUD Act analysis, and mitigation strategies.\n\n## Related Resources\n\n- [The ICRC and Data Protection](https://www.icrc.org/en/icrc-and-data-protection) — Overview of the ICRC's data protection framework and office\n- [ICRC Rules on Personal Data Protection](https://www.icrc.org/en/publication/4261-icrc-rules-on-personal-data-protection) — The ICRC's internal data protection rules\n- [ICRC Biometrics Policy](https://blogs.icrc.org/law-and-policy/2019/10/18/innovation-protection-icrc-biometrics-policy/) — The ICRC's public policy on biometric data\n- [Brussels Privacy Hub](https://brusselsprivacyhub.eu/) — Academic partner and co-publisher of earlier editions",
+      "imageWide": "icrc-data-protection-handbook.png",
+      "datePublished": "2024-01-15",
+      "externalUrl": "https://www.cambridge.org/core/books/handbook-on-data-protection-in-humanitarian-action/025CE3DFD1FAD908DD1412C20E49F955",
+      "author": [
+        "Massimo Marelli"
+      ],
+      "publisher": "Cambridge University Press",
+      "topics": [
+        "privacy",
+        "digital-sovereignty",
+        "digital-identity",
+        "data-protection",
+        "humanitarian-technology"
+      ],
+      "audience": [
+        "humanitarian",
+        "public-sector",
+        "it-ops",
+        "security"
+      ],
+      "tags": [
+        "cloud-act",
+        "fisa-702",
+        "patriot-act",
+        "swiss-jurisdiction",
+        "vendor-jurisdiction"
+      ],
+      "weight": 50,
+      "draft": false
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "identifier": "totalberedskapsmeldingen-2025",
+      "name": "Totalberedskapsmeldingen 2025",
+      "description": "Norwegian Government's comprehensive national preparedness strategy covering civil-military cooperation, digital resilience, and societal security",
+      "abstract": "Norway's landmark 2025 white paper marking a \"historic turning point\" from post-Cold War peace assumptions to preparedness for crisis and war, containing over 100 specific measures.",
+      "summary": "Presented by the Prime Minister on 10 January 2025, this document follows up the Totalberedskapskommisjonen recommendations with measures including expanding Sivilforsvaret to 12,000 personnel, lifting the 1998 shelter construction ban, mandatory preparedness councils, 50% food self-sufficiency by 2030, and new cyber preparedness schemes through public-private cooperation.",
+      "body": "## Three Main Goals\n\nThe report establishes three overarching objectives for strengthening civil society's resilience:\n\n| Goal | Description |\n|------|-------------|\n| **Prepared for crisis and war** | A civil society that is ready to prevent and handle crises, from natural disasters to armed conflict |\n| **Resilient against hybrid threats** | A civil society that can withstand compound/hybrid threats including disinformation, cyber attacks, and foreign interference |\n| **Supporting military efforts** | A civil society that can sustain and support military operations during security crises and armed conflict |\n\n## Key Measures\n\n### Civil Protection and Preparedness\n\n- **Long-term plan for civil preparedness** to be developed, with work starting in 2025\n- **Sivilforsvaret** (Civil Defence) to expand from 8,000 to 12,000 service personnel over eight years\n- **Shelter construction ban from 1998 to be lifted** — new buildings will be required to include shelters\n- **Civil labour duty** to be legislated for security crises or war\n\n### Governance and Coordination\n\n- **Mandatory preparedness councils** (beredskapsråd) in all municipalities, regions, and critical societal areas — bringing together authorities, voluntary organisations, and businesses to prevent, exercise, and handle crises\n- **100 million NOK increase** in funding for voluntary rescue service organisations through an 8-year escalation plan\n- **Regular reconvening** of total preparedness commissions\n\n### Food and Supply Security\n\n- **50% food self-sufficiency** target by 2030\n- **3-month grain reserves** to be established by 2029\n\n### Cyber and Digital Security\n\n- **New cyber preparedness scheme** through public-private cooperation to handle serious cyber incidents\n- **National security strategy** to be developed\n\n### Property and Ownership Control\n\n- **Pre-approval system** for purchase of certain properties of potential interest to threat actors\n- **New registry system** for property ownership in Norway, complementing the new beneficial ownership registry for companies\n\n### Maritime Security\n\n- Strengthened control at sea and in the maritime sector, in cooperation with the Armed Forces\n\n### Information Resilience\n\n- **Strategy against disinformation** to strengthen population's source criticism capabilities\n\n## Context\n\nThe white paper was written against the backdrop of:\n\n- Russia's war of aggression against Ukraine\n- Conflict in the Middle East\n- Intensified global competition and rivalry between great powers over military, political, economic, and technological power\n\nAs stated in the presentation:\n\n> \"We are leaving behind the time period we have lived in since the 1990s and the fall of the Berlin Wall, with preparedness based on deep peace. Going forward, we must plan for a new era.\"\n\n## Implications for Voluntary Organisations\n\nThe white paper significantly expands the role of voluntary organisations in Norwegian preparedness:\n\n- Mandatory inclusion in local, regional, and national preparedness councils\n- Substantial funding increases (100 million NOK over 8 years for rescue organisations)\n- Recognition of voluntary organisations as essential partners in total defence\n\nThis builds on and validates the findings of the [FFI report on voluntary emergency organisations](/publications/ffi-frivillige-beredskapsorganisasjoner-totalforsvar/), which documented the capabilities and potential contributions of organisations like Norwegian Red Cross, Norwegian People's Aid, and Norske Kvinners Sanitetsforening.\n\n## The Publishers\n\n| Institution | Role |\n|-------------|------|\n| **Statsministerens kontor** | Prime Minister's Office — overall government coordination |\n| **Justis- og beredskapsdepartementet** | Ministry of Justice and Public Security — lead ministry for civil preparedness |\n\n## Access\n\n**[Read the Full White Paper (Norwegian) →](https://www.regjeringen.no/no/dokumenter/meld.-st.-9-20242025/id3082364/)**\n\n**[Press Release (English) →](https://www.regjeringen.no/en/whats-new/white-paper-on-total-preparedness-prepared-for-crisis-or-war/id3082581/)**\n\n## Related Resources\n\n- [FFI: Frivillige beredskapsorganisasjoner i fremtidens totalforsvar](/publications/ffi-frivillige-beredskapsorganisasjoner-totalforsvar/) — FFI research on voluntary organisations in total defence\n- [Totalberedskapskommisjonen (NOU 2023:17)](https://www.regjeringen.no/no/dokumenter/nou-2023-17/id2982767/) — The commission report that preceded this white paper\n- [Norwegian Total Defence](https://www.regjeringen.no/en/topics/defence/total-defence/id2639320/) — Government information on total defence concept",
+      "imageWide": "totalberedskapsmeldingen-2025.png",
+      "datePublished": "2025-01-01",
+      "externalUrl": "https://www.regjeringen.no/",
+      "publisher": "Norwegian Government",
+      "topics": [
+        "national-preparedness",
+        "critical-infrastructure",
+        "total-defence",
+        "digital-resilience",
+        "civil-protection"
+      ],
+      "audience": [
+        "public-sector",
+        "security",
+        "humanitarian",
+        "enterprise",
+        "it-ops"
+      ],
+      "tags": [
+        "sivilforsvaret",
+        "shelter-construction",
+        "food-security",
+        "public-private",
+        "norway"
+      ],
+      "weight": 30,
+      "draft": false
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "identifier": "ffi-frivillige-beredskapsorganisasjoner-totalforsvar",
+      "name": "FFI: Frivillige beredskapsorganisasjoner i fremtidens totalforsvar",
+      "description": "Norwegian Defence Research Establishment analysis of voluntary preparedness organizations' role in total defence",
+      "abstract": "Norwegian Defence Research analysis of how voluntary organisations like Red Cross and People's Aid can strengthen total defence, finding significant but underutilised resources requiring better coordination frameworks.",
+      "summary": "Commissioned by Norske Kvinners Sanitetsforening, this FFI report maps the capabilities of Norway's major voluntary emergency organisations and recommends their formal inclusion in coordination arenas at central, regional, and local levels. The research anticipates increased voluntary participation during security crises and identifies the need for legal frameworks governing their role within international humanitarian law.",
+      "body": "## Key Findings\n\n### On Voluntary Resources\n\nThe report documents that voluntary emergency organisations possess relevant resources that can strengthen public emergency actors' ability to handle incidents across the crisis spectrum However, these resources are unevenly distributed between geographic regions.\n\n### On Civil-Military Cooperation\n\nNorway's defence depends on well-functioning civil-military cooperation within the framework of total defence. The voluntary sector represents a significant but underutilised resource in this framework.\n\n### On Coordination Requirements\n\nKnowledge of each other's resources and joint training is a prerequisite for effective cooperation. The report recommends that relevant authorities examine how voluntary emergency organisations can be further included in various coordination arenas at central, regional, and local levels.\n\n### On Crisis Escalation\n\nThe report anticipates increased voluntary initiative and effort if a security policy crisis or armed conflict were to affect Norway. Planning should account for increased participation of voluntary initiatives, and consideration should be given to how this should be handled within the framework of international humanitarian law.\n\n### On Legal Considerations\n\nRegardless of how voluntary emergency organisations are included in Norway's total preparedness, Norwegian authorities and the Armed Forces must take into account legal obligations and the voluntary organisations' independence, characteristics, and role.\n\n## Recommendations\n\nThe report identifies several areas requiring further attention:\n\n| Area | Recommendation |\n|------|----------------|\n| **Coordination** | Examine how voluntary organisations can be further included in coordination arenas at central, regional, and local levels |\n| **Armed Forces** | Examine how the Armed Forces can cooperate with voluntary organisations and help coordinate voluntary efforts in security crises and armed conflict |\n| **Grey zone issues** | Further examine how and who should coordinate voluntary initiatives and resources in different stages of the upper crisis spectrum |\n| **Legal framework** | Investigate how increased voluntary participation should be handled within international humanitarian law |\n\n## Context: Total Defence\n\nTotal defence (totalforsvar) is Norway's concept for coordinating military and civilian resources to defend the nation. It encompasses not only military defence but also civil protection, emergency preparedness, and the maintenance of critical societal functions during crises and armed conflict.\n\nThe concept recognises that modern conflicts affect the entire society, and that effective defence requires cooperation between military forces, government agencies, and civilian organisations including the voluntary sector.\n\n## The Organisations Studied\n\n| Organisation | Role | Capabilities |\n|--------------|------|--------------|\n| **Norges Røde Kors** | Humanitarian assistance, first aid, search and rescue | Thousands of trained volunteers, established cooperation with authorities |\n| **Norsk Folkehjelp** | Search and rescue, humanitarian demining, solidarity work | Technical expertise, international experience |\n| **Norske Kvinners Sanitetsforening** | Health preparedness, first aid training, social support | Nationwide network, health-focused competencies |\n\n## Why This Matters\n\nThis report addresses a critical gap in Norway's preparedness planning. As security challenges evolve and the distinction between peace and conflict becomes less clear, the role of civil society organisations in national defence becomes increasingly important.\n\nThe findings are relevant for:\n\n- **Government planners** developing total defence strategies\n- **Military commanders** planning civil-military cooperation\n- **Humanitarian organisations** considering their role in conflict scenarios\n- **International observers** studying Nordic total defence models\n\n## The Publisher\n\n| Organisation | Role | Standing |\n|--------------|------|----------|\n| **Forsvarets forskningsinstitutt (FFI)** | Norwegian Defence Research Establishment | Norway's primary defence research institution; provides independent research and analysis for the Norwegian Armed Forces and Ministry of Defence |\n\n## Access\n\n**[Read the Full Report →](https://www.ffi.no/publikasjoner/arkiv/frivillige-beredskapsorganisasjoner-i-fremtidens-totalforsvar)**\n\nAvailable as open access PDF from FFI (Norwegian language).\n\n## Related Resources\n\n- [FFI Publications](https://www.ffi.no/publikasjoner) — All FFI research publications\n- [Norwegian Total Defence](https://www.regjeringen.no/en/topics/defence/total-defence/id2639320/) — Government information on total defence concept",
+      "imageWide": "ffi-frivillige-beredskapsorganisasjoner-totalforsvar.png",
+      "datePublished": "2024-01-01",
+      "externalUrl": "https://www.ffi.no/publikasjoner/arkiv/frivillige-beredskapsorganisasjoner-i-fremtidens-totalforsvar",
+      "publisher": "Norwegian Defence Research Establishment (FFI)",
+      "topics": [
+        "national-preparedness",
+        "total-defence",
+        "civil-protection",
+        "digital-resilience"
+      ],
+      "audience": [
+        "public-sector",
+        "humanitarian",
+        "security"
+      ],
+      "tags": [
+        "red-cross",
+        "voluntary-sector",
+        "coordination",
+        "legal-frameworks",
+        "norway"
+      ],
+      "weight": 10,
+      "draft": false
+    },
+    {
+      "@type": "ScholarlyArticle",
+      "identifier": "eu-cloud-sovereignty-framework",
+      "name": "EU Cloud Sovereignty Framework",
+      "description": "Understanding the European Commission's framework for measuring and achieving cloud sovereignty",
+      "abstract": "The EU Cloud Sovereignty Framework provides a structured approach to assess and improve digital sovereignty when using cloud services.",
+      "summary": "A comprehensive methodology developed by the European Commission to help organizations assess their digital sovereignty posture across eight dimensions: Strategic, Legal, Data, Operational, Supply Chain, Technology, Security, and Environmental sovereignty. This framework forms the foundation for the Norwegian Digital Sovereignty Index (NDSI).",
+      "body": "## Why Cloud Sovereignty Matters\n\nEuropean organizations face increasing pressure to maintain control over their digital infrastructure and data. Key drivers include:\n\n- **Regulatory compliance** - GDPR, NIS2, and sector-specific regulations\n- **Geopolitical risks** - Dependency on non-EU technology providers\n- **Data protection** - Ensuring data remains under European jurisdiction\n- **Operational resilience** - Reducing single points of failure\n\n## The Eight Dimensions\n\nThe EU framework evaluates cloud sovereignty across eight dimensions:\n\n### SOV-1: Strategic Sovereignty\n\nAssesses the strategic alignment and control over cloud services, including vendor independence and long-term viability.\n\n**Key questions:**\n- Where is the vendor headquartered?\n- What is the ownership structure?\n- How dependent is your organization on this single vendor?\n\n### SOV-2: Legal Sovereignty\n\nEvaluates the legal framework governing data access and protection, particularly regarding foreign jurisdiction claims.\n\n**Key questions:**\n- Is the vendor subject to the US CLOUD Act?\n- Does the vendor comply with GDPR?\n- Can foreign authorities compel data disclosure?\n\n### SOV-3: Data Sovereignty\n\nMeasures control over data location, processing, and access.\n\n**Key questions:**\n- Where is data stored and processed?\n- Can you choose data residency?\n- Who has access to your data?\n\n### SOV-4: Operational Sovereignty\n\nAssesses operational control and the ability to manage and migrate services.\n\n**Key questions:**\n- Can you self-host the solution?\n- What export options exist?\n- How complex is migration to alternatives?\n\n### SOV-5: Supply Chain Sovereignty\n\nEvaluates dependencies on third-party components and infrastructure.\n\n**Key questions:**\n- What are the key infrastructure dependencies?\n- Are there European alternatives for critical components?\n- How transparent is the supply chain?\n\n### SOV-6: Technology Sovereignty\n\nMeasures control over underlying technology, including open source availability and interoperability.\n\n**Key questions:**\n- Is the source code available?\n- Does it use open standards?\n- Can you modify or extend the solution?\n\n### SOV-7: Security Sovereignty\n\nAssesses security controls and the ability to implement organization-specific security measures.\n\n**Key questions:**\n- What certifications does the vendor hold?\n- Can you use your own encryption keys?\n- What security controls can you configure?\n\n### SOV-8: Environmental Sovereignty\n\nEvaluates environmental sustainability and alignment with European climate goals.\n\n**Key questions:**\n- What is the carbon footprint?\n- Does the vendor use renewable energy?\n- Is there transparency in environmental reporting?\n\n## Scoring Methodology\n\nEach dimension is scored on a scale of 1-5:\n\n| Score | Risk Level | Description |\n|-------|------------|-------------|\n| 1.0-1.5 | Low | Full sovereignty control |\n| 1.5-2.5 | Moderate | Acceptable with mitigations |\n| 2.5-3.5 | Elevated | Significant concerns |\n| 3.5-4.5 | High | Major sovereignty gaps |\n| 4.5-5.0 | Critical | Unacceptable for sensitive use |\n\nThe overall score is a weighted average, with SOV-2 (Legal) often serving as a \"gate\" - if legal sovereignty fails, the overall assessment is flagged regardless of other scores.\n\n## Applying the Framework\n\n### For Organizations\n\n1. **Inventory your software** - List all cloud services in use\n2. **Assess each service** - Use the eight dimensions\n3. **Identify risks** - Focus on high-scoring (risky) areas\n4. **Plan mitigations** - Implement controls where possible\n5. **Consider alternatives** - Evaluate European alternatives for high-risk services\n\n### For Procurement\n\nWhen evaluating new software:\n\n- Include sovereignty requirements in RFPs\n- Weight sovereignty alongside price and features\n- Consider total cost including migration risk\n- Prefer vendors with clear European commitment\n\n## Norwegian Context\n\nFor Norwegian organizations, additional considerations apply:\n\n- **Schrems II implications** - US-EU data transfers remain problematic\n- **National security** - Critical infrastructure has stricter requirements\n- **Sector regulations** - Finance, health, and government have specific rules\n- **Nordic alternatives** - Consider Norwegian and Nordic vendors first",
+      "imageWide": "eu-cloud-sovereignty-framework.jpg",
+      "datePublished": "2025-01-15",
+      "externalUrl": "https://commission.europa.eu/document/download/09579818-64a6-4dd5-9577-446ab6219113_en",
+      "author": [
+        "European Commission",
+        "Directorate-General for Digital Services"
+      ],
+      "publisher": "European Commission",
+      "topics": [
+        "digital-sovereignty",
+        "cloud-sovereignty",
+        "data-protection",
+        "platform-dependency"
+      ],
+      "audience": [
+        "public-sector",
+        "enterprise",
+        "it-ops"
+      ],
+      "tags": [
+        "eu",
+        "framework",
+        "sovereignty",
+        "cloud",
+        "assessment"
+      ],
+      "weight": 20,
+      "draft": false
+    }
+  ]
+}

@@ -40,14 +40,6 @@ showHero: true
 heroStyle: "big"
 ---
 
-
-
----
-
----
-
----
-
 ## Key Findings
 
 ### On the WFP-Palantir Partnership
