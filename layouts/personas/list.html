@@ -3,12 +3,6 @@
 {{ $audienceData := site.Data.audience.audience }}
 {{ $audiences := $audienceData.itemListElement | default (slice) }}
 
-{{/* Build topic labels lookup */}}
-{{ $topicLabels := dict }}
-{{ range site.Data.topics.topics.itemListElement }}
-  {{ $topicLabels = merge $topicLabels (dict .identifier .name) }}
-{{ end }}
-
 {{/* Build a map of persona pages for image lookup */}}
 {{ $personaPages := dict }}
 {{ range .Pages }}
@@ -19,16 +13,6 @@
 {{ $totalPersonas := len $audiences }}
 {{ $totalBlogPosts := len (where site.RegularPages "Section" "blog") }}
 {{ $totalPublications := len (where site.RegularPages "Section" "publications") }}
-
-{{/* Collect unique topics across all personas */}}
-{{ $uniqueTopics := slice }}
-{{ range $audiences }}
-  {{ range .topics }}
-    {{ if not (in $uniqueTopics .) }}
-      {{ $uniqueTopics = $uniqueTopics | append . }}
-    {{ end }}
-  {{ end }}
-{{ end }}
 
 <article class="sd-personas section-design">
 
@@ -79,24 +63,6 @@
   </section>
 
   {{/* ============================================================
-       FILTERS — Topic pills
-       ============================================================ */}}
-  <section class="sd-events-filters">
-    <div class="sd-filters-inner">
-      <div class="sd-filter-group">
-        <label class="sd-filter-label">Filter by Topic</label>
-        <div class="sd-filter-pills" data-filter-group="topics">
-          <button class="sd-filter-pill sd-filter-pill-active" data-filter="all">All Topics</button>
-          {{- range $uniqueTopics }}
-          {{ $label := index $topicLabels . | default (. | humanize | title) }}
-          <button class="sd-filter-pill" data-filter="{{ . }}">{{ $label }}</button>
-          {{- end }}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {{/* ============================================================
        PERSONA CARDS — Grid
        ============================================================ */}}
   <section class="sd-blog-feed">
@@ -107,7 +73,6 @@
     {{ $desc := $p.description | default "" }}
     {{ $icon := $p.icon | default "" }}
     {{ $iconPath := $p.iconPath | default "" }}
-    {{ $topics := $p.topics | default (slice) }}
 
     {{/* Get the persona page and its featured image */}}
     {{ $personaPage := index $personaPages $term }}
@@ -118,7 +83,7 @@
 
     {{ if eq $i 0 }}
     {{/* ---- FEATURED PERSONA (first) ---- */}}
-    <article class="sd-blog-featured persona-card" data-topics="{{ delimit $topics "," }}">
+    <article class="sd-blog-featured">
       <a href="/personas/{{ $term }}/" class="sd-blog-featured-inner">
         <div class="sd-blog-featured-image">
           {{ if $featured }}
@@ -135,19 +100,10 @@
           {{ end }}
         </div>
         <div class="sd-blog-featured-content">
-          <div class="sd-blog-meta">
-            <span>{{ len $topics }} topics</span>
-          </div>
           <h2 class="sd-headline sd-blog-featured-title">{{ $name }}</h2>
           {{ with $desc }}
           <p class="sd-blog-featured-desc">{{ . }}</p>
           {{ end }}
-          <div class="sd-blog-tags">
-            {{ range first 3 $topics }}
-            {{ $label := index $topicLabels . | default (. | humanize | title) }}
-            <span class="sd-blog-tag">#{{ upper $label }}</span>
-            {{ end }}
-          </div>
           <span class="sd-blog-read-more">
             View Persona
             <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
@@ -164,7 +120,7 @@
     {{ end }}
 
     {{/* ---- REGULAR PERSONA CARD ---- */}}
-    <article class="sd-blog-card persona-card" data-topics="{{ delimit $topics "," }}">
+    <article class="sd-blog-card">
       <a href="/personas/{{ $term }}/" class="sd-blog-card-inner">
         <div class="sd-blog-card-image">
           {{ if $featured }}
@@ -181,9 +137,6 @@
           {{ end }}
         </div>
         <div class="sd-blog-card-content">
-          <div class="sd-blog-meta">
-            <span>{{ len $topics }} topics</span>
-          </div>
           <h3 class="sd-headline sd-blog-card-title">{{ $name }}</h3>
           {{ with $desc }}
           <p class="sd-blog-card-desc">{{ . }}</p>
@@ -200,70 +153,10 @@
     {{ end }}
     {{ end }}
 
-    {{/* No results */}}
-    <div id="no-results" class="events-empty-filtered" style="display: none;">
-      <span class="material-symbols-outlined">search_off</span>
-      No personas match the selected filters.
-    </div>
-
   </section>
 
 </article>
 
 {{ partial "sovereignsky-footer.html" . }}
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const filterButtons = document.querySelectorAll('[data-filter-group] button[data-filter]');
-  const personaCards = document.querySelectorAll('.persona-card');
-  const noResults = document.getElementById('no-results');
-
-  let activeFilters = { topics: 'all' };
-
-  function setActiveButton(filterGroup, filterValue) {
-    const groupEl = document.querySelector(`[data-filter-group="${filterGroup}"]`);
-    if (!groupEl) return;
-    const btn = groupEl.querySelector(`button[data-filter="${filterValue}"]`);
-    const fallback = groupEl.querySelector(`button[data-filter="all"]`);
-    const target = btn || fallback;
-    if (!target) return;
-    groupEl.querySelectorAll('button').forEach(b => b.classList.remove('sd-filter-pill-active'));
-    target.classList.add('sd-filter-pill-active');
-    activeFilters[filterGroup] = target.dataset.filter;
-  }
-
-  function updateURL() {
-    const params = new URLSearchParams();
-    if (activeFilters.topics !== 'all') params.set('topic', activeFilters.topics);
-    const qs = params.toString();
-    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
-  }
-
-  function applyFilters() {
-    let visibleCount = 0;
-    personaCards.forEach(card => {
-      const t = card.dataset.topics || '';
-      const show = activeFilters.topics === 'all' || t.includes(activeFilters.topics);
-      card.style.display = show ? '' : 'none';
-      if (show) visibleCount++;
-    });
-    noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  setActiveButton('topics', params.get('topic') || params.get('topics') || 'all');
-  applyFilters();
-
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const groupEl = this.closest('[data-filter-group]');
-      groupEl.querySelectorAll('button').forEach(b => b.classList.remove('sd-filter-pill-active'));
-      this.classList.add('sd-filter-pill-active');
-      activeFilters[groupEl.dataset.filterGroup] = this.dataset.filter;
-      applyFilters();
-      updateURL();
-    });
-  });
-});
-</script>
 {{ end }}
