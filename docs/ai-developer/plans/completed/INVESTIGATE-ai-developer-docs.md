@@ -1,3 +1,5 @@
+> **Archived:** Superseded by completed PLAN-portable-ai-developer-docs.
+
 # Investigate: Portable AI Developer Documentation
 
 ## Status: Backlog

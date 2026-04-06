@@ -1,3 +1,5 @@
+> **Archived:** Superseded by Stitch design system; section-based foundation plan completed.
+
 # INVESTIGATE: Section-Based Design System for Project Pages
 
 ## Status: Backlog
