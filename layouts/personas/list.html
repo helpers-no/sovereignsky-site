@@ -2,12 +2,11 @@
 {{/* Get audiences from audience.json */}}
 {{ $audienceData := site.Data.audience.audience }}
 {{ $audiences := $audienceData.itemListElement | default (slice) }}
-{{/* Build audience values and labels from data */}}
-{{ $audienceVocab := slice }}
-{{ $audienceLabels := dict }}
-{{ range $audiences }}
-  {{ $audienceVocab = $audienceVocab | append .identifier }}
-  {{ $audienceLabels = merge $audienceLabels (dict .identifier .name) }}
+
+{{/* Build topic labels lookup */}}
+{{ $topicLabels := dict }}
+{{ range site.Data.topics.topics.itemListElement }}
+  {{ $topicLabels = merge $topicLabels (dict .identifier .name) }}
 {{ end }}
 
 {{/* Build a map of persona pages for image lookup */}}
@@ -16,95 +15,255 @@
   {{ $personaPages = merge $personaPages (dict (path.Base .File.Dir) .) }}
 {{ end }}
 
-<article class="max-w-full">
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" .Title
-      "description" .Description
-      "icon" "users"
-  ) }}
+{{/* Calculate stats */}}
+{{ $totalPersonas := len $audiences }}
+{{ $totalBlogPosts := len (where site.RegularPages "Section" "blog") }}
+{{ $totalPublications := len (where site.RegularPages "Section" "publications") }}
 
-  {{/* Section Content */}}
-  <section class="max-w-full mt-6 prose dark:prose-invert prose-table:w-full prose-img:max-w-full [&>*]:max-w-none">
-    {{ .Content }}
-  </section>
-
-  {{/* Audience Cards Grid */}}
-  <section class="mt-8">
-    {{ if gt (len $audiences) 0 }}
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3" style="gap: 1.5rem;">
-      {{ range $audiences }}
-        {{ $p := . }}
-        {{ $term := $p.identifier | default "" }}
-        {{ $name := $p.name | default ($term | humanize | title) }}
-        {{ $desc := $p.description | default "" }}
-        {{ $iconPath := $p.iconPath | default "" }}
-        {{ $icon := $p.icon | default "" }}
-        {{ $isAudience := in $audienceVocab $term }}
-
-        {{/* Get the persona page and its featured image */}}
-        {{ $personaPage := index $personaPages $term }}
-        {{ $featured := false }}
-        {{ with $personaPage }}
-          {{ $featured = .Resources.GetMatch "featured*" }}
-        {{ end }}
-
-        {{/* Count relevant content for this persona */}}
-        {{ $fc := $p.filterCriteria | default (dict) }}
-        {{ $preferTags := $fc.preferTags | default (slice) }}
-        {{ $preferCats := $fc.preferCategories | default (slice) }}
-
-        <a href="/personas/{{ $term }}/" class="card bg-base-100 shadow-md hover:shadow-lg transition-all group border border-base-200 hover:border-primary">
-          {{/* Card Image */}}
-          {{ if $featured }}
-          {{ $img := $featured.Fill "400x200 webp" }}
-          <figure class="h-40 overflow-hidden bg-base-200">
-            <img src="{{ $img.RelPermalink }}" alt="{{ $name }}" width="{{ $img.Width }}" height="{{ $img.Height }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
-          </figure>
-          {{ else }}
-          {{/* Placeholder gradient with icon */}}
-          <figure class="h-40 overflow-hidden bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 flex items-center justify-center">
-            <div class="text-primary/30 group-hover:text-primary/50 transition-colors">
-              {{ if $icon }}
-                {{ partial "data-icon.html" (dict "name" $icon "size" "16" "class" "text-primary/40") }}
-              {{ else if $iconPath }}
-              <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $iconPath }}"/>
-              </svg>
-              {{ end }}
-            </div>
-          </figure>
-          {{ end }}
-
-          <div class="card-body p-4">
-            {{/* Title with icon */}}
-            <div class="flex items-center gap-2">
-              {{ if $icon }}
-              <div class="text-primary">
-                {{ partial "data-icon.html" (dict "name" $icon "size" "5" "class" "text-primary") }}
-              </div>
-              {{ else if $iconPath }}
-              <div class="text-primary">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $iconPath }}"/>
-                </svg>
-              </div>
-              {{ end }}
-              <h2 class="card-title text-base group-hover:text-primary transition-colors m-0">{{ $name }}</h2>
-            </div>
-
-            {{/* Description */}}
-            {{ if $desc }}
-            <p class="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 mt-2 mb-0">{{ $desc }}</p>
-            {{ end }}
-
-          </div>
-        </a>
-      {{ end }}
-    </div>
-    {{ else }}
-    <p class="text-neutral-600 dark:text-neutral-400">No audiences found.</p>
+{{/* Collect unique topics across all personas */}}
+{{ $uniqueTopics := slice }}
+{{ range $audiences }}
+  {{ range .topics }}
+    {{ if not (in $uniqueTopics .) }}
+      {{ $uniqueTopics = $uniqueTopics | append . }}
     {{ end }}
+  {{ end }}
+{{ end }}
+
+<article class="sd-personas section-design">
+
+  {{/* ============================================================
+       HERO — Blue gradient
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Target Audiences</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Personas</h1>
+        <p class="sd-events-hero-description">
+          {{ .Description | default "Target audiences for content, events, and software recommendations. Pick one to jump into relevant events, laws, and products." }}
+        </p>
+      </div>
+    </div>
   </section>
+
+  {{/* ============================================================
+       STATS — 3 cards overlapping hero
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Personas</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalPersonas }}</span>
+        <span class="sd-events-stat-desc">Target audiences</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Blog Posts</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalBlogPosts }}</span>
+        <span class="sd-events-stat-desc">Articles published</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Publications</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalPublications }}</span>
+        <span class="sd-events-stat-desc">Reports & papers</span>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       FILTERS — Topic pills
+       ============================================================ */}}
+  <section class="sd-events-filters">
+    <div class="sd-filters-inner">
+      <div class="sd-filter-group">
+        <label class="sd-filter-label">Filter by Topic</label>
+        <div class="sd-filter-pills" data-filter-group="topics">
+          <button class="sd-filter-pill sd-filter-pill-active" data-filter="all">All Topics</button>
+          {{- range $uniqueTopics }}
+          {{ $label := index $topicLabels . | default (. | humanize | title) }}
+          <button class="sd-filter-pill" data-filter="{{ . }}">{{ $label }}</button>
+          {{- end }}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       PERSONA CARDS — Grid
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+
+    {{ range $i, $p := $audiences }}
+    {{ $term := $p.identifier | default "" }}
+    {{ $name := $p.name | default ($term | humanize | title) }}
+    {{ $desc := $p.description | default "" }}
+    {{ $icon := $p.icon | default "" }}
+    {{ $iconPath := $p.iconPath | default "" }}
+    {{ $topics := $p.topics | default (slice) }}
+
+    {{/* Get the persona page and its featured image */}}
+    {{ $personaPage := index $personaPages $term }}
+    {{ $featured := false }}
+    {{ with $personaPage }}
+      {{ $featured = .Resources.GetMatch "featured*" }}
+    {{ end }}
+
+    {{ if eq $i 0 }}
+    {{/* ---- FEATURED PERSONA (first) ---- */}}
+    <article class="sd-blog-featured persona-card" data-topics="{{ delimit $topics "," }}">
+      <a href="/personas/{{ $term }}/" class="sd-blog-featured-inner">
+        <div class="sd-blog-featured-image">
+          {{ if $featured }}
+          {{ $img := $featured.Fill "800x500 webp" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ $name }}" loading="lazy" />
+          {{ else }}
+          <div class="sd-blog-featured-placeholder">
+            {{ if $icon }}
+            {{ partial "data-icon.html" (dict "name" $icon "size" "16" "class" "text-primary") }}
+            {{ else }}
+            <span class="material-symbols-outlined" style="font-size: 4rem; color: var(--sd-primary); opacity: 0.3;">group</span>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+        <div class="sd-blog-featured-content">
+          <div class="sd-blog-meta">
+            <span>{{ len $topics }} topics</span>
+          </div>
+          <h2 class="sd-headline sd-blog-featured-title">{{ $name }}</h2>
+          {{ with $desc }}
+          <p class="sd-blog-featured-desc">{{ . }}</p>
+          {{ end }}
+          <div class="sd-blog-tags">
+            {{ range first 3 $topics }}
+            {{ $label := index $topicLabels . | default (. | humanize | title) }}
+            <span class="sd-blog-tag">#{{ upper $label }}</span>
+            {{ end }}
+          </div>
+          <span class="sd-blog-read-more">
+            View Persona
+            <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
+          </span>
+        </div>
+      </a>
+    </article>
+
+    {{ else }}
+
+    {{ if eq $i 1 }}
+    {{/* Open the grid after featured card */}}
+    <div class="sd-blog-grid">
+    {{ end }}
+
+    {{/* ---- REGULAR PERSONA CARD ---- */}}
+    <article class="sd-blog-card persona-card" data-topics="{{ delimit $topics "," }}">
+      <a href="/personas/{{ $term }}/" class="sd-blog-card-inner">
+        <div class="sd-blog-card-image">
+          {{ if $featured }}
+          {{ $img := $featured.Fill "600x340 webp" }}
+          <img src="{{ $img.RelPermalink }}" alt="{{ $name }}" loading="lazy" />
+          {{ else }}
+          <div class="sd-blog-featured-placeholder">
+            {{ if $icon }}
+            {{ partial "data-icon.html" (dict "name" $icon "size" "12" "class" "text-primary") }}
+            {{ else }}
+            <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--sd-primary); opacity: 0.3;">group</span>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+        <div class="sd-blog-card-content">
+          <div class="sd-blog-meta">
+            <span>{{ len $topics }} topics</span>
+          </div>
+          <h3 class="sd-headline sd-blog-card-title">{{ $name }}</h3>
+          {{ with $desc }}
+          <p class="sd-blog-card-desc">{{ . }}</p>
+          {{ end }}
+        </div>
+      </a>
+    </article>
+
+    {{ if eq $i (sub (len $audiences) 1) }}
+    {{/* Close the grid after last card */}}
+    </div>
+    {{ end }}
+
+    {{ end }}
+    {{ end }}
+
+    {{/* No results */}}
+    <div id="no-results" class="events-empty-filtered" style="display: none;">
+      <span class="material-symbols-outlined">search_off</span>
+      No personas match the selected filters.
+    </div>
+
+  </section>
+
 </article>
+
+{{ partial "sovereignsky-footer.html" . }}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('[data-filter-group] button[data-filter]');
+  const personaCards = document.querySelectorAll('.persona-card');
+  const noResults = document.getElementById('no-results');
+
+  let activeFilters = { topics: 'all' };
+
+  function setActiveButton(filterGroup, filterValue) {
+    const groupEl = document.querySelector(`[data-filter-group="${filterGroup}"]`);
+    if (!groupEl) return;
+    const btn = groupEl.querySelector(`button[data-filter="${filterValue}"]`);
+    const fallback = groupEl.querySelector(`button[data-filter="all"]`);
+    const target = btn || fallback;
+    if (!target) return;
+    groupEl.querySelectorAll('button').forEach(b => b.classList.remove('sd-filter-pill-active'));
+    target.classList.add('sd-filter-pill-active');
+    activeFilters[filterGroup] = target.dataset.filter;
+  }
+
+  function updateURL() {
+    const params = new URLSearchParams();
+    if (activeFilters.topics !== 'all') params.set('topic', activeFilters.topics);
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  }
+
+  function applyFilters() {
+    let visibleCount = 0;
+    personaCards.forEach(card => {
+      const t = card.dataset.topics || '';
+      const show = activeFilters.topics === 'all' || t.includes(activeFilters.topics);
+      card.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+    });
+    noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  setActiveButton('topics', params.get('topic') || params.get('topics') || 'all');
+  applyFilters();
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const groupEl = this.closest('[data-filter-group]');
+      groupEl.querySelectorAll('button').forEach(b => b.classList.remove('sd-filter-pill-active'));
+      this.classList.add('sd-filter-pill-active');
+      activeFilters[groupEl.dataset.filterGroup] = this.dataset.filter;
+      applyFilters();
+      updateURL();
+    });
+  });
+});
+</script>
 {{ end }}

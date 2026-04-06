@@ -1,3 +1,5 @@
+> **Archived:** Superseded by Stitch design system.
+
 # Aftenposten Design Patterns Analysis
 
 ## Purpose
