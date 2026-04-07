@@ -27,80 +27,152 @@
   {{ end }}
 {{ end }}
 
-<article class="max-w-full">
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" "Content by Topic"
-      "description" "Browse all content organized by topic. Each topic page shows all blogs, events, publications, and laws related to that subject."
-      "icon" "tag"
-  ) }}
+{{/* Calculate stats */}}
+{{ $totalTopics := len $topicsWithContent }}
+{{ $totalContent := 0 }}
+{{ range $topicsWithContent }}
+  {{ $totalContent = add $totalContent (index $contentCounts .identifier | default 0) }}
+{{ end }}
+{{ $totalBlogPosts := len (where site.RegularPages "Section" "blog") }}
 
-  {{/* Stats */}}
-  {{ $totalTopics := len $topicsWithContent }}
-  {{ $totalContent := 0 }}
-  {{ range $topicsWithContent }}
-    {{ $totalContent = add $totalContent (index $contentCounts .identifier | default 0) }}
-  {{ end }}
+<article class="sd-topics section-design">
 
-  <div class="stats stats-vertical sm:stats-horizontal shadow-lg w-full mb-8 bg-base-100">
-    <div class="stat">
-      <div class="stat-figure text-primary">
-        {{ partial "data-icon.html" (dict "name" "tag" "color" "primary" "size" "8") }}
+  {{/* ============================================================
+       HERO — Blue gradient
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Content Library</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Topics</h1>
+        <p class="sd-events-hero-description">
+          {{ .Description | default "Browse all content organized by topic. Each topic page shows all blogs, events, publications, and laws related to that subject." }}
+        </p>
       </div>
-      <div class="stat-title">Topics</div>
-      <div class="stat-value text-primary">{{ $totalTopics }}</div>
-      <div class="stat-desc">With content</div>
     </div>
-    <div class="stat">
-      <div class="stat-figure text-secondary">
-        {{ partial "data-icon.html" (dict "name" "document" "color" "secondary" "size" "8") }}
-      </div>
-      <div class="stat-title">Tagged Content</div>
-      <div class="stat-value text-secondary">{{ $totalContent }}</div>
-      <div class="stat-desc">Across all topics</div>
-    </div>
-  </div>
+  </section>
 
-  {{/* Topics Cards Grid */}}
-  <section class="mt-8">
+  {{/* ============================================================
+       STATS — 3 cards overlapping hero
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Topics</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalTopics }}</span>
+        <span class="sd-events-stat-desc">With content</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Tagged Content</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalContent }}</span>
+        <span class="sd-events-stat-desc">Across all topics</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Blog Posts</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalBlogPosts }}</span>
+        <span class="sd-events-stat-desc">Articles published</span>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       TOPIC CARDS — Featured + Grid
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+
     {{ if gt (len $topicsWithContent) 0 }}
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {{ range $topicsWithContent }}
-        {{ $t := . }}
-        {{ $term := $t.identifier | default "" }}
-        {{ $name := $t.name | default ($term | humanize | title) }}
-        {{ $desc := $t.description | default "" }}
-        {{ $iconPath := $t.iconPath | default "" }}
-        {{ $count := index $contentCounts $term | default 0 }}
 
-        <a href="/topics/{{ $term }}/" class="card card-compact bg-base-100 shadow-sm hover:shadow-md transition-all group border border-base-200 hover:border-primary">
-          <div class="card-body">
-            {{/* Title with icon */}}
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                {{ if $iconPath }}
-                <div class="text-primary">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $iconPath }}"/>
-                  </svg>
-                </div>
-                {{ end }}
-                <h2 class="card-title text-sm group-hover:text-primary transition-colors m-0">{{ $name }}</h2>
-              </div>
-              <span class="badge badge-primary badge-sm">{{ $count }}</span>
-            </div>
+    {{ range $i, $t := $topicsWithContent }}
+    {{ $term := $t.identifier | default "" }}
+    {{ $name := $t.name | default ($term | humanize | title) }}
+    {{ $desc := $t.description | default "" }}
+    {{ $icon := $t.icon | default "" }}
+    {{ $count := index $contentCounts $term | default 0 }}
 
-            {{/* Description */}}
-            {{ if $desc }}
-            <p class="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 mt-1 mb-0">{{ $desc }}</p>
+    {{ if eq $i 0 }}
+    {{/* ---- FEATURED TOPIC (first) ---- */}}
+    <article class="sd-blog-featured">
+      <a href="/topics/{{ $term }}/" class="sd-blog-featured-inner">
+        <div class="sd-blog-featured-image">
+          <div class="sd-blog-featured-placeholder">
+            {{ if $icon }}
+            {{ partial "data-icon.html" (dict "name" $icon "size" "16" "class" "text-primary") }}
+            {{ else }}
+            <span class="material-symbols-outlined" style="font-size: 4rem; color: var(--sd-primary); opacity: 0.3;">tag</span>
             {{ end }}
           </div>
-        </a>
-      {{ end }}
+        </div>
+        <div class="sd-blog-featured-content">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <h2 class="sd-headline sd-blog-featured-title" style="margin: 0;">{{ $name }}</h2>
+            <span class="badge badge-primary badge-sm">{{ $count }}</span>
+          </div>
+          {{ with $desc }}
+          <p class="sd-blog-featured-desc">{{ . }}</p>
+          {{ end }}
+          <span class="sd-blog-read-more">
+            Browse Topic
+            <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
+          </span>
+        </div>
+      </a>
+    </article>
+
+    {{ else }}
+
+    {{ if eq $i 1 }}
+    {{/* Open the grid after featured card */}}
+    <div class="sd-blog-grid">
+    {{ end }}
+
+    {{/* ---- REGULAR TOPIC CARD ---- */}}
+    <article class="sd-blog-card">
+      <a href="/topics/{{ $term }}/" class="sd-blog-card-inner">
+        <div class="sd-blog-card-image">
+          <div class="sd-blog-featured-placeholder">
+            {{ if $icon }}
+            {{ partial "data-icon.html" (dict "name" $icon "size" "12" "class" "text-primary") }}
+            {{ else }}
+            <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--sd-primary); opacity: 0.3;">tag</span>
+            {{ end }}
+          </div>
+        </div>
+        <div class="sd-blog-card-content">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <h3 class="sd-headline sd-blog-card-title" style="margin: 0;">{{ $name }}</h3>
+            <span class="badge badge-primary badge-sm">{{ $count }}</span>
+          </div>
+          {{ with $desc }}
+          <p class="sd-blog-card-desc">{{ . }}</p>
+          {{ end }}
+        </div>
+      </a>
+    </article>
+
+    {{ if eq $i (sub (len $topicsWithContent) 1) }}
+    {{/* Close the grid after last card */}}
     </div>
+    {{ end }}
+
+    {{ end }}
+    {{ end }}
+
     {{ else }}
     <p class="text-neutral-600 dark:text-neutral-400">No topics with content found.</p>
     {{ end }}
+
   </section>
+
 </article>
+
+{{ partial "sovereignsky-footer.html" . }}
+
 {{ end }}
