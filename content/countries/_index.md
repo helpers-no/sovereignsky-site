@@ -13,7 +13,3 @@ Explore countries and regional blocs by their data sovereignty characteristics, 
 Regional blocs share common legal frameworks and data protection standards across their member countries.
 
 {{< bloc-cards >}}
-
-## Browse by Country
-
-Individual countries with datacenter infrastructure, showing their risk level and bloc memberships.
