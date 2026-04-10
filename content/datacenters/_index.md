@@ -4,8 +4,6 @@ description: "Cloud datacenter locations and their jurisdiction implications"
 echarts: true
 ---
 
-{{< page-stats section="datacenters" >}}
-
 ## Regions by Country
 
 {{< datacenter-country-chart type="bar" height="600px" >}}

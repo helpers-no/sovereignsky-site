@@ -2921,3 +2921,62 @@ details[open] .details-marker {
   border-color: var(--sd-primary);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
+
+/* Datacenters section-design */
+.sd-dc-content {
+  color: var(--sd-on-surface);
+}
+
+.sd-dc-content h2 {
+  font-family: var(--sd-font-headline, inherit);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--sd-on-surface);
+  margin: 3rem 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--sd-outline-variant);
+}
+
+.sd-dc-content h2:first-child {
+  margin-top: 0;
+}
+
+.sd-dc-content h3 {
+  font-family: var(--sd-font-headline, inherit);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--sd-on-surface);
+  margin: 2rem 0 1rem;
+}
+
+.sd-dc-content p {
+  color: var(--sd-on-surface-variant);
+  line-height: 1.7;
+  margin: 1rem 0;
+}
+
+.sd-dc-content a {
+  color: var(--sd-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sd-dc-content a:hover {
+  color: var(--sd-primary);
+  opacity: 0.8;
+}
+
+.sd-dc-content ul, .sd-dc-content ol {
+  color: var(--sd-on-surface-variant);
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.sd-dc-content li {
+  margin: 0.25rem 0;
+}
+
+.sd-dc-content hr {
+  border-color: var(--sd-outline-variant);
+  margin: 2rem 0;
+}

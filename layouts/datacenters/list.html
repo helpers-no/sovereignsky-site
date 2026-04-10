@@ -1,16 +1,78 @@
 {{ define "main" }}
-<article class="max-w-full">
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" .Title
-      "description" .Description
-      "icon" "server"
-  ) }}
+{{/* Compute stats from datacenter data */}}
+{{ $providers := site.Data.datacenters.datacenters | default (slice) }}
+{{ $providerCount := len $providers }}
+{{ $regionCount := 0 }}
+{{ $countries := slice }}
+{{ range $providers }}
+  {{ $regionCount = add $regionCount (len .regions) }}
+  {{ range .regions }}
+    {{ with .countryId }}
+      {{ if not (in $countries .) }}
+        {{ $countries = $countries | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $countryCount := len $countries }}
 
-  {{/* Section Content - render markdown content which includes stats, charts, map */}}
-  <section class="max-w-full mt-6 prose dark:prose-invert prose-table:w-full prose-img:max-w-full [&>*]:max-w-none">
-    {{ .Content }}
+<article class="sd-datacenters section-design">
+
+  {{/* ============================================================
+       HERO — Blue gradient
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Infrastructure</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Datacenters</h1>
+        <p class="sd-events-hero-description">
+          {{ .Description | default "Cloud datacenter locations and their jurisdiction implications. Explore providers, regions, and countries to understand where your data lives." }}
+        </p>
+      </div>
+    </div>
   </section>
+
+  {{/* ============================================================
+       STATS — 3 cards overlapping hero
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Datacenter Regions</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $regionCount }}</span>
+        <span class="sd-events-stat-desc">Available locations</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Providers</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $providerCount }}</span>
+        <span class="sd-events-stat-desc">Cloud providers</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Countries</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $countryCount }}</span>
+        <span class="sd-events-stat-desc">Jurisdictions covered</span>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       CONTENT — Shortcodes rendered from _index.md
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+    <div class="sd-dc-content">
+      {{ .Content }}
+    </div>
+  </section>
+
 </article>
 
 {{/* Floating TOC for mobile */}}
@@ -21,4 +83,5 @@
     (dict "id" "countries" "title" "Countries" "icon" "🌍")
 }}
 {{ partial "floating-toc.html" (dict "sections" $tocSections) }}
+{{ partial "sovereignsky-footer.html" . }}
 {{ end }}
