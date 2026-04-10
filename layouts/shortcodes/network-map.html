@@ -24,66 +24,73 @@ Usage: {{< network-map>}}
   {{/* connections[] is already normalized in data/networks/networks.json */}}
 
   {{ if $showFiltersBool }}
-  <div id="network-filter-panel" class="mb-6 space-y-4">
-    {{/* Preset filter buttons - stack vertically on mobile */}}
-    <div class="flex flex-col sm:flex-row sm:items-center gap-2">
-      <span class="text-sm font-semibold opacity-70">Filter:</span>
-      <div class="join join-vertical sm:join-horizontal w-full sm:w-auto">
-        <button type="button" class="join-item btn btn-sm btn-active" data-network-preset="all">All Cables</button><button type="button" class="join-item btn btn-sm btn-ghost" data-network-preset="outside">Outside Norway</button><button type="button" class="join-item btn btn-sm btn-ghost" data-network-preset="domestic">Domestic</button><button type="button" class="join-item btn btn-sm btn-ghost" data-network-preset="active">Active Only</button>
+  <div id="network-filter-panel" class="sd-network-filters">
+    <div class="sd-network-filter-group">
+      <span class="sd-network-filter-label">Filter:</span>
+      <div class="sd-filter-pills">
+        <button type="button" class="sd-filter-pill sd-filter-pill-active" data-network-preset="all">All Cables</button>
+        <button type="button" class="sd-filter-pill" data-network-preset="outside">Outside Norway</button>
+        <button type="button" class="sd-filter-pill" data-network-preset="domestic">Domestic</button>
+        <button type="button" class="sd-filter-pill" data-network-preset="active">Active Only</button>
       </div>
     </div>
 
-    {{/* Category checkboxes - horizontal with colors matching map */}}
-    <div class="flex flex-wrap items-center gap-4">
-      <span class="text-sm font-semibold opacity-70">Type:</span>
-      <label class="inline-flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" class="checkbox network-category-checkbox" style="--chkbg: #06b6d4; --chkfg: white; border-color: #06b6d4;" data-category="international-subsea" checked>
-        <span class="text-sm">Outside • Subsea</span>
-      </label>
-      <label class="inline-flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" class="checkbox network-category-checkbox" style="--chkbg: #a855f7; --chkfg: white; border-color: #a855f7;" data-category="international-terrestrial" checked>
-        <span class="text-sm">Outside • Terrestrial</span>
-      </label>
-      <label class="inline-flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" class="checkbox network-category-checkbox" style="--chkbg: #22c55e; --chkfg: white; border-color: #22c55e;" data-category="domestic-subsea" checked>
-        <span class="text-sm">Inside • Subsea</span>
-      </label>
-      <label class="inline-flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" class="checkbox network-category-checkbox" style="--chkbg: #22c55e; --chkfg: white; border-color: #22c55e;" data-category="domestic-terrestrial" checked>
-        <span class="text-sm">Inside • Terrestrial</span>
-      </label>
+    <div class="sd-network-filter-group">
+      <span class="sd-network-filter-label">Type:</span>
+      <div class="sd-network-checkboxes">
+        <label class="sd-network-checkbox-label">
+          <input type="checkbox" class="sd-network-checkbox network-category-checkbox" style="accent-color: #06b6d4;" data-category="international-subsea" checked>
+          <span class="sd-network-checkbox-dot" style="background: #06b6d4;"></span>
+          <span>Outside • Subsea</span>
+        </label>
+        <label class="sd-network-checkbox-label">
+          <input type="checkbox" class="sd-network-checkbox network-category-checkbox" style="accent-color: #a855f7;" data-category="international-terrestrial" checked>
+          <span class="sd-network-checkbox-dot" style="background: #a855f7;"></span>
+          <span>Outside • Terrestrial</span>
+        </label>
+        <label class="sd-network-checkbox-label">
+          <input type="checkbox" class="sd-network-checkbox network-category-checkbox" style="accent-color: #22c55e;" data-category="domestic-subsea" checked>
+          <span class="sd-network-checkbox-dot" style="background: #22c55e;"></span>
+          <span>Inside • Subsea</span>
+        </label>
+        <label class="sd-network-checkbox-label">
+          <input type="checkbox" class="sd-network-checkbox network-category-checkbox" style="accent-color: #22c55e;" data-category="domestic-terrestrial" checked>
+          <span class="sd-network-checkbox-dot" style="background: #22c55e;"></span>
+          <span>Inside • Terrestrial</span>
+        </label>
+      </div>
     </div>
 
-    {{/* Status checkboxes - inline on all sizes */}}
-    <div class="flex flex-wrap items-center gap-4">
-      <span class="text-sm font-semibold opacity-70">Status:</span>
-      <label class="inline-flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" class="checkbox network-status-checkbox" data-status="active" checked>
-        <span class="text-sm">Active</span>
-      </label>
-      <label class="inline-flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" class="checkbox network-status-checkbox" data-status="planned" checked>
-        <span class="text-sm">Planned</span>
-      </label>
-      {{ if $showSimulationBool }}
-      <label class="inline-flex items-center gap-2 cursor-pointer">
-        <input type="checkbox" class="checkbox" id="network-sim-toggle" checked>
-        <span class="text-sm">Show trawler</span>
-      </label>
-      {{ end }}
+    <div class="sd-network-filter-group">
+      <span class="sd-network-filter-label">Status:</span>
+      <div class="sd-network-checkboxes">
+        <label class="sd-network-checkbox-label">
+          <input type="checkbox" class="sd-network-checkbox network-status-checkbox" data-status="active" checked>
+          <span>Active</span>
+        </label>
+        <label class="sd-network-checkbox-label">
+          <input type="checkbox" class="sd-network-checkbox network-status-checkbox" data-status="planned" checked>
+          <span>Planned</span>
+        </label>
+        {{ if $showSimulationBool }}
+        <label class="sd-network-checkbox-label">
+          <input type="checkbox" class="sd-network-checkbox" id="network-sim-toggle" checked>
+          <span>Show trawler</span>
+        </label>
+        {{ end }}
+      </div>
     </div>
   </div>
   {{ end }}
 
-  <div id="network-map-chart"
-    style="width: 100%; height: 700px; background: var(--tw-prose-pre-bg, #f5f5f5); border-radius: 8px;"></div>
+  <div id="network-map-chart" class="sd-network-map-container"></div>
 
-  <div id="network-map-loading" class="text-center py-8">
-    <p class="text-neutral-500">Loading map...</p>
+  <div id="network-map-loading" class="sd-network-map-loading">
+    <p>Loading map...</p>
   </div>
 
-  <div id="network-details" class="mt-6 p-4 bg-neutral-100 dark:bg-neutral-800 rounded-lg" style="display: none;">
-    <h3 id="network-name" class="text-xl font-bold mb-1"></h3>
+  <div id="network-details" class="sd-network-details" style="display: none;">
+    <h3 id="network-name" class="sd-network-details-title"></h3>
     <div id="network-info"></div>
   </div>
 
@@ -616,37 +623,33 @@ Usage: {{< network-map>}}
             if (!detailsDiv || !networkName || !networkInfo) return;
 
             if (data.cable_name) {
-              // Cable details
               var statusBadge = data.cable_status === 'planned'
-                ? '<span class="inline-block px-2 py-1 rounded text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">🔶 Planned</span>'
-                : '<span class="inline-block px-2 py-1 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">✅ Active</span>';
+                ? '<span class="sd-status-badge sd-status-planned">🔶 Planned</span>'
+                : '<span class="sd-status-badge sd-status-active">✅ Active</span>';
 
               var detailsHref = '/networks/' + data.cable_id + '/';
               networkName.innerHTML =
-                '<div class="flex items-start justify-between gap-3 leading-tight">' +
+                '<div class="sd-network-details-header">' +
                   '<span>' + data.cable_name + '</span>' +
-                  '<a href="' + detailsHref + '" class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline whitespace-nowrap">Open details →</a>' +
+                  '<a href="' + detailsHref + '" class="sd-network-details-link">Open details →</a>' +
                 '</div>';
 
-              var html = '<div class="space-y-2">';
-              // Row 1: status + medium on same line
-              html += '<div class="flex flex-wrap items-center gap-2">';
+              var html = '<div class="sd-network-details-body">';
+              html += '<div class="sd-network-details-meta">';
               html += statusBadge;
-              if (data.cable_medium) html += '<span class="text-xs text-neutral-700 dark:text-neutral-300">• ' + data.cable_medium + '</span>';
+              if (data.cable_medium) html += '<span class="sd-network-details-meta-item">• ' + data.cable_medium + '</span>';
               if (data.cable_length_km) {
-                html += '<span class="text-xs text-neutral-700 dark:text-neutral-300">• ' + data.cable_length_km + ' km</span>';
+                html += '<span class="sd-network-details-meta-item">• ' + data.cable_length_km + ' km</span>';
               }
               html += '</div>';
-              // Row 2: endpoints
               if (data.cable_endpoints) {
-                html += '<div class="text-sm text-neutral-800 dark:text-neutral-200"><strong>Endpoints:</strong> ' + data.cable_endpoints + '</div>';
+                html += '<div class="sd-network-details-endpoints"><strong>Endpoints:</strong> ' + data.cable_endpoints + '</div>';
               }
               html += '</div>';
               networkInfo.innerHTML = html;
             } else if (data.station_city) {
-              // Station details
               networkName.innerHTML = data.name;
-              var html = '<div class="space-y-2">';
+              var html = '<div class="sd-network-details-body">';
               html += '<p><strong>Location:</strong> ' + data.station_city + ', ' + data.station_region + '</p>';
               html += '<p><strong>Connections:</strong> ' + (data.station_cables ? data.station_cables.length : 0) + '</p>';
               html += '</div>';
@@ -694,13 +697,10 @@ Usage: {{< network-map>}}
               } else if (preset === 'active') {
                 selectedStatuses = new Set(['active']);
               }
-              // Update preset button styles
               presetButtons.forEach(function (b) {
-                b.classList.remove('btn-active');
-                b.classList.add('btn-ghost');
+                b.classList.remove('sd-filter-pill-active');
               });
-              btn.classList.add('btn-active');
-              btn.classList.remove('btn-ghost');
+              btn.classList.add('sd-filter-pill-active');
               // Update checkboxes
               categoryCheckboxes.forEach(function (cb) {
                 cb.checked = selectedBuckets.has(cb.getAttribute('data-category'));
