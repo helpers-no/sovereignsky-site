@@ -2997,3 +2997,24 @@ details[open] .details-marker {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* Networks detail page — 3-column metadata grid */
+.sd-network-detail-meta {
+  grid-template-columns: 1fr !important;
+}
+
+@media (min-width: 768px) {
+  .sd-network-detail-meta {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+.sd-network-detail-meta .sd-events-stat-card dl {
+  margin: 0;
+}
+
+.sd-network-detail-meta .sd-events-stat-card dt,
+.sd-network-detail-meta .sd-events-stat-card dd {
+  margin: 0;
+  padding: 0;
+}
