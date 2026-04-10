@@ -3088,6 +3088,27 @@ details[open] .details-marker {
   color: var(--sd-on-surface-variant);
 }
 
+/* Countries detail page — 3-column metadata grid */
+.sd-country-detail-meta {
+  grid-template-columns: 1fr !important;
+}
+
+@media (min-width: 768px) {
+  .sd-country-detail-meta {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+.sd-country-detail-meta .sd-events-stat-card dl {
+  margin: 0;
+}
+
+.sd-country-detail-meta .sd-events-stat-card dt,
+.sd-country-detail-meta .sd-events-stat-card dd {
+  margin: 0;
+  padding: 0;
+}
+
 /* Network data tables */
 .sd-network-tables {
   display: flex;
