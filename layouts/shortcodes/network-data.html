@@ -35,7 +35,7 @@
 {{ $arcticCables := where $connections "identifier" "in" (slice "svalbard-undersea" "arctic-way" "longyearbyen-ny-alesund") }}
 
 <div class="space-y-10">
-  <section>
+  <section id="subsea-international">
     <h3 class="text-xl font-semibold flex items-center gap-2">
       {{ partial "data-icon.html" (dict "name" "bolt" "color" "info" "size" "6") }}
       Subsea (Outside Norway)
@@ -102,7 +102,7 @@
     <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">Count: {{ len $internationalSubsea }}</p>
   </section>
 
-  <section>
+  <section id="terrestrial-international">
     <h3 class="text-xl font-semibold flex items-center gap-2">
       {{ partial "data-icon.html" (dict "name" "location" "color" "secondary" "size" "6") }}
       Terrestrial (Outside Norway)
@@ -160,7 +160,7 @@
     <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">Count: {{ len $internationalTerrestrial }}</p>
   </section>
 
-  <section>
+  <section id="domestic-norway">
     <h3 class="text-xl font-semibold flex items-center gap-2">
       {{ partial "data-icon.html" (dict "name" "flag" "color" "primary" "size" "6") }}
       Domestic (Inside Norway)
@@ -214,7 +214,7 @@
     <p class="mt-2 text-xs text-neutral-500 dark:text-neutral-400">Count: {{ len $domesticCables }}</p>
   </section>
 
-  <section>
+  <section id="arctic-connectivity">
     <h3 class="text-xl font-semibold flex items-center gap-2">
       {{ partial "data-icon.html" (dict "name" "globe" "color" "accent" "size" "6") }}
       Arctic Connectivity

@@ -2980,3 +2980,20 @@ details[open] .details-marker {
   border-color: var(--sd-outline-variant);
   margin: 2rem 0;
 }
+
+/* Networks section-design — 4-column stats grid */
+.sd-networks .sd-events-stats {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .sd-networks .sd-events-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sd-networks .sd-events-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
