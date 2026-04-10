@@ -43,7 +43,6 @@
 {{ $blocFilters = sort $blocFilters "name" "asc" }}
 {{ $countryFilters = sort $countryFilters "name" "asc" }}
 
-
 {{/* Count laws per category */}}
 {{ $lawsPerCategory := dict }}
 {{ range site.Data.laws.laws.itemListElement }}
@@ -71,79 +70,98 @@
   {{ if .requiresBackdoor }}{{ $lawsBackdoor = add $lawsBackdoor 1 }}{{ end }}
 {{ end }}
 
-<div class="max-w-full" id="laws-app">
+{{/* Stats */}}
+{{ $total := len .Pages }}
+{{ $extraterritorial := 0 }}
+{{ $govAccess := 0 }}
+{{ range .Pages }}
+  {{ if .Params.extraterritorial }}{{ $extraterritorial = add $extraterritorial 1 }}{{ end }}
+  {{ if and .Params.governmentAccess (ne .Params.governmentAccess "none") }}{{ $govAccess = add $govAccess 1 }}{{ end }}
+{{ end }}
 
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" .Title
-      "description" .Description
-      "icon" "scale"
-  ) }}
+<article class="sd-laws section-design" id="laws-app">
 
-  {{/* Stats cards */}}
-  {{ $total := len .Pages }}
-  {{ $extraterritorial := 0 }}
-  {{ $govAccess := 0 }}
-  {{ range .Pages }}
-    {{ if .Params.extraterritorial }}{{ $extraterritorial = add $extraterritorial 1 }}{{ end }}
-    {{ if and .Params.governmentAccess (ne .Params.governmentAccess "none") }}{{ $govAccess = add $govAccess 1 }}{{ end }}
-  {{ end }}
-
-  <div class="stats stats-vertical sm:stats-horizontal shadow-lg w-full mb-8 bg-base-100">
-    <div class="stat">
-      <div class="stat-figure text-primary">
-        {{ partial "data-icon.html" (dict "name" "scale" "color" "primary" "size" "8") }}
+  {{/* ============================================================
+       HERO — Blue gradient
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Legal Frameworks</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Laws</h1>
+        <p class="sd-events-hero-description">
+          {{ .Description | default "Data sovereignty laws and regulations worldwide. Filter by category, jurisdiction, and features to find relevant legal frameworks." }}
+        </p>
       </div>
-      <div class="stat-title">Laws Documented</div>
-      <div class="stat-value text-primary">{{ $total }}</div>
-      <div class="stat-desc">Legal frameworks</div>
     </div>
-    <div class="stat">
-      <div class="stat-figure text-error">
-        {{ partial "data-icon.html" (dict "name" "globe" "color" "error" "size" "8") }}
-      </div>
-      <div class="stat-title">Extraterritorial Reach</div>
-      <div class="stat-value text-error">{{ $extraterritorial }}</div>
-      <div class="stat-desc">Cross-border scope</div>
-    </div>
-    <div class="stat">
-      <div class="stat-figure text-warning">
-        {{ partial "data-icon.html" (dict "name" "eye" "color" "warning" "size" "8") }}
-      </div>
-      <div class="stat-title">Government Access</div>
-      <div class="stat-value text-warning">{{ $govAccess }}</div>
-      <div class="stat-desc">Data access powers</div>
-    </div>
-  </div>
+  </section>
 
-  {{/* Search Box */}}
-  <div class="mb-6">
-    <label class="input input-bordered flex items-center gap-2 w-full">
-      <svg class="h-5 w-5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-      </svg>
-      <input type="text" id="laws-search" class="grow" placeholder="Search laws by name, jurisdiction, or description..." />
-    </label>
-  </div>
+  {{/* ============================================================
+       STATS — 3 cards overlapping hero
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Laws Documented</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $total }}</span>
+        <span class="sd-events-stat-desc">Legal frameworks</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Extraterritorial</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $extraterritorial }}</span>
+        <span class="sd-events-stat-desc">Cross-border scope</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Government Access</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $govAccess }}</span>
+        <span class="sd-events-stat-desc">Data access powers</span>
+      </div>
+    </div>
+  </section>
 
-  {{/* Filters */}}
-  <details class="collapse collapse-arrow bg-base-100 border border-base-300 mb-4">
-    <summary class="collapse-title text-sm font-semibold py-3 min-h-0">Filters</summary>
-    <div class="collapse-content">
-      <div class="space-y-4 pt-2">
+  {{/* ============================================================
+       SEARCH & FILTERS
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+
+    {{/* Search Box */}}
+    <div class="sd-laws-search">
+      <label class="sd-laws-search-label">
+        <svg class="sd-laws-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input type="text" id="laws-search" class="sd-laws-search-input" placeholder="Search laws by name, jurisdiction, or description..." />
+      </label>
+    </div>
+
+    {{/* Filters */}}
+    <details class="sd-laws-filters">
+      <summary class="sd-laws-filters-summary">
+        <span class="material-symbols-outlined" style="font-size: 1.125rem;">filter_list</span>
+        Filters
+      </summary>
+      <div class="sd-laws-filters-content">
         {{/* Category */}}
         <div data-filter-group="category">
-          <div class="flex flex-wrap items-center gap-2 mb-2">
-            <span class="text-xs font-medium opacity-60">Category:</span>
-            <button class="btn btn-sm btn-active" data-filter="category" data-value="all">All</button>
+          <div class="sd-laws-filter-header">
+            <span class="sd-laws-filter-label">Category:</span>
+            <button class="sd-laws-filter-btn sd-laws-filter-btn--active" data-filter="category" data-value="all">All</button>
           </div>
-          <div class="flex flex-wrap gap-1">
+          <div class="sd-laws-filter-options">
             {{- range site.Data.laws.law_types.itemListElement -}}
             {{ $count := index $lawsPerCategory .identifier | default 0 }}
             {{ if gt $count 0 }}
-            <button class="btn btn-sm btn-ghost" data-filter="category" data-value="{{ .identifier }}">{{ .emoji }} {{ .name }} <span class="badge badge-sm">{{ $count }}</span></button>
+            <button class="sd-laws-filter-btn" data-filter="category" data-value="{{ .identifier }}">{{ .emoji }} {{ .name }} <span class="sd-laws-filter-count">{{ $count }}</span></button>
             {{ else }}
-            <button class="btn btn-sm btn-ghost btn-disabled opacity-40" disabled>{{ .emoji }} {{ .name }} <span class="badge badge-sm">0</span></button>
+            <button class="sd-laws-filter-btn sd-laws-filter-btn--disabled" disabled>{{ .emoji }} {{ .name }} <span class="sd-laws-filter-count">0</span></button>
             {{ end }}
             {{- end -}}
           </div>
@@ -151,35 +169,35 @@
 
         {{/* Jurisdiction */}}
         <div data-filter-group="jurisdiction">
-          <div class="flex flex-wrap items-center gap-2 mb-2">
-            <span class="text-xs font-medium opacity-60">Jurisdiction:</span>
-            <button class="btn btn-sm btn-active" data-filter="jurisdiction" data-value="all">All</button>
+          <div class="sd-laws-filter-header">
+            <span class="sd-laws-filter-label">Jurisdiction:</span>
+            <button class="sd-laws-filter-btn sd-laws-filter-btn--active" data-filter="jurisdiction" data-value="all">All</button>
           </div>
           {{- if gt (len $blocFilters) 0 -}}
-          <div class="mb-2">
-            <div class="text-xs opacity-50 mb-1">Blocs</div>
-            <div class="flex flex-wrap gap-1">
+          <div class="sd-laws-filter-subgroup">
+            <div class="sd-laws-filter-sublabel">Blocs</div>
+            <div class="sd-laws-filter-options">
               {{- range $blocFilters -}}
               {{ $count := index $lawsPerJurisdiction .id | default 0 }}
               {{ if gt $count 0 }}
-              <button class="btn btn-sm btn-ghost" data-filter="jurisdiction" data-value="{{ .id }}">{{ .flag }} {{ .name }} <span class="badge badge-sm">{{ $count }}</span></button>
+              <button class="sd-laws-filter-btn" data-filter="jurisdiction" data-value="{{ .id }}">{{ .flag }} {{ .name }} <span class="sd-laws-filter-count">{{ $count }}</span></button>
               {{ else }}
-              <button class="btn btn-sm btn-ghost btn-disabled opacity-40" disabled>{{ .flag }} {{ .name }} <span class="badge badge-sm">0</span></button>
+              <button class="sd-laws-filter-btn sd-laws-filter-btn--disabled" disabled>{{ .flag }} {{ .name }} <span class="sd-laws-filter-count">0</span></button>
               {{ end }}
               {{- end -}}
             </div>
           </div>
           {{- end -}}
           {{- if gt (len $countryFilters) 0 -}}
-          <div>
-            <div class="text-xs opacity-50 mb-1">Countries</div>
-            <div class="flex flex-wrap gap-1">
+          <div class="sd-laws-filter-subgroup">
+            <div class="sd-laws-filter-sublabel">Countries</div>
+            <div class="sd-laws-filter-options">
               {{- range $countryFilters -}}
               {{ $count := index $lawsPerJurisdiction .id | default 0 }}
               {{ if gt $count 0 }}
-              <button class="btn btn-sm btn-ghost" data-filter="jurisdiction" data-value="{{ .id }}">{{ .flag }} {{ .name }} <span class="badge badge-sm">{{ $count }}</span></button>
+              <button class="sd-laws-filter-btn" data-filter="jurisdiction" data-value="{{ .id }}">{{ .flag }} {{ .name }} <span class="sd-laws-filter-count">{{ $count }}</span></button>
               {{ else }}
-              <button class="btn btn-sm btn-ghost btn-disabled opacity-40" disabled>{{ .flag }} {{ .name }} <span class="badge badge-sm">0</span></button>
+              <button class="sd-laws-filter-btn sd-laws-filter-btn--disabled" disabled>{{ .flag }} {{ .name }} <span class="sd-laws-filter-count">0</span></button>
               {{ end }}
               {{- end -}}
             </div>
@@ -189,58 +207,56 @@
 
         {{/* Features */}}
         <div data-filter-group="features">
-          <div class="text-xs font-medium opacity-60 mb-2">Features</div>
-          <div class="flex flex-wrap gap-1">
+          <div class="sd-laws-filter-label" style="margin-bottom: 0.5rem;">Features</div>
+          <div class="sd-laws-filter-options">
             {{ if gt $lawsExtraterritorial 0 }}
-            <button class="btn btn-sm btn-ghost gap-1" data-filter="extraterritorial" data-value="true">🌍 Extraterritorial <span class="badge badge-sm">{{ $lawsExtraterritorial }}</span></button>
+            <button class="sd-laws-filter-btn" data-filter="extraterritorial" data-value="true">🌍 Extraterritorial <span class="sd-laws-filter-count">{{ $lawsExtraterritorial }}</span></button>
             {{ else }}
-            <button class="btn btn-sm btn-ghost btn-disabled opacity-40 gap-1" disabled>🌍 Extraterritorial <span class="badge badge-sm">0</span></button>
+            <button class="sd-laws-filter-btn sd-laws-filter-btn--disabled" disabled>🌍 Extraterritorial <span class="sd-laws-filter-count">0</span></button>
             {{ end }}
             {{ if gt $lawsLocalization 0 }}
-            <button class="btn btn-sm btn-ghost gap-1" data-filter="localization" data-value="true">📍 Localization <span class="badge badge-sm">{{ $lawsLocalization }}</span></button>
+            <button class="sd-laws-filter-btn" data-filter="localization" data-value="true">📍 Localization <span class="sd-laws-filter-count">{{ $lawsLocalization }}</span></button>
             {{ else }}
-            <button class="btn btn-sm btn-ghost btn-disabled opacity-40 gap-1" disabled>📍 Localization <span class="badge badge-sm">0</span></button>
+            <button class="sd-laws-filter-btn sd-laws-filter-btn--disabled" disabled>📍 Localization <span class="sd-laws-filter-count">0</span></button>
             {{ end }}
             {{ if gt $lawsBackdoor 0 }}
-            <button class="btn btn-sm btn-ghost gap-1" data-filter="backdoor" data-value="true">🔑 Backdoor <span class="badge badge-sm">{{ $lawsBackdoor }}</span></button>
+            <button class="sd-laws-filter-btn" data-filter="backdoor" data-value="true">🔑 Backdoor <span class="sd-laws-filter-count">{{ $lawsBackdoor }}</span></button>
             {{ else }}
-            <button class="btn btn-sm btn-ghost btn-disabled opacity-40 gap-1" disabled>🔑 Backdoor <span class="badge badge-sm">0</span></button>
+            <button class="sd-laws-filter-btn sd-laws-filter-btn--disabled" disabled>🔑 Backdoor <span class="sd-laws-filter-count">0</span></button>
             {{ end }}
           </div>
         </div>
       </div>
+    </details>
+
+    {{/* Active filters display */}}
+    <div id="active-filters" class="sd-laws-active-filters" style="display: none;">
+      <span class="sd-laws-active-filters-label">Active filters:</span>
+      <div id="filter-tags" class="sd-laws-filter-tags"></div>
+      <button id="clear-filters" class="sd-laws-filter-btn sd-laws-filter-btn--clear">Clear all</button>
     </div>
-  </details>
 
-
-  {{/* Active filters display */}}
-  <div id="active-filters" class="hidden alert mb-4">
-    <span class="text-sm opacity-70">Active filters:</span>
-    <div id="filter-tags" class="flex flex-wrap gap-1"></div>
-    <button id="clear-filters" class="btn btn-sm btn-ghost">Clear all</button>
-  </div>
-
-  {{/* Results count */}}
-  <div class="flex justify-between items-center mb-4">
-    <div class="text-sm opacity-70">
+    {{/* Results count */}}
+    <div class="sd-laws-results-count">
       Showing <span id="showing-count">{{ $total }}</span> of <span id="total-count">{{ $total }}</span> laws
     </div>
-  </div>
 
-  {{/* Laws Grid */}}
-  <div id="laws-grid" class="grid sm:grid-cols-2" style="gap: 1.5rem;">
-    {{ range .Pages }}
-      {{ partial "law-card.html" (dict "law" . "regions" $regions "blocs" $blocs "lawTypes" $lawTypes "includeDataAttrs" true) }}
-    {{ end }}
-  </div>
+    {{/* Laws Grid */}}
+    <div id="laws-grid" class="sd-blog-grid" style="grid-template-columns: repeat(auto-fill, minmax(min(100%, 28rem), 1fr));">
+      {{ range .Pages }}
+        {{ partial "law-card.html" (dict "law" . "regions" $regions "blocs" $blocs "lawTypes" $lawTypes "includeDataAttrs" true) }}
+      {{ end }}
+    </div>
 
-  {{/* No results */}}
-  <div id="no-results" class="hidden alert alert-warning my-4">
-    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-    <span>No laws match your filters.</span>
-  </div>
+    {{/* No results */}}
+    <div id="no-results" class="sd-laws-no-results" style="display: none;">
+      <span class="material-symbols-outlined" style="font-size: 2rem; opacity: 0.5;">search_off</span>
+      <span>No laws match your filters.</span>
+    </div>
 
-</div>
+  </section>
+
+</article>
 
 <script>
 (function() {
@@ -258,13 +274,11 @@
 
   function setActiveButton(groupEl, value) {
     groupEl.querySelectorAll('button').forEach(b => {
-      b.classList.remove('btn-active');
-      b.classList.add('btn-ghost');
+      b.classList.remove('sd-laws-filter-btn--active');
     });
     const target = groupEl.querySelector(`button[data-value="${value}"]`) || groupEl.querySelector('button[data-value="all"]');
     if (target) {
-      target.classList.add('btn-active');
-      target.classList.remove('btn-ghost');
+      target.classList.add('sd-laws-filter-btn--active');
     }
   }
 
@@ -292,14 +306,12 @@
       }, 300);
     });
 
-    // Category and Jurisdiction filters (toggle on/off)
     document.querySelectorAll('[data-filter-group="category"] button, [data-filter-group="jurisdiction"] button').forEach(btn => {
       btn.addEventListener('click', () => {
         const groupEl = btn.closest('[data-filter-group]');
         const filterGroup = groupEl.dataset.filterGroup;
         const value = btn.dataset.value;
 
-        // If clicking the already active filter (not "all"), toggle it off
         if (value !== 'all' && filters[filterGroup] === value) {
           filters[filterGroup] = 'all';
         } else {
@@ -311,17 +323,14 @@
       });
     });
 
-    // Feature filters (toggle on/off)
     document.querySelectorAll('[data-filter-group="features"] button').forEach(btn => {
       btn.addEventListener('click', () => {
         const filterType = btn.dataset.filter;
-        if (btn.classList.contains('btn-active')) {
-          btn.classList.remove('btn-active');
-          btn.classList.add('btn-ghost');
+        if (btn.classList.contains('sd-laws-filter-btn--active')) {
+          btn.classList.remove('sd-laws-filter-btn--active');
           filters[filterType] = 'all';
         } else {
-          btn.classList.add('btn-active');
-          btn.classList.remove('btn-ghost');
+          btn.classList.add('sd-laws-filter-btn--active');
           filters[filterType] = btn.dataset.value;
         }
         applyFilters();
@@ -344,15 +353,12 @@
     if (categoryGroup) setActiveButton(categoryGroup, filters.category);
     if (jurisdictionGroup) setActiveButton(jurisdictionGroup, filters.jurisdiction);
 
-    // Feature toggles
     document.querySelectorAll('[data-filter-group="features"] button').forEach(btn => {
       const filterType = btn.dataset.filter;
       if (filters[filterType] === btn.dataset.value) {
-        btn.classList.add('btn-active');
-        btn.classList.remove('btn-ghost');
+        btn.classList.add('sd-laws-filter-btn--active');
       } else {
-        btn.classList.remove('btn-active');
-        btn.classList.add('btn-ghost');
+        btn.classList.remove('sd-laws-filter-btn--active');
       }
     });
   }
@@ -390,7 +396,7 @@
 
     totalCount.textContent = allCards.length;
     showingCount.textContent = visibleCount;
-    noResults.classList.toggle('hidden', visibleCount > 0);
+    noResults.style.display = visibleCount > 0 ? 'none' : 'flex';
     updateActiveFiltersDisplay();
   }
 
@@ -398,16 +404,16 @@
     const hasActiveFilters = filters.category !== 'all' || filters.jurisdiction !== 'all' ||
                               filters.extraterritorial !== 'all' || filters.localization !== 'all' ||
                               filters.backdoor !== 'all' || filters.search;
-    activeFiltersDiv.classList.toggle('hidden', !hasActiveFilters);
+    activeFiltersDiv.style.display = hasActiveFilters ? 'flex' : 'none';
 
     if (hasActiveFilters) {
       let tags = '';
-      if (filters.search) tags += `<span class="badge badge-primary badge-sm">Search: "${filters.search}"</span>`;
-      if (filters.category !== 'all') tags += `<span class="badge badge-primary badge-sm">${filters.category}</span>`;
-      if (filters.jurisdiction !== 'all') tags += `<span class="badge badge-primary badge-sm">${filters.jurisdiction}</span>`;
-      if (filters.extraterritorial === 'true') tags += `<span class="badge badge-primary badge-sm">🌍 Extraterritorial</span>`;
-      if (filters.localization === 'true') tags += `<span class="badge badge-primary badge-sm">📍 Localization</span>`;
-      if (filters.backdoor === 'true') tags += `<span class="badge badge-primary badge-sm">🔑 Backdoor</span>`;
+      if (filters.search) tags += `<span class="sd-laws-filter-tag">Search: "${filters.search}"</span>`;
+      if (filters.category !== 'all') tags += `<span class="sd-laws-filter-tag">${filters.category}</span>`;
+      if (filters.jurisdiction !== 'all') tags += `<span class="sd-laws-filter-tag">${filters.jurisdiction}</span>`;
+      if (filters.extraterritorial === 'true') tags += `<span class="sd-laws-filter-tag">🌍 Extraterritorial</span>`;
+      if (filters.localization === 'true') tags += `<span class="sd-laws-filter-tag">📍 Localization</span>`;
+      if (filters.backdoor === 'true') tags += `<span class="sd-laws-filter-tag">🔑 Backdoor</span>`;
       filterTags.innerHTML = tags;
     }
   }
@@ -435,4 +441,5 @@
     (dict "id" "laws-grid" "title" "Laws" "icon" "⚖️")
 }}
 {{ partial "floating-toc.html" (dict "sections" $tocSections) }}
+{{ partial "sovereignsky-footer.html" . }}
 {{ end }}
