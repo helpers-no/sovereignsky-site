@@ -3109,6 +3109,35 @@ details[open] .details-marker {
   padding: 0;
 }
 
+/* Bloc page — 4-column stats grid */
+.sd-bloc-stats {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .sd-bloc-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sd-bloc-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Bloc info note */
+.sd-bloc-note {
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--sd-outline-variant);
+  background-color: var(--sd-surface-container-low);
+  color: var(--sd-on-surface-variant);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
 /* Network data tables */
 .sd-network-tables {
   display: flex;
