@@ -28,6 +28,15 @@
   {{ $blocFlag := $bloc.flag | default "" }}
   {{ $riskLevel := $bloc.riskLevel | default "unknown" }}
 
+  {{/* Risk emoji */}}
+  {{ $riskEmoji := "❓" }}
+  {{ if eq $riskLevel "low" }}{{ $riskEmoji = "✅" }}
+  {{ else if eq $riskLevel "moderate" }}{{ $riskEmoji = "⚠️" }}
+  {{ else if eq $riskLevel "elevated" }}{{ $riskEmoji = "⚠️" }}
+  {{ else if eq $riskLevel "high" }}{{ $riskEmoji = "🚨" }}
+  {{ else if eq $riskLevel "sanctioned" }}{{ $riskEmoji = "🚫" }}
+  {{ end }}
+
   {{/* Build lookup for blocs by id */}}
   {{ $blocsById := dict }}
   {{ range $blocsData }}
@@ -50,7 +59,6 @@
           {{ $allMembers = $allMembers | append . }}
         {{ end }}
       {{ end }}
-      {{/* Go one more level for grandparent inheritance */}}
       {{ range ($parentBloc.inheritsFrom | default (slice)) }}
         {{ $grandparent := index $blocsById . }}
         {{ if $grandparent }}
@@ -113,144 +121,136 @@
   {{/* Build comma-separated list of all member country IDs for map */}}
   {{ $allMemberIds := delimit $allMembers "," }}
 
-  <article class="max-w-full">
-    {{/* Detail Header with breadcrumbs */}}
-    {{ partial "common-detail-header.html" (dict
-        "title" $blocName
-        "description" ($bloc.summary | default $bloc.description | default "")
-        "flag" $blocFlag
-        "breadcrumbs" (slice
-            (dict "title" "Countries" "url" "/countries/")
-        )
-    ) }}
+<article class="sd-countries section-design">
 
-    {{/* Stats Row */}}
-    <div class="stats stats-vertical sm:stats-horizontal shadow-lg w-full mb-8 bg-base-100">
-      {{/* Risk Level */}}
-      <div class="stat">
-        <div class="stat-figure">
-          {{ if eq $riskLevel "low" }}
-          <span class="text-success text-3xl">✅</span>
-          {{ else if eq $riskLevel "moderate" }}
-          <span class="text-warning text-3xl">⚠️</span>
-          {{ else if eq $riskLevel "elevated" }}
-          <span class="text-warning text-3xl">⚠️</span>
-          {{ else if eq $riskLevel "high" }}
-          <span class="text-error text-3xl">🚨</span>
-          {{ else if eq $riskLevel "sanctioned" }}
-          <span class="text-error text-3xl">🚫</span>
-          {{ else }}
-          <span class="text-neutral text-3xl">❓</span>
-          {{ end }}
-        </div>
-        <div class="stat-title">Risk Level</div>
-        <div class="stat-value text-xl {{ if eq $riskLevel "low" }}text-success{{ else if eq $riskLevel "moderate" }}text-warning{{ else if eq $riskLevel "elevated" }}text-warning{{ else if eq $riskLevel "high" }}text-error{{ else if eq $riskLevel "sanctioned" }}text-error{{ end }}">
-          {{ $riskLevel | title }}
-        </div>
-        <div class="stat-desc">Data sovereignty</div>
-      </div>
+  {{/* ============================================================
+       HERO — Compact detail hero with breadcrumbs
+       ============================================================ */}}
+  <section class="sd-events-hero" style="padding-bottom: 3rem;">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <nav style="margin-bottom: 1rem;">
+          <span style="font-size: 0.875rem; opacity: 0.8;">
+            <a href="/" style="color: inherit; text-decoration: none; opacity: 0.7;">Home</a>
+            <span style="margin: 0 0.25rem;">›</span>
+            <a href="/countries/" style="color: inherit; text-decoration: none; opacity: 0.7;">Countries</a>
+            <span style="margin: 0 0.25rem;">›</span>
+            <span>{{ $blocName }}</span>
+          </span>
+        </nav>
 
-      {{/* Member Countries */}}
-      <div class="stat">
-        <div class="stat-figure text-accent">
-          {{ partial "data-icon.html" (dict "name" "globe" "color" "accent" "size" "8") }}
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Regional Bloc</span>
         </div>
-        <div class="stat-title">Member Countries</div>
-        <div class="stat-value text-accent">{{ $memberCount }}</div>
-        <div class="stat-desc">{{ if gt (len $directMembers) 0 }}{{ len $directMembers }} direct{{ if gt (len ($bloc.inheritsFrom | default (slice))) 0 }}, {{ sub $memberCount (len $directMembers) }} inherited{{ end }}{{ else }}All inherited{{ end }}</div>
-      </div>
 
-      {{/* Laws */}}
-      <div class="stat">
-        <div class="stat-figure text-primary">
-          {{ partial "data-icon.html" (dict "name" "scale" "color" "primary" "size" "8") }}
-        </div>
-        <div class="stat-title">Applicable Laws</div>
-        <div class="stat-value text-primary">{{ $lawCount }}</div>
-        <div class="stat-desc">Privacy, access & security</div>
-      </div>
+        <h1 class="sd-headline sd-events-hero-title" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">
+          {{ if $blocFlag }}<span style="margin-right: 0.5rem;">{{ $blocFlag }}</span>{{ end }}{{ $blocName }}
+        </h1>
 
-      {{/* Datacenters */}}
-      <div class="stat">
-        <div class="stat-figure text-secondary">
-          {{ partial "data-icon.html" (dict "name" "server" "color" "secondary" "size" "8") }}
-        </div>
-        <div class="stat-title">Datacenter Regions</div>
-        <div class="stat-value text-secondary">{{ $datacenterCount }}</div>
-        <div class="stat-desc">Across member countries</div>
+        {{ with ($bloc.summary | default $bloc.description | default "") }}
+        <p class="sd-events-hero-description">{{ . }}</p>
+        {{ end }}
       </div>
     </div>
+  </section>
 
-    {{/* Summary */}}
-    {{ with .Params.summary }}
-    <div class="prose dark:prose-invert max-w-none mb-8">
-      <p class="lead text-lg text-neutral-600 dark:text-neutral-400">{{ . }}</p>
-    </div>
-    {{ end }}
-
-    {{/* Notes */}}
-    {{ with $bloc.notes }}
-    <div class="alert alert-info mb-8">
-      <svg class="w-6 h-6 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-      <div>
-        <h3 class="font-bold">Note</h3>
-        <p class="text-sm">{{ . }}</p>
+  {{/* ============================================================
+       STATS — 4 cards overlapping hero
+       ============================================================ */}}
+  <section class="sd-events-stats sd-bloc-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Risk Level</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value-text">{{ $riskEmoji }} {{ $riskLevel | title }}</span>
+        <span class="sd-events-stat-desc">Data sovereignty</span>
       </div>
     </div>
-    {{ end }}
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Member Countries</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $memberCount }}</span>
+        <span class="sd-events-stat-desc">{{ if gt (len $directMembers) 0 }}{{ len $directMembers }} direct{{ if gt (len ($bloc.inheritsFrom | default (slice))) 0 }}, {{ sub $memberCount (len $directMembers) }} inherited{{ end }}{{ else }}All inherited{{ end }}</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Applicable Laws</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $lawCount }}</span>
+        <span class="sd-events-stat-desc">Privacy, access & security</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Datacenter Regions</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $datacenterCount }}</span>
+        <span class="sd-events-stat-desc">Across member countries</span>
+      </div>
+    </div>
+  </section>
 
-    {{/* Inherits From */}}
-    {{ if gt (len ($bloc.inheritsFrom | default (slice))) 0 }}
-    <div class="mb-8">
-      <h2 class="text-xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">Inherits From</h2>
-      <div class="flex flex-wrap gap-2">
+  {{/* ============================================================
+       MAIN CONTENT
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+    <div class="sd-dc-content">
+
+      {{/* Summary */}}
+      {{ with .Params.summary }}
+      <p style="font-size: 1.125rem; color: var(--sd-on-surface-variant); line-height: 1.7; margin-bottom: 1.5rem;">{{ . }}</p>
+      {{ end }}
+
+      {{/* Notes */}}
+      {{ with $bloc.notes }}
+      <div class="sd-bloc-note">
+        <strong>Note:</strong> {{ . }}
+      </div>
+      {{ end }}
+
+      {{/* Inherits From */}}
+      {{ if gt (len ($bloc.inheritsFrom | default (slice))) 0 }}
+      <h2 id="inherits">Inherits From</h2>
+      <div class="sd-filter-pills">
         {{ range ($bloc.inheritsFrom | default (slice)) }}
           {{ $parent := index $blocsById . }}
           {{ if $parent }}
-          <a href="/countries/{{ $parent.slug }}/" class="btn btn-outline btn-sm gap-2">
-            <span>{{ $parent.flag }}</span>
-            <span>{{ $parent.name }}</span>
+          <a href="/countries/{{ $parent.slug }}/" class="sd-filter-pill" style="text-decoration: none;">
+            {{ with $parent.flag }}{{ . }} {{ end }}{{ $parent.name }}
           </a>
           {{ end }}
         {{ end }}
       </div>
-    </div>
-    {{ end }}
+      {{ end }}
 
-    {{/* Map of Member Countries with Datacenters */}}
-    {{ if gt (len $directMembers) 0 }}
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-2" id="map">Datacenters in {{ $blocName }}</h2>
-      <p class="text-neutral-600 dark:text-neutral-400 mb-4">
+      {{/* Map of Member Countries with Datacenters */}}
+      {{ if gt (len $directMembers) 0 }}
+      <h2 id="map">Datacenters in {{ $blocName }}</h2>
+      <p style="color: var(--sd-on-surface-variant); margin-bottom: 1rem;">
         Datacenter locations across {{ $memberCount }} member countries.
       </p>
-      {{ $mapShortcode := printf "{{< datacenter-map countries=\"%s\" showFilters=\"false\" >}}" $allMemberIds }}
-      {{ $mapShortcode | $.RenderString }}
-    </div>
-    {{ end }}
+      <div class="not-prose">
+        {{ $mapShortcode := printf "{{< datacenter-map countries=\"%s\" showFilters=\"false\" >}}" $allMemberIds }}
+        {{ $mapShortcode | $.RenderString }}
+      </div>
+      {{ end }}
 
-    {{/* Applicable Laws - use shared partial */}}
-    {{ if gt $lawCount 0 }}
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-2" id="laws">Applicable Laws</h2>
-      <p class="text-neutral-600 dark:text-neutral-400 mb-6">
+      {{/* Applicable Laws */}}
+      {{ if gt $lawCount 0 }}
+      <h2 id="laws">Applicable Laws</h2>
+      <p style="color: var(--sd-on-surface-variant); margin-bottom: 1.5rem;">
         {{ $lawCount }} laws and regulations apply to {{ $blocName }}.
       </p>
       {{ partial "jurisdiction-laws-inline.html" (dict "jurisdictionId" $blocId) }}
-    </div>
-    {{ end }}
+      {{ end }}
 
-    {{/* Member Countries Grid */}}
-    {{ if gt $memberCount 0 }}
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-2" id="members">Member Countries</h2>
-      <p class="text-neutral-600 dark:text-neutral-400 mb-6">
+      {{/* Member Countries Grid */}}
+      {{ if gt $memberCount 0 }}
+      <h2 id="members">Member Countries</h2>
+      <p style="color: var(--sd-on-surface-variant); margin-bottom: 1.5rem;">
         {{ $memberCount }} countries are part of {{ $blocName }}.
       </p>
 
-      {{/* Build sorted list of member country data */}}
       {{ $countries := site.Data.countries.countries.itemListElement }}
       {{ $memberCountryData := slice }}
       {{ range $allMembers }}
@@ -258,8 +258,6 @@
         {{ $countryMatch := first 1 (where $countries "identifier" $memberId) }}
         {{ with index $countryMatch 0 }}
           {{ $country := . }}
-
-          {{/* Count datacenters for this country */}}
           {{ $countryDcCount := 0 }}
           {{ range (site.Data.datacenters.datacenters | default (slice)) }}
             {{ range (.regions | default (slice)) }}
@@ -268,15 +266,12 @@
               {{ end }}
             {{ end }}
           {{ end }}
-
-          {{/* Count local laws for this country */}}
           {{ $countryLawCount := 0 }}
           {{ range (site.Data.laws.laws.itemListElement | default (slice)) }}
             {{ if in .legislationJurisdiction $memberId }}
               {{ $countryLawCount = add $countryLawCount 1 }}
             {{ end }}
           {{ end }}
-
           {{ $memberCountryData = $memberCountryData | append (dict
             "identifier" $memberId
             "name" $country.name
@@ -288,42 +283,38 @@
         {{ end }}
       {{ end }}
 
-      {{/* Sort by country name */}}
       {{ $memberCountryData = sort $memberCountryData "name" "asc" }}
 
-      <div class="not-prose grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+      <div class="sd-country-grid">
         {{ range $memberCountryData }}
-        <a href="/countries/{{ .slug }}/" class="block p-2.5 rounded-lg border border-base-200 hover:border-primary/50 hover:bg-base-100 transition-all no-underline">
-          <div class="flex items-center gap-2">
-            <span class="text-lg flex-shrink-0">{{ .flag }}</span>
-            <span class="text-sm font-medium text-base-content truncate">{{ .name }}</span>
+        <a href="/countries/{{ .slug }}/" class="sd-country-card">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-size: 1.25rem; flex-shrink: 0;">{{ .flag }}</span>
+            <span class="sd-country-card-name">{{ .name }}</span>
           </div>
-          <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1.5 space-y-0.5">
-            <div>Datacenters: {{ .dcCount }}</div>
-            <div>Local laws: {{ .lawCount }}</div>
+          <div class="sd-country-card-meta">
+            <span>{{ .dcCount }} datacenters</span>
+            <span>{{ .lawCount }} laws</span>
           </div>
         </a>
         {{ end }}
       </div>
-    </div>
-    {{ end }}
+      {{ end }}
 
-    {{/* Datacenter Providers in Bloc */}}
-    {{ if gt $datacenterCount 0 }}
-    <div class="mb-8">
-      <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-2" id="providers">Datacenter Providers in {{ $blocName }}</h2>
-      <p class="text-neutral-600 dark:text-neutral-400 mb-4">
+      {{/* Datacenter Providers in Bloc */}}
+      {{ if gt $datacenterCount 0 }}
+      <h2 id="providers">Datacenter Providers in {{ $blocName }}</h2>
+      <p style="color: var(--sd-on-surface-variant); margin-bottom: 1rem;">
         Providers with datacenter presence across member countries.
       </p>
 
-      {{/* Build provider list with counts in bloc */}}
-      {{ $providersInBloc := slice }}
       {{ $countries := site.Data.countries.countries.itemListElement }}
       {{ $regionsById := dict }}
       {{ range $countries }}
         {{ $regionsById = merge $regionsById (dict .identifier .) }}
       {{ end }}
 
+      {{ $providersInBloc := slice }}
       {{ range (site.Data.datacenters.datacenters | default (slice)) }}
         {{ $provider := . }}
         {{ $countInBloc := 0 }}
@@ -354,11 +345,9 @@
         {{ end }}
       {{ end }}
 
-      {{/* Sort by count desc, then name */}}
       {{ $providersInBloc = sort $providersInBloc "name" "asc" }}
       {{ $providersInBloc = sort $providersInBloc "count" "desc" }}
 
-      {{/* Group by provider type */}}
       {{ $groups := slice
         (dict "key" "hyperscaler" "title" "Hyperscalers")
         (dict "key" "regional_cloud" "title" "Regional Cloud Providers")
@@ -370,67 +359,69 @@
         {{ $title := .title }}
         {{ $items := where $providersInBloc "providerType" $key }}
         {{ if gt (len $items) 0 }}
-        <h3 class="mt-6 mb-4 text-lg font-semibold text-neutral-700 dark:text-neutral-200">{{ $title }}</h3>
-        <div class="not-prose grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
+        <h3>{{ $title }}</h3>
+        <div class="sd-country-grid">
           {{ range $items }}
           {{ $vendor := index $regionsById .vendorCountryId }}
           {{ $flag := "" }}
-          {{ $vendorName := .vendorCountryId }}
           {{ $risk := "unknown" }}
           {{ if $vendor }}
             {{ $flag = $vendor.flag }}
-            {{ $vendorName = $vendor.name }}
             {{ $risk = $vendor.riskLevel }}
           {{ end }}
 
-          {{ $dot := "bg-neutral-400" }}
-          {{ if eq $risk "low" }}{{ $dot = "bg-green-500" }}{{ end }}
-          {{ if eq $risk "moderate" }}{{ $dot = "bg-yellow-500" }}{{ end }}
-          {{ if eq $risk "elevated" }}{{ $dot = "bg-orange-500" }}{{ end }}
-          {{ if eq $risk "high" }}{{ $dot = "bg-red-500" }}{{ end }}
-          {{ if eq $risk "sanctioned" }}{{ $dot = "bg-red-700" }}{{ end }}
+          {{ $dotColor := "var(--sd-outline)" }}
+          {{ if eq $risk "low" }}{{ $dotColor = "#16a34a" }}{{ end }}
+          {{ if eq $risk "moderate" }}{{ $dotColor = "#d97706" }}{{ end }}
+          {{ if eq $risk "elevated" }}{{ $dotColor = "#ea580c" }}{{ end }}
+          {{ if eq $risk "high" }}{{ $dotColor = "#dc2626" }}{{ end }}
+          {{ if eq $risk "sanctioned" }}{{ $dotColor = "#991b1b" }}{{ end }}
 
-          <a href="/datacenters/{{ .identifier }}/" class="block p-2.5 rounded-lg border border-base-200 hover:border-primary/50 hover:bg-base-100 transition-all no-underline">
-            <div class="flex items-center gap-2">
-              <span class="inline-block w-2 h-2 rounded-full {{ $dot }} flex-shrink-0"></span>
-              <span class="text-sm font-medium text-base-content truncate">{{ .name }}</span>
-              {{ if $flag }}<span class="text-sm flex-shrink-0">{{ $flag }}</span>{{ end }}
+          <a href="/datacenters/{{ .identifier }}/" class="sd-country-card">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <span style="width: 0.5rem; height: 0.5rem; border-radius: 50%; background: {{ $dotColor }}; flex-shrink: 0;"></span>
+              <span class="sd-country-card-name">{{ .name }}</span>
+              {{ if $flag }}<span style="flex-shrink: 0;">{{ $flag }}</span>{{ end }}
             </div>
-            <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-1.5 space-y-0.5">
-              <div>Datacenters: {{ .count }}</div>
-              <div>Countries: {{ .countryCount }}</div>
-              <div>Cities: {{ .cityCount }}</div>
+            <div class="sd-country-card-meta">
+              <span>{{ .count }} DCs</span>
+              <span>{{ .countryCount }} countries</span>
+              <span>{{ .cityCount }} cities</span>
             </div>
           </a>
           {{ end }}
         </div>
         {{ end }}
       {{ end }}
-    </div>
-    {{ end }}
+      {{ end }}
 
-    {{/* Footer navigation */}}
-    <div class="divider"></div>
-    <div class="flex flex-wrap gap-4">
-      <a href="/countries/" class="btn btn-outline btn-sm">← All Countries</a>
-      <a href="/datacenters/" class="btn btn-outline btn-sm">Browse Datacenters</a>
+      {{/* Footer navigation */}}
+      <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <a href="/countries/" style="font-size: 0.875rem; color: var(--sd-primary); text-decoration: none;">← Back to all countries</a>
+      </div>
+
     </div>
-  </article>
+  </section>
+
+</article>
 
   {{/* Floating TOC for mobile */}}
   {{ $tocSections := slice }}
+  {{ if gt (len ($bloc.inheritsFrom | default (slice))) 0 }}
+    {{ $tocSections = $tocSections | append (dict "id" "inherits" "title" "Inherits" "icon" "🔗") }}
+  {{ end }}
   {{ if gt (len $directMembers) 0 }}
     {{ $tocSections = $tocSections | append (dict "id" "map" "title" "Map" "icon" "🗺️") }}
   {{ end }}
   {{ if gt $lawCount 0 }}
-    {{ $tocSections = $tocSections | append (dict "id" "laws" "title" "Applicable Laws" "icon" "⚖️") }}
+    {{ $tocSections = $tocSections | append (dict "id" "laws" "title" "Laws" "icon" "⚖️") }}
   {{ end }}
   {{ if gt $memberCount 0 }}
-    {{ $tocSections = $tocSections | append (dict "id" "members" "title" "Member Countries" "icon" "🌍") }}
+    {{ $tocSections = $tocSections | append (dict "id" "members" "title" "Members" "icon" "🌍") }}
   {{ end }}
   {{ if gt $datacenterCount 0 }}
     {{ $tocSections = $tocSections | append (dict "id" "providers" "title" "Providers" "icon" "🖥️") }}
   {{ end }}
-  {{ $tocSections = $tocSections | append (dict "id" "sidebar" "title" "Details" "icon" "📋") }}
   {{ partial "floating-toc.html" (dict "sections" $tocSections) }}
+  {{ partial "sovereignsky-footer.html" . }}
 {{ end }}

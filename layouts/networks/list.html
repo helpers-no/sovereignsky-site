@@ -1,62 +1,90 @@
 {{ define "main" }}
-<article class="max-w-full">
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" .Title
-      "description" .Description
-      "icon" "globe"
-  ) }}
+{{/* Compute stats from network data */}}
+{{ $networks := index site.Data "networks" "networks" }}
+{{ $total := len $networks }}
+{{ $subsea := 0 }}
+{{ $terrestrial := 0 }}
+{{ $active := 0 }}
+{{ range $networks }}
+  {{ if eq .medium "subsea" }}{{ $subsea = add $subsea 1 }}{{ end }}
+  {{ if eq .medium "terrestrial" }}{{ $terrestrial = add $terrestrial 1 }}{{ end }}
+  {{ if eq .status "active" }}{{ $active = add $active 1 }}{{ end }}
+{{ end }}
 
-  {{/* Section Stats */}}
-  {{ $networks := index site.Data "networks" "networks" }}
-  {{ $total := len $networks }}
-  {{ $subsea := 0 }}
-  {{ $terrestrial := 0 }}
-  {{ $active := 0 }}
-  {{ range $networks }}
-    {{ if eq .medium "subsea" }}{{ $subsea = add $subsea 1 }}{{ end }}
-    {{ if eq .medium "terrestrial" }}{{ $terrestrial = add $terrestrial 1 }}{{ end }}
-    {{ if eq .status "active" }}{{ $active = add $active 1 }}{{ end }}
-  {{ end }}
+<article class="sd-networks section-design">
 
-  <div class="stats stats-vertical lg:stats-horizontal shadow-lg w-full bg-base-100 mb-8">
-    <div class="stat">
-      <div class="stat-figure text-primary">
-        {{ partial "data-icon.html" (dict "name" "globe" "color" "primary" "size" "8") }}
+  {{/* ============================================================
+       HERO — Blue gradient
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Infrastructure</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Networks</h1>
+        <p class="sd-events-hero-description">
+          {{ .Description | default "Submarine cables, terrestrial fibre, and network infrastructure connecting Norway to the world." }}
+        </p>
       </div>
-      <div class="stat-title">Total Connections</div>
-      <div class="stat-value text-primary">{{ $total }}</div>
-      <div class="stat-desc">Mapped networks</div>
     </div>
-    <div class="stat">
-      <div class="stat-figure text-info">
-        {{ partial "data-icon.html" (dict "name" "bolt" "color" "info" "size" "8") }}
-      </div>
-      <div class="stat-title">Submarine Cables</div>
-      <div class="stat-value text-info">{{ $subsea }}</div>
-      <div class="stat-desc">Undersea routes</div>
-    </div>
-    <div class="stat">
-      <div class="stat-figure text-secondary">
-        {{ partial "data-icon.html" (dict "name" "location" "color" "secondary" "size" "8") }}
-      </div>
-      <div class="stat-title">Land Connections</div>
-      <div class="stat-value text-secondary">{{ $terrestrial }}</div>
-      <div class="stat-desc">Terrestrial routes</div>
-    </div>
-    <div class="stat">
-      <div class="stat-figure text-success">
-        {{ partial "data-icon.html" (dict "name" "check-circle" "color" "success" "size" "8") }}
-      </div>
-      <div class="stat-title">Active</div>
-      <div class="stat-value text-success">{{ $active }}</div>
-      <div class="stat-desc">Operational now</div>
-    </div>
-  </div>
-
-  {{/* Section Content - render markdown content which includes map and data tables */}}
-  <section class="max-w-full mt-6 prose dark:prose-invert prose-table:w-full prose-img:max-w-full [&>*]:max-w-none">
-    {{ .Content }}
   </section>
+
+  {{/* ============================================================
+       STATS — 4 cards overlapping hero
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Total Connections</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $total }}</span>
+        <span class="sd-events-stat-desc">Mapped networks</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Submarine Cables</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $subsea }}</span>
+        <span class="sd-events-stat-desc">Undersea routes</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Land Connections</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $terrestrial }}</span>
+        <span class="sd-events-stat-desc">Terrestrial routes</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Active</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $active }}</span>
+        <span class="sd-events-stat-desc">Operational now</span>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       CONTENT — Shortcodes rendered from _index.md
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+    <div class="sd-dc-content">
+      {{ .Content }}
+    </div>
+  </section>
+
 </article>
+
+{{/* Floating TOC for mobile */}}
+{{ $tocSections := slice
+    (dict "id" "network-filter-panel" "title" "Map" "icon" "🗺️")
+    (dict "id" "subsea-international" "title" "Subsea" "icon" "⚡")
+    (dict "id" "terrestrial-international" "title" "Terrestrial" "icon" "📍")
+    (dict "id" "domestic-norway" "title" "Domestic" "icon" "🇳🇴")
+    (dict "id" "arctic-connectivity" "title" "Arctic" "icon" "🌐")
+}}
+{{ partial "floating-toc.html" (dict "sections" $tocSections) }}
+{{ partial "sovereignsky-footer.html" . }}
 {{ end }}
