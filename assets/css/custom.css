@@ -3030,6 +3030,84 @@ details[open] .details-marker {
   }
 }
 
+/* Jurisdiction-map stats — 4 columns, no hero overlap */
+.sd-jurisdiction-map-stats {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .sd-jurisdiction-map-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Jurisdiction-map filters — reuse sd-laws filter styles */
+#jurisdiction-map [data-filter-group] {
+  margin-bottom: 0.75rem;
+}
+
+#jurisdiction-map .sd-laws-filter-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#jurisdiction-map .sd-laws-filter-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.6;
+  color: var(--sd-on-surface);
+}
+
+#jurisdiction-map .sd-laws-filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+#jurisdiction-map .sd-laws-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--sd-outline-variant);
+  background: transparent;
+  color: var(--sd-on-surface);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+#jurisdiction-map .sd-laws-filter-btn:hover {
+  background: var(--sd-surface-container-low);
+}
+
+#jurisdiction-map .sd-laws-filter-btn--active {
+  background: var(--sd-primary);
+  color: var(--sd-on-primary);
+  border-color: var(--sd-primary);
+}
+
+#jurisdiction-map .sd-laws-filter-btn--active:hover {
+  opacity: 0.9;
+}
+
+#jurisdiction-map .sd-laws-filter-btn--clear {
+  border: none;
+  opacity: 0.7;
+}
+
+#jurisdiction-map .sd-laws-filter-btn--clear:hover {
+  opacity: 1;
+  background: transparent;
+}
+
 /* Countries grid */
 .sd-country-grid {
   display: grid;

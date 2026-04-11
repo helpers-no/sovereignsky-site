@@ -116,74 +116,76 @@
 {{ end }}
 
 <div id="jurisdiction-map">
-<div class="not-prose stats stats-vertical sm:stats-horizontal shadow-lg w-full mb-8 bg-base-100">
-  <div class="stat">
-    <div class="stat-figure text-primary">
-      {{ partial "data-icon.html" (dict "name" "globe" "color" "primary" "size" "8") }}
+<section class="not-prose sd-events-stats sd-jurisdiction-map-stats">
+  <div class="sd-events-stat-card">
+    <span class="sd-events-stat-label">Countries Tracked</span>
+    <div class="sd-events-stat-row">
+      <span class="sd-headline sd-events-stat-value">{{ $totalCountries }}</span>
+      <span class="sd-events-stat-desc">Jurisdictions monitored</span>
     </div>
-    <div class="stat-title">Countries Tracked</div>
-    <div class="stat-value text-primary">{{ $totalCountries }}</div>
-    <div class="stat-desc">Jurisdictions monitored</div>
   </div>
-  <div class="stat">
-    <div class="stat-figure text-accent">
-      {{ partial "data-icon.html" (dict "name" "users" "color" "accent" "size" "8") }}
+  <div class="sd-events-stat-card">
+    <span class="sd-events-stat-label">Regional Blocs</span>
+    <div class="sd-events-stat-row">
+      <span class="sd-headline sd-events-stat-value">{{ $totalBlocs }}</span>
+      <span class="sd-events-stat-desc">Trade & legal frameworks</span>
     </div>
-    <div class="stat-title">Regional Blocs</div>
-    <div class="stat-value text-accent">{{ $totalBlocs }}</div>
-    <div class="stat-desc">Trade & legal frameworks</div>
   </div>
-  <div class="stat">
-    <div class="stat-figure text-success">
-      {{ partial "data-icon.html" (dict "name" "check-circle" "color" "success" "size" "8") }}
+  <div class="sd-events-stat-card">
+    <span class="sd-events-stat-label">Low Risk</span>
+    <div class="sd-events-stat-row">
+      <span class="sd-headline sd-events-stat-value">{{ $lowRisk }}</span>
+      <span class="sd-events-stat-desc">Safe jurisdictions</span>
     </div>
-    <div class="stat-title">Low Risk</div>
-    <div class="stat-value text-success">{{ $lowRisk }}</div>
-    <div class="stat-desc">Safe jurisdictions</div>
   </div>
-  <div class="stat">
-    <div class="stat-figure text-error">
-      {{ partial "data-icon.html" (dict "name" "alert-triangle" "color" "error" "size" "8") }}
+  <div class="sd-events-stat-card">
+    <span class="sd-events-stat-label">Elevated+ Risk</span>
+    <div class="sd-events-stat-row">
+      <span class="sd-headline sd-events-stat-value">{{ $elevatedRisk }}</span>
+      <span class="sd-events-stat-desc">Require caution</span>
     </div>
-    <div class="stat-title">Elevated+ Risk</div>
-    <div class="stat-value text-error">{{ $elevatedRisk }}</div>
-    <div class="stat-desc">Require caution</div>
   </div>
-</div>
+</section>
 
 
 {{/* Risk Level Filter */}}
-<div class="not-prose flex flex-wrap items-center gap-2 mb-4">
-  <span class="text-sm font-semibold opacity-70">Risk:</span>
-  <div class="join" id="laws-risk-chips" data-filter-group="risk">
-    <button class="join-item btn btn-sm btn-active" data-filter="risk" data-value="all">All</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="risk" data-value="low">✅ Low</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="risk" data-value="moderate">⚠️ Moderate</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="risk" data-value="elevated">🔶 Elevated</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="risk" data-value="high">🚨 High</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="risk" data-value="sanctioned">⛔ Sanctioned</button>
+<div class="not-prose" data-filter-group="risk">
+  <div class="sd-laws-filter-header">
+    <span class="sd-laws-filter-label">Risk:</span>
+    <button class="sd-laws-filter-btn sd-laws-filter-btn--active" data-filter="risk" data-value="all">All</button>
+  </div>
+  <div class="sd-laws-filter-options" id="laws-risk-chips">
+    <button class="sd-laws-filter-btn" data-filter="risk" data-value="low">✅ Low</button>
+    <button class="sd-laws-filter-btn" data-filter="risk" data-value="moderate">⚠️ Moderate</button>
+    <button class="sd-laws-filter-btn" data-filter="risk" data-value="elevated">🔶 Elevated</button>
+    <button class="sd-laws-filter-btn" data-filter="risk" data-value="high">🚨 High</button>
+    <button class="sd-laws-filter-btn" data-filter="risk" data-value="sanctioned">⛔ Sanctioned</button>
   </div>
 </div>
 
 {{/* Bloc Filter */}}
-<div class="not-prose flex flex-wrap items-center gap-2 mb-4">
-  <span class="text-sm font-semibold opacity-70">Bloc:</span>
-  <div class="join" id="laws-bloc-chips" data-filter-group="bloc">
-    <button class="join-item btn btn-sm btn-active" data-filter="bloc" data-value="all">All</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="bloc" data-value="eu">🇪🇺 EU</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="bloc" data-value="eea">🇪🇺 EEA</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="bloc" data-value="five-eyes">👁️ Five Eyes</button>
-    <button class="join-item btn btn-sm btn-ghost" data-filter="bloc" data-value="adequacy">✓ Adequacy</button>
+<div class="not-prose" data-filter-group="bloc">
+  <div class="sd-laws-filter-header">
+    <span class="sd-laws-filter-label">Bloc:</span>
+    <button class="sd-laws-filter-btn sd-laws-filter-btn--active" data-filter="bloc" data-value="all">All</button>
+  </div>
+  <div class="sd-laws-filter-options" id="laws-bloc-chips">
+    <button class="sd-laws-filter-btn" data-filter="bloc" data-value="eu">🇪🇺 EU</button>
+    <button class="sd-laws-filter-btn" data-filter="bloc" data-value="eea">🇪🇺 EEA</button>
+    <button class="sd-laws-filter-btn" data-filter="bloc" data-value="five-eyes">👁️ Five Eyes</button>
+    <button class="sd-laws-filter-btn" data-filter="bloc" data-value="adequacy">✓ Adequacy</button>
   </div>
 </div>
 
 {{/* Features Filter */}}
-<div class="not-prose flex flex-wrap items-center gap-2 mb-6">
-  <span class="text-sm font-semibold opacity-70">Features:</span>
-  <div class="flex flex-wrap gap-2" data-filter-group="features">
-    <button class="btn btn-sm btn-ghost gap-1" id="laws-has-dc" data-filter="datacenters" data-value="true">🏢 Has Datacenters</button>
+<div class="not-prose" data-filter-group="features">
+  <div class="sd-laws-filter-header">
+    <span class="sd-laws-filter-label">Features:</span>
   </div>
-  <button id="laws-map-reset" class="btn btn-sm btn-ghost ml-auto">Reset filters</button>
+  <div class="sd-laws-filter-options">
+    <button class="sd-laws-filter-btn" id="laws-has-dc" data-filter="datacenters" data-value="true">🏢 Has Datacenters</button>
+    <button class="sd-laws-filter-btn sd-laws-filter-btn--clear" id="laws-map-reset">Reset filters</button>
+  </div>
 </div>
 
 <div id="jurisdiction-map-chart" class="not-prose" style="width: 100%; height: 520px; background: var(--tw-prose-pre-bg, #f5f5f5); border-radius: 12px;"></div>
@@ -327,14 +329,21 @@
       var blocsById = blocById();
 
       function setActiveButton(groupEl, value) {
-        groupEl.querySelectorAll('button').forEach(function(b) {
-          b.classList.remove('btn-active');
-          b.classList.add('btn-ghost');
+        groupEl.querySelectorAll('button[data-filter]').forEach(function(b) {
+          b.classList.remove('sd-laws-filter-btn--active');
         });
-        var target = groupEl.querySelector('button[data-value="' + value + '"]') || groupEl.querySelector('button[data-value="all"]');
-        if (target) {
-          target.classList.add('btn-active');
-          target.classList.remove('btn-ghost');
+        var container = groupEl.closest('[data-filter-group]');
+        var allBtn = container ? container.querySelector('.sd-laws-filter-header button[data-value="all"]') : null;
+        if (allBtn) allBtn.classList.remove('sd-laws-filter-btn--active');
+        if (value === 'all' && allBtn) {
+          allBtn.classList.add('sd-laws-filter-btn--active');
+        } else {
+          var target = groupEl.querySelector('button[data-value="' + value + '"]');
+          if (target) {
+            target.classList.add('sd-laws-filter-btn--active');
+          } else if (allBtn) {
+            allBtn.classList.add('sd-laws-filter-btn--active');
+          }
         }
       }
 
@@ -365,11 +374,9 @@
           dcBtn.addEventListener('click', function() {
             hasDatacentersOnly = !hasDatacentersOnly;
             if (hasDatacentersOnly) {
-              dcBtn.classList.add('btn-active');
-              dcBtn.classList.remove('btn-ghost');
+              dcBtn.classList.add('sd-laws-filter-btn--active');
             } else {
-              dcBtn.classList.remove('btn-active');
-              dcBtn.classList.add('btn-ghost');
+              dcBtn.classList.remove('sd-laws-filter-btn--active');
             }
             focusedIds = null;
             renderAll();
@@ -383,11 +390,9 @@
         var dcBtn = document.getElementById('laws-has-dc');
         if (dcBtn) {
           if (hasDatacentersOnly) {
-            dcBtn.classList.add('btn-active');
-            dcBtn.classList.remove('btn-ghost');
+            dcBtn.classList.add('sd-laws-filter-btn--active');
           } else {
-            dcBtn.classList.remove('btn-active');
-            dcBtn.classList.add('btn-ghost');
+            dcBtn.classList.remove('sd-laws-filter-btn--active');
           }
         }
       }
