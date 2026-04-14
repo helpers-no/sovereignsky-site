@@ -1,23 +1,376 @@
 {{ define "main" }}
 {{ .Scratch.Set "scope" "single" }}
 
-{{ partial "common-single-page.html" (dict
-    "page" .
-    "icon" "scale"
-    "section" "Laws"
-    "sectionUrl" "/laws/"
-    "headerDescription" .Params.alternateName
-    "externalUrl" .Params.sourceUrl
-    "externalLabel" "Official text"
-    "sidebarCards" (slice
-        "sidebar/laws-details-card.html"
-        "sidebar/laws-appliesto.html"
-        "sidebar/common-audience-card.html"
-        "sidebar/common-topics-card.html"
-        "sidebar/common-tags-card.html"
-        "sidebar/laws-related-card.html"
-        "sidebar/common-related-card.html"
-    )
-) }}
+{{/* ── Law metadata ── */}}
+{{ $lawId := .Params.identifier | default "" }}
+{{ $year := .Params.legislationDate | default "" }}
+{{ $alternateName := .Params.alternateName | default "" }}
+{{ $sourceUrl := .Params.sourceUrl | default "" }}
+{{ $category := .Params.category | default "privacy" }}
+{{ $governmentAccess := .Params.governmentAccess | default "none" }}
+{{ $dataProtection := .Params.dataProtection | default "none" }}
+{{ $extraterritorial := .Params.extraterritorial | default false }}
+{{ $requiresLocalization := .Params.requiresLocalization | default false }}
+{{ $requiresBackdoor := .Params.requiresBackdoor | default false }}
+{{ $appliesTo := .Params.legislationJurisdiction | default (slice) }}
+{{ $audienceParams := .Params.audience | default (slice) }}
+{{ $relatedLawsData := .Params.isRelatedTo | default dict }}
 
+{{/* ── Law type styling ── */}}
+{{ $typeEmoji := "" }}
+{{ $typeLabel := $category }}
+{{ if eq $category "privacy" }}{{ $typeEmoji = "🛡️" }}{{ $typeLabel = "Privacy" }}
+{{ else if eq $category "access" }}{{ $typeEmoji = "🔓" }}{{ $typeLabel = "Access" }}
+{{ else if eq $category "surveillance" }}{{ $typeEmoji = "👁️" }}{{ $typeLabel = "Surveillance" }}
+{{ else if eq $category "localization" }}{{ $typeEmoji = "📍" }}{{ $typeLabel = "Localization" }}
+{{ else if eq $category "security" }}{{ $typeEmoji = "🔒" }}{{ $typeLabel = "Security" }}
+{{ else if eq $category "sector" }}{{ $typeEmoji = "📋" }}{{ $typeLabel = "Sector" }}
+{{ end }}
+
+{{/* ── Government access label ── */}}
+{{ $accessLabel := $governmentAccess }}
+{{ if eq $governmentAccess "broad" }}{{ $accessLabel = "Broad" }}
+{{ else if eq $governmentAccess "targeted" }}{{ $accessLabel = "Targeted" }}
+{{ else if eq $governmentAccess "limited" }}{{ $accessLabel = "Limited" }}
+{{ else if eq $governmentAccess "none" }}{{ $accessLabel = "None" }}
+{{ end }}
+
+{{/* ── Data protection label ── */}}
+{{ $protectionLabel := $dataProtection }}
+{{ if eq $dataProtection "strong" }}{{ $protectionLabel = "Strong" }}
+{{ else if eq $dataProtection "moderate" }}{{ $protectionLabel = "Moderate" }}
+{{ else if eq $dataProtection "weak" }}{{ $protectionLabel = "Weak" }}
+{{ else if eq $dataProtection "none" }}{{ $protectionLabel = "None" }}
+{{ end }}
+
+{{/* ── Jurisdiction resolution ── */}}
+{{ $regionsById := dict }}
+{{ $countries := site.Data.countries.countries.itemListElement | default (slice) }}
+{{ range $countries }}
+  {{ $regionsById = merge $regionsById (dict .identifier .) }}
+{{ end }}
+{{ $blocsById := dict }}
+{{ range (site.Data.blocs.blocs.itemListElement | default (slice)) }}
+  {{ $blocsById = merge $blocsById (dict .identifier .) }}
+{{ end }}
+
+{{ $appliesToItems := slice }}
+{{ range $appliesTo }}
+  {{ $id := . }}
+  {{ $name := $id }}
+  {{ $flag := "" }}
+  {{ $slug := "" }}
+  {{ $isBloc := false }}
+  {{ $region := index $regionsById $id }}
+  {{ if $region }}
+    {{ $name = $region.name | default $id }}
+    {{ $flag = $region.flag | default "" }}
+    {{ $slug = $region.slug | default "" }}
+  {{ else }}
+    {{ $bloc := index $blocsById $id }}
+    {{ if $bloc }}
+      {{ $name = $bloc.name | default $id }}
+      {{ $flag = $bloc.flag | default "" }}
+      {{ $slug = $bloc.slug | default $bloc.identifier | default $id }}
+      {{ $isBloc = true }}
+    {{ end }}
+  {{ end }}
+  {{ $appliesToItems = $appliesToItems | append (dict "id" $id "name" $name "flag" $flag "slug" $slug "isBloc" $isBloc) }}
+{{ end }}
+
+{{/* ── Audience resolution ── */}}
+{{ $audienceList := site.Data.audience.audience.itemListElement | default (slice) }}
+
+{{/* ── Related laws lookup ── */}}
+{{ $lawsById := dict }}
+{{ range (site.Data.laws.laws.itemListElement | default (slice)) }}
+  {{ $lawsById = merge $lawsById (dict .identifier .) }}
+{{ end }}
+
+{{/* ── Same jurisdiction laws ── */}}
+{{ $sameJurisdictionLaws := slice }}
+{{ if gt (len $appliesTo) 0 }}
+  {{ range (site.Data.laws.laws.itemListElement | default (slice)) }}
+    {{ $otherLaw := . }}
+    {{ if ne $otherLaw.identifier $lawId }}
+      {{ $found := false }}
+      {{ range $otherLaw.legislationJurisdiction }}
+        {{ $otherId := . }}
+        {{ range $appliesTo }}
+          {{ if eq . $otherId }}{{ $found = true }}{{ end }}
+        {{ end }}
+      {{ end }}
+      {{ if $found }}
+        {{ $sameJurisdictionLaws = $sameJurisdictionLaws | append $otherLaw }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<article class="sd-laws section-design">
+
+  {{/* ============================================================
+       HERO
+       ============================================================ */}}
+  <section class="sd-events-hero" style="padding-bottom: 3rem;">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        {{/* Breadcrumbs */}}
+        <nav style="margin-bottom: 1rem;">
+          <span style="font-size: 0.875rem; opacity: 0.8;">
+            <a href="/" style="color: inherit; text-decoration: none; opacity: 0.7;">Home</a>
+            <span style="margin: 0 0.25rem;">›</span>
+            <a href="/laws/" style="color: inherit; text-decoration: none; opacity: 0.7;">Laws</a>
+            <span style="margin: 0 0.25rem;">›</span>
+            <span>{{ .Title }}</span>
+          </span>
+        </nav>
+
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Legislation</span>
+        </div>
+
+        <h1 class="sd-headline sd-events-hero-title" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">
+          {{ $typeEmoji }} {{ .Title }}
+        </h1>
+
+        {{ if $alternateName }}
+        <p class="sd-events-hero-description">{{ $alternateName }}</p>
+        {{ else }}
+        {{ with .Description }}
+        <p class="sd-events-hero-description">{{ . }}</p>
+        {{ end }}
+        {{ end }}
+
+        {{ if $sourceUrl }}
+        <div style="margin-top: 1.25rem;">
+          <a href="{{ $sourceUrl }}" target="_blank" rel="noopener noreferrer"
+             style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; border-radius: 0.5rem; background: rgba(255,255,255,0.15); color: inherit; text-decoration: none; font-size: 0.875rem; font-weight: 500; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2); transition: background 0.2s;">
+            Official text ↗
+          </a>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       METADATA CARDS
+       ============================================================ */}}
+  <section class="sd-events-stats">
+
+    {{/* Details card */}}
+    <div class="sd-events-stat-card" style="text-align: left;">
+      <span class="sd-events-stat-label">Details</span>
+      <dl style="margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.8;">
+        {{ if $year }}
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Year</dt>
+          <dd style="font-weight: 500;">{{ $year }}</dd>
+        </div>
+        {{ end }}
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Type</dt>
+          <dd style="font-weight: 500;">{{ $typeEmoji }} {{ $typeLabel }}</dd>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Gov Access</dt>
+          <dd style="font-weight: 500;">{{ $accessLabel }}</dd>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Data Protection</dt>
+          <dd style="font-weight: 500;">{{ $protectionLabel }}</dd>
+        </div>
+        {{ if or $extraterritorial $requiresLocalization $requiresBackdoor }}
+        <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+          {{ if $extraterritorial }}
+          <div>🌍 Extraterritorial</div>
+          {{ end }}
+          {{ if $requiresLocalization }}
+          <div>📍 Requires Localization</div>
+          {{ end }}
+          {{ if $requiresBackdoor }}
+          <div style="color: var(--sd-error, #ba1a1a);">🔑 Requires Backdoor</div>
+          {{ end }}
+        </div>
+        {{ end }}
+      </dl>
+    </div>
+
+    {{/* Applies To card */}}
+    {{ if gt (len $appliesToItems) 0 }}
+    <div class="sd-events-stat-card" style="text-align: left;">
+      <span class="sd-events-stat-label">Applies To</span>
+      <div style="margin-top: 0.5rem;" class="sd-filter-pills">
+        {{ range $appliesToItems }}
+        <a href="/countries/{{ .slug }}/" class="sd-filter-pill" style="text-decoration: none; font-size: 0.8125rem; padding: 0.375rem 0.875rem;">
+          {{ with .flag }}{{ . }} {{ end }}{{ .name }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{/* Relevant For card */}}
+    {{ if gt (len $audienceParams) 0 }}
+    <div class="sd-events-stat-card" style="text-align: left;">
+      <span class="sd-events-stat-label">Relevant For</span>
+      <div style="margin-top: 0.5rem;" class="sd-filter-pills">
+        {{ range $audienceParams }}
+        {{ $audienceId := . }}
+        {{ $audience := dict }}
+        {{ range $audienceList }}
+          {{ if eq .identifier $audienceId }}{{ $audience = . }}{{ end }}
+        {{ end }}
+        {{ $name := $audience.name | default ($audienceId | humanize | title) }}
+        <a href="/personas/{{ $audienceId }}/" class="sd-filter-pill" style="text-decoration: none; font-size: 0.8125rem; padding: 0.375rem 0.875rem;">
+          {{ $name }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+  </section>
+
+  {{/* ============================================================
+       MAIN CONTENT
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+    <div class="sd-dc-content">
+
+      {{/* Abstract */}}
+      {{ with .Params.abstract }}
+      <div style="margin-bottom: 1.5rem;">
+        <h2 id="abstract" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Abstract</h2>
+        <p style="font-size: 1rem; color: var(--sd-on-surface-variant); line-height: 1.7;">{{ . }}</p>
+      </div>
+      {{ end }}
+
+      {{/* Summary */}}
+      {{ with .Params.summary }}
+      <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <h2 id="summary" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">Summary</h2>
+        <p style="font-size: 1.0625rem; color: var(--sd-on-surface-variant); line-height: 1.7;">{{ . }}</p>
+      </div>
+      {{ end }}
+
+      {{/* Main article content */}}
+      {{ if .Content }}
+      <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <div class="article-content prose dark:prose-invert max-w-none">
+          {{ .Content }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* ── Related Laws ── */}}
+      {{ $hasSemanticRelations := gt (len $relatedLawsData) 0 }}
+      {{ if or $hasSemanticRelations (gt (len $sameJurisdictionLaws) 0) }}
+      <div style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <h2 id="related-laws" style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Related Laws</h2>
+
+        {{ if $hasSemanticRelations }}
+          {{/* Relationship type template — renders a labeled group of law links */}}
+          {{ $relationTypes := slice
+            (dict "key" "conflicts_with" "label" "Conflicts with" "color" "var(--sd-error, #ba1a1a)")
+            (dict "key" "complements" "label" "Works with" "color" "")
+            (dict "key" "implements" "label" "Implements" "color" "")
+            (dict "key" "implemented_by" "label" "Implemented by" "color" "")
+            (dict "key" "extends" "label" "Extends" "color" "")
+            (dict "key" "extended_by" "label" "Extended by" "color" "")
+            (dict "key" "amends" "label" "Amends" "color" "")
+            (dict "key" "amended_by" "label" "Amended by" "color" "")
+            (dict "key" "succeeds" "label" "Succeeds" "color" "")
+            (dict "key" "succeeded_by" "label" "Succeeded by" "color" "")
+            (dict "key" "interprets" "label" "Interprets" "color" "")
+            (dict "key" "interpreted_by" "label" "Interpreted by" "color" "")
+          }}
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1rem;">
+            {{ range $relationTypes }}
+              {{ $relLabel := .label }}
+              {{ $relColor := .color }}
+              {{ $items := index $relatedLawsData .key }}
+              {{ if $items }}
+              <div>
+                <h3 style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; margin-bottom: 0.5rem;{{ if $relColor }} color: {{ $relColor }};{{ end }}">{{ $relLabel }}</h3>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                  {{ range $items }}
+                  {{ $lawData := index $lawsById .identifier }}
+                  {{ $tooltip := "" }}
+                  {{ with $lawData }}{{ $tooltip = .alternateName | default .name }}{{ end }}
+                  <li style="margin-bottom: 0.25rem;">
+                    <a href="/laws/{{ .identifier }}/" title="{{ $tooltip }}" style="font-size: 0.875rem; color: var(--sd-primary); text-decoration: none;">
+                      {{ .name }} <span style="opacity: 0.5;">({{ .legislationDate }})</span>
+                    </a>
+                  </li>
+                  {{ end }}
+                </ul>
+              </div>
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
+
+        {{/* Same jurisdiction */}}
+        {{ if gt (len $sameJurisdictionLaws) 0 }}
+        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+          <h3 style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.7; margin-bottom: 0.5rem;">Same Jurisdiction</h3>
+          <div class="sd-filter-pills">
+            {{ range first 8 $sameJurisdictionLaws }}
+            <a href="/laws/{{ .identifier }}/" title="{{ .alternateName | default .name }}" class="sd-filter-pill" style="text-decoration: none; font-size: 0.8125rem; padding: 0.375rem 0.875rem;">
+              {{ .name }} <span style="opacity: 0.5;">({{ .legislationDate }})</span>
+            </a>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+      {{ end }}
+
+      {{/* ── Topics ── */}}
+      {{ with .Params.topics }}
+      <div style="margin-bottom: 1rem;">
+        <h3 style="font-size: 0.875rem; font-weight: 600; opacity: 0.7; margin-bottom: 0.5rem;">Topics</h3>
+        <div class="sd-filter-pills">
+          {{ range . }}
+          <a href="/topics/{{ . }}/" class="sd-filter-pill" style="text-decoration: none; font-size: 0.8125rem; padding: 0.375rem 0.875rem;">{{ . | humanize | title }}</a>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* ── Tags ── */}}
+      {{ with .GetTerms "tags" }}
+      <div style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 0.875rem; font-weight: 600; opacity: 0.7; margin-bottom: 0.5rem;">Tags</h3>
+        <div class="sd-filter-pills">
+          {{ range . }}
+          <a href="{{ .RelPermalink }}" class="sd-filter-pill" style="text-decoration: none; font-size: 0.8125rem; padding: 0.375rem 0.875rem;">{{ .LinkTitle }}</a>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Back link */}}
+      <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <a href="/laws/" style="font-size: 0.875rem; color: var(--sd-primary); text-decoration: none;">← Back to all laws</a>
+      </div>
+
+    </div>
+  </section>
+
+</article>
+
+{{/* Floating TOC */}}
+{{ $tocSections := slice
+    (dict "id" "abstract" "title" "Abstract" "icon" "📄")
+    (dict "id" "summary" "title" "Summary" "icon" "📝")
+    (dict "id" "related-laws" "title" "Related" "icon" "⚖️")
+}}
+{{ partial "floating-toc.html" (dict "sections" $tocSections) }}
+{{ partial "sovereignsky-footer.html" . }}
 {{ end }}
