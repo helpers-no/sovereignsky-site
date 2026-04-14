@@ -10,353 +10,290 @@
   {{ $useAreaMap = merge $useAreaMap (dict .id .name) }}
 {{ end }}
 
-{{/* Risk level styling - color for left border bar */}}
-{{ $riskColors := dict
-  "low" "bg-green-500"
-  "moderate" "bg-yellow-500"
-  "elevated" "bg-orange-500"
-  "significant" "bg-orange-600"
-  "high" "bg-red-500"
-}}
+{{/* Calculate stats */}}
+{{ $totalProducts := len .Pages }}
+{{ $vendorNames := dict }}
+{{ range .Pages }}
+  {{ with .Params.vendor_name }}
+    {{ $vendorNames = merge $vendorNames (dict . true) }}
+  {{ end }}
+{{ end }}
+{{ $totalVendors := len $vendorNames }}
+{{ $totalAreas := len site.Data.software.useAreas }}
 
-{{/* Country flags - use partial "get-country-flag.html" for lookups */}}
+<article class="sd-software-list section-design">
 
-<div class="max-w-full" id="software-app">
+  {{/* ============================================================
+       HERO — Blue gradient
+       ============================================================ */}}
+  <section class="sd-events-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Software Assessment</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">{{ .Title }}</h1>
+        <p class="sd-events-hero-description">
+          {{ .Description | default "Browse sovereign software assessments. Filter by risk level, jurisdiction, data residency, and more." }}
+        </p>
+      </div>
+    </div>
+  </section>
 
-  {{/* Section Header */}}
-  {{ partial "section-header.html" (dict
-      "title" .Title
-      "description" .Description
-      "icon" "computer"
-  ) }}
+  {{/* ============================================================
+       STATS — 3 cards overlapping hero
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Products</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalProducts }}</span>
+        <span class="sd-events-stat-desc">Assessed</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Vendors</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalVendors }}</span>
+        <span class="sd-events-stat-desc">Unique vendors</span>
+      </div>
+    </div>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Use Areas</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $totalAreas }}</span>
+        <span class="sd-events-stat-desc">Categories</span>
+      </div>
+    </div>
+  </section>
 
-  <!-- Search and Filters -->
-  <div class="mb-6 space-y-4">
-    <!-- Search Box -->
-    <div class="relative">
+  {{/* ============================================================
+       FILTERS + GRID — Inside sd-blog-feed container
+       ============================================================ */}}
+  <section class="sd-blog-feed" id="software-app">
+
+    {{/* Search Box */}}
+    <div style="position: relative; margin-bottom: 1.5rem;">
       <input
         type="text"
         id="software-search"
         placeholder="Search software by name, vendor, or description..."
-        class="w-full px-4 py-3 pl-10 border border-neutral-300 dark:border-neutral-600 rounded-lg bg-white dark:bg-neutral-900 focus:ring-2 focus:ring-primary-500 focus:border-transparent text-base"
+        class="sd-software-search"
       >
-      <svg class="absolute left-3 top-3.5 h-5 w-5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg style="position: absolute; left: 0.75rem; top: 0.85rem; height: 1.25rem; width: 1.25rem; color: var(--sd-outline);" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
       </svg>
     </div>
 
-    <!-- Filter Bar -->
-    <div class="p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg space-y-3">
-      <!-- Risk Level Filter -->
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300 w-32">Risk Level:</span>
-        <div class="flex flex-wrap gap-2">
-          <button class="filter-btn risk-filter active" data-filter="risk" data-value="all">All</button>
-          <button class="filter-btn risk-filter" data-filter="risk" data-value="low"><span class="risk-dot" style="background-color: #22c55e;"></span>Low</button>
-          <button class="filter-btn risk-filter" data-filter="risk" data-value="moderate"><span class="risk-dot" style="background-color: #eab308;"></span>Moderate</button>
-          <button class="filter-btn risk-filter" data-filter="risk" data-value="elevated"><span class="risk-dot" style="background-color: #f97316;"></span>Elevated</button>
-          <button class="filter-btn risk-filter" data-filter="risk" data-value="significant"><span class="risk-dot" style="background-color: #ea580c;"></span>Significant</button>
-          <button class="filter-btn risk-filter" data-filter="risk" data-value="high"><span class="risk-dot" style="background-color: #ef4444;"></span>High</button>
+    {{/* Filter Bar */}}
+    <div class="sd-software-filter-bar">
+
+      {{/* Risk Level Filter */}}
+      <div class="sd-filter-group">
+        <span class="sd-filter-label">Risk Level</span>
+        <div class="sd-filter-pills">
+          <button class="sd-filter-pill sd-filter-pill-active risk-filter" data-filter="risk" data-value="all">All</button>
+          <button class="sd-filter-pill risk-filter" data-filter="risk" data-value="low"><span class="sd-risk-dot" style="background-color: #22c55e;"></span>Low</button>
+          <button class="sd-filter-pill risk-filter" data-filter="risk" data-value="moderate"><span class="sd-risk-dot" style="background-color: #eab308;"></span>Moderate</button>
+          <button class="sd-filter-pill risk-filter" data-filter="risk" data-value="elevated"><span class="sd-risk-dot" style="background-color: #f97316;"></span>Elevated</button>
+          <button class="sd-filter-pill risk-filter" data-filter="risk" data-value="significant"><span class="sd-risk-dot" style="background-color: #ea580c;"></span>Significant</button>
+          <button class="sd-filter-pill risk-filter" data-filter="risk" data-value="high"><span class="sd-risk-dot" style="background-color: #ef4444;"></span>High</button>
         </div>
       </div>
 
-      <!-- Vendor Jurisdiction Filter -->
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300 w-32">Vendor Jurisdiction:</span>
-        <div class="flex flex-wrap gap-2">
-          <button class="filter-btn country-filter active" data-filter="country" data-value="all">All</button>
-          <button class="filter-btn country-filter" data-filter="country" data-value="NO">🇳🇴 Norway</button>
-          <button class="filter-btn country-filter" data-filter="country" data-value="US">🇺🇸 USA</button>
-          <button class="filter-btn country-filter" data-filter="country" data-value="GB">🇬🇧 UK</button>
+      {{/* Vendor Jurisdiction Filter */}}
+      <div class="sd-filter-group">
+        <span class="sd-filter-label">Vendor Jurisdiction</span>
+        <div class="sd-filter-pills">
+          <button class="sd-filter-pill sd-filter-pill-active country-filter" data-filter="country" data-value="all">All</button>
+          <button class="sd-filter-pill country-filter" data-filter="country" data-value="NO">🇳🇴 Norway</button>
+          <button class="sd-filter-pill country-filter" data-filter="country" data-value="US">🇺🇸 USA</button>
+          <button class="sd-filter-pill country-filter" data-filter="country" data-value="GB">🇬🇧 UK</button>
         </div>
       </div>
 
-      <!-- Data Residency Filter -->
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300 w-32">Data Residency:</span>
-        <div class="flex flex-wrap gap-2">
-          <button class="filter-btn residency-filter active" data-filter="residency" data-value="all">All</button>
-          <button class="filter-btn residency-filter" data-filter="residency" data-value="NO">🇳🇴 Norway</button>
-          <button class="filter-btn residency-filter" data-filter="residency" data-value="EU_EEA">🇪🇺 EU/EEA</button>
+      {{/* Data Residency Filter */}}
+      <div class="sd-filter-group">
+        <span class="sd-filter-label">Data Residency</span>
+        <div class="sd-filter-pills">
+          <button class="sd-filter-pill sd-filter-pill-active residency-filter" data-filter="residency" data-value="all">All</button>
+          <button class="sd-filter-pill residency-filter" data-filter="residency" data-value="NO">🇳🇴 Norway</button>
+          <button class="sd-filter-pill residency-filter" data-filter="residency" data-value="EU_EEA">🇪🇺 EU/EEA</button>
         </div>
       </div>
 
-      <!-- Jurisdiction Exposure Filter -->
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300 w-32">Jurisdiction Exposure:</span>
-        <div class="flex flex-wrap gap-2">
-          <button class="filter-btn exposure-filter active" data-filter="exposure" data-value="all">All</button>
-          <button class="filter-btn exposure-filter" data-filter="exposure" data-value="none">🛡️ No foreign exposure</button>
-          <button class="filter-btn exposure-filter" data-filter="exposure" data-value="US">⚠️ US exposure</button>
+      {{/* Jurisdiction Exposure Filter */}}
+      <div class="sd-filter-group">
+        <span class="sd-filter-label">Jurisdiction Exposure</span>
+        <div class="sd-filter-pills">
+          <button class="sd-filter-pill sd-filter-pill-active exposure-filter" data-filter="exposure" data-value="all">All</button>
+          <button class="sd-filter-pill exposure-filter" data-filter="exposure" data-value="none">🛡️ No foreign exposure</button>
+          <button class="sd-filter-pill exposure-filter" data-filter="exposure" data-value="US">⚠️ US exposure</button>
         </div>
       </div>
 
-      <!-- Features Filter -->
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300 w-32">Features:</span>
-        <div class="flex flex-wrap gap-2">
-          <button class="filter-btn feature-filter" data-filter="opensource" data-value="true">🔓 Open Source</button>
-          <button class="filter-btn feature-filter" data-filter="selfhosted" data-value="true">🏠 Self-hosted</button>
+      {{/* Features Filter */}}
+      <div class="sd-filter-group">
+        <span class="sd-filter-label">Features</span>
+        <div class="sd-filter-pills">
+          <button class="sd-filter-pill feature-filter" data-filter="opensource" data-value="true">🔓 Open Source</button>
+          <button class="sd-filter-pill feature-filter" data-filter="selfhosted" data-value="true">🏠 Self-hosted</button>
         </div>
       </div>
 
-      <!-- Use Area Filter -->
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300 w-32">Use Area:</span>
-        <div class="flex flex-wrap gap-2">
-          <button class="filter-btn area-filter active" data-filter="area" data-value="all">All</button>
+      {{/* Use Area Filter */}}
+      <div class="sd-filter-group">
+        <span class="sd-filter-label">Use Area</span>
+        <div class="sd-filter-pills">
+          <button class="sd-filter-pill sd-filter-pill-active area-filter" data-filter="area" data-value="all">All</button>
           {{ range site.Data.software.useAreas }}
-          <button class="filter-btn area-filter" data-filter="area" data-value="{{ .id }}">{{ .name }}</button>
+          <button class="sd-filter-pill area-filter" data-filter="area" data-value="{{ .id }}">{{ .name }}</button>
           {{ end }}
         </div>
       </div>
 
-      <!-- Active Filters & Clear -->
-      <div id="active-filters" class="hidden flex items-center gap-2 pt-2 border-t border-neutral-200 dark:border-neutral-700">
-        <span class="text-sm text-neutral-500 dark:text-neutral-400">Active filters:</span>
-        <div id="filter-tags" class="flex flex-wrap gap-1"></div>
-        <button id="clear-filters" class="text-sm text-primary-600 dark:text-primary-400 hover:underline ml-2">Clear all</button>
+      {{/* Active Filters & Clear */}}
+      <div id="active-filters" class="sd-software-active-filters" style="display: none;">
+        <span style="font-size: 0.875rem; color: var(--sd-outline);">Active filters:</span>
+        <div id="filter-tags" class="sd-filter-pills"></div>
+        <button id="clear-filters" class="sd-software-clear-btn">Clear all</button>
       </div>
     </div>
-  </div>
 
-  <!-- Results count and pagination info -->
-  <div class="flex justify-between items-center mb-4">
-    <div class="text-sm text-neutral-600 dark:text-neutral-400">
-      Showing <span id="showing-count">{{ len .Pages }}</span> of <span id="total-count">{{ len .Pages }}</span> products
+    {{/* Results count and pagination info */}}
+    <div class="sd-software-results-bar">
+      <div style="font-size: 0.875rem; color: var(--sd-on-surface-variant);">
+        Showing <span id="showing-count">{{ len .Pages }}</span> of <span id="total-count">{{ len .Pages }}</span> products
+      </div>
+      <div id="pagination-info" style="font-size: 0.875rem; color: var(--sd-on-surface-variant);"></div>
     </div>
-    <div id="pagination-info" class="text-sm text-neutral-600 dark:text-neutral-400"></div>
-  </div>
 
-  <!-- Product Grid - Server-rendered for SEO, enhanced by JS -->
-  <!-- All products are in the DOM for SEO (Google sees all links), but only visible page is displayed -->
-  <!-- Responsive: 1 col mobile, 2 sm, 3 md, 4 lg, 5 xl -->
-  <div id="software-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-    {{ range $index, $page := .Pages }}
-      {{ $riskLevel := .Params.risk_level | default "moderate" }}
-      {{ $riskColor := index $riskColors $riskLevel | default "bg-yellow-500" }}
-      {{ $flag := partial "get-country-flag.html" .Params.vendor_country }}
-      {{ $openSource := .Params.open_source | default false }}
-      {{ $selfHosted := .Params.self_hosted | default false }}
+    {{/* Product Grid */}}
+    <div id="software-grid" class="sd-software-grid">
+      {{ range $index, $page := .Pages }}
+        {{ $riskLevel := .Params.risk_level | default "moderate" }}
+        {{ $flag := partial "get-country-flag.html" .Params.vendor_country }}
+        {{ $openSource := .Params.open_source | default false }}
+        {{ $selfHosted := .Params.self_hosted | default false }}
+        {{ $dataResidency := .Params.data_residency | default slice }}
+        {{ $jurisdictionExposure := .Params.jurisdiction_exposure | default slice }}
+        {{ $hasUSExposure := in $jurisdictionExposure "US" }}
+        {{ $noForeignExposure := eq (len $jurisdictionExposure) 0 }}
 
-      {{/* Get data residency and jurisdiction exposure from params */}}
-      {{ $dataResidency := .Params.data_residency | default slice }}
-      {{ $jurisdictionExposure := .Params.jurisdiction_exposure | default slice }}
-      {{ $hasUSExposure := in $jurisdictionExposure "US" }}
-      {{ $noForeignExposure := eq (len $jurisdictionExposure) 0 }}
+        {{ $circleColor := "#22c55e" }}
+        {{ if eq $riskLevel "moderate" }}{{ $circleColor = "#eab308" }}{{ end }}
+        {{ if eq $riskLevel "elevated" }}{{ $circleColor = "#f97316" }}{{ end }}
+        {{ if eq $riskLevel "significant" }}{{ $circleColor = "#ea580c" }}{{ end }}
+        {{ if eq $riskLevel "high" }}{{ $circleColor = "#ef4444" }}{{ end }}
 
-      {{/* Hide items beyond first page initially - JS will manage visibility */}}
-      {{ $initiallyHidden := gt $index 39 }}
-      <article
-        class="software-card overflow-hidden rounded-lg border-2 border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 hover:shadow-lg hover:border-neutral-300 dark:hover:border-neutral-600 transition-all{{ if $initiallyHidden }} initially-hidden{{ end }}"
-        data-id="{{ .Params.software_id }}"
-        data-index="{{ $index }}"
-        data-risk="{{ $riskLevel }}"
-        data-country="{{ .Params.vendor_country }}"
-        data-areas="{{ delimit .Params.use_areas "," }}"
-        data-opensource="{{ $openSource }}"
-        data-selfhosted="{{ $selfHosted }}"
-        data-residency="{{ delimit $dataResidency "," }}"
-        data-exposure="{{ delimit $jurisdictionExposure "," }}"
-        data-name="{{ .Title }}"
-        data-vendor="{{ .Params.vendor_name }}"
-        data-description="{{ .Description }}"
-      >
-        <a href="{{ .RelPermalink }}" class="block p-2">
-          {{/* Title row with risk circle and flag */}}
-          <div class="flex items-center gap-1.5 mb-0.5">
-            {{/* Risk circle - using inline style for dynamic color */}}
-            {{ $circleColor := "#22c55e" }}{{/* green default */}}
-            {{ if eq $riskLevel "moderate" }}{{ $circleColor = "#eab308" }}{{ end }}
-            {{ if eq $riskLevel "elevated" }}{{ $circleColor = "#f97316" }}{{ end }}
-            {{ if eq $riskLevel "significant" }}{{ $circleColor = "#ea580c" }}{{ end }}
-            {{ if eq $riskLevel "high" }}{{ $circleColor = "#ef4444" }}{{ end }}
-            <span class="risk-circle" style="background-color: {{ $circleColor }};" title="{{ $riskLevel }} risk"></span>
-            <h2 class="font-semibold text-sm text-neutral-900 dark:text-neutral-100 leading-tight truncate flex-1">{{ .Title }}</h2>
-            <span class="text-sm flex-shrink-0" title="{{ .Params.vendor_country_name }}">{{ $flag }}</span>
-          </div>
+        {{ $initiallyHidden := gt $index 39 }}
+        <article
+          class="software-card sd-software-card{{ if $initiallyHidden }} initially-hidden{{ end }}"
+          data-id="{{ .Params.software_id }}"
+          data-index="{{ $index }}"
+          data-risk="{{ $riskLevel }}"
+          data-country="{{ .Params.vendor_country }}"
+          data-areas="{{ delimit .Params.use_areas "," }}"
+          data-opensource="{{ $openSource }}"
+          data-selfhosted="{{ $selfHosted }}"
+          data-residency="{{ delimit $dataResidency "," }}"
+          data-exposure="{{ delimit $jurisdictionExposure "," }}"
+          data-name="{{ .Title }}"
+          data-vendor="{{ .Params.vendor_name }}"
+          data-description="{{ .Description }}"
+        >
+          <a href="{{ .RelPermalink }}" class="sd-software-card-link">
+            <div class="sd-software-card-header">
+              <span class="sd-risk-dot" style="background-color: {{ $circleColor }};" title="{{ $riskLevel }} risk"></span>
+              <h2 class="sd-software-card-title">{{ .Title }}</h2>
+              <span class="sd-software-card-flag" title="{{ .Params.vendor_country_name }}">{{ $flag }}</span>
+            </div>
 
-          {{/* Vendor name */}}
-          <div class="text-xs text-neutral-500 dark:text-neutral-400 truncate mb-1 ml-4">
-            {{ .Params.vendor_name }}
-          </div>
+            <div class="sd-software-card-vendor">
+              {{ .Params.vendor_name }}
+            </div>
 
-          {{/* Data Residency row */}}
-          <div class="text-xs text-neutral-600 dark:text-neutral-400 truncate mb-0.5 ml-4">
-            <span class="text-neutral-400 dark:text-neutral-500">📍</span>
-            {{ if $dataResidency }}
-              {{ $residencyFlags := slice }}
-              {{ range $dataResidency }}
-                {{ $f := partial "get-country-flag.html" . }}
-                {{ $residencyFlags = $residencyFlags | append $f }}
+            <div class="sd-software-card-meta">
+              <span style="color: var(--sd-outline);">📍</span>
+              {{ if $dataResidency }}
+                {{ $residencyFlags := slice }}
+                {{ range $dataResidency }}
+                  {{ $f := partial "get-country-flag.html" . }}
+                  {{ $residencyFlags = $residencyFlags | append $f }}
+                {{ end }}
+                {{ delimit $residencyFlags " " }}
+              {{ else }}
+                <span style="color: var(--sd-outline);">—</span>
               {{ end }}
-              {{ delimit $residencyFlags " " }}
-            {{ else }}
-              <span class="text-neutral-400">—</span>
-            {{ end }}
-          </div>
+            </div>
 
-          {{/* Jurisdiction Exposure row */}}
-          <div class="text-xs mb-1 ml-4">
-            {{ if $noForeignExposure }}
-              <span class="text-green-600 dark:text-green-400">🛡️ No foreign exposure</span>
-            {{ else }}
-              <span class="text-orange-600 dark:text-orange-400">⚠️ {{ delimit $jurisdictionExposure ", " }} exposure</span>
-            {{ end }}
-          </div>
+            <div class="sd-software-card-exposure">
+              {{ if $noForeignExposure }}
+                <span style="color: var(--sd-secondary);">🛡️ No foreign exposure</span>
+              {{ else }}
+                <span style="color: var(--sd-error);">⚠️ {{ delimit $jurisdictionExposure ", " }} exposure</span>
+              {{ end }}
+            </div>
 
-          {{/* Feature icons row */}}
-          <div class="flex items-center gap-1.5 text-sm mb-1 ml-4">
-            {{ if $openSource }}
-            <span title="Open Source">🔓</span>
-            {{ end }}
-            {{ if $selfHosted }}
-            <span title="Self-hosted available">🏠</span>
-            {{ end }}
-            {{/* Show dash if no feature icons */}}
-            {{ if not (or $openSource $selfHosted) }}
-            <span class="text-neutral-300 dark:text-neutral-600">—</span>
-            {{ end }}
-          </div>
+            <div class="sd-software-card-features">
+              {{ if $openSource }}
+              <span title="Open Source">🔓</span>
+              {{ end }}
+              {{ if $selfHosted }}
+              <span title="Self-hosted available">🏠</span>
+              {{ end }}
+              {{ if not (or $openSource $selfHosted) }}
+              <span style="color: var(--sd-outline-variant);">—</span>
+              {{ end }}
+            </div>
 
-          {{/* Use areas row */}}
-          <div class="text-xs text-neutral-500 dark:text-neutral-400 truncate ml-4">
-            {{ delimit .Params.use_area_names " / " }}
-          </div>
-        </a>
-      </article>
-    {{ end }}
-  </div>
+            <div class="sd-software-card-areas">
+              {{ delimit .Params.use_area_names " / " }}
+            </div>
+          </a>
+        </article>
+      {{ end }}
+    </div>
 
-  <!-- No results -->
-  <div id="no-results" class="hidden text-center py-12 text-neutral-500 dark:text-neutral-400">
-    <p class="text-lg mb-2">No software matches your search.</p>
-    <p class="text-sm">Try adjusting your filters or search terms.</p>
-  </div>
+    {{/* No results */}}
+    <div id="no-results" style="display: none; text-align: center; padding: 3rem 0; color: var(--sd-on-surface-variant);">
+      <p style="font-size: 1.125rem; margin-bottom: 0.5rem;">No software matches your search.</p>
+      <p style="font-size: 0.875rem;">Try adjusting your filters or search terms.</p>
+    </div>
 
-  <!-- Pagination -->
-  <div id="pagination" class="flex justify-center items-center gap-2 mt-8">
-    <!-- Pagination buttons added via JavaScript -->
-  </div>
+    {{/* Pagination */}}
+    <div id="pagination" class="sd-software-pagination"></div>
 
-</div>
+  </section>
 
-<style>
-/* Risk indicator dots in filter buttons and cards */
-.risk-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  margin-right: 4px;
-  vertical-align: middle;
-}
-.risk-circle {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  min-width: 12px;
-  min-height: 12px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.filter-btn {
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  border-radius: 9999px;
-  border: 1px solid rgb(212, 212, 212);
-  background-color: white;
-  color: rgb(64, 64, 64);
-  transition: all 0.15s ease;
-  cursor: pointer;
-}
-.dark .filter-btn {
-  border-color: rgb(82, 82, 82);
-  background-color: rgb(23, 23, 23);
-  color: rgb(212, 212, 212);
-}
-.filter-btn:hover {
-  border-color: rgb(var(--color-primary-500));
-  color: rgb(var(--color-primary-600));
-}
-.dark .filter-btn:hover {
-  color: rgb(var(--color-primary-400));
-}
-.filter-btn.active {
-  background-color: rgb(var(--color-primary-500));
-  border-color: rgb(var(--color-primary-500));
-  color: white;
-}
-.page-btn {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  border: 1px solid rgb(212, 212, 212);
-  background: white;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-.dark .page-btn {
-  border-color: rgb(82, 82, 82);
-  background: rgb(23, 23, 23);
-  color: rgb(212, 212, 212);
-}
-.page-btn:hover:not(:disabled) {
-  border-color: rgb(var(--color-primary-500));
-  color: rgb(var(--color-primary-600));
-}
-.page-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.page-btn.active {
-  background-color: rgb(var(--color-primary-500));
-  border-color: rgb(var(--color-primary-500));
-  color: white;
-}
-/* Hide cards when filtered out */
-.software-card.hidden {
-  display: none;
-}
-/* Initially hidden cards (beyond first page) - shown via JS pagination */
-/* Note: These are still in the DOM for SEO, just not displayed */
-.software-card.initially-hidden {
-  display: none;
-}
-/* When JS takes over, it manages all visibility via style.display */
-.js-enabled .software-card.initially-hidden {
-  display: none;
-}
-</style>
+</article>
+
+{{ partial "sovereignsky-footer.html" . }}
 
 <script>
 (function() {
-  // Configuration - 40 items per page (8 rows x 5 cols on xl screens)
-  const ITEMS_PER_PAGE = 40;
+  var ITEMS_PER_PAGE = 40;
+  var currentPage = 1;
+  var filters = { risk: 'all', country: 'all', area: 'all', opensource: 'all', selfhosted: 'all', residency: 'all', exposure: 'all', search: '' };
 
-  // State
-  let currentPage = 1;
-  let filters = { risk: 'all', country: 'all', area: 'all', opensource: 'all', selfhosted: 'all', residency: 'all', exposure: 'all', search: '' };
+  var grid = document.getElementById('software-grid');
+  var searchInput = document.getElementById('software-search');
+  var noResults = document.getElementById('no-results');
+  var pagination = document.getElementById('pagination');
+  var showingCount = document.getElementById('showing-count');
+  var totalCount = document.getElementById('total-count');
+  var paginationInfo = document.getElementById('pagination-info');
+  var activeFiltersDiv = document.getElementById('active-filters');
+  var filterTags = document.getElementById('filter-tags');
 
-  // DOM elements
-  const grid = document.getElementById('software-grid');
-  const searchInput = document.getElementById('software-search');
-  const noResults = document.getElementById('no-results');
-  const pagination = document.getElementById('pagination');
-  const showingCount = document.getElementById('showing-count');
-  const totalCount = document.getElementById('total-count');
-  const paginationInfo = document.getElementById('pagination-info');
-  const activeFiltersDiv = document.getElementById('active-filters');
-  const filterTags = document.getElementById('filter-tags');
+  var allCards = Array.from(grid.querySelectorAll('.software-card'));
 
-  // Get all cards (server-rendered) - includes initially hidden ones
-  const allCards = Array.from(grid.querySelectorAll('.software-card'));
-
-  // Mark that JS is enabled (for CSS hooks)
   document.body.classList.add('js-enabled');
 
   function init() {
-    // Parse URL parameters
-    const params = new URLSearchParams(window.location.search);
+    var params = new URLSearchParams(window.location.search);
     if (params.get('risk')) filters.risk = params.get('risk');
     if (params.get('country')) filters.country = params.get('country');
     if (params.get('area')) filters.area = params.get('area');
@@ -370,22 +307,16 @@
     }
     if (params.get('page')) currentPage = parseInt(params.get('page')) || 1;
 
-    // Update filter button states
     updateFilterButtons();
-
-    // Apply filters
     applyFilters();
-
-    // Set up event listeners
     setupEventListeners();
   }
 
   function setupEventListeners() {
-    // Search input with debounce
-    let searchTimeout;
-    searchInput.addEventListener('input', (e) => {
+    var searchTimeout;
+    searchInput.addEventListener('input', function(e) {
       clearTimeout(searchTimeout);
-      searchTimeout = setTimeout(() => {
+      searchTimeout = setTimeout(function() {
         filters.search = e.target.value.toLowerCase();
         currentPage = 1;
         applyFilters();
@@ -393,13 +324,11 @@
       }, 300);
     });
 
-    // Filter buttons
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filterType = btn.dataset.filter;
-        const value = btn.dataset.value;
+    document.querySelectorAll('.sd-filter-pill[data-filter]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var filterType = btn.dataset.filter;
+        var value = btn.dataset.value;
 
-        // Update filter state
         if (filterType === 'risk') filters.risk = value;
         if (filterType === 'country') filters.country = value;
         if (filterType === 'area') filters.area = value;
@@ -408,25 +337,23 @@
         if (filterType === 'residency') filters.residency = value;
         if (filterType === 'exposure') filters.exposure = value;
 
-        // Update button states - feature filters are toggleable, others are exclusive
         if (filterType === 'opensource' || filterType === 'selfhosted') {
-          // Toggle behavior for feature filters
-          if (btn.classList.contains('active') && value !== 'all') {
-            btn.classList.remove('active');
+          if (btn.classList.contains('sd-filter-pill-active') && value !== 'all') {
+            btn.classList.remove('sd-filter-pill-active');
             filters[filterType] = 'all';
           } else {
-            document.querySelectorAll(`.feature-filter[data-filter="${filterType}"]`).forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            document.querySelectorAll('.feature-filter[data-filter="' + filterType + '"]').forEach(function(b) { b.classList.remove('sd-filter-pill-active'); });
+            btn.classList.add('sd-filter-pill-active');
           }
         } else if (filterType === 'residency') {
-          document.querySelectorAll('.residency-filter').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+          document.querySelectorAll('.residency-filter').forEach(function(b) { b.classList.remove('sd-filter-pill-active'); });
+          btn.classList.add('sd-filter-pill-active');
         } else if (filterType === 'exposure') {
-          document.querySelectorAll('.exposure-filter').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+          document.querySelectorAll('.exposure-filter').forEach(function(b) { b.classList.remove('sd-filter-pill-active'); });
+          btn.classList.add('sd-filter-pill-active');
         } else {
-          document.querySelectorAll(`.${filterType}-filter`).forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
+          document.querySelectorAll('.' + filterType + '-filter').forEach(function(b) { b.classList.remove('sd-filter-pill-active'); });
+          btn.classList.add('sd-filter-pill-active');
         }
 
         currentPage = 1;
@@ -435,8 +362,7 @@
       });
     });
 
-    // Clear filters button
-    document.getElementById('clear-filters').addEventListener('click', () => {
+    document.getElementById('clear-filters').addEventListener('click', function() {
       filters = { risk: 'all', country: 'all', area: 'all', opensource: 'all', selfhosted: 'all', residency: 'all', exposure: 'all', search: '' };
       searchInput.value = '';
       currentPage = 1;
@@ -447,64 +373,56 @@
   }
 
   function updateFilterButtons() {
-    document.querySelectorAll('.risk-filter').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === filters.risk);
+    document.querySelectorAll('.risk-filter').forEach(function(btn) {
+      btn.classList.toggle('sd-filter-pill-active', btn.dataset.value === filters.risk);
     });
-    document.querySelectorAll('.country-filter').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === filters.country);
+    document.querySelectorAll('.country-filter').forEach(function(btn) {
+      btn.classList.toggle('sd-filter-pill-active', btn.dataset.value === filters.country);
     });
-    document.querySelectorAll('.area-filter').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === filters.area);
+    document.querySelectorAll('.area-filter').forEach(function(btn) {
+      btn.classList.toggle('sd-filter-pill-active', btn.dataset.value === filters.area);
     });
-    document.querySelectorAll('.feature-filter[data-filter="opensource"]').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === filters.opensource);
+    document.querySelectorAll('.feature-filter[data-filter="opensource"]').forEach(function(btn) {
+      btn.classList.toggle('sd-filter-pill-active', btn.dataset.value === filters.opensource);
     });
-    document.querySelectorAll('.feature-filter[data-filter="selfhosted"]').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === filters.selfhosted);
+    document.querySelectorAll('.feature-filter[data-filter="selfhosted"]').forEach(function(btn) {
+      btn.classList.toggle('sd-filter-pill-active', btn.dataset.value === filters.selfhosted);
     });
-    document.querySelectorAll('.residency-filter').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === filters.residency);
+    document.querySelectorAll('.residency-filter').forEach(function(btn) {
+      btn.classList.toggle('sd-filter-pill-active', btn.dataset.value === filters.residency);
     });
-    document.querySelectorAll('.exposure-filter').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.value === filters.exposure);
+    document.querySelectorAll('.exposure-filter').forEach(function(btn) {
+      btn.classList.toggle('sd-filter-pill-active', btn.dataset.value === filters.exposure);
     });
   }
 
   function applyFilters() {
-    let visibleCount = 0;
+    var visibleCount = 0;
 
-    allCards.forEach(card => {
-      const risk = card.dataset.risk;
-      const country = card.dataset.country;
-      const areas = card.dataset.areas.split(',');
-      const opensource = card.dataset.opensource;
-      const selfhosted = card.dataset.selfhosted;
-      const residency = card.dataset.residency ? card.dataset.residency.split(',') : [];
-      const exposure = card.dataset.exposure ? card.dataset.exposure.split(',').filter(e => e) : [];
-      const name = card.dataset.name.toLowerCase();
-      const vendor = card.dataset.vendor.toLowerCase();
-      const description = card.dataset.description.toLowerCase();
+    allCards.forEach(function(card) {
+      var risk = card.dataset.risk;
+      var country = card.dataset.country;
+      var areas = card.dataset.areas.split(',');
+      var opensource = card.dataset.opensource;
+      var selfhosted = card.dataset.selfhosted;
+      var residency = card.dataset.residency ? card.dataset.residency.split(',') : [];
+      var exposure = card.dataset.exposure ? card.dataset.exposure.split(',').filter(function(e) { return e; }) : [];
+      var name = card.dataset.name.toLowerCase();
+      var vendor = card.dataset.vendor.toLowerCase();
+      var description = card.dataset.description.toLowerCase();
 
-      let visible = true;
+      var visible = true;
 
-      // Risk filter
       if (filters.risk !== 'all' && risk !== filters.risk) visible = false;
-      // Country filter
       if (filters.country !== 'all' && country !== filters.country) visible = false;
-      // Area filter
       if (filters.area !== 'all' && !areas.includes(filters.area)) visible = false;
-      // Open source filter
       if (filters.opensource === 'true' && opensource !== 'true') visible = false;
-      // Self-hosted filter
       if (filters.selfhosted === 'true' && selfhosted !== 'true') visible = false;
-      // Data Residency filter
       if (filters.residency !== 'all' && !residency.includes(filters.residency)) visible = false;
-      // Jurisdiction Exposure filter
       if (filters.exposure === 'none' && exposure.length > 0) visible = false;
       if (filters.exposure === 'US' && !exposure.includes('US')) visible = false;
-      // Search filter
       if (filters.search) {
-        const searchStr = `${name} ${vendor} ${description}`;
+        var searchStr = name + ' ' + vendor + ' ' + description;
         if (!searchStr.includes(filters.search)) visible = false;
       }
 
@@ -512,18 +430,16 @@
       if (visible) visibleCount++;
     });
 
-    // Update counts
     totalCount.textContent = visibleCount;
 
-    // Handle pagination
-    const visibleCards = allCards.filter(c => !c.classList.contains('hidden'));
-    const totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
+    var visibleCards = allCards.filter(function(c) { return !c.classList.contains('hidden'); });
+    var totalPages = Math.ceil(visibleCards.length / ITEMS_PER_PAGE);
     if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
 
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    const end = start + ITEMS_PER_PAGE;
+    var start = (currentPage - 1) * ITEMS_PER_PAGE;
+    var end = start + ITEMS_PER_PAGE;
 
-    visibleCards.forEach((card, index) => {
+    visibleCards.forEach(function(card, index) {
       if (index >= start && index < end) {
         card.style.display = '';
       } else {
@@ -531,42 +447,39 @@
       }
     });
 
-    const pageCount = Math.min(ITEMS_PER_PAGE, visibleCards.length - start);
+    var pageCount = Math.min(ITEMS_PER_PAGE, visibleCards.length - start);
     showingCount.textContent = pageCount;
-    paginationInfo.textContent = totalPages > 1 ? `Page ${currentPage} of ${totalPages}` : '';
+    paginationInfo.textContent = totalPages > 1 ? 'Page ' + currentPage + ' of ' + totalPages : '';
 
-    // Show/hide no results
-    noResults.classList.toggle('hidden', visibleCount > 0);
-
-    // Render pagination
+    noResults.style.display = visibleCount > 0 ? 'none' : '';
     renderPagination(totalPages);
     updateActiveFiltersDisplay();
   }
 
   function updateActiveFiltersDisplay() {
-    const hasActiveFilters = filters.risk !== 'all' || filters.country !== 'all' ||
-                              filters.area !== 'all' || filters.opensource !== 'all' ||
-                              filters.selfhosted !== 'all' || filters.residency !== 'all' ||
-                              filters.exposure !== 'all' || filters.search;
-    activeFiltersDiv.classList.toggle('hidden', !hasActiveFilters);
+    var hasActiveFilters = filters.risk !== 'all' || filters.country !== 'all' ||
+                            filters.area !== 'all' || filters.opensource !== 'all' ||
+                            filters.selfhosted !== 'all' || filters.residency !== 'all' ||
+                            filters.exposure !== 'all' || filters.search;
+    activeFiltersDiv.style.display = hasActiveFilters ? '' : 'none';
 
     if (hasActiveFilters) {
-      let tags = '';
-      if (filters.search) tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">Search: "${filters.search}"</span>`;
-      if (filters.risk !== 'all') tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">${filters.risk} risk</span>`;
-      if (filters.country !== 'all') tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">Vendor: ${filters.country}</span>`;
-      if (filters.area !== 'all') tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">${filters.area}</span>`;
-      if (filters.opensource === 'true') tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">🔓 Open Source</span>`;
-      if (filters.selfhosted === 'true') tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">🏠 Self-hosted</span>`;
-      if (filters.residency !== 'all') tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">📍 Data in ${filters.residency === 'EU_EEA' ? 'EU/EEA' : filters.residency}</span>`;
-      if (filters.exposure === 'none') tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">🛡️ No foreign exposure</span>`;
-      if (filters.exposure === 'US') tags += `<span class="px-2 py-0.5 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-200 text-xs rounded-full">⚠️ US exposure</span>`;
+      var tags = '';
+      if (filters.search) tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">Search: "' + filters.search + '"</span>';
+      if (filters.risk !== 'all') tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">' + filters.risk + ' risk</span>';
+      if (filters.country !== 'all') tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">Vendor: ' + filters.country + '</span>';
+      if (filters.area !== 'all') tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">' + filters.area + '</span>';
+      if (filters.opensource === 'true') tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">🔓 Open Source</span>';
+      if (filters.selfhosted === 'true') tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">🏠 Self-hosted</span>';
+      if (filters.residency !== 'all') tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">📍 Data in ' + (filters.residency === 'EU_EEA' ? 'EU/EEA' : filters.residency) + '</span>';
+      if (filters.exposure === 'none') tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">🛡️ No foreign exposure</span>';
+      if (filters.exposure === 'US') tags += '<span class="sd-filter-pill sd-filter-pill-active" style="font-size:0.75rem;padding:0.25rem 0.75rem;">⚠️ US exposure</span>';
       filterTags.innerHTML = tags;
     }
   }
 
   function updateURL() {
-    const params = new URLSearchParams();
+    var params = new URLSearchParams();
     if (filters.risk !== 'all') params.set('risk', filters.risk);
     if (filters.country !== 'all') params.set('country', filters.country);
     if (filters.area !== 'all') params.set('area', filters.area);
@@ -577,7 +490,7 @@
     if (filters.search) params.set('q', filters.search);
     if (currentPage > 1) params.set('page', currentPage);
 
-    const newURL = params.toString() ? `?${params.toString()}` : window.location.pathname;
+    var newURL = params.toString() ? '?' + params.toString() : window.location.pathname;
     history.replaceState(null, '', newURL);
   }
 
@@ -587,29 +500,24 @@
       return;
     }
 
-    let html = '';
+    var html = '';
+    html += '<button class="sd-page-btn" ' + (currentPage === 1 ? 'disabled' : '') + ' data-page="' + (currentPage - 1) + '">← Prev</button>';
 
-    // Previous button
-    html += `<button class="page-btn" ${currentPage === 1 ? 'disabled' : ''} data-page="${currentPage - 1}">← Prev</button>`;
-
-    // Page numbers
-    const pages = getPaginationPages(currentPage, totalPages);
-    pages.forEach(p => {
+    var pages = getPaginationPages(currentPage, totalPages);
+    pages.forEach(function(p) {
       if (p === '...') {
-        html += `<span class="px-2 text-neutral-400">...</span>`;
+        html += '<span style="padding: 0 0.5rem; color: var(--sd-outline);">...</span>';
       } else {
-        html += `<button class="page-btn ${p === currentPage ? 'active' : ''}" data-page="${p}">${p}</button>`;
+        html += '<button class="sd-page-btn' + (p === currentPage ? ' sd-page-btn-active' : '') + '" data-page="' + p + '">' + p + '</button>';
       }
     });
 
-    // Next button
-    html += `<button class="page-btn" ${currentPage === totalPages ? 'disabled' : ''} data-page="${currentPage + 1}">Next →</button>`;
+    html += '<button class="sd-page-btn" ' + (currentPage === totalPages ? 'disabled' : '') + ' data-page="' + (currentPage + 1) + '">Next →</button>';
 
     pagination.innerHTML = html;
 
-    // Add click handlers
-    pagination.querySelectorAll('.page-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
+    pagination.querySelectorAll('.sd-page-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
         if (!btn.disabled) {
           currentPage = parseInt(btn.dataset.page);
           applyFilters();
@@ -621,14 +529,12 @@
   }
 
   function getPaginationPages(current, total) {
-    if (total <= 7) return Array.from({length: total}, (_, i) => i + 1);
-
+    if (total <= 7) return Array.from({length: total}, function(_, i) { return i + 1; });
     if (current <= 4) return [1, 2, 3, 4, 5, '...', total];
     if (current >= total - 3) return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
     return [1, '...', current - 1, current, current + 1, '...', total];
   }
 
-  // Initialize
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

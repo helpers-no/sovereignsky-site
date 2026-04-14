@@ -3439,3 +3439,242 @@ details[open] .details-marker {
   font-size: 0.875rem;
   color: var(--sd-on-surface);
 }
+
+/* ============================================================
+   Software List Page — Stitch design
+   ============================================================ */
+
+.sd-software-search {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid var(--sd-outline-variant);
+  border-radius: 0.75rem;
+  background-color: var(--sd-surface-container-lowest);
+  color: var(--sd-on-surface);
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.sd-software-search:focus {
+  outline: none;
+  border-color: var(--sd-primary);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--sd-primary) 20%, transparent);
+}
+
+.sd-software-search::placeholder {
+  color: var(--sd-outline);
+}
+
+.sd-software-filter-bar {
+  padding: 1.5rem;
+  background-color: var(--sd-surface-container-low);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sd-software-active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sd-outline-variant);
+}
+
+.sd-software-clear-btn {
+  font-size: 0.875rem;
+  color: var(--sd-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.sd-software-clear-btn:hover {
+  text-decoration: underline;
+}
+
+.sd-software-results-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.sd-software-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .sd-software-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .sd-software-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sd-software-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .sd-software-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.sd-software-card {
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid var(--sd-outline-variant);
+  background-color: var(--sd-surface-container-lowest);
+  transition: all 0.2s ease;
+}
+
+.sd-software-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--sd-primary);
+}
+
+.sd-software-card.hidden {
+  display: none;
+}
+
+.sd-software-card.initially-hidden {
+  display: none;
+}
+
+.js-enabled .sd-software-card.initially-hidden {
+  display: none;
+}
+
+.sd-software-card-link {
+  display: block;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sd-software-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.125rem;
+}
+
+.sd-risk-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  min-width: 12px;
+  min-height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sd-software-card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sd-on-surface);
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  margin: 0;
+}
+
+.sd-software-card-flag {
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.sd-software-card-vendor {
+  font-size: 0.75rem;
+  color: var(--sd-on-surface-variant);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0.25rem;
+  margin-left: 1rem;
+}
+
+.sd-software-card-meta {
+  font-size: 0.75rem;
+  color: var(--sd-on-surface-variant);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 0.125rem;
+  margin-left: 1rem;
+}
+
+.sd-software-card-exposure {
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+  margin-left: 1rem;
+}
+
+.sd-software-card-features {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+  margin-left: 1rem;
+}
+
+.sd-software-card-areas {
+  font-size: 0.75rem;
+  color: var(--sd-on-surface-variant);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+.sd-software-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.sd-page-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--sd-outline-variant);
+  background-color: var(--sd-surface-container-lowest);
+  color: var(--sd-on-surface);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-size: 0.875rem;
+}
+
+.sd-page-btn:hover:not(:disabled) {
+  border-color: var(--sd-primary);
+  color: var(--sd-primary);
+}
+
+.sd-page-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sd-page-btn-active {
+  background-color: var(--sd-primary);
+  border-color: var(--sd-primary);
+  color: #ffffff;
+}
