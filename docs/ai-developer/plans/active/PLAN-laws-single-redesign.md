@@ -77,13 +77,13 @@ Convert `layouts/laws/single.html` from the `common-single-page.html` partial to
 
 ---
 
-## Phase 3: Commit, push, and verify — TODO
+## Phase 3: Commit, push, and verify — IN PROGRESS
 
 ### Tasks
 
-- [ ] 3.1 Commit changes on feature branch
-- [ ] 3.2 Push and create PR if needed
-- [ ] 3.3 Verify on live site after CI deploy
+- [x] 3.1 Commit changes on feature branch
+- [x] 3.2 Push and create PR #29
+- [ ] 3.3 Verify on live site after CI deploy (pending merge)
 
 ### Validation
 

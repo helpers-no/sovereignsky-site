@@ -65,13 +65,13 @@ Hugo template syntax is correct. Page structure matches `countries/single.html` 
 
 ---
 
-## Phase 3: Commit & Push
+## Phase 3: Commit & Push — IN PROGRESS
 
 ### Tasks
 
-- [ ] 3.1 Commit changes on feature branch
-- [ ] 3.2 Push branch and create PR
-- [ ] 3.3 Verify on live site after CI deploy
+- [x] 3.1 Commit changes on feature branch ✓
+- [x] 3.2 Push branch ✓
+- [ ] 3.3 Create PR and verify on live site after CI deploy
 
 ### Validation
 

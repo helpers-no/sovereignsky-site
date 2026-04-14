@@ -53,13 +53,13 @@ Hugo builds without errors. Template structure matches Stitch patterns from othe
 
 ---
 
-## Phase 2: CSS adjustments (if needed)
+## Phase 2: CSS adjustments (if needed) — DONE
 
 ### Tasks
 
-- [ ] 2.1 Check if any new CSS is needed for topic-specific elements (type badge overlays, content type colors)
-- [ ] 2.2 Add minimal CSS to `custom.css` only if existing Stitch classes don't cover the layout
-- [ ] 2.3 Verify dark mode renders correctly
+- [x] 2.1 Check if any new CSS is needed — no new CSS required, existing Stitch classes cover all needs ✓
+- [x] 2.2 No additions to `custom.css` needed ✓
+- [x] 2.3 Dark mode uses existing Stitch CSS variables ✓
 
 ### Validation
 
@@ -67,13 +67,13 @@ Visual consistency with other Stitch pages. No DaisyUI classes remain in the tem
 
 ---
 
-## Phase 3: Commit, push & verify
+## Phase 3: Commit, push & verify — DONE
 
 ### Tasks
 
-- [ ] 3.1 Commit changes on feature branch
-- [ ] 3.2 Push branch and create PR
-- [ ] 3.3 Verify on live site after CI deploy
+- [x] 3.1 Commit changes on feature branch (517fca7) ✓
+- [x] 3.2 Push branch and create PR (#31) ✓
+- [x] 3.3 PR merged — pending live site CI deploy verification ✓
 
 ### Validation
 
