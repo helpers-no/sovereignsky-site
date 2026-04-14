@@ -4,7 +4,7 @@
 > - [WORKFLOW.md](../../WORKFLOW.md) - The implementation process
 > - [PLANS.md](../../PLANS.md) - Plan structure and best practices
 
-## Status: Active
+## Status: Completed
 
 **Goal**: Migrate the countries listing page, single/detail pages, and bloc pages from old Blowfish/DaisyUI design to the Stitch Section-Design system (`sd-*` classes).
 

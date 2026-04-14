@@ -4,7 +4,7 @@
 > - [WORKFLOW.md](../../WORKFLOW.md) - The implementation process
 > - [PLANS.md](../../PLANS.md) - Plan structure and best practices
 
-## Status: Active
+## Status: Completed
 
 **Goal**: Convert `layouts/software/single.html` from the old Tailwind utility-class layout to the Stitch section-design system, matching `laws/single.html` and `datacenters/single.html`.
 

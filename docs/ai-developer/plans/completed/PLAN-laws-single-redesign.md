@@ -4,7 +4,7 @@
 > - [WORKFLOW.md](../../WORKFLOW.md) - The implementation process
 > - [PLANS.md](../../PLANS.md) - Plan structure and best practices
 
-## Status: In Progress
+## Status: Completed
 
 **Goal**: Replace the old sidebar-based `common-single-page.html` layout on individual law pages with the Stitch section-design pattern matching the countries/networks single pages.
 

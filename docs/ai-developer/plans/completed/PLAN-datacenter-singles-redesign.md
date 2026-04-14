@@ -4,7 +4,7 @@
 > - [WORKFLOW.md](../../WORKFLOW.md) - The implementation process
 > - [PLANS.md](../../PLANS.md) - Plan structure and best practices
 
-## Status: Active
+## Status: Completed
 
 **Goal**: Convert datacenter `single.html` and `country.html` templates from the old sidebar layout to the Stitch section-design system, matching `countries/single.html` and `laws/single.html`.
 

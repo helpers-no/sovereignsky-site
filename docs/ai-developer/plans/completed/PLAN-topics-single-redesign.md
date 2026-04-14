@@ -4,7 +4,7 @@
 > - [WORKFLOW.md](../../WORKFLOW.md) - The implementation process
 > - [PLANS.md](../../PLANS.md) - Plan structure and best practices
 
-## Status: Active
+## Status: Completed
 
 **Goal**: Convert `layouts/topics/term.html` from DaisyUI to the Stitch section-design system, matching the patterns in the recently redesigned datacenter, law, and topics list pages.
 
