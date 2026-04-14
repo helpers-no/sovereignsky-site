@@ -1,285 +1,360 @@
 {{ define "main" }}
+{{ .Scratch.Set "scope" "single" }}
+
+{{/* ── Software metadata ── */}}
 {{ $softwareId := .Params.software_id }}
 {{ $data := index (where site.Data.software.software.products "id" $softwareId) 0 }}
-
-{{/* Get vendor data */}}
 {{ $vendor := index (where site.Data.software.vendors.vendors "id" $data.vendor_id) 0 }}
-
-{{/* Get country data for jurisdiction exposure */}}
 {{ $countries := site.Data.countries.countries.itemListElement }}
+{{ $vendorFlag := partial "get-country-flag.html" $vendor.country }}
 
-{{/* Risk level colors */}}
-{{ $riskColors := dict
-  "low" "green"
-  "moderate" "yellow"
-  "elevated" "orange"
-  "significant" "red"
-  "high" "red"
-}}
-{{ $riskColor := index $riskColors $data.risk_level | default "neutral" }}
+{{/* ── Risk styling ── */}}
+{{ $riskEmoji := "" }}
+{{ if eq $data.risk_level "low" }}{{ $riskEmoji = "✅" }}
+{{ else if eq $data.risk_level "moderate" }}{{ $riskEmoji = "⚠️" }}
+{{ else if eq $data.risk_level "elevated" }}{{ $riskEmoji = "🔶" }}
+{{ else if eq $data.risk_level "significant" }}{{ $riskEmoji = "🚨" }}
+{{ else if eq $data.risk_level "high" }}{{ $riskEmoji = "🚨" }}
+{{ end }}
 
-{{/* Country flags - use partial "get-country-flag.html" for lookups */}}
+<article class="sd-software section-design">
 
-<article class="software-detail max-w-4xl mx-auto">
-
-  <!-- Breadcrumb -->
-  <nav class="text-sm mb-4">
-    <a href="/software/" class="text-primary-600 dark:text-primary-400 hover:underline">Software Database</a>
-    <span class="text-neutral-400 mx-2">›</span>
-    <span class="text-neutral-600 dark:text-neutral-300">{{ $data.name }}</span>
-  </nav>
-
-  <!-- Header -->
-  <header class="mb-8">
-    <div class="flex items-center gap-2 text-sm text-neutral-500 dark:text-neutral-400 mb-2">
-      {{ $vendorFlag := partial "get-country-flag.html" $vendor.country }}
-      <span>{{ $vendorFlag }}</span>
-      <span>{{ $vendor.name }}</span>
-      {{ if gt (len $data.hosting.jurisdiction_exposure) 0 }}
-      <span class="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-xs px-2 py-0.5 rounded">
-        {{ range $i, $exp := $data.hosting.jurisdiction_exposure }}{{ if $i }}, {{ end }}{{ $exp }}{{ end }} jurisdiction
-      </span>
-      {{ else }}
-      <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-0.5 rounded">No foreign exposure</span>
-      {{ end }}
-    </div>
-
-    <h1 class="text-3xl font-bold mb-4">{{ $data.name }}</h1>
-
-    <p class="text-lg text-neutral-600 dark:text-neutral-300 mb-4">{{ $data.description }}</p>
-
-    <!-- Risk Level Badge -->
-    <div class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-{{ $riskColor }}-100 dark:bg-{{ $riskColor }}-900/40 border border-{{ $riskColor }}-300 dark:border-{{ $riskColor }}-700">
-      <span class="font-semibold text-{{ $riskColor }}-800 dark:text-{{ $riskColor }}-200">
-        {{ $data.risk_level | title }} Risk
-      </span>
-      {{ with $data.assessments.ndsi }}
-      <span class="text-sm text-{{ $riskColor }}-600 dark:text-{{ $riskColor }}-300">
-        (Score: {{ printf "%.2f" .score }}/5)
-      </span>
-      {{ end }}
-    </div>
-  </header>
-
-  <!-- Hosting & Jurisdiction Info -->
-  <section class="mb-8 p-4 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-    <h2 class="text-lg font-semibold mb-4">Hosting & Jurisdiction</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div>
-        <span class="text-sm text-neutral-500 dark:text-neutral-400 block mb-1">Data Residency</span>
-        <div class="flex flex-wrap gap-1">
-          {{ range $data.hosting.data_residency }}
-          {{ $f := partial "get-country-flag.html" . }}
-          <span class="inline-flex items-center gap-1 px-2 py-1 bg-white dark:bg-neutral-700 rounded text-sm">
-            {{ $f }} {{ if eq . "EU_EEA" }}EU/EEA{{ else }}{{ . }}{{ end }}
+  {{/* ============================================================
+       HERO
+       ============================================================ */}}
+  <section class="sd-events-hero" style="padding-bottom: 3rem;">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        {{/* Breadcrumbs */}}
+        <nav style="margin-bottom: 1rem;">
+          <span style="font-size: 0.875rem; opacity: 0.8;">
+            <a href="/" style="color: inherit; text-decoration: none; opacity: 0.7;">Home</a>
+            <span style="margin: 0 0.25rem;">›</span>
+            <a href="/software/" style="color: inherit; text-decoration: none; opacity: 0.7;">Software</a>
+            <span style="margin: 0 0.25rem;">›</span>
+            <span>{{ $data.name }}</span>
           </span>
-          {{ end }}
+        </nav>
+
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Software</span>
         </div>
-      </div>
-      <div>
-        <span class="text-sm text-neutral-500 dark:text-neutral-400 block mb-1">Jurisdiction Exposure</span>
-        {{ if gt (len $data.hosting.jurisdiction_exposure) 0 }}
-        <div class="flex flex-wrap gap-1">
-          {{ range $data.hosting.jurisdiction_exposure }}
-          {{ $f := partial "get-country-flag.html" . }}
-          <span class="inline-flex items-center gap-1 px-2 py-1 bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 rounded text-sm">
-            {{ $f }} {{ . }}
+
+        <h1 class="sd-headline sd-events-hero-title" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">
+          {{ $data.name }}
+        </h1>
+
+        <p class="sd-events-hero-description">{{ $data.description }}</p>
+
+        {{/* Risk badge in hero */}}
+        {{ with $data.assessments.ndsi }}
+        <div style="margin-top: 1.25rem;">
+          <span style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; border-radius: 0.5rem; background: rgba(255,255,255,0.15); color: inherit; font-size: 0.875rem; font-weight: 500; backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.2);">
+            {{ $riskEmoji }} {{ $data.risk_level | title }} Risk · Score {{ printf "%.2f" .score }}/5
           </span>
-          {{ end }}
         </div>
-        {{ else }}
-        <span class="inline-flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded text-sm">
-          🛡️ No foreign exposure
-        </span>
         {{ end }}
       </div>
-      <div>
-        <span class="text-sm text-neutral-500 dark:text-neutral-400 block mb-1">Self-Hosted</span>
-        <span class="text-sm font-medium">{{ if $data.hosting.self_hosted }}Yes{{ else }}No{{ end }}</span>
-      </div>
     </div>
-    {{ with $data.hosting.notes }}
-    <p class="text-sm text-neutral-600 dark:text-neutral-400 mt-3 pt-3 border-t border-neutral-200 dark:border-neutral-700">{{ . }}</p>
-    {{ end }}
   </section>
 
-  <!-- Jurisdiction Exposure Warning -->
-  {{ if gt (len $data.hosting.jurisdiction_exposure) 0 }}
-  <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 mb-8">
-    <p class="font-semibold text-amber-800 dark:text-amber-200">⚠️ Jurisdiction Risk</p>
-    <p class="text-amber-700 dark:text-amber-300 text-sm">
-      This product is subject to foreign jurisdiction ({{ delimit $data.hosting.jurisdiction_exposure ", " }}),
-      which may allow foreign authorities to compel data disclosure.
-    </p>
-    {{ range $data.hosting.jurisdiction_exposure }}
-      {{ $region := index (where $countries "id" .) 0 }}
-      {{ if $region }}
-        {{ if $region.laws }}
-        <div class="mt-2 text-sm">
-          <span class="font-medium text-amber-800 dark:text-amber-200">Applicable laws:</span>
-          <ul class="list-disc list-inside text-amber-700 dark:text-amber-300">
-            {{ range $region.laws }}
-            <li>{{ .name }} ({{ .year }}) - {{ .summary }}</li>
+  {{/* ============================================================
+       METADATA GRID
+       ============================================================ */}}
+  <section class="sd-events-stats">
+
+    {{/* Card 1 — Product Details */}}
+    <div class="sd-events-stat-card" style="text-align: left;">
+      <span class="sd-events-stat-label">Product Details</span>
+      <dl style="margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.8;">
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Vendor</dt>
+          <dd style="font-weight: 500;">{{ $vendorFlag }} {{ $vendor.name }}</dd>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">HQ Country</dt>
+          <dd style="font-weight: 500;">{{ $vendorFlag }} {{ $vendor.country }}</dd>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Risk Level</dt>
+          <dd style="font-weight: 500;">{{ $riskEmoji }} {{ $data.risk_level | title }}</dd>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Open Source</dt>
+          <dd style="font-weight: 500;">{{ if $data.open_source }}Yes{{ else }}No{{ end }}</dd>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Data Portability</dt>
+          <dd style="font-weight: 500;">{{ $data.data_portability | default "Unknown" | title }}</dd>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Self-Hosted</dt>
+          <dd style="font-weight: 500;">{{ if $data.hosting.self_hosted }}Yes{{ else }}No{{ end }}</dd>
+        </div>
+      </dl>
+    </div>
+
+    {{/* Card 2 — Hosting & Jurisdiction */}}
+    <div class="sd-events-stat-card" style="text-align: left;">
+      <span class="sd-events-stat-label">Hosting & Jurisdiction</span>
+      <div style="margin-top: 0.5rem;">
+        {{ if $data.hosting.data_residency }}
+        <div style="margin-bottom: 0.75rem;">
+          <span style="font-size: 0.75rem; opacity: 0.6; display: block; margin-bottom: 0.25rem;">Data Residency</span>
+          <div class="sd-filter-pills">
+            {{ range $data.hosting.data_residency }}
+            {{ $f := partial "get-country-flag.html" . }}
+            <span class="sd-filter-pill" style="font-size: 0.8125rem; padding: 0.375rem 0.875rem;">
+              {{ $f }} {{ if eq . "EU_EEA" }}EU/EEA{{ else }}{{ . }}{{ end }}
+            </span>
             {{ end }}
-          </ul>
+          </div>
         </div>
         {{ end }}
-      {{ end }}
+
+        <div style="margin-bottom: 0.75rem;">
+          <span style="font-size: 0.75rem; opacity: 0.6; display: block; margin-bottom: 0.25rem;">Jurisdiction Exposure</span>
+          <div class="sd-filter-pills">
+            {{ if gt (len $data.hosting.jurisdiction_exposure) 0 }}
+              {{ range $data.hosting.jurisdiction_exposure }}
+              {{ $f := partial "get-country-flag.html" . }}
+              <span class="sd-filter-pill" style="font-size: 0.8125rem; padding: 0.375rem 0.875rem; color: var(--sd-error, #ba1a1a);">
+                {{ $f }} {{ . }}
+              </span>
+              {{ end }}
+            {{ else }}
+            <span class="sd-filter-pill" style="font-size: 0.8125rem; padding: 0.375rem 0.875rem;">
+              🛡️ No foreign exposure
+            </span>
+            {{ end }}
+          </div>
+        </div>
+
+        {{ with $data.hosting.notes }}
+        <p style="font-size: 0.75rem; opacity: 0.6; line-height: 1.5; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">{{ . }}</p>
+        {{ end }}
+      </div>
+    </div>
+
+    {{/* Card 3 — NDSI Score */}}
+    {{ with $data.assessments.ndsi }}
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">NDSI Assessment</span>
+      <div class="sd-events-stat-row" style="margin-top: 0.5rem;">
+        <span class="sd-events-stat-value">{{ printf "%.1f" .score }}</span>
+        <span class="sd-events-stat-desc">/ 5.0 risk score</span>
+      </div>
+      <div style="font-size: 0.75rem; opacity: 0.6; margin-top: 0.25rem;">
+        v{{ .version }} · {{ .date }}
+      </div>
+    </div>
     {{ end }}
-  </div>
-  {{ end }}
 
-  <!-- Key concerns -->
-  {{ if $data.key_concerns }}
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-4">Key Concerns</h2>
-    <ul class="list-disc list-inside space-y-2 text-neutral-700 dark:text-neutral-300">
-      {{ range $data.key_concerns }}
-      <li>{{ . }}</li>
-      {{ end }}
-    </ul>
   </section>
-  {{ end }}
 
-  <!-- NDSI Assessment Breakdown -->
-  {{ with $data.assessments.ndsi }}
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-4">NDSI Assessment</h2>
-    <p class="text-sm text-neutral-500 dark:text-neutral-400 mb-4">
-      Norwegian Digital Sovereignty Index v{{ .version }} - Assessed {{ .date }}
-    </p>
+  {{/* ============================================================
+       MAIN CONTENT
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+    <div class="sd-dc-content">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {{ range $dimId, $dim := .scores }}
-      {{ $dimName := $dimId | title | replaceRE "_" " " }}
-      {{ $scoreColor := "neutral" }}
-      {{ if le $dim.score 1 }}{{ $scoreColor = "green" }}
-      {{ else if le $dim.score 2 }}{{ $scoreColor = "yellow" }}
-      {{ else if le $dim.score 3 }}{{ $scoreColor = "orange" }}
-      {{ else }}{{ $scoreColor = "red" }}{{ end }}
-
-      <div class="p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
-        <div class="flex items-center justify-between mb-2">
-          <span class="font-medium">{{ $dimName }}</span>
-          <span class="px-2 py-0.5 text-sm rounded bg-{{ $scoreColor }}-100 dark:bg-{{ $scoreColor }}-900 text-{{ $scoreColor }}-800 dark:text-{{ $scoreColor }}-200">
-            {{ $dim.score }}/5
-          </span>
-        </div>
-        {{ with $dim.rationale }}
-        <p class="text-sm text-neutral-600 dark:text-neutral-400">{{ . }}</p>
+      {{/* Jurisdiction Exposure Warning */}}
+      {{ if gt (len $data.hosting.jurisdiction_exposure) 0 }}
+      <div id="jurisdiction" style="margin-bottom: 1.5rem; padding: 1.25rem; border-radius: 0.75rem; border-left: 4px solid var(--sd-error, #ba1a1a); background: color-mix(in srgb, var(--sd-error, #ba1a1a) 8%, transparent);">
+        <p style="font-weight: 600; color: var(--sd-error, #ba1a1a); margin-bottom: 0.5rem;">⚠️ Jurisdiction Risk</p>
+        <p style="font-size: 0.875rem; color: var(--sd-on-surface-variant); line-height: 1.6;">
+          This product is subject to foreign jurisdiction ({{ delimit $data.hosting.jurisdiction_exposure ", " }}),
+          which may allow foreign authorities to compel data disclosure.
+        </p>
+        {{ range $data.hosting.jurisdiction_exposure }}
+          {{ $region := index (where $countries "id" .) 0 }}
+          {{ if $region }}
+            {{ if $region.laws }}
+            <div style="margin-top: 0.75rem; font-size: 0.875rem;">
+              <span style="font-weight: 500; color: var(--sd-error, #ba1a1a);">Applicable laws:</span>
+              <ul style="list-style: disc; padding-left: 1.25rem; margin-top: 0.25rem; color: var(--sd-on-surface-variant);">
+                {{ range $region.laws }}
+                <li>{{ .name }} ({{ .year }}) — {{ .summary }}</li>
+                {{ end }}
+              </ul>
+            </div>
+            {{ end }}
+          {{ end }}
         {{ end }}
       </div>
       {{ end }}
-    </div>
-  </section>
-  {{ end }}
 
-  <!-- Mitigations -->
-  {{ if $data.mitigations }}
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-4">What You Can Do</h2>
-
-    <div class="space-y-4">
-      {{ range $data.mitigations }}
-      <div class="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
-        <h3 class="font-semibold mb-2">{{ .title }}</h3>
-        <p class="text-neutral-600 dark:text-neutral-400 text-sm mb-3">{{ .description }}</p>
-
-        <div class="flex flex-wrap gap-2 text-xs">
-          {{ with .effort }}
-          <span class="px-2 py-1 rounded {{ if eq . "low" }}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200{{ else if eq . "medium" }}bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200{{ else }}bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200{{ end }}">
-            Effort: {{ . | title }}
-          </span>
+      {{/* Key Concerns */}}
+      {{ if $data.key_concerns }}
+      <div id="concerns" style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem;">Key Concerns</h2>
+        <ul style="list-style: disc; padding-left: 1.25rem; color: var(--sd-on-surface-variant); line-height: 1.8;">
+          {{ range $data.key_concerns }}
+          <li>{{ . }}</li>
           {{ end }}
-          {{ with .impact }}
-          <span class="px-2 py-1 rounded {{ if eq . "high" }}bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200{{ else if eq . "medium" }}bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200{{ else }}bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200{{ end }}">
-            Impact: {{ . | title }}
-          </span>
-          {{ end }}
-          {{ if .requires_license }}
-          <span class="px-2 py-1 rounded bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-            Requires: {{ .requires_license }}
-          </span>
-          {{ end }}
-        </div>
-
-        {{ if .url }}
-        <a href="{{ .url }}" target="_blank" rel="noopener" class="inline-block mt-3 text-sm text-primary-600 dark:text-primary-400 hover:underline">
-          Learn more →
-        </a>
-        {{ end }}
+        </ul>
       </div>
       {{ end }}
-    </div>
-  </section>
-  {{ end }}
 
-  <!-- Alternatives -->
-  {{ if $data.alternatives }}
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-4">Alternatives</h2>
+      {{/* NDSI Assessment Breakdown */}}
+      {{ with $data.assessments.ndsi }}
+      <div id="assessment" style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem;">NDSI Assessment Breakdown</h2>
+        <p style="font-size: 0.8125rem; color: var(--sd-on-surface-variant); opacity: 0.7; margin-bottom: 1rem;">
+          Norwegian Digital Sovereignty Index v{{ .version }} — Assessed {{ .date }}
+        </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {{ range $data.alternatives }}
-      {{ $alt := index (where site.Data.software.software.products "id" .) 0 }}
-      {{ if $alt }}
-      {{ $altVendor := index (where site.Data.software.vendors.vendors "id" $alt.vendor_id) 0 }}
-      <a href="/software/{{ $alt.slug }}/" class="block border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 hover:border-primary-500 transition-colors">
-        <div class="flex items-center gap-2 mb-2">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 0.75rem;">
+          {{ range $dimId, $dim := .scores }}
+          {{ $dimName := $dimId | title | replaceRE "_" " " }}
+          {{ $scoreEmoji := "" }}
+          {{ if le $dim.score 1.0 }}{{ $scoreEmoji = "✅" }}
+          {{ else if le $dim.score 2.0 }}{{ $scoreEmoji = "⚠️" }}
+          {{ else if le $dim.score 3.0 }}{{ $scoreEmoji = "🔶" }}
+          {{ else }}{{ $scoreEmoji = "🚨" }}
+          {{ end }}
+
+          <div style="padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--sd-outline-variant, #e5e7eb); background: var(--sd-surface-container-lowest, #fff);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-weight: 500; font-size: 0.875rem;">{{ $dimName }}</span>
+              <span style="font-size: 0.875rem; font-weight: 600;">{{ $scoreEmoji }} {{ $dim.score }}/5</span>
+            </div>
+            {{ with $dim.rationale }}
+            <p style="font-size: 0.8125rem; color: var(--sd-on-surface-variant); line-height: 1.5;">{{ . }}</p>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Mitigations */}}
+      {{ if $data.mitigations }}
+      <div id="mitigations" style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">What You Can Do</h2>
+
+        <div style="display: grid; gap: 0.75rem;">
+          {{ range $data.mitigations }}
+          <div style="padding: 1rem; border-radius: 0.75rem; border: 1px solid var(--sd-outline-variant, #e5e7eb); background: var(--sd-surface-container-lowest, #fff);">
+            <h3 style="font-weight: 600; font-size: 0.9375rem; margin-bottom: 0.375rem;">{{ .title }}</h3>
+            <p style="font-size: 0.8125rem; color: var(--sd-on-surface-variant); line-height: 1.6; margin-bottom: 0.75rem;">{{ .description }}</p>
+
+            <div class="sd-filter-pills">
+              {{ with .effort }}
+              <span class="sd-filter-pill" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;">
+                Effort: {{ . | title }}
+              </span>
+              {{ end }}
+              {{ with .impact }}
+              <span class="sd-filter-pill" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;">
+                Impact: {{ . | title }}
+              </span>
+              {{ end }}
+              {{ if .requires_license }}
+              <span class="sd-filter-pill" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;">
+                Requires: {{ .requires_license }}
+              </span>
+              {{ end }}
+            </div>
+
+            {{ if .url }}
+            <div style="margin-top: 0.75rem;">
+              <a href="{{ .url }}" target="_blank" rel="noopener" style="font-size: 0.8125rem; color: var(--sd-primary); text-decoration: none;">
+                Learn more →
+              </a>
+            </div>
+            {{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </div>
+      {{ end }}
+
+      {{/* Alternatives */}}
+      {{ if $data.alternatives }}
+      <div id="alternatives" style="margin-bottom: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <h2 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem;">Alternatives</h2>
+
+        <div class="sd-blog-grid">
+          {{ range $data.alternatives }}
+          {{ $alt := index (where site.Data.software.software.products "id" .) 0 }}
+          {{ if $alt }}
+          {{ $altVendor := index (where site.Data.software.vendors.vendors "id" $alt.vendor_id) 0 }}
           {{ $altFlag := partial "get-country-flag.html" $altVendor.country }}
-          <span>{{ $altFlag }}</span>
-          <span class="font-semibold">{{ $alt.name }}</span>
+          {{ $altRiskEmoji := "" }}
+          {{ if eq $alt.risk_level "low" }}{{ $altRiskEmoji = "✅" }}
+          {{ else if eq $alt.risk_level "moderate" }}{{ $altRiskEmoji = "⚠️" }}
+          {{ else if eq $alt.risk_level "elevated" }}{{ $altRiskEmoji = "🔶" }}
+          {{ else if eq $alt.risk_level "significant" }}{{ $altRiskEmoji = "🚨" }}
+          {{ else if eq $alt.risk_level "high" }}{{ $altRiskEmoji = "🚨" }}
+          {{ end }}
+
+          <a href="/software/{{ $alt.slug }}/" class="sd-blog-card-inner" style="text-decoration: none; color: inherit;">
+            <div class="sd-blog-card-content">
+              <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <span>{{ $altFlag }}</span>
+                <span class="sd-blog-card-title" style="font-size: 1rem;">{{ $alt.name }}</span>
+              </div>
+              <p class="sd-blog-card-desc">{{ $alt.description }}</p>
+              <div style="margin-top: 0.75rem;">
+                <span class="sd-filter-pill" style="font-size: 0.75rem; padding: 0.25rem 0.75rem;">
+                  {{ $altRiskEmoji }} {{ $alt.risk_level | title }} Risk
+                </span>
+              </div>
+            </div>
+          </a>
+          {{ end }}
+          {{ end }}
         </div>
-        <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-2">{{ $alt.description }}</p>
-        <span class="text-xs px-2 py-1 rounded bg-{{ index $riskColors $alt.risk_level }}-100 dark:bg-{{ index $riskColors $alt.risk_level }}-900 text-{{ index $riskColors $alt.risk_level }}-800 dark:text-{{ index $riskColors $alt.risk_level }}-200">
-          {{ $alt.risk_level | title }} Risk
-        </span>
-      </a>
+      </div>
       {{ end }}
+
+      {{/* Use Areas */}}
+      {{ with $data.use_areas }}
+      <div style="margin-bottom: 1rem;">
+        <h3 style="font-size: 0.875rem; font-weight: 600; opacity: 0.7; margin-bottom: 0.5rem;">Use Areas</h3>
+        <div class="sd-filter-pills">
+          {{ range . }}
+          <span class="sd-filter-pill" style="font-size: 0.8125rem; padding: 0.375rem 0.875rem;">{{ . | humanize | title }}</span>
+          {{ end }}
+        </div>
+      </div>
       {{ end }}
+
+      {{/* Sources */}}
+      {{ if $data.meta.sources }}
+      <div style="margin-bottom: 1.5rem; padding-top: 1rem;">
+        <h3 style="font-size: 0.875rem; font-weight: 600; opacity: 0.7; margin-bottom: 0.5rem;">Sources</h3>
+        <ul style="list-style: none; padding: 0; font-size: 0.8125rem;">
+          {{ range $data.meta.sources }}
+          <li style="margin-bottom: 0.25rem;">
+            <a href="{{ . }}" target="_blank" rel="noopener" style="color: var(--sd-primary); text-decoration: none; word-break: break-all;">{{ . }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+
+      {{/* Back link */}}
+      <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <a href="/software/" style="font-size: 0.875rem; color: var(--sd-primary); text-decoration: none;">← Back to Software Database</a>
+      </div>
+
     </div>
   </section>
-  {{ end }}
-
-  <!-- Technical details -->
-  <section class="mb-8">
-    <h2 class="text-xl font-semibold mb-4">Technical Details</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
-      <div>
-        <span class="text-neutral-500 dark:text-neutral-400 block">Open Source</span>
-        <span class="font-medium">{{ if $data.open_source }}Yes{{ else }}No{{ end }}</span>
-      </div>
-      <div>
-        <span class="text-neutral-500 dark:text-neutral-400 block">Data Portability</span>
-        <span class="font-medium">{{ $data.data_portability | default "unknown" | title }}</span>
-      </div>
-      <div>
-        <span class="text-neutral-500 dark:text-neutral-400 block">Self-Hosted</span>
-        <span class="font-medium">{{ if $data.hosting.self_hosted }}Yes{{ else }}No{{ end }}</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sources -->
-  {{ if $data.meta.sources }}
-  <section class="mb-8 text-sm">
-    <h2 class="text-lg font-semibold mb-2">Sources</h2>
-    <ul class="space-y-1">
-      {{ range $data.meta.sources }}
-      <li>
-        <a href="{{ . }}" target="_blank" rel="noopener" class="text-primary-600 dark:text-primary-400 hover:underline break-all">{{ . }}</a>
-      </li>
-      {{ end }}
-    </ul>
-  </section>
-  {{ end }}
-
-  <!-- Back link -->
-  <div class="border-t border-neutral-200 dark:border-neutral-700 pt-6">
-    <a href="/software/" class="text-primary-600 dark:text-primary-400 hover:underline">
-      ← Back to Software Database
-    </a>
-  </div>
 
 </article>
+
+{{/* Floating TOC */}}
+{{ $tocSections := slice
+    (dict "id" "jurisdiction" "title" "Jurisdiction" "icon" "⚠️")
+    (dict "id" "concerns" "title" "Concerns" "icon" "🔍")
+    (dict "id" "assessment" "title" "Assessment" "icon" "📊")
+    (dict "id" "mitigations" "title" "Mitigations" "icon" "🛡️")
+    (dict "id" "alternatives" "title" "Alternatives" "icon" "🔄")
+}}
+{{ partial "floating-toc.html" (dict "sections" $tocSections) }}
+{{ partial "sovereignsky-footer.html" . }}
 {{ end }}
