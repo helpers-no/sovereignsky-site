@@ -30,7 +30,6 @@
   {{ $countryFlag = $country.flag | default "" }}
 {{ end }}
 
-{{/* Auto-generate clean title without flag (partial will add flag) */}}
 {{ $displayTitle := printf "%s Datacenters" $countryName }}
 
 {{/* Build country lookup for use by partials */}}
@@ -61,114 +60,199 @@
 {{ $providerItems = sort $providerItems "name" "asc" }}
 {{ $providerItems = sort $providerItems "count" "desc" }}
 
-<article class="max-w-full">
-  {{/* Detail Header with breadcrumbs */}}
-  {{ partial "common-detail-header.html" (dict
-      "title" $displayTitle
-      "description" .Description
-      "flag" $countryFlag
-      "breadcrumbs" (slice
-          (dict "title" "Datacenters" "url" "/datacenters/")
-      )
-  ) }}
+{{/* Risk level */}}
+{{ $riskLevel := "" }}
+{{ $riskEmoji := "" }}
+{{ with $country }}
+  {{ $riskLevel = .riskLevel | default "" }}
+  {{ if eq $riskLevel "low" }}{{ $riskEmoji = "✅" }}
+  {{ else if eq $riskLevel "moderate" }}{{ $riskEmoji = "⚠️" }}
+  {{ else if eq $riskLevel "elevated" }}{{ $riskEmoji = "🔶" }}
+  {{ else if eq $riskLevel "high" }}{{ $riskEmoji = "🚨" }}
+  {{ else if eq $riskLevel "sanctioned" }}{{ $riskEmoji = "⛔" }}
+  {{ end }}
+{{ end }}
 
-  {{/* Two-column layout */}}
-  <section class="flex flex-col max-w-full mt-0 lg:flex-row">
+{{/* Bloc memberships */}}
+{{ $blocs := slice }}
+{{ range $countries }}
+  {{ if .memberCountryIds }}
+    {{ if in .memberCountryIds $countryId }}
+      {{ $blocs = $blocs | append . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 
-    {{/* Right Sidebar */}}
-    {{ partial "sidebar/common-sidebar.html" . }}
+<article class="sd-datacenters section-design">
 
-        {{/* Country Details Card */}}
-        {{ partial "sidebar/datacenter-country-details-card.html" (dict "country" $country "providerCount" (len $providerItems) "regionCount" $totalRegions) }}
+  {{/* ============================================================
+       HERO
+       ============================================================ */}}
+  <section class="sd-events-hero" style="padding-bottom: 3rem;">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <nav style="margin-bottom: 1rem;">
+          <span style="font-size: 0.875rem; opacity: 0.8;">
+            <a href="/" style="color: inherit; text-decoration: none; opacity: 0.7;">Home</a>
+            <span style="margin: 0 0.25rem;">›</span>
+            <a href="/datacenters/" style="color: inherit; text-decoration: none; opacity: 0.7;">Datacenters</a>
+            <span style="margin: 0 0.25rem;">›</span>
+            <span>{{ $countryName }}</span>
+          </span>
+        </nav>
 
-        {{/* Link to full country page for laws */}}
-        <div class="card bg-base-100 shadow-sm border border-base-300">
-          <div class="card-body p-4">
-            <h3 class="card-title text-sm font-semibold flex items-center gap-2">
-              {{ partial "data-icon.html" (dict "name" "scale" "color" "primary" "size" "4") }}
-              Laws & Regulations
-            </h3>
-            <p class="text-sm text-neutral-600 dark:text-neutral-400">
-              View detailed jurisdiction laws and regulations.
-            </p>
-            <a href="/countries/{{ $slug }}/" class="btn btn-sm btn-outline btn-primary mt-2">
-              View {{ $countryName }} Laws
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Datacenter Region</span>
+        </div>
+
+        <h1 class="sd-headline sd-events-hero-title" style="font-size: clamp(1.75rem, 4vw, 2.5rem);">
+          {{ if $countryFlag }}<span style="margin-right: 0.5rem;">{{ $countryFlag }}</span>{{ end }}{{ $displayTitle }}
+        </h1>
+
+        {{ with .Description }}
+        <p class="sd-events-hero-description">{{ . }}</p>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       METADATA GRID
+       ============================================================ */}}
+  <section class="sd-events-stats">
+    {{/* Region Details card */}}
+    <div class="sd-events-stat-card" style="text-align: left;">
+      <span class="sd-events-stat-label">Region Details</span>
+      <dl style="margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.8;">
+        {{ if $riskLevel }}
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Risk Level</dt>
+          <dd style="font-weight: 500;">{{ $riskEmoji }} {{ $riskLevel | title }}</dd>
+        </div>
+        {{ end }}
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">Providers</dt>
+          <dd style="font-weight: 500;">{{ len $providerItems }}</dd>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <dt style="opacity: 0.6;">DC Regions</dt>
+          <dd style="font-weight: 500;">{{ $totalRegions }}</dd>
+        </div>
+      </dl>
+    </div>
+
+    {{/* Memberships card */}}
+    {{ if gt (len $blocs) 0 }}
+    <div class="sd-events-stat-card" style="text-align: left;">
+      <span class="sd-events-stat-label">Bloc Memberships</span>
+      <div style="margin-top: 0.5rem;" class="sd-filter-pills">
+        {{ range $blocs }}
+        <a href="/countries/{{ .slug }}/" class="sd-filter-pill" style="text-decoration: none; font-size: 0.8125rem; padding: 0.375rem 0.875rem;">
+          {{ with .flag }}{{ . }} {{ end }}{{ .name }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{/* Top Providers card */}}
+    {{ if gt (len $providerItems) 0 }}
+    <div class="sd-events-stat-card" style="text-align: left;">
+      <span class="sd-events-stat-label">Top Providers</span>
+      <ul style="margin-top: 0.5rem; list-style: none; padding: 0; font-size: 0.875rem; line-height: 2;">
+        {{ range first 5 $providerItems }}
+        <li style="display: flex; justify-content: space-between; align-items: center;">
+          <a href="/datacenters/{{ .provider.identifier }}/" style="text-decoration: none; color: inherit;">{{ .name }}</a>
+          <span style="opacity: 0.6; font-size: 0.75rem;">{{ .count }} regions</span>
+        </li>
+        {{ end }}
+        {{ if gt (len $providerItems) 5 }}
+        <li style="opacity: 0.5; font-size: 0.75rem;">+ {{ sub (len $providerItems) 5 }} more</li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+  </section>
+
+  {{/* ============================================================
+       MAIN CONTENT
+       ============================================================ */}}
+  <section class="sd-blog-feed">
+    <div class="sd-dc-content">
+
+      {{/* Summary */}}
+      {{ with .Params.summary }}
+      <p style="font-size: 1.125rem; color: var(--sd-on-surface-variant); line-height: 1.7; margin-bottom: 1.5rem;">{{ . }}</p>
+      {{ end }}
+
+      {{/* Body */}}
+      {{ with .Params.body }}
+      <p>{{ . }}</p>
+      {{ end }}
+
+      {{ if $countryId }}
+        {{/* Map */}}
+        <h2 id="map">Datacenter Map</h2>
+        <div class="not-prose" style="margin-top: 1rem;">
+          {{ $mapShortcode := printf "{{< datacenter-map countries=\"%s\" showFilters=\"false\" >}}" $countryId }}
+          {{ $mapShortcode | .Page.RenderString }}
+        </div>
+
+        {{/* Providers */}}
+        <h2 id="providers">Datacenter Providers in {{ $countryName }}</h2>
+        {{ partial "datacenter-country-providers-inline.html" (dict "countryId" $countryId "regionsById" $regionsById) }}
+
+        {{/* Regions */}}
+        <h2 id="regions">Locations by City</h2>
+        {{ partial "datacenter-country-regions-inline.html" (dict "countryId" $countryId "regionsById" $regionsById) }}
+
+        {{/* Laws link */}}
+        <div style="margin-top: 2rem; padding: 1rem 1.5rem; border-radius: 0.75rem; background: var(--sd-surface-container-low); border: 1px solid var(--sd-outline-variant);">
+          <span style="font-size: 0.875rem; opacity: 0.7;">Jurisdiction laws and regulations</span>
+          <div style="margin-top: 0.5rem;">
+            <a href="/countries/{{ $slug }}/" style="color: var(--sd-primary); text-decoration: none; font-weight: 500;">
+              View {{ $countryName }} jurisdiction details →
             </a>
           </div>
         </div>
 
-        {{/* Risk Assessment Card */}}
-        {{ partial "sidebar/jurisdiction-risk-card.html" (dict "countryId" $countryId) }}
-
-        {{/* Jurisdiction Memberships Card */}}
-        {{ partial "sidebar/jurisdiction-memberships-card.html" (dict "countryId" $countryId) }}
-
-        {{/* Providers sidebar section */}}
-        {{ partial "datacenter-country-providers-sidebar.html" (dict "providerItems" $providerItems "countryName" $countryName "countryFlag" $countryFlag) }}
-
-        {{/* Table of Contents */}}
-        {{ $showToc := in .TableOfContents "<ul" }}
-        {{ if $showToc }}
-        <div class="mt-6">
-          {{ partial "toc.html" . }}
-        </div>
+        {{/* Custom markdown content */}}
+        {{ if .Content }}
+        <hr style="border-color: var(--sd-outline-variant); margin: 2rem 0;">
+        {{ .Content }}
         {{ end }}
+      {{ end }}
 
-    {{ partial "sidebar/common-sidebar-end.html" . }}
-
-    {{/* Main Content */}}
-    <div class="min-w-0 flex-1">
-      <div class="article-content prose dark:prose-invert max-w-none mb-20">
-
-        {{/* Summary - detailed overview from frontmatter */}}
-        {{ with .Params.summary }}
-        <p class="lead text-lg text-neutral-600 dark:text-neutral-400 mb-6">{{ . }}</p>
-        {{ end }}
-
-        {{/* Body content */}}
-        {{ with .Params.body }}
-        <p class="mb-8">{{ . }}</p>
-        {{ end }}
-
-        {{/* Always auto-generate the standard sections */}}
-        {{ if $countryId }}
-          {{/* Map */}}
-          {{ $mapShortcode := printf "{{< datacenter-map countries=\"%s\" showFilters=\"false\" >}}" $countryId }}
-          {{ $mapShortcode | .Page.RenderString }}
-
-          {{/* Providers */}}
-          <h2 id="providers">Datacenter Providers in {{ $countryName }}</h2>
-          {{ partial "datacenter-country-providers-inline.html" (dict "countryId" $countryId "regionsById" $regionsById) }}
-
-          {{/* Regions - all datacenter locations by city */}}
-          <h2 id="regions">Locations by City</h2>
-          {{ partial "datacenter-country-regions-inline.html" (dict "countryId" $countryId "regionsById" $regionsById) }}
-
-          {{/* Render any custom markdown content */}}
-          {{ if .Content }}
-          <hr class="mt-8">
-          {{ .Content }}
+      {{/* Related content tags */}}
+      {{ with .GetTerms "tags" }}
+      <div style="margin-top: 2rem;">
+        <h3>Tags</h3>
+        <div class="sd-filter-pills">
+          {{ range . }}
+          <a href="{{ .RelPermalink }}" class="sd-filter-pill" style="text-decoration: none; font-size: 0.8125rem; padding: 0.375rem 0.875rem;">{{ .LinkTitle }}</a>
           {{ end }}
-        {{ end }}
-
-        {{/* Back link */}}
-        <hr class="mt-8">
-        <p>
-          <a href="/datacenters/">← Back to all datacenters</a> |
-          <a href="/countries/{{ $slug }}/">View {{ $countryName }} jurisdiction details</a>
-        </p>
+        </div>
       </div>
-    </div>
+      {{ end }}
 
+      {{/* Back link */}}
+      <div style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--sd-outline-variant, #e5e7eb);">
+        <a href="/datacenters/" style="font-size: 0.875rem; color: var(--sd-primary); text-decoration: none;">← Back to all datacenters</a>
+      </div>
+
+    </div>
   </section>
 
-  {{/* Floating TOC for mobile */}}
-  {{ $tocSections := slice
-      (dict "id" "datacenter-map-chart" "title" "Map" "icon" "🗺️")
-      (dict "id" "providers" "title" "Providers" "icon" "🖥️")
-      (dict "id" "regions" "title" "Locations" "icon" "📍")
-      (dict "id" "sidebar" "title" "Details" "icon" "📋")
-  }}
-  {{ partial "floating-toc.html" (dict "sections" $tocSections) }}
 </article>
+
+{{/* Floating TOC */}}
+{{ $tocSections := slice
+    (dict "id" "map" "title" "Map" "icon" "🗺️")
+    (dict "id" "providers" "title" "Providers" "icon" "🖥️")
+    (dict "id" "regions" "title" "Locations" "icon" "📍")
+}}
+{{ partial "floating-toc.html" (dict "sections" $tocSections) }}
+{{ partial "sovereignsky-footer.html" . }}
 {{ end }}
