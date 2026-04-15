@@ -87,12 +87,15 @@ Shows datacenter name and city in card grid format.
       <span class="inline-block w-2 h-2 rounded-full {{ $dot }}" title="Risk: {{ $risk }}"></span>
       <span class="text-xs text-neutral-500">({{ len $items }} {{ if eq (len $items) 1 }}datacenter{{ else }}datacenters{{ end }})</span>
     </div>
-    <div class="flex flex-wrap gap-x-4 gap-y-1 pl-1">
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
       {{ range $items }}
-      <div class="dc-provider-region-card"
+      <div class="dc-provider-region-card p-2.5 rounded-lg border border-base-200 hover:border-primary/50 hover:bg-base-100 transition-all"
            data-name="{{ .name | lower }}"
            data-city="{{ .city | lower }}">
-        <span class="text-sm text-base-content">{{ .name }}</span>{{ with .city }}<span class="text-xs text-neutral-500 dark:text-neutral-400 ml-1">{{ . }}</span>{{ end }}
+        <div class="text-sm font-medium text-base-content truncate">{{ .name }}</div>
+        {{ with .city }}
+        <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">{{ . }}</div>
+        {{ end }}
       </div>
       {{ end }}
     </div>
