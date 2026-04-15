@@ -1,5 +1,5 @@
 {{/*
-  cta.html - Stitch design call-to-action section
+  cta.html - Stitch tonal CTA section (surface-dim background, not gradient)
 */}}
 
 {{ $config := .config }}
@@ -13,21 +13,20 @@
   {{ $buttons = slice . }}
 {{ end }}
 
-<section id="{{ $id }}" class="sd-home-cta">
-  <div class="sd-home-cta-bg"></div>
-  <div class="sd-home-cta-content">
+<section id="{{ $id }}" class="sd-landing-cta">
+  <div class="sd-landing-cta-inner">
     {{ with $title }}
-    <h2 class="sd-headline sd-home-cta-title">{{ . }}</h2>
+    <h2 class="sd-headline sd-landing-cta-title">{{ . }}</h2>
     {{ end }}
 
     {{ with $description }}
-    <p class="sd-home-cta-desc">{{ . }}</p>
+    <p class="sd-landing-cta-desc">{{ . }}</p>
     {{ end }}
 
     {{ if $features }}
-    <div class="sd-home-cta-actions-grid">
+    <div class="sd-landing-cta-features">
       {{ range $features }}
-      <div class="sd-home-cta-action">
+      <div class="sd-landing-cta-feature">
         {{ with .icon }}
         <span class="material-symbols-outlined">
           {{- if eq . "chart" }}query_stats
@@ -45,14 +44,12 @@
     {{ end }}
 
     {{ if $buttons }}
-    <div class="sd-home-cta-buttons">
+    <div class="sd-landing-cta-buttons">
       {{ range $buttons }}
-        {{ $btnClass := "sd-home-btn sd-home-btn-white" }}
-        {{ if eq (.style | default "primary") "outline" }}
-          {{ $btnClass = "sd-home-btn sd-home-btn-outline" }}
-        {{ end }}
-
-        <a href="{{ .url }}" class="{{ $btnClass }}" {{ if .external }}target="_blank" rel="noopener"{{ end }}>
+        {{ $isPrimary := eq (.style | default "primary") "primary" }}
+        <a href="{{ .url }}"
+           class="sd-landing-cta-btn {{ if $isPrimary }}sd-landing-cta-btn-primary{{ else }}sd-landing-cta-btn-secondary{{ end }}"
+           {{ if .external }}target="_blank" rel="noopener"{{ end }}>
           {{ with .icon }}
             {{ if eq . "github" }}{{ partial "data-icon.html" "github" }}{{ end }}
           {{ end }}

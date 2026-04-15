@@ -3680,31 +3680,124 @@ details[open] .details-marker {
 }
 
 /* ==========================================================================
-   Homepage (sd-home)
+   Homepage — Stitch Landing Page Style (sd-landing)
    ========================================================================== */
 
-.sd-home-hero .sd-events-hero-title {
-  font-size: 2.25rem;
-  line-height: 1.1;
+/* Landing Hero — asymmetric, light bg with colored orbs */
+
+.sd-landing-hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  padding: 4rem 1.5rem;
+  overflow: hidden;
+  background-color: var(--sd-surface);
 }
 
-.sd-home-stats {
-  grid-template-columns: repeat(2, 1fr);
+.sd-landing-hero-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
 }
 
-/* Sections */
-
-.sd-home-section {
-  padding: 3rem 1.5rem;
+.sd-landing-hero-bg-orb-1 {
+  top: -10%;
+  right: -5%;
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 88, 190, 0.05);
 }
 
-.sd-home-section-alt {
+.sd-landing-hero-bg-orb-2 {
+  bottom: -10%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background: rgba(107, 56, 212, 0.05);
+}
+
+.sd-landing-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 72rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sd-landing-hero-text {
+  max-width: 40rem;
+}
+
+.sd-landing-hero-badge {
+  display: inline-flex;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: var(--sd-secondary-container);
+  margin-bottom: 1.5rem;
+}
+
+.sd-landing-hero-badge-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--sd-on-surface);
+}
+
+.sd-landing-hero-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--sd-on-surface);
+  margin-bottom: 1.5rem;
+}
+
+.sd-landing-hero-desc {
+  font-size: 1.125rem;
+  color: var(--sd-on-surface-variant);
+  line-height: 1.6;
+  max-width: 36rem;
+}
+
+/* Landing Sections */
+
+.sd-landing-section {
+  padding: 4rem 1.5rem;
+  background-color: var(--sd-surface);
+}
+
+.sd-landing-section-alt {
   background-color: var(--sd-surface-container-low);
 }
 
-.sd-home-section-inner {
+.sd-landing-section-inner {
   max-width: 72rem;
   margin: 0 auto;
+}
+
+.sd-landing-section-label {
+  margin-bottom: 2.5rem;
+}
+
+.sd-landing-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--sd-primary);
+}
+
+.sd-landing-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--sd-on-surface);
+  letter-spacing: -0.025em;
+  margin-top: 0.75rem;
 }
 
 .sd-home-section-header {
@@ -3840,6 +3933,242 @@ details[open] .details-marker {
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--sd-primary);
+}
+
+/* Bento Grid (Stitch landing page product cards) */
+
+.sd-landing-bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.sd-landing-bento-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: var(--sd-surface-container-lowest);
+  border: 1px solid rgba(114, 119, 133, 0.1);
+  border-radius: 0.25rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.sd-landing-bento-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 31, 38, 0.08);
+  transform: translateY(-2px);
+}
+
+.sd-landing-bento-preview {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  background-color: var(--sd-surface-container-high);
+}
+
+.sd-landing-bento-preview video,
+.sd-landing-bento-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.sd-landing-bento-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sd-landing-bento-icon .material-symbols-outlined {
+  font-size: 24px;
+}
+
+.sd-landing-bento-icon-primary {
+  background-color: rgba(0, 88, 190, 0.1);
+  color: var(--sd-primary);
+}
+
+.sd-landing-bento-card:hover .sd-landing-bento-icon-primary {
+  background-color: var(--sd-primary);
+  color: var(--sd-on-primary);
+}
+
+.sd-landing-bento-icon-tertiary {
+  background-color: rgba(107, 56, 212, 0.1);
+  color: var(--sd-tertiary);
+}
+
+.sd-landing-bento-card:hover .sd-landing-bento-icon-tertiary {
+  background-color: var(--sd-tertiary);
+  color: var(--sd-on-tertiary-container);
+}
+
+.sd-landing-bento-icon-secondary {
+  background-color: rgba(0, 108, 73, 0.1);
+  color: var(--sd-secondary);
+}
+
+.sd-landing-bento-card:hover .sd-landing-bento-icon-secondary {
+  background-color: var(--sd-secondary);
+  color: var(--sd-on-secondary);
+}
+
+.sd-landing-bento-icon-primary-container {
+  background-color: rgba(33, 112, 228, 0.1);
+  color: var(--sd-primary-container);
+}
+
+.sd-landing-bento-card:hover .sd-landing-bento-icon-primary-container {
+  background-color: var(--sd-primary-container);
+  color: var(--sd-on-primary-container);
+}
+
+.sd-landing-bento-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--sd-on-surface);
+  margin-bottom: 0.5rem;
+}
+
+.sd-landing-bento-desc {
+  font-size: 0.875rem;
+  color: var(--sd-on-surface-variant);
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  flex: 1;
+}
+
+.sd-landing-bento-tags {
+  display: flex;
+  gap: 0.375rem;
+  margin-top: auto;
+}
+
+.sd-landing-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.sd-landing-tag-primary {
+  background-color: rgba(0, 88, 190, 0.05);
+  color: var(--sd-primary);
+}
+
+.sd-landing-tag-secondary {
+  background-color: rgba(0, 108, 73, 0.05);
+  color: var(--sd-secondary);
+}
+
+.sd-landing-tag-tertiary {
+  background-color: rgba(107, 56, 212, 0.05);
+  color: var(--sd-tertiary);
+}
+
+.sd-landing-tag-primary-container {
+  background-color: rgba(33, 112, 228, 0.05);
+  color: var(--sd-primary-container);
+}
+
+/* Landing CTA — tonal surface, not gradient */
+
+.sd-landing-cta {
+  padding: 5rem 1.5rem;
+  background-color: var(--sd-surface-container-low);
+  text-align: center;
+}
+
+.sd-landing-cta-inner {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.sd-landing-cta-title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--sd-on-surface);
+  margin-bottom: 1rem;
+}
+
+.sd-landing-cta-desc {
+  font-size: 1rem;
+  color: var(--sd-on-surface-variant);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.sd-landing-cta-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.sd-landing-cta-feature {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--sd-on-surface-variant);
+}
+
+.sd-landing-cta-feature .material-symbols-outlined {
+  font-size: 1.25rem;
+  color: var(--sd-secondary);
+}
+
+.sd-landing-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.sd-landing-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sd-landing-cta-btn-primary {
+  background-color: var(--sd-primary);
+  color: var(--sd-on-primary);
+  box-shadow: 0 8px 24px rgba(0, 88, 190, 0.2);
+}
+
+.sd-landing-cta-btn-primary:hover {
+  background-color: var(--sd-primary-container);
+}
+
+.sd-landing-cta-btn-secondary {
+  background-color: var(--sd-surface-container-highest);
+  color: var(--sd-on-surface);
+}
+
+.sd-landing-cta-btn-secondary:hover {
+  background-color: var(--sd-surface-container-high);
 }
 
 /* Data Grid (Databases section) */
@@ -4176,53 +4505,38 @@ details[open] .details-marker {
 /* Desktop breakpoints */
 
 @media (min-width: 768px) {
-  .sd-home-hero .sd-events-hero-title {
-    font-size: 3rem;
+  .sd-landing-hero {
+    min-height: 560px;
+    padding: 6rem 2rem;
   }
 
-  .sd-home-stats {
-    grid-template-columns: repeat(4, 1fr);
+  .sd-landing-hero-title {
+    font-size: 3.5rem;
   }
 
-  .sd-home-section {
-    padding: 4rem 2rem;
+  .sd-landing-bento-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .sd-home-section-title {
-    font-size: 2rem;
+  .sd-landing-section {
+    padding: 5rem 2rem;
   }
 
-  .sd-home-tools-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .sd-landing-cta-title {
+    font-size: 2.5rem;
+  }
+
+  .sd-landing-cta-buttons {
+    flex-direction: row;
+    justify-content: center;
   }
 
   .sd-home-data-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 
-  .sd-home-persona-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   .sd-home-content-grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .sd-home-cta {
-    padding: 5rem 2rem;
-  }
-
-  .sd-home-cta-title {
-    font-size: 2.25rem;
-  }
-
-  .sd-home-cta-actions-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .sd-home-cta-buttons {
-    flex-direction: row;
-    justify-content: center;
   }
 
   .sd-home-coming-grid {
@@ -4231,12 +4545,16 @@ details[open] .details-marker {
 }
 
 @media (min-width: 1024px) {
-  .sd-home-hero .sd-events-hero-title {
-    font-size: 3.5rem;
+  .sd-landing-hero-title {
+    font-size: 4.5rem;
   }
 
-  .sd-home-persona-grid {
-    grid-template-columns: repeat(5, 1fr);
+  .sd-landing-bento-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .sd-landing-cta-title {
+    font-size: 2.75rem;
   }
 }
 
