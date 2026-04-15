@@ -58,9 +58,11 @@ Shows datacenter name and city in card grid format.
   {{ $countryName := .name }}
   {{ $flag := "" }}
   {{ $risk := "unknown" }}
+  {{ $slug := "" }}
   {{ if $country }}
     {{ $flag = $country.flag | default "" }}
     {{ $risk = $country.riskLevel | default "unknown" }}
+    {{ $slug = $country.slug | default "" }}
   {{ end }}
 
   {{ $dot := "bg-neutral-400" }}
@@ -73,20 +75,24 @@ Shows datacenter name and city in card grid format.
   {{ if $items }}
   <div class="dc-provider-country-group mb-6" data-country="{{ $countryName | lower }}">
     <div class="flex items-center gap-2 mb-3 pb-2 border-b border-base-200">
-      {{ if $flag }}<span class="text-xl">{{ $flag }}</span>{{ end }}
-      <h3 class="text-base font-semibold text-base-content m-0">{{ $countryName }}</h3>
+      {{ if $slug }}
+      <a href="/countries/{{ $slug }}/" class="flex items-center gap-2 no-underline hover:opacity-80 transition-opacity">
+        {{ if $flag }}<span class="text-xl">{{ $flag }}</span>{{ end }}
+        <h3 class="text-base font-semibold text-base-content m-0">{{ $countryName }}</h3>
+      </a>
+      {{ else }}
+        {{ if $flag }}<span class="text-xl">{{ $flag }}</span>{{ end }}
+        <h3 class="text-base font-semibold text-base-content m-0">{{ $countryName }}</h3>
+      {{ end }}
       <span class="inline-block w-2 h-2 rounded-full {{ $dot }}" title="Risk: {{ $risk }}"></span>
       <span class="text-xs text-neutral-500">({{ len $items }} {{ if eq (len $items) 1 }}datacenter{{ else }}datacenters{{ end }})</span>
     </div>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+    <div class="flex flex-wrap gap-x-4 gap-y-1 pl-1">
       {{ range $items }}
-      <div class="dc-provider-region-card p-2.5 rounded-lg border border-base-200 bg-base-100"
+      <div class="dc-provider-region-card"
            data-name="{{ .name | lower }}"
            data-city="{{ .city | lower }}">
-        <div class="text-sm font-medium text-base-content truncate">{{ .name }}</div>
-        {{ with .city }}
-        <div class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5 truncate">{{ . }}</div>
-        {{ end }}
+        <span class="text-sm text-base-content">{{ .name }}</span>{{ with .city }}<span class="text-xs text-neutral-500 dark:text-neutral-400 ml-1">{{ . }}</span>{{ end }}
       </div>
       {{ end }}
     </div>
