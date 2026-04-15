@@ -1,55 +1,22 @@
 {{/*
-  stats-grid.html - Grid of stats cards with icons and counts
-
-  Config options:
-    title: Section title
-    description: Section description
-    background: DaisyUI background color name
-    columns: Number of columns (1-6)
-    items: Array of stat items with:
-      - id: Unique identifier
-      - label: Display label
-      - sublabel: Secondary label
-      - url: Link URL
-      - icon: Icon name
-      - color: Hex color code
-      - countSource: Data path to count items from
-      - value: Static value (alternative to countSource)
+  stats-grid.html - Stitch design stats grid
 */}}
 
 {{ $config := .config }}
 {{ $id := .identifier | default "stats" }}
-
-{{ $title := $config.title }}
-{{ $description := $config.description }}
-{{ $background := $config.background | default "" }}
-{{ $columns := $config.columns | default 4 }}
 {{ $items := $config.items | default slice }}
+{{ $background := $config.background | default "" }}
 
-{{/* Build grid columns class */}}
-{{ $gridCols := "lg:grid-cols-4" }}
-{{ if eq $columns 3 }}{{ $gridCols = "lg:grid-cols-3" }}{{ end }}
-{{ if eq $columns 5 }}{{ $gridCols = "lg:grid-cols-5" }}{{ end }}
-{{ if eq $columns 6 }}{{ $gridCols = "lg:grid-cols-6" }}{{ end }}
-
-{{/* Section wrapper with background */}}
-<section id="{{ $id }}" class="py-16 {{ with $background }}bg-{{ . }}{{ end }} -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-
-    {{/* Section header */}}
-    {{ if or $title $description }}
-    <div class="text-center mb-12">
-      {{ with $title }}
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">{{ . }}</h2>
-      {{ end }}
-      {{ with $description }}
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">{{ . }}</p>
-      {{ end }}
+<section id="{{ $id }}" class="sd-home-section {{ if $background }}sd-home-section-alt{{ end }}">
+  <div class="sd-home-section-inner">
+    {{ if or $config.title $config.description }}
+    <div class="sd-home-section-header">
+      {{ with $config.title }}<h2 class="sd-headline sd-home-section-title">{{ . }}</h2>{{ end }}
+      {{ with $config.description }}<p class="sd-home-section-desc">{{ . }}</p>{{ end }}
     </div>
     {{ end }}
 
-    {{/* Stats grid */}}
-    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 {{ $gridCols }} gap-4 sm:gap-6">
+    <div class="sd-home-data-grid">
       {{ range $items }}
         {{ $count := 0 }}
         {{ if .countSource }}
@@ -60,25 +27,25 @@
 
         {{ $color := .color | default "#6366f1" }}
 
-        <a href="{{ .url }}" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="card-body p-5 text-center">
-            {{/* Icon */}}
-            <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-2" style="background: color-mix(in srgb, {{ $color }} 15%, transparent);">
-              {{ partial "data-icon.html" (dict "name" .icon "size" "6" "class" (printf "text-[%s]" $color)) }}
-            </div>
-
-            {{/* Number */}}
-            <div class="text-4xl font-bold leading-none mb-2" style="color: {{ $color }};">{{ $count }}</div>
-
-            {{/* Title and sublabel */}}
-            <div class="font-semibold text-base leading-tight">{{ .label }}</div>
-            {{ with .sublabel }}
-            <div class="text-sm opacity-70 leading-snug mt-1">{{ . }}</div>
-            {{ end }}
-          </div>
+        <a href="{{ .url }}" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: {{ $color }};">
+            {{- if eq .icon "globe" }}public
+            {{- else if eq .icon "building" }}account_balance
+            {{- else if eq .icon "scale" }}gavel
+            {{- else if eq .icon "link" }}cable
+            {{- else if eq .icon "book" }}menu_book
+            {{- else if eq .icon "newspaper" }}article
+            {{- else if eq .icon "code" }}computer
+            {{- else if eq .icon "server" }}cloud
+            {{- else if eq .icon "rocket" }}rocket_launch
+            {{- else }}{{ .icon }}
+            {{- end -}}
+          </span>
+          <span class="sd-headline sd-home-data-value" style="color: {{ $color }};">{{ $count }}</span>
+          <span class="sd-home-data-label">{{ .label }}</span>
+          {{ with .sublabel }}<span class="sd-home-data-sublabel">{{ . }}</span>{{ end }}
         </a>
       {{ end }}
     </div>
-
   </div>
 </section>

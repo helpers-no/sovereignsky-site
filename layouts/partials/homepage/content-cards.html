@@ -1,131 +1,69 @@
 {{/*
-  content-cards.html - Grid of content cards from Hugo pages
-
-  Config options:
-    title: Section title
-    description: Section description
-    background: DaisyUI background color name
-    source: Content source configuration
-    cardStyle: "vertical" (image on top) | "compact" (horizontal)
-    columns: Number of columns (1-4)
-    showMoreLink: Link to full list page
-    showMoreText: Text for show more link
+  content-cards.html - Stitch design content cards from Hugo pages
 */}}
 
 {{ $config := .config }}
 {{ $id := .identifier | default "content" }}
-
-{{ $title := $config.title }}
-{{ $description := $config.description }}
 {{ $background := $config.background | default "" }}
-{{ $cardStyle := $config.cardStyle | default "compact" }}
 {{ $columns := $config.columns | default 3 | int }}
 {{ $footer := $config.footer }}
 
-{{/* Resolve items from source */}}
 {{ $items := partial "homepage/resolve-source.html" $config.source }}
 
-{{/* Build grid columns class */}}
-{{ $gridCols := "lg:grid-cols-3" }}
-{{ if eq $columns 2 }}{{ $gridCols = "lg:grid-cols-2" }}{{ end }}
-{{ if eq $columns 4 }}{{ $gridCols = "lg:grid-cols-4" }}{{ end }}
-
-{{/* Section wrapper */}}
-<section id="{{ $id }}" class="py-16 {{ with $background }}bg-{{ . }}{{ end }} -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-
-    {{/* Section header */}}
-    {{ if or $title $description }}
-    <div class="text-center mb-12">
-      {{ with $title }}
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">{{ . }}</h2>
-      {{ end }}
-      {{ with $description }}
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">{{ . }}</p>
-      {{ end }}
+<section id="{{ $id }}" class="sd-home-section {{ if $background }}sd-home-section-alt{{ end }}">
+  <div class="sd-home-section-inner">
+    {{ if or $config.title $config.description }}
+    <div class="sd-home-section-header">
+      {{ with $config.title }}<h2 class="sd-headline sd-home-section-title">{{ . }}</h2>{{ end }}
+      {{ with $config.description }}<p class="sd-home-section-desc">{{ . }}</p>{{ end }}
     </div>
     {{ end }}
 
-    {{/* Content grid */}}
-    <div class="grid grid-cols-1 sm:grid-cols-2 {{ $gridCols }} gap-4">
+    <div class="sd-home-content-grid {{ if eq $columns 2 }}sd-home-content-grid-2{{ end }}">
       {{ range $items }}
+        {{ $thumbnail := .Resources.GetMatch "{feature*,thumbnail*,cover*}" }}
         {{ $section := .Section }}
 
-        {{/* Get content type info */}}
-        {{ $icon := "document" }}
-        {{ $iconColor := "#6366f1" }}
-        {{ range site.Data.content_types.content_types.itemListElement }}
-          {{ if eq .identifier $section }}
-            {{ $icon = .icon }}
-            {{ $iconColor = .color }}
-          {{ end }}
-        {{ end }}
-
-        {{/* Use page params for icon if available */}}
-        {{ with .Params.icon }}{{ $icon = . }}{{ end }}
-
-        {{/* Get thumbnail */}}
-        {{ $thumbnail := .Resources.GetMatch "{feature*,thumbnail*,cover*}" }}
-
-        {{/* Choose card partial based on cardStyle */}}
-        {{ if eq $cardStyle "vertical" }}
-          {{/* Vertical card: image on top, text below */}}
-          {{ partial "card-vertical.html" (dict
-              "title" .Title
-              "url" .RelPermalink
-              "thumbnail" $thumbnail
-              "date" .Date
-              "summary" (.Summary | plainify | truncate 100)
-              "icon" $icon
-              "iconColor" $iconColor
-          ) }}
-        {{ else }}
-          {{/* Compact card: horizontal layout */}}
-          {{ $category := "" }}
-          {{ $subcategory := "" }}
-          {{ if eq $section "publications" }}
-            {{ with .Params.publication_type }}
-              {{ if eq . "book" }}{{ $category = "Book" }}
-              {{ else if eq . "report" }}{{ $category = "Report" }}
-              {{ else if eq . "paper" }}{{ $category = "Paper" }}
-              {{ else if eq . "guide" }}{{ $category = "Guide" }}
-              {{ else }}{{ $category = . | humanize | title }}{{ end }}
+        <a href="{{ .RelPermalink }}" class="sd-blog-card-inner">
+          <div class="sd-blog-card-image">
+            {{ if $thumbnail }}
+            {{ $img := $thumbnail.Fill "600x340 webp" }}
+            <img src="{{ $img.RelPermalink }}" alt="{{ .Title }}" loading="lazy" />
+            {{ else }}
+            <div class="sd-blog-featured-placeholder">
+              <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--sd-primary); opacity: 0.3;">
+                {{- if eq $section "blog" }}article{{ else if eq $section "publications" }}menu_book{{ else }}description{{ end -}}
+              </span>
+            </div>
             {{ end }}
-            {{ with .Params.publisher }}{{ $subcategory = . }}{{ else }}{{ with .Params.institutions }}{{ $subcategory = index . 0 }}{{ end }}{{ end }}
-          {{ else if eq $section "blog" }}
-            {{ $category = "Blog" }}
-            {{ $subcategory = .Date.Format "Jan 2, 2006" }}
-          {{ else }}
-            {{ $category = $section | humanize | title }}
-          {{ end }}
-
-          {{ partial "card-compact.html" (dict
-              "title" .Title
-              "url" .RelPermalink
-              "category" $category
-              "subcategory" $subcategory
-              "thumbnail" $thumbnail
-              "year" .Params.year
-              "icon" $icon
-          ) }}
-        {{ end }}
+          </div>
+          <div class="sd-blog-card-content">
+            <div class="sd-blog-meta">
+              {{ if eq $section "blog" }}
+              <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+              <span>•</span>
+              <span>{{ .ReadingTime }} min read</span>
+              {{ else if eq $section "publications" }}
+              <span>{{ .Params.publisher | default "Publication" }}</span>
+              {{ with .Params.year }}<span>•</span><span>{{ . }}</span>{{ end }}
+              {{ end }}
+            </div>
+            <h3 class="sd-headline sd-blog-card-title">{{ .Title }}</h3>
+            <p class="sd-blog-card-desc">{{ .Description | default .Summary | plainify | truncate 100 }}</p>
+          </div>
+        </a>
       {{ end }}
     </div>
 
-    {{/* Footer */}}
     {{ with $footer }}
-    <div class="text-center mt-8">
-      {{ with .text }}
-      <p class="text-base-content/70 mb-4">{{ . }}</p>
-      {{ end }}
+    <div class="sd-home-section-cta">
       {{ with .button }}
-      <a href="{{ .url }}" class="btn btn-outline btn-primary">
+      <a href="{{ .url }}" class="sd-home-btn">
         {{ .text }}
-        {{ partial "data-icon.html" (dict "name" "arrow-right" "size" "4" "class" "ml-2") }}
+        <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
       </a>
       {{ end }}
     </div>
     {{ end }}
-
   </div>
 </section>
