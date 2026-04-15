@@ -1,471 +1,446 @@
-{{/* SovereignSky Homepage - DaisyUI Design */}}
+{{/* SovereignSky Homepage - Stitch Design System */}}
 
-{{/* ========== SECTION 1: HERO ========== */}}
-{{/* Break out of body padding with negative margins */}}
-<div class="relative overflow-hidden -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32" style="background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #10b981 100%);">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32 py-20 sm:py-28 text-center text-white">
-    {{/* Context badge */}}
-    <div class="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold mb-6">
-      <span>Open source</span>
-      <span class="opacity-60">·</span>
-      <span class="opacity-80">Sovereign infrastructure</span>
+{{/* ========== DATA ========== */}}
+{{ $software := len (index .Site.Data.software "softwareList") | default 41 }}
+{{ $datacenters := 0 }}
+{{ range .Site.Data.datacenters.datacenters }}
+  {{ $datacenters = add $datacenters (len .regions) }}
+{{ end }}
+{{ $countries := len .Site.Data.countries.countries.itemListElement | default 50 }}
+{{ $laws := len .Site.Data.laws.laws.itemListElement | default 40 }}
+{{ $networks := len .Site.Data.networks.networks | default 25 }}
+{{ $publications := len .Site.Data.publications.publications.itemListElement | default 10 }}
+{{ $blogs := len (where .Site.RegularPages "Section" "blog") }}
+{{ $blocs := len .Site.Data.blocs.blocs.itemListElement | default 6 }}
+
+<article class="sd-home section-design">
+
+  {{/* ============================================================
+       HERO — Blue gradient with title and description
+       ============================================================ */}}
+  <section class="sd-events-hero sd-home-hero">
+    <div class="sd-events-hero-bg"></div>
+    <div class="sd-events-hero-content">
+      <div style="max-width: 48rem;">
+        <div class="sd-events-hero-badge">
+          <span class="sd-events-hero-badge-dot"></span>
+          <span>Open Source</span>
+          <span style="opacity: 0.6;">·</span>
+          <span>Sovereign Infrastructure</span>
+        </div>
+        <h1 class="sd-headline sd-events-hero-title">Born from crisis. Built for independence.</h1>
+        <p class="sd-events-hero-description">
+          Working infrastructure, open-source tools, and the data you need to operate independently — with or without the cloud.
+        </p>
+      </div>
     </div>
+  </section>
 
-    {{/* Headline */}}
-    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-      Born from crisis. Built for independence.
-    </h1>
-
-    {{/* Sub-headline */}}
-    <p class="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto">
-      Working infrastructure, open-source tools, and the data you need to operate independently — with or without the cloud.
-    </p>
-  </div>
-</div>
-
-{{/* ========== SECTION 2: READY TO USE ========== */}}
-<section id="ready-to-use" class="py-16 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Ready to use — start building today</h2>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">We built these tools because they didn't exist when we needed them. Now they're ready for you.</p>
+  {{/* ============================================================
+       STATS — 4 cards overlapping the hero
+       ============================================================ */}}
+  <section class="sd-events-stats sd-home-stats">
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Countries</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $countries }}</span>
+        <span class="sd-events-stat-desc">Jurisdictions analyzed</span>
+      </div>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {{/* DevContainer Toolbox */}}
-      <a href="https://dct.sovereignsky.no/" target="_blank" rel="noopener" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-primary/20">
-        <div class="card-body">
-          <div class="flex items-center gap-3 mb-3">
-            <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(59, 130, 246, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg style="width: 24px; height: 24px; color: #3b82f6;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="card-title text-lg">DevContainer Toolbox</h3>
-              <div class="badge badge-primary badge-sm">Live</div>
-            </div>
-          </div>
-          <p class="opacity-70 text-sm">Consistent development environment across Windows, Mac, and Linux. 20+ tools pre-configured. AI-ready. One command to install.</p>
-          <div class="card-actions justify-end mt-4">
-            <span class="text-primary font-medium text-sm">Get started →</span>
-          </div>
-        </div>
-      </a>
-
-      {{/* Urbalurba Infrastructure */}}
-      <a href="https://uis.sovereignsky.no/" target="_blank" rel="noopener" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-primary/20">
-        <div class="card-body">
-          <div class="flex items-center gap-3 mb-3">
-            <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg style="width: 24px; height: 24px; color: #10b981;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="card-title text-lg">Urbalurba Infrastructure</h3>
-              <div class="badge badge-success badge-sm">Live</div>
-            </div>
-          </div>
-          <p class="opacity-70 text-sm">Complete datacenter on your laptop. Kubernetes, databases, AI, and 30+ services. Runs anywhere — local, on-prem, or sovereign cloud.</p>
-          <div class="card-actions justify-end mt-4">
-            <span class="text-primary font-medium text-sm">Explore the stack →</span>
-          </div>
-        </div>
-      </a>
-
-      {{/* Dev Templates */}}
-      <a href="https://github.com/helpers-no/dev-templates" target="_blank" rel="noopener" class="card bg-base-100 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-primary/20">
-        <div class="card-body">
-          <div class="flex items-center gap-3 mb-3">
-            <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(168, 85, 247, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-              <svg style="width: 24px; height: 24px; color: #a855f7;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
-              </svg>
-            </div>
-            <div>
-              <h3 class="card-title text-lg">Dev Templates</h3>
-              <div class="badge badge-secondary badge-sm">Live</div>
-            </div>
-          </div>
-          <p class="opacity-70 text-sm">Production-ready starters for APIs, web apps, and backends. Skip the boilerplate — start building immediately with best practices built in.</p>
-          <div class="card-actions justify-end mt-4">
-            <span class="text-primary font-medium text-sm">Browse templates →</span>
-          </div>
-        </div>
-      </a>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Laws</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $laws }}</span>
+        <span class="sd-events-stat-desc">Legal frameworks</span>
+      </div>
     </div>
-  </div>
-</section>
-
-{{/* ========== SECTION 3: DATABASES ========== */}}
-<section id="databases" class="py-16 bg-base-200 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">The data behind digital sovereignty</h2>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">We've mapped infrastructure, software, laws, and publications across multiple dimensions.</p>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Software</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $software }}</span>
+        <span class="sd-events-stat-desc">Products catalogued</span>
+      </div>
     </div>
-
-    {{/* Calculate counts */}}
-    {{ $software := len (index .Site.Data.software "softwareList") | default 41 }}
-    {{ $datacenters := 0 }}
-    {{ range .Site.Data.datacenters.datacenters }}
-      {{ $datacenters = add $datacenters (len .regions) }}
-    {{ end }}
-    {{ $countries := len .Site.Data.countries.countries.itemListElement | default 50 }}
-    {{ $laws := len .Site.Data.laws.laws.itemListElement | default 40 }}
-    {{ $networks := len .Site.Data.networks.networks | default 25 }}
-    {{ $publications := len .Site.Data.publications.publications.itemListElement | default 10 }}
-    {{ $blogs := len (where .Site.RegularPages "Section" "blog") }}
-    {{ $blocs := len .Site.Data.blocs.blocs.itemListElement | default 6 }}
-
-    {{/* Combined Database Cards with Stats */}}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-      {{/* Countries */}}
-      <a href="/countries/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-        <div class="card-body" style="display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 1.25rem;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(52, 211, 153, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg style="width: 28px; height: 28px; color: #34d399;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <div style="flex: 1;">
-            <div style="font-size: 1.75rem; font-weight: bold; color: #34d399; line-height: 1;">{{ $countries }}</div>
-            <div style="font-weight: 600; margin-bottom: 2px;">Countries</div>
-            <div style="font-size: 0.75rem; opacity: 0.7;">Jurisdictions analyzed</div>
-          </div>
-        </div>
-      </a>
-
-      {{/* Blocs */}}
-      <a href="/blocs/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-        <div class="card-body" style="display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 1.25rem;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(20, 184, 166, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg style="width: 28px; height: 28px; color: #14b8a6;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"></path>
-            </svg>
-          </div>
-          <div style="flex: 1;">
-            <div style="font-size: 1.75rem; font-weight: bold; color: #14b8a6; line-height: 1;">{{ $blocs }}</div>
-            <div style="font-weight: 600; margin-bottom: 2px;">Regional Blocs</div>
-            <div style="font-size: 0.75rem; opacity: 0.7;">Data governance frameworks</div>
-          </div>
-        </div>
-      </a>
-
-      {{/* Laws */}}
-      <a href="/laws/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-        <div class="card-body" style="display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 1.25rem;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg style="width: 28px; height: 28px; color: #38bdf8;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
-            </svg>
-          </div>
-          <div style="flex: 1;">
-            <div style="font-size: 1.75rem; font-weight: bold; color: #38bdf8; line-height: 1;">{{ $laws }}</div>
-            <div style="font-weight: 600; margin-bottom: 2px;">Laws</div>
-            <div style="font-size: 0.75rem; opacity: 0.7;">Legal frameworks documented</div>
-          </div>
-        </div>
-      </a>
-
-      {{/* Networks */}}
-      <a href="/networks/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-        <div class="card-body" style="display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 1.25rem;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(248, 113, 113, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg style="width: 28px; height: 28px; color: #f87171;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-            </svg>
-          </div>
-          <div style="flex: 1;">
-            <div style="font-size: 1.75rem; font-weight: bold; color: #f87171; line-height: 1;">{{ $networks }}</div>
-            <div style="font-weight: 600; margin-bottom: 2px;">Networks</div>
-            <div style="font-size: 0.75rem; opacity: 0.7;">Submarine cables mapped</div>
-          </div>
-        </div>
-      </a>
-
-      {{/* Publications */}}
-      <a href="/publications/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-        <div class="card-body" style="display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 1.25rem;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(251, 191, 36, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg style="width: 28px; height: 28px; color: #fbbf24;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-            </svg>
-          </div>
-          <div style="flex: 1;">
-            <div style="font-size: 1.75rem; font-weight: bold; color: #fbbf24; line-height: 1;">{{ $publications }}</div>
-            <div style="font-weight: 600; margin-bottom: 2px;">Publications</div>
-            <div style="font-size: 0.75rem; opacity: 0.7;">Research papers indexed</div>
-          </div>
-        </div>
-      </a>
-
-      {{/* Blog */}}
-      <a href="/blog/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-        <div class="card-body" style="display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 1.25rem;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(168, 85, 247, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg style="width: 28px; height: 28px; color: #a855f7;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
-            </svg>
-          </div>
-          <div style="flex: 1;">
-            <div style="font-size: 1.75rem; font-weight: bold; color: #a855f7; line-height: 1;">{{ $blogs }}</div>
-            <div style="font-weight: 600; margin-bottom: 2px;">Blog</div>
-            <div style="font-size: 0.75rem; opacity: 0.7;">Articles and insights</div>
-          </div>
-        </div>
-      </a>
-
-      {{/* Software */}}
-      <a href="/software/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-        <div class="card-body" style="display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 1.25rem;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(59, 130, 246, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg style="width: 28px; height: 28px; color: #3b82f6;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <div style="flex: 1;">
-            <div style="font-size: 1.75rem; font-weight: bold; color: #3b82f6; line-height: 1;">{{ $software }}</div>
-            <div style="font-weight: 600; margin-bottom: 2px;">Software</div>
-            <div style="font-size: 0.75rem; opacity: 0.7;">MVP products · 4,000+ being prepared</div>
-          </div>
-        </div>
-      </a>
-
-      {{/* Datacenters */}}
-      <a href="/datacenters/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-        <div class="card-body" style="display: flex; flex-direction: row; align-items: center; gap: 1rem; padding: 1.25rem;">
-          <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(244, 114, 182, 0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg style="width: 28px; height: 28px; color: #f472b6;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
-            </svg>
-          </div>
-          <div style="flex: 1;">
-            <div style="font-size: 1.75rem; font-weight: bold; color: #f472b6; line-height: 1;">{{ $datacenters }}</div>
-            <div style="font-weight: 600; margin-bottom: 2px;">Datacenters</div>
-            <div style="font-size: 0.75rem; opacity: 0.7;">Cloud regions worldwide</div>
-          </div>
-        </div>
-      </a>
+    <div class="sd-events-stat-card">
+      <span class="sd-events-stat-label">Datacenters</span>
+      <div class="sd-events-stat-row">
+        <span class="sd-headline sd-events-stat-value">{{ $datacenters }}</span>
+        <span class="sd-events-stat-desc">Cloud regions mapped</span>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-{{/* ========== SECTION 3: PERSONAS ========== */}}
-<section id="personas" class="py-16 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">What does digital sovereignty mean for you?</h2>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">There's a lot to digest. We've curated the content for your role so you can get started quickly.</p>
-    </div>
+  {{/* ============================================================
+       SECTION: READY TO USE — 3 tool cards
+       ============================================================ */}}
+  <section class="sd-home-section">
+    <div class="sd-home-section-inner">
+      <div class="sd-home-section-header">
+        <h2 class="sd-headline sd-home-section-title">Ready to use — start building today</h2>
+        <p class="sd-home-section-desc">We built these tools because they didn't exist when we needed them. Now they're ready for you.</p>
+      </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
-      {{ range .Site.Data.audience.audience.itemListElement }}
-        <a href="/personas/{{ .identifier }}/" class="card bg-base-100 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-          <div class="card-body" style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem;">
-            <div style="width: 56px; height: 56px; border-radius: 12px; background: rgba(59, 130, 246, 0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
-              <svg style="width: 28px; height: 28px; color: #3b82f6;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="{{ .iconPath }}"></path>
-              </svg>
+      <div class="sd-home-tools-grid">
+        {{/* DevContainer Toolbox */}}
+        <a href="https://dct.sovereignsky.no/" target="_blank" rel="noopener" class="sd-home-tool-card">
+          <div class="sd-home-tool-icon sd-home-tool-icon-primary">
+            <span class="material-symbols-outlined">terminal</span>
+          </div>
+          <div class="sd-home-tool-content">
+            <div class="sd-home-tool-header">
+              <h3 class="sd-headline sd-home-tool-title">DevContainer Toolbox</h3>
+              <span class="sd-home-tool-badge">Live</span>
             </div>
-            <h3 class="card-title" style="font-size: 1rem; margin-bottom: 0.5rem;">{{ .name }}</h3>
-            <p style="font-size: 0.875rem; opacity: 0.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">{{ .description }}</p>
+            <p class="sd-home-tool-desc">Consistent development environment across Windows, Mac, and Linux. 20+ tools pre-configured. AI-ready. One command to install.</p>
+            <span class="sd-home-tool-link">
+              Get started
+              <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
+            </span>
           </div>
         </a>
-      {{ end }}
-    </div>
-  </div>
-</section>
 
-{{/* ========== SECTION 4: BLOG ========== */}}
-<section id="blog" class="py-16 bg-base-200 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Latest insights</h2>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">Analysis, commentary, and news on digital sovereignty.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {{ $featuredSlugs := slice "2025-12-10-developer-power-sovereignty" "2025-12-01-norway-exit-strategy" "2025-12-11-digital-sovereignty-moral-independence" }}
-      {{ range $featuredSlugs }}
-      {{ with site.GetPage (printf "/blog/%s" .) }}
-      <a href="{{ .RelPermalink }}" class="card card-compact bg-base-100 shadow-md hover:shadow-xl transition-all duration-300">
-        {{ with .Resources.GetMatch "feature*" }}
-        {{ $img := .Fill "400x200 webp" }}
-        <figure class="h-32 overflow-hidden">
-          <img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}" width="{{ $img.Width }}" height="{{ $img.Height }}" class="w-full h-full object-cover" loading="lazy" />
-        </figure>
-        {{ end }}
-        <div class="card-body">
-          <h3 class="card-title text-sm line-clamp-2">{{ .Title }}</h3>
-          <p class="text-xs opacity-70 line-clamp-2">{{ .Description | default .Summary | plainify | truncate 80 }}</p>
-          <div class="card-actions justify-between items-center">
-            <span class="text-xs opacity-60">{{ .Date.Format "Jan 2, 2006" }}</span>
-            <span class="text-primary-600 text-xs font-medium">Read →</span>
+        {{/* Urbalurba Infrastructure */}}
+        <a href="https://uis.sovereignsky.no/" target="_blank" rel="noopener" class="sd-home-tool-card">
+          <div class="sd-home-tool-icon sd-home-tool-icon-secondary">
+            <span class="material-symbols-outlined">dns</span>
           </div>
-        </div>
-      </a>
-      {{ end }}
-      {{ end }}
-    </div>
-
-    <div class="text-center mt-6">
-      <a href="/blog/" class="btn btn-sm btn-outline btn-primary">View all articles</a>
-    </div>
-  </div>
-</section>
-
-{{/* ========== SECTION 5: PUBLICATIONS ========== */}}
-<section id="publications" class="py-16 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-    <div class="text-center mb-10">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Essential reading</h2>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">Key reports and frameworks shaping digital sovereignty policy.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {{ $featuredPubs := slice "totalberedskapsmeldingen-2025" "ffi-frivillige-beredskapsorganisasjoner-totalforsvar" "icrc-data-protection-handbook" }}
-      {{ range $featuredPubs }}
-      {{ with site.GetPage (printf "/publications/%s" .) }}
-      <a href="{{ .RelPermalink }}" class="card card-compact bg-base-100 shadow-md hover:shadow-xl transition-all duration-300">
-        {{ with .Resources.GetMatch "feature*" }}
-        {{ $img := .Fill "400x200 webp" }}
-        <figure class="h-32 overflow-hidden">
-          <img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}" width="{{ $img.Width }}" height="{{ $img.Height }}" class="w-full h-full object-cover" loading="lazy" />
-        </figure>
-        {{ end }}
-        <div class="card-body">
-          <h3 class="card-title text-sm line-clamp-2">{{ .Title }}</h3>
-          <p class="text-xs opacity-70 line-clamp-2">{{ .Description | default .Summary | plainify | truncate 80 }}</p>
-          <div class="card-actions justify-between items-center">
-            <span class="text-xs opacity-60">{{ .Params.publisher | default "Publication" }}</span>
-            <span class="text-primary-600 text-xs font-medium">Read →</span>
+          <div class="sd-home-tool-content">
+            <div class="sd-home-tool-header">
+              <h3 class="sd-headline sd-home-tool-title">Urbalurba Infrastructure</h3>
+              <span class="sd-home-tool-badge sd-home-tool-badge-secondary">Live</span>
+            </div>
+            <p class="sd-home-tool-desc">Complete datacenter on your laptop. Kubernetes, databases, AI, and 30+ services. Runs anywhere — local, on-prem, or sovereign cloud.</p>
+            <span class="sd-home-tool-link">
+              Explore the stack
+              <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
+            </span>
           </div>
+        </a>
+
+        {{/* Dev Templates */}}
+        <a href="https://github.com/helpers-no/dev-templates" target="_blank" rel="noopener" class="sd-home-tool-card">
+          <div class="sd-home-tool-icon sd-home-tool-icon-tertiary">
+            <span class="material-symbols-outlined">description</span>
+          </div>
+          <div class="sd-home-tool-content">
+            <div class="sd-home-tool-header">
+              <h3 class="sd-headline sd-home-tool-title">Dev Templates</h3>
+              <span class="sd-home-tool-badge sd-home-tool-badge-tertiary">Live</span>
+            </div>
+            <p class="sd-home-tool-desc">Production-ready starters for APIs, web apps, and backends. Skip the boilerplate — start building immediately with best practices built in.</p>
+            <span class="sd-home-tool-link">
+              Browse templates
+              <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
+            </span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       SECTION: DATABASES — 8 data category cards
+       ============================================================ */}}
+  <section class="sd-home-section sd-home-section-alt">
+    <div class="sd-home-section-inner">
+      <div class="sd-home-section-header">
+        <h2 class="sd-headline sd-home-section-title">The data behind digital sovereignty</h2>
+        <p class="sd-home-section-desc">We've mapped infrastructure, software, laws, and publications across multiple dimensions.</p>
+      </div>
+
+      <div class="sd-home-data-grid">
+        <a href="/countries/" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: var(--sd-secondary);">public</span>
+          <span class="sd-headline sd-home-data-value" style="color: var(--sd-secondary);">{{ $countries }}</span>
+          <span class="sd-home-data-label">Countries</span>
+          <span class="sd-home-data-sublabel">Jurisdictions analyzed</span>
+        </a>
+        <a href="/blocs/" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: var(--sd-primary);">account_balance</span>
+          <span class="sd-headline sd-home-data-value" style="color: var(--sd-primary);">{{ $blocs }}</span>
+          <span class="sd-home-data-label">Regional Blocs</span>
+          <span class="sd-home-data-sublabel">Data governance frameworks</span>
+        </a>
+        <a href="/laws/" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: var(--sd-primary-container);">gavel</span>
+          <span class="sd-headline sd-home-data-value" style="color: var(--sd-primary-container);">{{ $laws }}</span>
+          <span class="sd-home-data-label">Laws</span>
+          <span class="sd-home-data-sublabel">Legal frameworks documented</span>
+        </a>
+        <a href="/networks/" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: var(--sd-tertiary);">cable</span>
+          <span class="sd-headline sd-home-data-value" style="color: var(--sd-tertiary);">{{ $networks }}</span>
+          <span class="sd-home-data-label">Networks</span>
+          <span class="sd-home-data-sublabel">Submarine cables mapped</span>
+        </a>
+        <a href="/publications/" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: var(--sd-secondary);">menu_book</span>
+          <span class="sd-headline sd-home-data-value" style="color: var(--sd-secondary);">{{ $publications }}</span>
+          <span class="sd-home-data-label">Publications</span>
+          <span class="sd-home-data-sublabel">Research papers indexed</span>
+        </a>
+        <a href="/blog/" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: var(--sd-tertiary);">article</span>
+          <span class="sd-headline sd-home-data-value" style="color: var(--sd-tertiary);">{{ $blogs }}</span>
+          <span class="sd-home-data-label">Blog</span>
+          <span class="sd-home-data-sublabel">Articles and insights</span>
+        </a>
+        <a href="/software/" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: var(--sd-primary);">computer</span>
+          <span class="sd-headline sd-home-data-value" style="color: var(--sd-primary);">{{ $software }}</span>
+          <span class="sd-home-data-label">Software</span>
+          <span class="sd-home-data-sublabel">MVP products catalogued</span>
+        </a>
+        <a href="/datacenters/" class="sd-home-data-card">
+          <span class="material-symbols-outlined sd-home-data-icon" style="color: var(--sd-secondary-container);">cloud</span>
+          <span class="sd-headline sd-home-data-value" style="color: var(--sd-secondary-container);">{{ $datacenters }}</span>
+          <span class="sd-home-data-label">Datacenters</span>
+          <span class="sd-home-data-sublabel">Cloud regions worldwide</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       SECTION: PERSONAS
+       ============================================================ */}}
+  <section class="sd-home-section">
+    <div class="sd-home-section-inner">
+      <div class="sd-home-section-header">
+        <h2 class="sd-headline sd-home-section-title">What does digital sovereignty mean for you?</h2>
+        <p class="sd-home-section-desc">There's a lot to digest. We've curated the content for your role so you can get started quickly.</p>
+      </div>
+
+      <div class="sd-home-persona-grid">
+        {{ range .Site.Data.audience.audience.itemListElement }}
+        <a href="/personas/{{ .identifier }}/" class="sd-home-persona-card">
+          <div class="sd-home-persona-icon">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">{{ .icon | default "person" }}</span>
+          </div>
+          <h3 class="sd-headline sd-home-persona-name">{{ .name }}</h3>
+          <p class="sd-home-persona-desc">{{ .description }}</p>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       SECTION: BLOG — 3 featured posts
+       ============================================================ */}}
+  <section class="sd-home-section sd-home-section-alt">
+    <div class="sd-home-section-inner">
+      <div class="sd-home-section-header">
+        <h2 class="sd-headline sd-home-section-title">Latest insights</h2>
+        <p class="sd-home-section-desc">Analysis, commentary, and news on digital sovereignty.</p>
+      </div>
+
+      <div class="sd-home-content-grid">
+        {{ $featuredSlugs := slice "2025-12-10-developer-power-sovereignty" "2025-12-01-norway-exit-strategy" "2025-12-11-digital-sovereignty-moral-independence" }}
+        {{ range $featuredSlugs }}
+        {{ with site.GetPage (printf "/blog/%s" .) }}
+        <a href="{{ .RelPermalink }}" class="sd-blog-card-inner">
+          <div class="sd-blog-card-image">
+            {{ with .Resources.GetMatch "feature*" }}
+            {{ $img := .Fill "600x340 webp" }}
+            <img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" />
+            {{ else }}
+            <div class="sd-blog-featured-placeholder">
+              <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--sd-primary); opacity: 0.3;">article</span>
+            </div>
+            {{ end }}
+          </div>
+          <div class="sd-blog-card-content">
+            <div class="sd-blog-meta">
+              <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+              <span>•</span>
+              <span>{{ .ReadingTime }} min read</span>
+            </div>
+            <h3 class="sd-headline sd-blog-card-title">{{ .Title }}</h3>
+            <p class="sd-blog-card-desc">{{ .Description | default .Summary | plainify | truncate 100 }}</p>
+          </div>
+        </a>
+        {{ end }}
+        {{ end }}
+      </div>
+
+      <div class="sd-home-section-cta">
+        <a href="/blog/" class="sd-home-btn">
+          View all articles
+          <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       SECTION: PUBLICATIONS — 3 featured
+       ============================================================ */}}
+  <section class="sd-home-section">
+    <div class="sd-home-section-inner">
+      <div class="sd-home-section-header">
+        <h2 class="sd-headline sd-home-section-title">Essential reading</h2>
+        <p class="sd-home-section-desc">Key reports and frameworks shaping digital sovereignty policy.</p>
+      </div>
+
+      <div class="sd-home-content-grid">
+        {{ $featuredPubs := slice "totalberedskapsmeldingen-2025" "ffi-frivillige-beredskapsorganisasjoner-totalforsvar" "icrc-data-protection-handbook" }}
+        {{ range $featuredPubs }}
+        {{ with site.GetPage (printf "/publications/%s" .) }}
+        <a href="{{ .RelPermalink }}" class="sd-blog-card-inner">
+          <div class="sd-blog-card-image">
+            {{ with .Resources.GetMatch "feature*" }}
+            {{ $img := .Fill "600x340 webp" }}
+            <img src="{{ $img.RelPermalink }}" alt="{{ $.Title }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" />
+            {{ else }}
+            <div class="sd-blog-featured-placeholder">
+              <span class="material-symbols-outlined" style="font-size: 3rem; color: var(--sd-primary); opacity: 0.3;">menu_book</span>
+            </div>
+            {{ end }}
+          </div>
+          <div class="sd-blog-card-content">
+            <h3 class="sd-headline sd-blog-card-title">{{ .Title }}</h3>
+            <p class="sd-blog-card-desc">{{ .Description | default .Summary | plainify | truncate 100 }}</p>
+            <div class="sd-blog-meta">
+              <span>{{ .Params.publisher | default "Publication" }}</span>
+            </div>
+          </div>
+        </a>
+        {{ end }}
+        {{ end }}
+      </div>
+
+      <div class="sd-home-section-cta">
+        <a href="/publications/" class="sd-home-btn">
+          View all publications
+          <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       SECTION: EVENTS
+       ============================================================ */}}
+  <section class="sd-home-section sd-home-section-alt">
+    <div class="sd-home-section-inner">
+      <div class="sd-home-section-header">
+        <h2 class="sd-headline sd-home-section-title">Key Events in 2026</h2>
+        <p class="sd-home-section-desc">Conferences, exercises, and gatherings focused on digital sovereignty and preparedness.</p>
+      </div>
+
+      {{ partial "event-cards-grid.html" (dict "limit" 6) }}
+
+      <div class="sd-home-section-cta">
+        <a href="/events/" class="sd-home-btn">
+          Full calendar
+          <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {{/* ============================================================
+       SECTION: JOIN US — CTA
+       ============================================================ */}}
+  <section class="sd-home-cta">
+    <div class="sd-home-cta-bg"></div>
+    <div class="sd-home-cta-content">
+      <h2 class="sd-headline sd-home-cta-title">Help make Norway digitally sovereign</h2>
+      <p class="sd-home-cta-desc">
+        Born from the chaos of running Europe's largest refugee transit camp with no tools, SovereignSky is a sovereign cloud platform that ensures organizations can operate — with or without the cloud. Built by helpers.no. Open source. Open to everyone.
+      </p>
+
+      <div class="sd-home-cta-actions-grid">
+        <div class="sd-home-cta-action">
+          <span class="material-symbols-outlined">query_stats</span>
+          <span>Contribute research</span>
         </div>
-      </a>
-      {{ end }}
-      {{ end }}
-    </div>
-
-    <div class="text-center mt-6">
-      <a href="/publications/" class="btn btn-sm btn-outline btn-primary">View all publications</a>
-    </div>
-  </div>
-</section>
-
-{{/* ========== SECTION 6: EVENTS ========== */}}
-<section id="events" class="py-16 bg-base-200 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Key Events in 2026</h2>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">Conferences, exercises, and gatherings focused on digital sovereignty and preparedness.</p>
-    </div>
-
-    {{/* Events cards - responsive grid */}}
-    {{ partial "event-cards-grid.html" (dict "limit" 6) }}
-
-    <div class="text-center mt-8">
-      <a href="/events/" class="btn btn-outline btn-primary">Full calendar →</a>
-    </div>
-  </div>
-</section>
-
-{{/* ========== SECTION 7: JOIN US ========== */}}
-<section id="join" class="py-16 text-white -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32" style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);">
-  <div class="max-w-4xl mx-auto text-center px-6">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-6">Help make Norway digitally sovereign</h2>
-    <p class="text-lg opacity-90 mb-8 max-w-2xl mx-auto">
-      Born from the chaos of running Europe's largest refugee transit camp with no tools, SovereignSky is a sovereign cloud platform that ensures organizations can operate — with or without the cloud. Built by helpers.no. Open source. Open to everyone.
-    </p>
-
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-10">
-      <div class="bg-white/20 rounded-lg p-4 text-center min-h-[88px] flex flex-col items-center justify-center">
-        <div class="text-2xl mb-2">📊</div>
-        <div class="text-sm font-medium">Contribute research</div>
+        <div class="sd-home-cta-action">
+          <span class="material-symbols-outlined">lightbulb</span>
+          <span>Suggest improvements</span>
+        </div>
+        <div class="sd-home-cta-action">
+          <span class="material-symbols-outlined">share</span>
+          <span>Share with your network</span>
+        </div>
+        <div class="sd-home-cta-action">
+          <span class="material-symbols-outlined">forum</span>
+          <span>Join the conversation</span>
+        </div>
       </div>
-      <div class="bg-white/20 rounded-lg p-4 text-center min-h-[88px] flex flex-col items-center justify-center">
-        <div class="text-2xl mb-2">💡</div>
-        <div class="text-sm font-medium">Suggest improvements</div>
-      </div>
-      <div class="bg-white/20 rounded-lg p-4 text-center min-h-[88px] flex flex-col items-center justify-center">
-        <div class="text-2xl mb-2">📢</div>
-        <div class="text-sm font-medium">Share with your network</div>
-      </div>
-      <div class="bg-white/20 rounded-lg p-4 text-center min-h-[88px] flex flex-col items-center justify-center">
-        <div class="text-2xl mb-2">💬</div>
-        <div class="text-sm font-medium">Join the conversation</div>
+
+      <div class="sd-home-cta-buttons">
+        <a href="https://github.com/helpers-no" target="_blank" class="sd-home-btn sd-home-btn-white">
+          {{ partial "data-icon.html" "github" }}
+          View on GitHub
+        </a>
+        <a href="/about/" class="sd-home-btn sd-home-btn-outline">
+          About this initiative
+        </a>
       </div>
     </div>
+  </section>
 
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://github.com/helpers-no" target="_blank" class="btn btn-lg bg-white text-primary-700 hover:bg-white/90 border-none">
-        {{ partial "data-icon.html" "github" }}
-        View on GitHub
-      </a>
-      <a href="/about/" class="btn btn-lg btn-outline border-white/30 text-white hover:bg-white/10">
-        About this initiative
-      </a>
-    </div>
-  </div>
-</section>
+  {{/* ============================================================
+       SECTION: COMING SOON
+       ============================================================ */}}
+  <section class="sd-home-section">
+    <div class="sd-home-section-inner">
+      <div class="sd-home-section-header">
+        <h2 class="sd-headline sd-home-section-title">What we're building</h2>
+        <p class="sd-home-section-desc">Projects in development to help organizations achieve digital sovereignty.</p>
+      </div>
 
-{{/* ========== SECTION 8: COMING SOON ========== */}}
-<section id="coming-soon" class="py-16 bg-base-200 -mx-6 sm:-mx-14 md:-mx-24 lg:-mx-32">
-  <div class="max-w-6xl mx-auto px-6 sm:px-14 md:px-24 lg:px-32">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">What we're building</h2>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">Projects in development to help organizations achieve digital sovereignty.</p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {{/* Software Database v2 */}}
-      <div class="card bg-base-100 shadow-md">
-        <div class="card-body">
-          <div class="badge badge-primary badge-outline mb-2">Coming Soon</div>
-          <h3 class="card-title">Software Database v2</h3>
-          <p class="opacity-70">4,000+ software products categorized, validated, and mapped with sovereign alternatives. Find replacements for foreign-controlled tools.</p>
-          <div class="mt-4">
-            <div class="flex justify-between text-sm mb-1">
+      <div class="sd-home-coming-grid">
+        {{/* Software Database v2 */}}
+        <div class="sd-home-coming-card">
+          <span class="sd-home-coming-badge sd-home-coming-badge-primary">Coming Soon</span>
+          <h3 class="sd-headline sd-home-coming-title">Software Database v2</h3>
+          <p class="sd-home-coming-desc">4,000+ software products categorized, validated, and mapped with sovereign alternatives. Find replacements for foreign-controlled tools.</p>
+          <div class="sd-home-coming-progress">
+            <div class="sd-home-coming-progress-header">
               <span>Progress</span>
               <span>MVP Complete</span>
             </div>
-            <progress class="progress progress-primary w-full" value="25" max="100"></progress>
+            <div class="sd-home-coming-progress-bar">
+              <div class="sd-home-coming-progress-fill" style="width: 25%;"></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {{/* NDSI Survey */}}
-      <div class="card bg-base-100 shadow-md">
-        <div class="card-body">
-          <div class="badge badge-secondary badge-outline mb-2">In Development</div>
-          <h3 class="card-title">NDSI Survey</h3>
-          <p class="opacity-70">Take the survey, get a personalized report on your digital sovereignty. Based on EU Cloud Sovereignty Framework with actionable recommendations.</p>
-          <div class="mt-4">
-            <div class="flex justify-between text-sm mb-1">
+        {{/* NDSI Survey */}}
+        <div class="sd-home-coming-card">
+          <span class="sd-home-coming-badge sd-home-coming-badge-secondary">In Development</span>
+          <h3 class="sd-headline sd-home-coming-title">NDSI Survey</h3>
+          <p class="sd-home-coming-desc">Take the survey, get a personalized report on your digital sovereignty. Based on EU Cloud Sovereignty Framework with actionable recommendations.</p>
+          <div class="sd-home-coming-progress">
+            <div class="sd-home-coming-progress-header">
               <span>Progress</span>
               <span>Design Phase</span>
             </div>
-            <progress class="progress progress-secondary w-full" value="15" max="100"></progress>
+            <div class="sd-home-coming-progress-bar">
+              <div class="sd-home-coming-progress-fill sd-home-coming-progress-fill-secondary" style="width: 15%;"></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {{/* SecureNet - Planned */}}
-      <div class="card bg-base-100 shadow-md md:col-span-2">
-        <div class="card-body">
-          <div class="badge badge-accent badge-outline mb-2">Planned</div>
-          <h3 class="card-title">SecureNet</h3>
-          <p class="opacity-70">Encrypted overlay network for secure access between developers and production clusters. A 'clean computer within an infected computer' — zero trust networking and containers ensure malware on the host cannot reach your network.</p>
+        {{/* SecureNet */}}
+        <div class="sd-home-coming-card sd-home-coming-card-wide">
+          <span class="sd-home-coming-badge sd-home-coming-badge-tertiary">Planned</span>
+          <h3 class="sd-headline sd-home-coming-title">SecureNet</h3>
+          <p class="sd-home-coming-desc">Encrypted overlay network for secure access between developers and production clusters. A 'clean computer within an infected computer' — zero trust networking and containers ensure malware on the host cannot reach your network.</p>
         </div>
       </div>
-    </div>
 
-    <div class="text-center mt-8">
-      <p class="text-sm opacity-70 mb-4">Want to help build these tools?</p>
-      <a href="https://github.com/helpers-no" target="_blank" class="btn btn-outline btn-primary">
-        Contribute on GitHub
-      </a>
+      <div class="sd-home-section-cta">
+        <p style="font-size: 0.875rem; color: var(--sd-on-surface-variant); margin-bottom: 1rem;">Want to help build these tools?</p>
+        <a href="https://github.com/helpers-no" target="_blank" class="sd-home-btn">
+          Contribute on GitHub
+          <span class="material-symbols-outlined" style="font-size: 1rem;">arrow_forward</span>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+</article>
