@@ -1,10 +1,5 @@
 {{/*
-  hero.html - Stitch design hero section
-
-  Config options:
-    badge: { text, subtext }
-    title: Main headline
-    description: Supporting text
+  hero.html - Stitch landing page hero (asymmetric, light background)
 */}}
 
 {{ $config := .config }}
@@ -14,25 +9,21 @@
 {{ $title := $config.title | default "Welcome" }}
 {{ $description := $config.description }}
 
-<section id="{{ $id }}" class="sd-events-hero sd-home-hero">
-  <div class="sd-events-hero-bg"></div>
-  <div class="sd-events-hero-content">
-    <div style="max-width: 48rem;">
+<section id="{{ $id }}" class="sd-landing-hero">
+  <div class="sd-landing-hero-bg-orb sd-landing-hero-bg-orb-1"></div>
+  <div class="sd-landing-hero-bg-orb sd-landing-hero-bg-orb-2"></div>
+  <div class="sd-landing-hero-inner">
+    <div class="sd-landing-hero-text">
       {{ with $badge }}
-      <div class="sd-events-hero-badge">
-        <span class="sd-events-hero-badge-dot"></span>
-        <span>{{ .text }}</span>
-        {{ with .subtext }}
-        <span style="opacity: 0.6;">·</span>
-        <span>{{ . }}</span>
-        {{ end }}
+      <div class="sd-landing-hero-badge">
+        <span class="sd-landing-hero-badge-text">{{ .text }}{{ with .subtext }} · {{ . }}{{ end }}</span>
       </div>
       {{ end }}
 
-      <h1 class="sd-headline sd-events-hero-title">{{ $title }}</h1>
+      <h1 class="sd-headline sd-landing-hero-title">{{ $title | safeHTML }}</h1>
 
       {{ with $description }}
-      <p class="sd-events-hero-description">{{ . }}</p>
+      <p class="sd-landing-hero-desc">{{ . }}</p>
       {{ end }}
     </div>
   </div>

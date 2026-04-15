@@ -1,43 +1,54 @@
-{{/* product-cards.html - Stitch design product cards */}}
+{{/* product-cards.html - Stitch bento grid product cards */}}
 {{ $config := .config }}
 {{ $identifier := .identifier }}
 
-<section id="{{ $identifier }}" class="sd-home-section">
-  <div class="sd-home-section-inner">
-    <div class="sd-home-section-header">
-      <h2 class="sd-headline sd-home-section-title">{{ $config.title }}</h2>
-      <p class="sd-home-section-desc">{{ $config.description }}</p>
+{{ $iconNames := dict
+  "DevContainer" "box"
+  "Urbalurba" "hub"
+  "Dev Templates" "code"
+  "Client" "terminal"
+}}
+
+{{ $iconColors := slice "primary" "tertiary" "secondary" "primary-container" }}
+
+<section id="{{ $identifier }}" class="sd-landing-section sd-landing-section-alt">
+  <div class="sd-landing-section-inner">
+    <div class="sd-landing-section-label">
+      <span class="sd-landing-label">Our Ecosystem</span>
+      <h2 class="sd-headline sd-landing-section-title">{{ $config.title }}</h2>
     </div>
 
-    <div class="sd-home-tools-grid">
+    <div class="sd-landing-bento-grid">
       {{ range $i, $item := $config.items }}
-      {{ $colorVar := "primary" }}
-      {{ if eq (mod $i 3) 1 }}{{ $colorVar = "secondary" }}{{ end }}
-      {{ if eq (mod $i 3) 2 }}{{ $colorVar = "tertiary" }}{{ end }}
+      {{ $colorIdx := mod $i 4 }}
+      {{ $color := index $iconColors $colorIdx }}
 
-      <a href="{{ $item.url }}" {{ if hasPrefix $item.url "http" }}target="_blank" rel="noopener"{{ end }} class="sd-home-tool-card">
+      <a href="{{ $item.url }}" {{ if hasPrefix $item.url "http" }}target="_blank" rel="noopener"{{ end }} class="sd-landing-bento-card">
         {{ with $item.video }}
-        <div class="sd-home-tool-preview">
+        <div class="sd-landing-bento-preview">
           <video autoplay loop muted playsinline>
             <source src="{{ . }}" type="video/webm" />
           </video>
         </div>
         {{ else }}{{ with $item.image }}
-        <div class="sd-home-tool-preview">
+        <div class="sd-landing-bento-preview">
           <img src="{{ . }}" alt="" loading="lazy" />
         </div>
         {{ end }}{{ end }}
-        <div class="sd-home-tool-content">
-          <div class="sd-home-tool-header">
-            <h3 class="sd-headline sd-home-tool-title">{{ $item.title }}</h3>
-            <span class="sd-home-tool-badge sd-home-tool-badge-{{ $colorVar }}">{{ $item.badge }}</span>
-          </div>
-          {{ with $item.subtitle }}<p class="sd-home-tool-subtitle">{{ . }}</p>{{ end }}
-          <p class="sd-home-tool-desc">{{ $item.description }}</p>
-          <span class="sd-home-tool-link">
-            {{ $item.cta }}
-            <span class="material-symbols-outlined" style="font-size: 0.875rem;">arrow_forward</span>
+
+        <div class="sd-landing-bento-icon sd-landing-bento-icon-{{ $color }}">
+          <span class="material-symbols-outlined">
+            {{- if in $item.title "DevContainer" }}box
+            {{- else if in $item.title "Urbalurba" }}hub
+            {{- else if in $item.title "Templates" }}code
+            {{- else if in $item.title "Client" }}terminal
+            {{- else }}deployed_code{{ end -}}
           </span>
+        </div>
+        <h3 class="sd-headline sd-landing-bento-title">{{ $item.title }}</h3>
+        <p class="sd-landing-bento-desc">{{ $item.description }}</p>
+        <div class="sd-landing-bento-tags">
+          <span class="sd-landing-tag sd-landing-tag-{{ $color }}">{{ $item.badge }}</span>
         </div>
       </a>
       {{ end }}
